@@ -1,0 +1,116 @@
+{
+  "requestId": "phase-1-default-site-batch-001",
+  "type": "FACTORY_REQUEST_BATCH",
+  "works": [
+    {
+      "name": "site-app-scaffold",
+      "workTypeName": "idea",
+      "payload": "Phase 1: create the initial Next.js App Router, Fumadocs, Tailwind, shadcn/ui, Bun, Biome, and Makefile scaffold for the AI model reference website. Include CI-oriented local commands and static docs routing placeholders."
+    },
+    {
+      "name": "content-registry-validation",
+      "workTypeName": "idea",
+      "payload": "Phase 1: implement the minimum structured content baseline needed for one canonical module page and one basic glossary page, including TypeScript/Zod schemas, registry loaders, one grouped-query attention module record, one token glossary/concept record, one attention tag record, one citation record, colocated message loading, colocated asset loading, and validation."
+    },
+    {
+      "name": "docs-template-rendering",
+      "workTypeName": "idea",
+      "payload": "Phase 1: implement canonical docs rendering for the grouped-query attention module page using localized message keys, resolved asset references, tag pills, citations, and a minimal derived related-documents section."
+    },
+    {
+      "name": "basic-token-glossary-page",
+      "workTypeName": "idea",
+      "payload": "Phase 1: implement one basic glossary page for token using the same message-key, registry-backed, colocated asset/message pattern. Ensure it renders at its docs route, appears in the glossary index, and is searchable by title/body text without adding broader Phase 2 glossary coverage."
+    },
+    {
+      "name": "default-pages-search-tags",
+      "workTypeName": "idea",
+      "payload": "Phase 1: implement the default site pages and discovery surfaces: home/reference entry page, search entry, architecture index, glossary index, tags index, one attention tag landing page, and basic Fumadocs Orama search for the sample docs and glossary pages. Search must find the sample grouped-query attention page by GQA, attention, and KV cache."
+    },
+    {
+      "name": "ideafy-loopback-phase-1-default-site-batch-001",
+      "workTypeName": "thoughts",
+      "payload": "Review the completed Phase 1 default-site ideas, update docs/internal progress and checklist state, wait for manual confirmation if needed, and prepare the next coherent phase batch."
+    }
+  ],
+  "relations": [
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "ideafy-loopback-phase-1-default-site-batch-001",
+      "targetWorkName": "site-app-scaffold",
+      "requiredState": "complete"
+    },
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "content-registry-validation",
+      "targetWorkName": "site-app-scaffold",
+      "requiredState": "complete"
+    },
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "ideafy-loopback-phase-1-default-site-batch-001",
+      "targetWorkName": "content-registry-validation",
+      "requiredState": "complete"
+    },
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "docs-template-rendering",
+      "targetWorkName": "content-registry-validation",
+      "requiredState": "complete"
+    },
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "ideafy-loopback-phase-1-default-site-batch-001",
+      "targetWorkName": "docs-template-rendering",
+      "requiredState": "complete"
+    },
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "docs-template-rendering",
+      "targetWorkName": "site-app-scaffold",
+      "requiredState": "complete"
+    },
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "basic-token-glossary-page",
+      "targetWorkName": "content-registry-validation",
+      "requiredState": "complete"
+    },
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "basic-token-glossary-page",
+      "targetWorkName": "docs-template-rendering",
+      "requiredState": "complete"
+    },
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "ideafy-loopback-phase-1-default-site-batch-001",
+      "targetWorkName": "basic-token-glossary-page",
+      "requiredState": "complete"
+    },
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "ideafy-loopback-phase-1-default-site-batch-001",
+      "targetWorkName": "default-pages-search-tags",
+      "requiredState": "complete"
+    },
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "default-pages-search-tags",
+      "targetWorkName": "site-app-scaffold",
+      "requiredState": "complete"
+    },
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "default-pages-search-tags",
+      "targetWorkName": "docs-template-rendering",
+      "requiredState": "complete"
+    },
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "default-pages-search-tags",
+      "targetWorkName": "basic-token-glossary-page",
+      "requiredState": "complete"
+    }
+  ]
+}

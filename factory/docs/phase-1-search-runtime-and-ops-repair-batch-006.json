@@ -1,0 +1,52 @@
+{
+  "requestId": "phase-1-search-runtime-and-ops-repair-batch-006",
+  "type": "FACTORY_REQUEST_BATCH",
+  "works": [
+    {
+      "name": "phase-1-browser-search-runtime-parity",
+      "workTypeName": "idea",
+      "payload": "Phase 1 repair: fix the real browser search contract so the built app works the same way the automated search helpers do. The current convergence review found that `/search` accepts input but shows no results in a real browser because the client treats `/api/search` as a static index source while the route GET handler returns `[]` unless the request uses `?query=...`. Reconcile the route/client contract with the smallest clean implementation so the header dialog and `/search` page both surface results for `GQA`, `attention`, and `KV cache` in a built app started with `next start`. Acceptance: real browser or deterministic integration proof shows `Grouped-Query Attention` appears from `/search` and the header search dialog for those Phase 1 queries; tag handoff to `/search?tag=attention` still works; search-related reusable components keep at least 90% reachable coverage or remain documented thin wrappers with smoke coverage."
+    },
+    {
+      "name": "phase-1-built-app-search-manual-gate-verifier",
+      "workTypeName": "idea",
+      "payload": "Phase 1 repair: codify the browser-facing manual gate around the built app, not only server-side helpers. Add a deterministic verifier or integration harness that starts the built app on a unique port with timeout protection, exercises `/`, `/search`, `/docs/architecture`, `/docs/glossary`, `/tags`, `/tags/attention`, `/docs/glossary/token`, and `/docs/modules/grouped-query-attention`, and confirms live search results for `GQA`, `attention`, and `KV cache`. Include keyboard entry coverage for `Cmd-K` and `Ctrl-K` if practical in the chosen test harness, or document the exact fallback check if that is not reliable in CI. Acceptance: the verifier is callable from repo commands or scripts, fails on the current empty-results regression, passes after the fix, and is documented in README or planner-facing docs."
+    },
+    {
+      "name": "phase-1-deployment-and-branch-policy-closure",
+      "workTypeName": "idea",
+      "payload": "Phase 1 repair: close the remaining repo-level operational checklist rows that still belong to this phase. Either implement the smallest practical deployment/status path for the current static-first Next.js/Fumadocs site, or explicitly document why deployment is deferred and what exact workflow will own it later. Also document branch-protection assumptions that cannot be enforced from source, CI/deployment status expectations, release/rollback procedure, and commit-SHA traceability. Keep this scoped to documentation/workflow closure; do not add Phase 2 content, PDF work, or localization work. Acceptance: the relevant Phase 1 operational checklist rows are either implemented or explicitly resolved with concrete blockers/owner/follow-up in repository docs and workflow files, and `make ci` still passes."
+    },
+    {
+      "name": "ideafy-loopback-phase-1-search-runtime-and-ops-repair-batch-006",
+      "workTypeName": "thoughts",
+      "payload": "Review Phase 1 search/runtime and operational repair batch 006 after completion. Run convergence review against docs/internal/issues.md, the Phase 1 section of docs/internal/checklist.md, and the manual gate in docs/internal/customer-ask.md. Re-run `make ci` plus the built-app verifier, confirm the real browser search surface works, update docs/internal/checklist.md and docs/internal/progress.txt, and decide whether Phase 1 is complete or whether another narrow repair batch is needed. Do not advance to Phase 2 unless docs/internal/customer-ask.md explicitly moves the phase or the customer authorizes it in conversation."
+    }
+  ],
+  "relations": [
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "phase-1-built-app-search-manual-gate-verifier",
+      "targetWorkName": "phase-1-browser-search-runtime-parity",
+      "requiredState": "complete"
+    },
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "ideafy-loopback-phase-1-search-runtime-and-ops-repair-batch-006",
+      "targetWorkName": "phase-1-browser-search-runtime-parity",
+      "requiredState": "complete"
+    },
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "ideafy-loopback-phase-1-search-runtime-and-ops-repair-batch-006",
+      "targetWorkName": "phase-1-built-app-search-manual-gate-verifier",
+      "requiredState": "complete"
+    },
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "ideafy-loopback-phase-1-search-runtime-and-ops-repair-batch-006",
+      "targetWorkName": "phase-1-deployment-and-branch-policy-closure",
+      "requiredState": "complete"
+    }
+  ]
+}

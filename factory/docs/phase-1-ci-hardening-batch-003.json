@@ -1,0 +1,58 @@
+{
+  "requestId": "phase-1-ci-hardening-batch-003",
+  "type": "FACTORY_REQUEST_BATCH",
+  "works": [
+    {
+      "name": "phase-1-fresh-checkout-typecheck-hardening",
+      "workTypeName": "idea",
+      "payload": "Phase 1 repair: make quality gates reliable from a fresh checkout before any generated Fumadocs source or previous build artifacts exist. Ensure `make typecheck` and `make ci` work on a clean repository clone with only `bun install --frozen-lockfile` run first. Preferred outcomes are either generating the required Fumadocs source as part of typecheck/ci setup or restructuring imports so standalone typecheck does not depend on stale generated files. Add deterministic Bun coverage for the fresh-checkout path if practical, and keep the existing Phase 1 route and search surface unchanged."
+    },
+    {
+      "name": "phase-1-github-actions-ci-baseline",
+      "workTypeName": "idea",
+      "payload": "Phase 1 repair: add baseline GitHub Actions CI wiring aligned with `docs/architectural-checklist.md`. Create a workflow that runs on pull requests and pushes to the main branch, installs Bun with the committed lockfile, and runs `make ci`. Keep the workflow minimal and reproducible, avoid later-phase deployment complexity, and document any assumptions in the repo if needed. Acceptance: a `.github/workflows` CI file exists, it uses Bun deterministically, and it exercises the committed Phase 1 quality gates."
+    },
+    {
+      "name": "phase-1-turbopack-tracing-warning-cleanup",
+      "workTypeName": "idea",
+      "payload": "Phase 1 repair: address the current Next/Turbopack production-build warning caused by broad filesystem tracing from content loaders, currently surfacing through `src/lib/content/glossary-pages.ts` during `next build`. Narrow filesystem access so tracing stays scoped to the content tree, or add the smallest acceptable documented containment if the warning cannot be eliminated cleanly in Phase 1. Do not broaden site scope or add Phase 2 content; the goal is a cleaner and more deterministic Phase 1 build."
+    },
+    {
+      "name": "ideafy-loopback-phase-1-ci-hardening-batch-003",
+      "workTypeName": "thoughts",
+      "payload": "Review the Phase 1 CI hardening batch, rerun the local Phase 1 checks as far as possible, update `docs/internal/checklist.md` and `docs/internal/progress.txt`, and decide whether Phase 1 is complete or whether another narrowly-scoped Phase 1 repair batch is still required."
+    }
+  ],
+  "relations": [
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "phase-1-github-actions-ci-baseline",
+      "targetWorkName": "phase-1-fresh-checkout-typecheck-hardening",
+      "requiredState": "complete"
+    },
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "phase-1-turbopack-tracing-warning-cleanup",
+      "targetWorkName": "phase-1-fresh-checkout-typecheck-hardening",
+      "requiredState": "complete"
+    },
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "ideafy-loopback-phase-1-ci-hardening-batch-003",
+      "targetWorkName": "phase-1-fresh-checkout-typecheck-hardening",
+      "requiredState": "complete"
+    },
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "ideafy-loopback-phase-1-ci-hardening-batch-003",
+      "targetWorkName": "phase-1-github-actions-ci-baseline",
+      "requiredState": "complete"
+    },
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "ideafy-loopback-phase-1-ci-hardening-batch-003",
+      "targetWorkName": "phase-1-turbopack-tracing-warning-cleanup",
+      "requiredState": "complete"
+    }
+  ]
+}

@@ -1,0 +1,481 @@
+{
+  "name": "factory",
+  "resources": [
+    {
+      "capacity": 8,
+      "name": "executor-slot"
+    },
+    {
+      "capacity": 1,
+      "name": "concurrent-planners"
+    }
+  ],
+  "supportingFiles": {
+    "bundledFiles": [
+      {
+        "content": {
+          "encoding": "utf-8",
+          "inline": ".PHONY: dev lint format typecheck test build ci validate-data linkcheck validate-pdf build-search-index\n\ndev:\n\tbun run dev\n\nlint:\n\tbun run lint\n\nformat:\n\tbun run format\n\ntypecheck:\n\tbun run typecheck\n\ntest:\n\tbun run test\n\nbuild:\n\tbun run build\n\tbun ./scripts/verify-phase-1-static-routes.ts\n\nci: lint typecheck test build validate-data\n\nvalidate-data:\n\tbun ./scripts/validate-registry.ts\n\nlinkcheck:\n\t@echo \"linkcheck: skipped (not yet implemented in scaffold)\"\n\t@exit 0\n\nvalidate-pdf:\n\t@echo \"validate-pdf: skipped (not yet implemented in scaffold)\"\n\t@exit 0\n\nbuild-search-index:\n\tbun run build:search-index\n"
+        },
+        "targetPath": "Makefile",
+        "type": "ROOT_HELPER"
+      },
+      {
+        "content": {
+          "encoding": "utf-8"
+        },
+        "targetPath": "factory/docs/batch-input-example.json",
+        "type": "DOC"
+      },
+      {
+        "content": {
+          "encoding": "utf-8"
+        },
+        "targetPath": "factory/docs/batch-inputs.md",
+        "type": "DOC"
+      },
+      {
+        "content": {
+          "encoding": "utf-8"
+        },
+        "targetPath": "factory/docs/overview.md",
+        "type": "DOC"
+      },
+      {
+        "content": {
+          "encoding": "utf-8"
+        },
+        "targetPath": "factory/docs/phase-1-ci-hardening-batch-003.json",
+        "type": "DOC"
+      },
+      {
+        "content": {
+          "encoding": "utf-8"
+        },
+        "targetPath": "factory/docs/phase-1-completion-batch-002.json",
+        "type": "DOC"
+      },
+      {
+        "content": {
+          "encoding": "utf-8"
+        },
+        "targetPath": "factory/docs/phase-1-coverage-deployment-repair-batch-005.json",
+        "type": "DOC"
+      },
+      {
+        "content": {
+          "encoding": "utf-8"
+        },
+        "targetPath": "factory/docs/phase-1-final-repair-batch-004.json",
+        "type": "DOC"
+      },
+      {
+        "content": {
+          "encoding": "utf-8"
+        },
+        "targetPath": "factory/docs/phase-1-search-runtime-and-ops-repair-batch-006.json",
+        "type": "DOC"
+      },
+      {
+        "content": {
+          "encoding": "utf-8"
+        },
+        "targetPath": "factory/docs/phase-2-foundations-batch-001.json",
+        "type": "DOC"
+      },
+      {
+        "content": {
+          "encoding": "utf-8"
+        },
+        "targetPath": "factory/scripts/setup-workspace.py",
+        "type": "SCRIPT"
+      }
+    ]
+  },
+  "version": {
+    "logical": 1780651111274826001,
+    "physical": "2026-06-05T09:28:29.821328Z"
+  },
+  "workTypes": [
+    {
+      "name": "thoughts",
+      "states": [
+        {
+          "name": "init",
+          "type": "INITIAL"
+        },
+        {
+          "name": "complete",
+          "type": "TERMINAL"
+        },
+        {
+          "name": "failed",
+          "type": "FAILED"
+        }
+      ]
+    },
+    {
+      "name": "task",
+      "states": [
+        {
+          "name": "init",
+          "type": "INITIAL"
+        },
+        {
+          "name": "in-review",
+          "type": "PROCESSING"
+        },
+        {
+          "name": "to-complete",
+          "type": "PROCESSING"
+        },
+        {
+          "name": "complete",
+          "type": "TERMINAL"
+        },
+        {
+          "name": "failed",
+          "type": "FAILED"
+        }
+      ]
+    },
+    {
+      "name": "idea",
+      "states": [
+        {
+          "name": "init",
+          "type": "INITIAL"
+        },
+        {
+          "name": "to-complete",
+          "type": "PROCESSING"
+        },
+        {
+          "name": "complete",
+          "type": "TERMINAL"
+        },
+        {
+          "name": "failed",
+          "type": "FAILED"
+        }
+      ]
+    },
+    {
+      "name": "plan",
+      "states": [
+        {
+          "name": "init",
+          "type": "INITIAL"
+        },
+        {
+          "name": "complete",
+          "type": "TERMINAL"
+        },
+        {
+          "name": "failed",
+          "type": "FAILED"
+        }
+      ]
+    },
+    {
+      "name": "cron-triggers",
+      "states": []
+    }
+  ],
+  "workers": [
+    {
+      "executorProvider": "SCRIPT_WRAP",
+      "modelProvider": "CURSOR",
+      "name": "processor",
+      "skipPermissions": true,
+      "stopToken": "\u003cCOMPLETE\u003e",
+      "type": "MODEL_WORKER"
+    },
+    {
+      "args": [
+        "factory/scripts/setup-workspace.py",
+        "{{ (index .Inputs 0).Name }}"
+      ],
+      "command": "python3",
+      "name": "workspace-setup",
+      "type": "SCRIPT_WORKER"
+    },
+    {
+      "modelProvider": "CODEX",
+      "name": "planner",
+      "skipPermissions": true,
+      "type": "MODEL_WORKER"
+    }
+  ],
+  "workstations": [
+    {
+      "inputs": [
+        {
+          "state": "init",
+          "workType": "thoughts"
+        }
+      ],
+      "name": "ideafy",
+      "onFailure": [
+        {
+          "state": "failed",
+          "workType": "thoughts"
+        }
+      ],
+      "outputs": [
+        {
+          "state": "complete",
+          "workType": "thoughts"
+        }
+      ],
+      "resources": [
+        {
+          "capacity": 1,
+          "name": "concurrent-planners"
+        }
+      ],
+      "type": "MODEL_WORKSTATION",
+      "worker": "planner"
+    },
+    {
+      "inputs": [
+        {
+          "state": "init",
+          "workType": "idea"
+        }
+      ],
+      "name": "plan",
+      "onFailure": [
+        {
+          "state": "failed",
+          "workType": "idea"
+        }
+      ],
+      "onRejection": [
+        {
+          "state": "failed",
+          "workType": "idea"
+        }
+      ],
+      "outputs": [
+        {
+          "state": "to-complete",
+          "workType": "idea"
+        },
+        {
+          "state": "init",
+          "workType": "plan"
+        }
+      ],
+      "resources": [
+        {
+          "capacity": 1,
+          "name": "executor-slot"
+        }
+      ],
+      "type": "MODEL_WORKSTATION",
+      "worker": "processor"
+    },
+    {
+      "inputs": [
+        {
+          "guards": [
+            {
+              "matchInput": "task",
+              "type": "SAME_NAME"
+            }
+          ],
+          "state": "to-complete",
+          "workType": "idea"
+        },
+        {
+          "state": "to-complete",
+          "workType": "task"
+        }
+      ],
+      "name": "consume",
+      "outputs": [
+        {
+          "state": "complete",
+          "workType": "idea"
+        },
+        {
+          "state": "complete",
+          "workType": "task"
+        }
+      ],
+      "type": "LOGICAL_MOVE",
+      "worker": ""
+    },
+    {
+      "inputs": [
+        {
+          "state": "init",
+          "workType": "plan"
+        }
+      ],
+      "name": "setup-workspace",
+      "onFailure": [
+        {
+          "state": "failed",
+          "workType": "plan"
+        }
+      ],
+      "outputs": [
+        {
+          "state": "complete",
+          "workType": "plan"
+        },
+        {
+          "state": "init",
+          "workType": "task"
+        }
+      ],
+      "type": "MODEL_WORKSTATION",
+      "worker": "workspace-setup"
+    },
+    {
+      "behavior": "REPEATER",
+      "inputs": [
+        {
+          "state": "init",
+          "workType": "task"
+        }
+      ],
+      "name": "process",
+      "onContinue": [
+        {
+          "state": "init",
+          "workType": "task"
+        }
+      ],
+      "onFailure": [
+        {
+          "state": "failed",
+          "workType": "task"
+        }
+      ],
+      "onRejection": [
+        {
+          "state": "init",
+          "workType": "task"
+        }
+      ],
+      "outputs": [
+        {
+          "state": "in-review",
+          "workType": "task"
+        }
+      ],
+      "resources": [
+        {
+          "capacity": 1,
+          "name": "executor-slot"
+        }
+      ],
+      "type": "MODEL_WORKSTATION",
+      "worker": "processor",
+      "workingDirectory": ".claude/worktrees/{{ (index .Inputs 0).Name }}"
+    },
+    {
+      "inputs": [
+        {
+          "state": "in-review",
+          "workType": "task"
+        }
+      ],
+      "name": "review",
+      "onFailure": [
+        {
+          "state": "failed",
+          "workType": "task"
+        }
+      ],
+      "onRejection": [
+        {
+          "state": "init",
+          "workType": "task"
+        }
+      ],
+      "outputs": [
+        {
+          "state": "to-complete",
+          "workType": "task"
+        }
+      ],
+      "resources": [
+        {
+          "capacity": 1,
+          "name": "executor-slot"
+        }
+      ],
+      "type": "MODEL_WORKSTATION",
+      "worker": "processor",
+      "workingDirectory": ".claude/worktrees/{{ (index .Inputs 0).Name }}"
+    },
+    {
+      "guards": [
+        {
+          "maxVisits": 50,
+          "type": "VISIT_COUNT",
+          "workstation": "process"
+        }
+      ],
+      "inputs": [
+        {
+          "state": "init",
+          "workType": "task"
+        }
+      ],
+      "name": "executor-loop-breaker",
+      "outputs": [
+        {
+          "state": "failed",
+          "workType": "task"
+        }
+      ],
+      "type": "LOGICAL_MOVE",
+      "worker": ""
+    },
+    {
+      "guards": [
+        {
+          "maxVisits": 10,
+          "type": "VISIT_COUNT",
+          "workstation": "review"
+        }
+      ],
+      "inputs": [
+        {
+          "state": "in-review",
+          "workType": "task"
+        }
+      ],
+      "name": "review-loop-breaker",
+      "outputs": [
+        {
+          "state": "failed",
+          "workType": "task"
+        }
+      ],
+      "type": "LOGICAL_MOVE",
+      "worker": ""
+    },
+    {
+      "behavior": "CRON",
+      "cron": {
+        "schedule": "0 * * * *"
+      },
+      "inputs": [],
+      "name": "though-retrigger",
+      "outputs": [
+        {
+          "state": "init",
+          "workType": "thoughts"
+        }
+      ],
+      "type": "LOGICAL_MOVE",
+      "worker": ""
+    }
+  ]
+}

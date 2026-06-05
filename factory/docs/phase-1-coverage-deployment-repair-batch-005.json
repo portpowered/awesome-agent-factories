@@ -1,0 +1,64 @@
+{
+  "requestId": "phase-1-coverage-deployment-repair-batch-005",
+  "type": "FACTORY_REQUEST_BATCH",
+  "works": [
+    {
+      "name": "phase-1-coverage-ci-enforcement",
+      "workTypeName": "idea",
+      "payload": "Phase 1 repair: close the manual-review CI/coverage gap without broadening the product phase. Add a `make coverage` target and package script that run Bun coverage in a deterministic way. Enforce the existing reusable component coverage contract for `src/components/**` and `src/features/**/components/**`, using `src/lib/docs/phase-2-component-manifest.ts` or a renamed/generalized manifest if that is the smallest clean move. CI must print a coverage summary and fail when listed reusable components fall below 90% reachable coverage unless the component is explicitly documented as a thin wrapper with a smoke test. Update README and docs/phase-2-component-coverage.md or its successor so the gate is understandable. Acceptance: `make coverage` exists, `make ci` includes the active coverage gate, `.github/workflows/ci.yml` runs the same local gate, and tests cover the threshold/manifest checker."
+    },
+    {
+      "name": "phase-1-route-search-ux-verifier",
+      "workTypeName": "idea",
+      "payload": "Phase 1 repair: codify the manual gate for home, search, glossary, tag, and sample docs routes so future reviewers do not rely on ad hoc browser/curl checks. Add a deterministic route/search verification harness that starts the app on a unique port or uses the built app safely, applies request timeouts, and verifies home, `/search`, `/docs/glossary`, `/tags`, `/tags/attention`, `/docs/glossary/token`, and `/docs/modules/grouped-query-attention`. The verifier must confirm search results for `GQA`, `attention`, and `KV cache`, and must not hang on stale dev servers or port collisions. Keep it scoped to Phase 1 behavior; do not add Phase 3 content. Acceptance: the verifier is callable from Makefile or scripts, has tests for timeout/port behavior where practical, and README documents the command."
+    },
+    {
+      "name": "phase-1-deployment-release-policy-closure",
+      "workTypeName": "idea",
+      "payload": "Phase 1 repair: close the remaining operational checklist rows at the smallest practical level. Either add a minimal GitHub Pages/static deployment workflow for the current Next.js/Fumadocs site if the app can export cleanly, or document a concrete blocker and the exact future deployment path if static export is not ready in Phase 1. Add README/repo documentation for CI status, deployment status expectations, release process, rollback process, branch-protection assumptions that cannot be enforced from source, and how deployments are traceable to commit SHA. Keep secrets out of the workflow and do not introduce later-phase PDF/localization work. Acceptance: operational checklist rows are either implemented by workflow files or explicitly documented with blocker/owner/follow-up, and `make ci` still passes."
+    },
+    {
+      "name": "ideafy-loopback-phase-1-coverage-deployment-repair-batch-005",
+      "workTypeName": "thoughts",
+      "payload": "Review Phase 1 coverage/deployment repair batch 005 after completion. Run convergence review against docs/internal/issues.md, the Phase 1 section of docs/internal/checklist.md, and the Phase 1 manual gate in docs/internal/customer-ask.md. Rerun `make ci` and the new coverage/route-search verifier as practical, update docs/internal/checklist.md and docs/internal/progress.txt, and decide whether Phase 1 is complete or whether one more narrow repair batch is needed. Do not advance to Phase 2 unless docs/internal/customer-ask.md is updated or the customer explicitly authorizes Phase 2 in conversation."
+    }
+  ],
+  "relations": [
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "phase-1-route-search-ux-verifier",
+      "targetWorkName": "phase-1-coverage-ci-enforcement",
+      "requiredState": "complete"
+    },
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "phase-1-deployment-release-policy-closure",
+      "targetWorkName": "phase-1-coverage-ci-enforcement",
+      "requiredState": "complete"
+    },
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "phase-1-deployment-release-policy-closure",
+      "targetWorkName": "phase-1-route-search-ux-verifier",
+      "requiredState": "complete"
+    },
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "ideafy-loopback-phase-1-coverage-deployment-repair-batch-005",
+      "targetWorkName": "phase-1-coverage-ci-enforcement",
+      "requiredState": "complete"
+    },
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "ideafy-loopback-phase-1-coverage-deployment-repair-batch-005",
+      "targetWorkName": "phase-1-route-search-ux-verifier",
+      "requiredState": "complete"
+    },
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "ideafy-loopback-phase-1-coverage-deployment-repair-batch-005",
+      "targetWorkName": "phase-1-deployment-release-policy-closure",
+      "requiredState": "complete"
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "requestId": "phase-1-final-repair-batch-004",
+  "type": "FACTORY_REQUEST_BATCH",
+  "works": [
+    {
+      "name": "phase-1-fresh-checkout-proof-timeout-fix",
+      "workTypeName": "idea",
+      "payload": "Phase 1 final repair: the repository already generates Fumadocs source before typecheck, but the proof test for that behavior is failing because `src/tests/ci/fresh-checkout-typecheck.test.ts` times out after 5 seconds while synchronously running `make typecheck` from a deleted `.source/` state. Fix the proof so it is deterministic and passes in local `make ci` and GitHub Actions. Acceptable solutions include increasing or configuring the timeout appropriately, narrowing the command under test, or extracting a faster helper that still proves the clean-checkout regeneration path without weakening the assertion."
+    },
+    {
+      "name": "phase-1-clean-worktree-ci-proof-hardening",
+      "workTypeName": "idea",
+      "payload": "Phase 1 final repair: harden the clean-worktree CI proof so it does not rely on fragile incidental state from the developer workspace. Add the smallest deterministic helper, fixture, or script needed so CI can prove that a repository with no generated `.source/` can regenerate Fumadocs bindings and pass the intended gate. Keep the Phase 1 route/search/content surface unchanged. Acceptance: local `make ci` passes after only `bun install --frozen-lockfile`, and the proof remains understandable to future maintainers."
+    },
+    {
+      "name": "phase-1-build-warning-regression-guard",
+      "workTypeName": "idea",
+      "payload": "Phase 1 final repair: close the loop on the Turbopack tracing-warning cleanup by adding a deterministic regression guard or explicit technical note. If the warning is now gone, add a lightweight build-log assertion, test, or scripted check that prevents it from silently returning. If a residual warning still exists, document the exact warning, root cause, attempted mitigation, and recommended follow-up in-repo. Do not add Phase 2 content or broader refactors."
+    },
+    {
+      "name": "ideafy-loopback-phase-1-final-repair-batch-004",
+      "workTypeName": "thoughts",
+      "payload": "Review the final Phase 1 repair batch, rerun the local Phase 1 checks, update `docs/internal/checklist.md` and `docs/internal/progress.txt`, and decide whether Phase 1 is now complete. Do not advance to Phase 2 unless `docs/internal/customer-ask.md` is updated to name it."
+    }
+  ],
+  "relations": [
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "phase-1-clean-worktree-ci-proof-hardening",
+      "targetWorkName": "phase-1-fresh-checkout-proof-timeout-fix",
+      "requiredState": "complete"
+    },
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "phase-1-build-warning-regression-guard",
+      "targetWorkName": "phase-1-fresh-checkout-proof-timeout-fix",
+      "requiredState": "complete"
+    },
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "ideafy-loopback-phase-1-final-repair-batch-004",
+      "targetWorkName": "phase-1-fresh-checkout-proof-timeout-fix",
+      "requiredState": "complete"
+    },
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "ideafy-loopback-phase-1-final-repair-batch-004",
+      "targetWorkName": "phase-1-clean-worktree-ci-proof-hardening",
+      "requiredState": "complete"
+    },
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "ideafy-loopback-phase-1-final-repair-batch-004",
+      "targetWorkName": "phase-1-build-warning-regression-guard",
+      "requiredState": "complete"
+    }
+  ]
+}

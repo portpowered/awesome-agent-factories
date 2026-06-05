@@ -1,0 +1,64 @@
+{
+  "requestId": "phase-1-completion-batch-002",
+  "type": "FACTORY_REQUEST_BATCH",
+  "works": [
+    {
+      "name": "phase-1-entry-and-index-routes",
+      "workTypeName": "idea",
+      "payload": "Phase 1 completion: implement the missing discovery and index routes without broad Phase 2 content expansion. The app must render a docs-native Model Atlas home/reference entry instead of a placeholder; a search entry route at /search or an equivalent documented route; an architecture index route; a tags index route; and an attention tag landing page at /tags/attention. The routes should use the existing registry, tag, module, and glossary loaders, link to grouped-query attention and token, avoid raw placeholder copy, and preserve the dark technical atlas visual direction from docs/site-fundamentals.md. Acceptance: next build lists the new static routes, navigation exposes them, and route smoke tests cover home, architecture, glossary, tags, attention tag, token, and grouped-query attention."
+    },
+    {
+      "name": "phase-1-search-experience-and-coverage",
+      "workTypeName": "idea",
+      "payload": "Phase 1 completion: turn the existing Orama/search-document baseline into a usable search experience for the sample site surface. Implement a search page or dialog entry that queries the static search documents for the Phase 1 records and displays result title, summary, kind, tags, and URL. Search must find grouped-query attention by title, alias GQA, tag attention, and body text KV cache, and must find token by title and body/alias text. Add deterministic Bun tests for the search document builder/index and UI-facing search helper behavior. Do not add Phase 2 glossary pages."
+    },
+    {
+      "name": "phase-1-fresh-ci-and-smoke-tests",
+      "workTypeName": "idea",
+      "payload": "Phase 1 completion and architectural-checklist hardening: make the quality gates reliable from a fresh checkout and wire baseline CI. Ensure Makefile/package scripts generate Fumadocs source before standalone typecheck when needed, keep make ci as lint, typecheck, test, build, and validate-data, and add a GitHub Actions workflow that installs with Bun's committed lockfile and runs make ci. Add or extend smoke tests that assert the Phase 1 route/content surface exists and that registry validation covers messages, assets, related docs, tags, and citations. Address the current Next/Turbopack filesystem tracing warning if it can be fixed by scoping content loaders cleanly; otherwise document the residual warning in progress or a technical note."
+    },
+    {
+      "name": "ideafy-loopback-phase-1-completion-batch-002",
+      "workTypeName": "thoughts",
+      "payload": "Review the completed Phase 1 completion batch, rerun the Phase 1 manual gate checks as far as possible, update docs/internal progress and checklist state, and decide whether the customer-authorized away-mode permits moving to Phase 2 or whether another Phase 1 repair batch is needed."
+    }
+  ],
+  "relations": [
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "phase-1-search-experience-and-coverage",
+      "targetWorkName": "phase-1-entry-and-index-routes",
+      "requiredState": "complete"
+    },
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "phase-1-fresh-ci-and-smoke-tests",
+      "targetWorkName": "phase-1-entry-and-index-routes",
+      "requiredState": "complete"
+    },
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "phase-1-fresh-ci-and-smoke-tests",
+      "targetWorkName": "phase-1-search-experience-and-coverage",
+      "requiredState": "complete"
+    },
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "ideafy-loopback-phase-1-completion-batch-002",
+      "targetWorkName": "phase-1-entry-and-index-routes",
+      "requiredState": "complete"
+    },
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "ideafy-loopback-phase-1-completion-batch-002",
+      "targetWorkName": "phase-1-search-experience-and-coverage",
+      "requiredState": "complete"
+    },
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "ideafy-loopback-phase-1-completion-batch-002",
+      "targetWorkName": "phase-1-fresh-ci-and-smoke-tests",
+      "requiredState": "complete"
+    }
+  ]
+}

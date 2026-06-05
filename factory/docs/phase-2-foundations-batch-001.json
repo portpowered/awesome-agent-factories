@@ -1,0 +1,104 @@
+{
+  "requestId": "phase-2-foundations-batch-001",
+  "type": "FACTORY_REQUEST_BATCH",
+  "works": [
+    {
+      "name": "phase-2-template-generation-and-validation",
+      "workTypeName": "idea",
+      "payload": "Phase 2 foundations: make glossary and concept page expansion repeatable before adding the full page inventory. Implement or harden the smallest practical generator/scaffold path for concept and glossary docs from the existing templates, including MDX page structure, colocated messages/en.json, assets.json, registry records, tags, relatedIds, citations when needed, and validation coverage. Acceptance: a developer or agent can add Phase 2 concept/glossary pages without hand-copying ad hoc structure; registry validation catches missing message keys, asset references, unresolved tags, unresolved related docs, and page/registry mismatches; tests cover the generator/scaffold or template validation path. Keep canonical docs MDX message-key driven."
+    },
+    {
+      "name": "phase-2-core-taxonomy-pages",
+      "workTypeName": "idea",
+      "payload": "Phase 2 foundations: add the first cross-family taxonomy pages needed for later model-family work: model, architecture, module, component, modality, foundation model, generative model, discriminative model, and representation. Use concept/glossary templates and registry-backed relationships, not one-off route code. These pages should link forward to transformer, diffusion model, multimodal model, and world model as draft/data-only or clearly planned related targets where the target page does not exist yet, while avoiding broken rendered links. Acceptance: pages render, search distinguishes their kind, related docs explain why links appear, and tests cover route discovery, registry records, localized messages, and search indexing."
+    },
+    {
+      "name": "phase-2-token-to-probability-chain",
+      "workTypeName": "idea",
+      "payload": "Phase 2 foundations: expand the beginner learning path from token into embedding, tensor, logit, softmax, entropy, temperature, parameter, activation, computational graph, gradient, backpropagation, loss function, and optimizer state. Reuse the Phase 2 template/scaffold work and write pages in the project's plain-language reference style with source-backed claims where claims need citations. Acceptance: a reader can move from token to embedding, logit, and softmax through registry-derived related docs; search finds these pages by title, alias, tag, and body text; math/code rendering works for the small examples needed on logit, softmax, entropy, gradient, and backpropagation; tests cover the path and search behavior."
+    },
+    {
+      "name": "phase-2-generation-and-generalization-chain",
+      "workTypeName": "idea",
+      "payload": "Phase 2 foundations: add the remaining broad foundation pages that connect architectures to training and behavior: patch, latent, latent space, encoder, decoder, encoder-decoder, autoregressive generation, denoising generation, conditioning, alignment, model capacity, overfitting, generalization, perplexity, scaling law, and emergent behavior. Use registry-backed related docs and tags so these pages connect to the taxonomy and token/probability chain without manual related-link lists. Acceptance: pages render from canonical templates, search can distinguish glossary/concept pages from modules/models, related docs provide reason labels, and tests cover route discovery, registry validation, and representative searches."
+    },
+    {
+      "name": "phase-2-docs-quality-gates",
+      "workTypeName": "idea",
+      "payload": "Phase 2 architecture hardening: introduce the earliest practical quality gates from docs/internal/checklist.md for the foundation expansion. Add internal link validation for docs routes, relative links, heading anchors, and custom MDX href props if feasible in this phase; add accessibility smoke checks for navigation, search inputs/results, and representative docs components; and introduce Storybook or a lightweight equivalent component-example harness for shared docs components if the repository shape supports it. Do not let this become a later-phase PDF, localization, deployment, Lighthouse, or visual-regression project. Acceptance: `make ci` still passes, the new gates are documented in README/Makefile where active, and reusable docs components touched by Phase 2 keep at least 90% reachable coverage or documented smoke-test status for thin wrappers."
+    },
+    {
+      "name": "ideafy-loopback-phase-2-foundations-batch-001",
+      "workTypeName": "thoughts",
+      "payload": "Review Phase 2 foundations batch 001 after its ideas complete. Run convergence review against Phase 2 checklist outcomes and the Phase 2 manual-gate paths, rerun CI as far as practical, update docs/internal/checklist.md and docs/internal/progress.txt, and decide whether to submit a Phase 2 repair batch, a Phase 2 cleanup/reconciliation batch, or the next Phase 2 feature batch. Do not advance to Phase 3 unless docs/internal/customer-ask.md or the customer explicitly authorizes it."
+    }
+  ],
+  "relations": [
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "phase-2-core-taxonomy-pages",
+      "targetWorkName": "phase-2-template-generation-and-validation",
+      "requiredState": "complete"
+    },
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "phase-2-token-to-probability-chain",
+      "targetWorkName": "phase-2-template-generation-and-validation",
+      "requiredState": "complete"
+    },
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "phase-2-token-to-probability-chain",
+      "targetWorkName": "phase-2-core-taxonomy-pages",
+      "requiredState": "complete"
+    },
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "phase-2-generation-and-generalization-chain",
+      "targetWorkName": "phase-2-template-generation-and-validation",
+      "requiredState": "complete"
+    },
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "phase-2-generation-and-generalization-chain",
+      "targetWorkName": "phase-2-core-taxonomy-pages",
+      "requiredState": "complete"
+    },
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "phase-2-docs-quality-gates",
+      "targetWorkName": "phase-2-template-generation-and-validation",
+      "requiredState": "complete"
+    },
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "ideafy-loopback-phase-2-foundations-batch-001",
+      "targetWorkName": "phase-2-template-generation-and-validation",
+      "requiredState": "complete"
+    },
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "ideafy-loopback-phase-2-foundations-batch-001",
+      "targetWorkName": "phase-2-core-taxonomy-pages",
+      "requiredState": "complete"
+    },
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "ideafy-loopback-phase-2-foundations-batch-001",
+      "targetWorkName": "phase-2-token-to-probability-chain",
+      "requiredState": "complete"
+    },
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "ideafy-loopback-phase-2-foundations-batch-001",
+      "targetWorkName": "phase-2-generation-and-generalization-chain",
+      "requiredState": "complete"
+    },
+    {
+      "type": "DEPENDS_ON",
+      "sourceWorkName": "ideafy-loopback-phase-2-foundations-batch-001",
+      "targetWorkName": "phase-2-docs-quality-gates",
+      "requiredState": "complete"
+    }
+  ]
+}
