@@ -12,7 +12,7 @@ This policy covers:
 - Repository discussions and comments on proposed list changes
 - Conduct directed at maintainers, contributors, or other participants in project spaces
 
-It does not govern third-party projects linked from the list. Report security or abuse concerns about linked resources under [SECURITY.md](SECURITY.md) when that policy is available.
+It does not govern third-party projects linked from the list. Report security or abuse concerns about linked resources under [SECURITY.md](SECURITY.md).
 
 ## Standards of behavior
 

@@ -231,3 +231,7 @@ Your README description should imply this relevance factually. Do not rely on ma
 8. In the pull request description, explain **how the resource helps manage groups of agents or their flows**.
 
 Maintainers review scope, link stability, and formatting manually. Following these rules reduces review churn and helps your pull request move forward.
+
+## Security
+
+If you find a malicious, typosquatted, compromised, or otherwise unsafe linked resource, see [SECURITY.md](SECURITY.md) for what we watch for and how to report concerns.
