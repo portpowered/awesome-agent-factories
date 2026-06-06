@@ -17,10 +17,12 @@ To reach maintainers, open a GitHub issue, comment on the relevant pull request,
 
 Maintainers review pull requests and issues in good faith and as availability allows. There is no guaranteed response-time SLA.
 
+Apply the full [docs/review-policy.md](docs/review-policy.md) PR review checklist for each resource submission. The checklist operationalizes the summary below; use [docs/taxonomy.md](docs/taxonomy.md) for section-fit disputes.
+
 For each resource submission, maintainers check:
 
 - **Scope fit** — The resource belongs on an agent-factory list: it helps manage groups of agents or their flows (coordination, orchestration, delegation, routing, handoffs, shared state, or group-level evaluation). See [CONTRIBUTING.md](CONTRIBUTING.md) for Included, Excluded, and category rules.
-- **Category** — The entry is placed in the correct README section, or a new category meets the minimum entry count and justification.
+- **Category** — The entry is placed in the correct README section, or a new category meets the minimum entry count and justification. See [docs/taxonomy.md](docs/taxonomy.md) when category fit is disputed.
 - **Agent-factory relevance** — The pull request description explains how the resource relates to multi-agent or flow management.
 - **Formatting** — Entry uses `- [Resource Name](URL) - Description.` with the exact resource name as link text and a concise factual description ending with a period.
 - **Tone** — Descriptions avoid marketing language and stay encyclopedic.
@@ -28,6 +30,8 @@ For each resource submission, maintainers check:
 - **Alphabetization** — The entry is in alphabetical order by link text within its section.
 - **Link stability** — The URL appears to be the canonical, official destination for the resource at review time.
 - **Conduct** — The submission and discussion follow [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
+
+When declining out-of-scope submissions, cite [docs/rejected.md](docs/rejected.md) for commonly rejected types. When relocating historically important but inactive resources, follow [docs/historical.md](docs/historical.md) and apply the `historical` label per [docs/review-policy.md](docs/review-policy.md).
 
 Maintainers may request edits, reject out-of-scope submissions, or ask for more evidence before merge. They are not required to research every linked project beyond what is needed for a reasonable list-quality decision.
 
@@ -53,7 +57,7 @@ Draft pull requests and pull requests blocked on an explicit maintainer question
 
 ## Removal and relocation policy
 
-Maintainers may remove or relocate README entries when keeping them would mislead readers or violate list scope.
+Maintainers may remove or relocate README entries when keeping them would mislead readers or violate list scope. Detailed triggers, labels, and workflow are in [docs/review-policy.md](docs/review-policy.md#removal-and-relocation).
 
 Common reasons for removal:
 
@@ -67,7 +71,11 @@ Common reasons for removal:
 
 When removal is non-urgent, maintainers prefer to comment on the relevant issue or pull request with the reason. Urgent security concerns may result in immediate removal with a brief follow-up note.
 
-Historically important but inactive resources may later be documented in archival material when that process exists. Until then, unsafe or misleading entries are removed rather than left in place.
+**Relocation outcomes:**
+
+- **Historically important but inactive** — Remove from [README.md](README.md) and add to [docs/historical.md](docs/historical.md) with the `historical` label. See [docs/review-policy.md](docs/review-policy.md).
+- **Commonly submitted out-of-scope types** — Decline with reference to [docs/rejected.md](docs/rejected.md) and the `rejected` label when appropriate.
+- **Unsafe or misleading entries** — Remove outright rather than leaving them in place.
 
 ## Security and contact policy
 
@@ -89,11 +97,15 @@ Unless this document is updated after new automation lands:
 - We do not enforce formatting or scope with repository CI, Go checks, or awesome-lint.
 - We do not guarantee 24/7 review or incident response.
 
-Community reports and pull request review are the primary quality controls until later phases add automation.
+Community reports and pull request review are the primary quality controls until Phase 4 automation is added. Review docs under `docs/` describe manual expectations today and are intended inputs for later automated checks.
 
 ## Related policies
 
 - [CONTRIBUTING.md](CONTRIBUTING.md) — submission format, scope, categories, and agent-factory relevance
+- [docs/review-policy.md](docs/review-policy.md) — PR review checklist, removal rules, and recommended labels
+- [docs/taxonomy.md](docs/taxonomy.md) — category definitions for section-fit decisions
+- [docs/historical.md](docs/historical.md) — historically important but inactive resources
+- [docs/rejected.md](docs/rejected.md) — commonly submitted out-of-scope types
 - [SECURITY.md](SECURITY.md) — threats, reporting, and response for linked resources
 - [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) — behavior expectations in issues and pull requests
 - [LICENSE](LICENSE) — license for curated list content

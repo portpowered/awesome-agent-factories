@@ -4,6 +4,8 @@ Thank you for helping improve **Awesome AI Agent Factories**. This document cove
 
 See [README.md](README.md) for the canonical scope statement and section headings.
 
+For detailed category definitions, examples, and include/exclude rules, see [docs/taxonomy.md](docs/taxonomy.md). For the full maintainer review checklist (which you can self-check before submitting), see [docs/review-policy.md](docs/review-policy.md).
+
 ## One resource per pull request
 
 Each pull request must add or change **one resource** only.
@@ -144,6 +146,8 @@ Contributors must choose from these ten categories (README section headings):
 
 Do not invent new top-level README sections in a single-resource pull request.
 
+For detailed definitions, representative examples, and include/exclude rules per category, see [docs/taxonomy.md](docs/taxonomy.md).
+
 ### New categories
 
 If you believe the list needs a **new category**, open a pull request that adds **at least three entries** for that category in the same change.
@@ -222,13 +226,14 @@ Your README description should imply this relevance factually. Do not rely on ma
 ## Before you open a pull request
 
 1. Confirm your change adds **one resource** only (unless proposing a new category with at least three entries).
-2. Choose one of the **ten README categories** (or meet the new-category rule above).
+2. Choose one of the **ten README categories** (or meet the new-category rule above); use [docs/taxonomy.md](docs/taxonomy.md) when section fit is unclear.
 3. Verify the resource fits **scope** and is not a generic single-agent SDK or other excluded type unless directly relevant.
 4. Use the required entry format with the **exact resource name** as link text.
 5. Write a **concise, factual** description that **ends with a period**, avoids marketing language, and reflects the **agent-factory angle**.
 6. Verify the URL is **not already present** in [README.md](README.md).
 7. Place the entry in the correct section in **alphabetical order** by link text.
 8. In the pull request description, explain **how the resource helps manage groups of agents or their flows**.
+9. Self-check against the questions in [docs/review-policy.md](docs/review-policy.md) to reduce review churn.
 
 Maintainers review scope, link stability, and formatting manually. Following these rules reduces review churn and helps your pull request move forward.
 
@@ -239,6 +244,8 @@ If you find a malicious, typosquatted, compromised, or otherwise unsafe linked r
 ## Related policies
 
 - [README.md](README.md) — scope statement and section headings
+- [docs/taxonomy.md](docs/taxonomy.md) — category definitions, examples, and include/exclude rules
+- [docs/review-policy.md](docs/review-policy.md) — maintainer PR review checklist and recommended labels
 - [MAINTAINERS.md](MAINTAINERS.md) — review, merge, stale pull request, and removal policy
 - [SECURITY.md](SECURITY.md) — malicious links, typosquatting, supply-chain concerns, and reporting
 - [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) — community behavior in issues and pull requests

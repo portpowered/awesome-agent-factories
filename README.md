@@ -101,6 +101,8 @@ Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for the full s
 - **Entry format** — `- [Resource Name](URL) - Description.` with the exact resource name as link text
 - **Agent-factory relevance** — what to state in your pull request about coordination, orchestration, handoffs, or related flows
 
+Before opening a pull request, read [docs/taxonomy.md](docs/taxonomy.md) for category definitions and [docs/review-policy.md](docs/review-policy.md) for the maintainer review checklist you can self-check against.
+
 [MAINTAINERS.md](MAINTAINERS.md) describes review and merge policy.
 
 ## License
