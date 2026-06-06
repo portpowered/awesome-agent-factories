@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  go-checks:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: stable
+
+      - name: Download dependencies
+        run: go mod download
+
+      - name: Format check
+        run: test -z "$(gofmt -l internal)"
+
+      - name: Go tests
+        run: go test ./...
+
+      - name: Custom README checks
+        # Prefer make check (matches local CONTRIBUTING.md); fallback to go run when make is unavailable.
+        run: |
+          if command -v make >/dev/null 2>&1; then
+            make check
+          else
+            go run ./internal/checks
+          fi

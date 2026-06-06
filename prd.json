@@ -1,32 +1,31 @@
 {
   "project": "Awesome AI Agent Factories",
-  "branchName": "phase-4-makefile-and-lint-config",
-  "description": "Wire repository-level Phase 4 quality automation around the Go README checker: root Makefile targets (all, lint, check, links, fmt, test), aligned .golangci.yml, .markdownlint.yaml, and .lychee.toml config, optional thin shell wrappers, preserved hygiene files, and contributor documentation—so make check, make test, and go test ./... pass locally while optional tools fail with clear missing-tool guidance.",
+  "branchName": "phase-5-core-ci-workflow",
+  "description": "Add the core GitHub Actions CI workflow for Awesome AI Agent Factories: a read-only `.github/workflows/ci.yml` that runs on pull requests and pushes to `main`, sets up stable Go, verifies `internal/` formatting, runs `go test ./...`, and executes README checks via `make check` (or `go run ./internal/checks`), mirroring Phase 4 local gates without adding link-check, awesome-lint, scheduled maintenance, templates, or README content changes.",
   "context": {
-    "customerAsk": "Phase 4 automation integration: wire repository-level quality commands and config around the Go checker after phase-4-go-readme-checker-core lands. Add a root Makefile with the requested targets all, lint, check, links, fmt, and test; all should run check, check should run go run ./internal/checks, fmt should format Go checker code, and test should run go test ./.... Add .golangci.yml, .markdownlint.yaml, and .lychee.toml matching the customer ask where practical. Add scripts/check-readme.sh and scripts/normalize-readme.sh only if they help expose the same checker/formatting commands without duplicating logic. Preserve existing .gitignore and .editorconfig behavior, extending only when necessary for Go/build artifacts. Do not add GitHub Actions, issue templates, or content seeding. Acceptance: make check, make test, and go test ./... pass locally; optional external tools such as golangci-lint or lychee are documented or fail with clear missing-tool guidance; and root automation files match Phase 4 checklist names.",
-    "problem": "The Go README checker validates structure and entry rules, but contributors lack a single documented local entry point for quality checks. Without a root Makefile and aligned lint/link configuration, everyone must remember raw go run, go test, and optional third-party tool commands, and Phase 5 CI cannot mirror stable repository conventions.",
-    "solution": "Add Phase 4 root automation: a Makefile delegating check and test to the existing Go checker, fmt to gofmt on internal/, lint to golangci-lint, and links to lychee; plus .golangci.yml, .markdownlint.yaml, and .lychee.toml aligned with docs/internal/customer-ask.md. Optional shell scripts thinly delegate to make targets. Preserve .gitignore and .editorconfig, extending only for necessary Go artifacts, and document local commands for contributors."
+    "customerAsk": "Phase 5 GitHub Actions: add the core pull-request and main-branch CI workflow for the Awesome AI Agent Factories repository. Create `.github/workflows/ci.yml` only. It must run on pull requests to `main` and pushes to `main`; check out the repository; set up a stable Go version; download Go dependencies; check Go formatting for `internal`; run `go test ./...`; and run the custom README checks through the same command used by local automation, preferably `make check` or `go run ./internal/checks` if that is more reliable in CI. Keep the workflow read-only and non-mutating. Do not add link-check, awesome-lint, scheduled maintenance, issue templates, PR templates, or README content entries in this item. Acceptance: `.github/workflows/ci.yml` exists, mirrors the Phase 4 local gates where appropriate, uses current maintained GitHub Actions versions, and local `make check`, `make test`, `go test ./...`, and `git diff --check` still pass.",
+    "problem": "Phase 4 local automation (`make check`, `make test`, gofmt on `internal/`) gives contributors a reliable pre-submit path, but GitHub does not yet enforce those gates on pull requests or pushes to `main`. Regressions in README rules, Go tests, or checker formatting can reach `main` without automated blocking.",
+    "solution": "Create a single read-only CI workflow at `.github/workflows/ci.yml` that triggers on pull requests and pushes to `main`, checks out the repo, sets up stable Go with maintained actions (`actions/checkout@v4`, `actions/setup-go@v5`), downloads dependencies, verifies `internal/` is gofmt-clean, runs `go test ./...`, and runs README validation through `make check` (with `go run ./internal/checks` as fallback). Leave optional lint/link workflows and templates to separate Phase 5 items."
   },
   "acceptanceCriteria": [
-    "Root Makefile exists with .PHONY targets all, lint, check, links, fmt, and test matching the Phase 4 checklist in docs/internal/customer-ask.md.",
-    "make all runs check; make check runs go run ./internal/checks; make test runs go test ./...; make fmt runs gofmt -w internal.",
-    "make check, make test, and go test ./... pass locally against the current Phase 1 README skeleton with empty resource sections.",
-    "Root .golangci.yml, .markdownlint.yaml, and .lychee.toml exist and match the customer ask configuration where practical.",
-    "make lint and make links either run successfully when golangci-lint and lychee are installed or exit non-zero with clear missing-tool installation guidance.",
-    "Existing .gitignore and .editorconfig behavior is preserved; any extensions cover only necessary Go/build artifacts without removing factory or monorepo ignore rules.",
-    "No GitHub Actions workflows, issue/PR templates, bulk README entries, or unrelated repository refactors are added.",
-    "Quality gate: go build ./internal/checks succeeds; go test ./... passes; make check and make test pass; optional-tool targets provide documented or self-explanatory missing-tool guidance."
+    "`.github/workflows/ci.yml` exists as the only workflow file added by this work item.",
+    "The workflow runs on `pull_request` to `main` and `push` to `main`.",
+    "The workflow checks out the repository, sets up stable Go, runs `go mod download`, verifies `internal/` formatting, runs `go test ./...`, and runs README checks via `make check` or `go run ./internal/checks`.",
+    "The workflow is read-only and non-mutating (no `gofmt -w`, commits, auto-fix bots, or content writes).",
+    "The workflow uses current maintained GitHub Actions versions (`actions/checkout@v4`, `actions/setup-go@v5` or newer compatible majors).",
+    "CI steps align with Phase 4 local gates documented in `CONTRIBUTING.md` and the root `Makefile`.",
+    "Quality gate: `go build ./...` succeeds; `make check`, `make test`, `go test ./...`, and `git diff --check` pass locally after the workflow is added."
   ],
   "userStories": [
     {
-      "id": "phase-4-makefile-and-lint-config-001",
-      "title": "Add Phase 4 root lint and link configuration files",
-      "description": "As a maintainer wiring Phase 4 automation, I want root linter and link-checker configuration files so golangci-lint, markdownlint consumers, and lychee share predictable repository defaults.",
+      "id": "phase-5-core-ci-workflow-001",
+      "title": "CI workflow triggers and Go environment setup",
+      "description": "As a maintainer, I want a CI workflow that activates on pull requests and pushes to `main` and prepares a stable Go environment so automated checks run on every relevant change.",
       "acceptanceCriteria": [
-        "Root .golangci.yml exists with run.timeout 5m and enables govet, staticcheck, errcheck, ineffassign, unused, gofmt, gofumpt, revive, and misspell with issues.exclude-use-default false",
-        "Root .markdownlint.yaml exists with MD013 false, MD033 false, MD041 false, and MD024.siblings_only true",
-        "Root .lychee.toml exists with max_retries 2, timeout 20, accept codes 200 204 206 301 302 403 429, and exclude entries for localhost and 127.0.0.1",
-        "When golangci-lint is installed, golangci-lint run --config .golangci.yml ./internal/... completes against the current checker code without configuration parse errors",
+        "`.github/workflows/ci.yml` exists with workflow name `CI`",
+        "Workflow `on` includes `pull_request` with `branches: [main]` and `push` with `branches: [main]`",
+        "A single job runs on `ubuntu-latest`, checks out the repository with `actions/checkout@v4`, and sets up Go with `actions/setup-go@v5` using `go-version: stable`",
+        "A `go mod download` step runs after Go setup",
         "Typecheck passes"
       ],
       "priority": 1,
@@ -34,15 +33,13 @@
       "notes": ""
     },
     {
-      "id": "phase-4-makefile-and-lint-config-002",
-      "title": "Add Makefile core quality targets",
-      "description": "As a contributor preparing a pull request, I want make check, make test, make fmt, and make all so I can validate README rules and Go tests from the repository root without memorizing raw commands.",
+      "id": "phase-5-core-ci-workflow-002",
+      "title": "Go formatting verification in CI",
+      "description": "As a maintainer, I want CI to fail when checker code in `internal/` is not gofmt-formatted so formatting drift is caught before merge.",
       "acceptanceCriteria": [
-        "Root Makefile declares .PHONY all lint check links fmt test",
-        "make check runs go run ./internal/checks and exits 0 against the current repository README.md",
-        "make test runs go test ./... and exits 0",
-        "make fmt runs gofmt -w internal and leaves checker Go files formatted",
-        "make all runs the check target equivalent to make check",
+        "CI includes a format-check step equivalent to `test -z \"$(gofmt -l internal)\"` that exits non-zero when unformatted Go files exist under `internal/`",
+        "The format-check step does not write or modify files (no `gofmt -w`)",
+        "The format check targets only `internal/`, matching local `make fmt` scope",
         "Typecheck passes",
         "Tests pass"
       ],
@@ -51,74 +48,50 @@
       "notes": ""
     },
     {
-      "id": "phase-4-makefile-and-lint-config-003",
-      "title": "Wire lint target with golangci-lint and missing-tool guidance",
-      "description": "As a maintainer running optional Go static analysis, I want make lint to use the repository golangci config or tell me clearly how to install the tool when it is missing.",
+      "id": "phase-5-core-ci-workflow-003",
+      "title": "Go test execution in CI",
+      "description": "As a contributor, I want CI to run the full Go test suite so checker regressions are caught the same way as `make test` locally.",
       "acceptanceCriteria": [
-        "make lint runs golangci-lint run ./... using the root .golangci.yml configuration",
-        "When golangci-lint is not on PATH, make lint exits non-zero and prints a human-readable message naming the missing binary and at least one installation option",
-        "When golangci-lint is installed and checker code is clean, make lint exits 0",
-        "Typecheck passes"
+        "CI includes a step that runs `go test ./...` from the repository root",
+        "The test step fails the workflow when any package test fails",
+        "The command matches the `make test` target behavior in the root `Makefile`",
+        "Typecheck passes",
+        "Tests pass"
       ],
       "priority": 3,
       "passes": true,
       "notes": ""
     },
     {
-      "id": "phase-4-makefile-and-lint-config-004",
-      "title": "Wire links target with lychee and missing-tool guidance",
-      "description": "As a maintainer checking documentation link health, I want make links to run lychee against README and docs markdown or fail clearly when lychee is not installed.",
+      "id": "phase-5-core-ci-workflow-004",
+      "title": "README checks in CI",
+      "description": "As a maintainer, I want CI to run the custom README validator so list structure and entry-rule violations are blocked before merge.",
       "acceptanceCriteria": [
-        "make links runs lychee README.md docs/*.md or equivalent invocation that honors root .lychee.toml",
-        "When lychee is not on PATH, make links exits non-zero and prints a human-readable message naming the missing binary and at least one installation option",
-        "When lychee is installed, make links executes using the repository .lychee.toml settings without configuration parse errors",
-        "Typecheck passes"
+        "CI includes a README validation step that runs `make check` when `make` is available on the runner",
+        "If `make check` is unreliable in CI, the step uses `go run ./internal/checks` as a documented fallback with the same pass/fail semantics as local `make check`",
+        "The README check step fails the workflow when `internal/checks` reports failures against the repository `README.md`",
+        "The workflow does not invoke `make links`, `make lint`, lychee, awesome-lint, or other optional Phase 4/5 tools",
+        "Typecheck passes",
+        "Tests pass"
       ],
       "priority": 4,
       "passes": true,
       "notes": ""
     },
     {
-      "id": "phase-4-makefile-and-lint-config-005",
-      "title": "Preserve and minimally extend repository hygiene files",
-      "description": "As a factory operator maintaining multiple worktrees, I want .gitignore and .editorconfig to keep their current factory and monorepo rules while ignoring any new Go build artifacts introduced by the checker module.",
+      "id": "phase-5-core-ci-workflow-005",
+      "title": "Read-only CI guarantees and local gate regression check",
+      "description": "As a repository maintainer, I want the new CI workflow to remain non-mutating and leave existing local automation unchanged so contributors and CI share one consistent quality contract.",
       "acceptanceCriteria": [
-        "Existing .gitignore entries for .claude, tasks/, docs/internal, factory/Makefile, factory/docs, editor/OS artifacts, logs, tmp/, dist/, and coverage.out remain present and unchanged in meaning",
-        ".editorconfig content remains aligned with current Phase 2 behavior for charset, line endings, final newline, markdown trailing-whitespace exception, Go tabs, and YAML/TOML/JSON/Markdown two-space indent",
-        "If the Go checker introduces local build outputs not already ignored, add only the minimal patterns needed without broad unrelated cleanup",
-        "Typecheck passes"
+        "`.github/workflows/ci.yml` contains no steps that modify tracked files, create commits, open pull requests, or push changes",
+        "The workflow does not grant unnecessary `permissions:` write scopes; default read-only checkout behavior is sufficient",
+        "Only `.github/workflows/ci.yml` is added or changed for this work item (no link-check, awesome-lint, scheduled-maintenance, issue templates, PR templates, or README content edits)",
+        "From a clean repository root, `make check`, `make test`, `go test ./...`, and `git diff --check` all exit 0 after the workflow lands",
+        "Typecheck passes",
+        "Tests pass"
       ],
       "priority": 5,
-      "passes": true,
-      "notes": ""
-    },
-    {
-      "id": "phase-4-makefile-and-lint-config-006",
-      "title": "Add optional helper scripts that delegate to Makefile targets",
-      "description": "As a contributor or automation author expecting shell entry points, I want thin wrapper scripts that expose the same README check and formatting commands without reimplementing checker logic.",
-      "acceptanceCriteria": [
-        "If added, scripts/check-readme.sh exits with the same result as make check by delegating to make check or go run ./internal/checks without embedding duplicate validation rules",
-        "If added, scripts/normalize-readme.sh exits with the same formatting outcome as make fmt by delegating to make fmt without embedding duplicate formatting logic",
-        "If either script is omitted, CONTRIBUTING.md or Makefile help text states that make check and make fmt are the canonical entry points",
-        "Any added scripts are executable and runnable from the repository root",
-        "Typecheck passes"
-      ],
-      "priority": 6,
-      "passes": true,
-      "notes": ""
-    },
-    {
-      "id": "phase-4-makefile-and-lint-config-007",
-      "title": "Document local quality commands for contributors",
-      "description": "As a contributor following CONTRIBUTING.md, I want documented local commands for README validation and optional lint/link checks so I can self-verify before maintainer review.",
-      "acceptanceCriteria": [
-        "CONTRIBUTING.md includes a short Local checks section naming make check, make test, and make all as the primary pre-submit commands",
-        "The section notes that make lint requires golangci-lint and make links requires lychee with install pointers or references to upstream install documentation",
-        "Documentation does not claim GitHub Actions or scheduled CI already enforce checks",
-        "Typecheck passes"
-      ],
-      "priority": 7,
-      "passes": true,
+      "passes": false,
       "notes": ""
     }
   ]
