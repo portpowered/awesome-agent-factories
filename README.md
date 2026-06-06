@@ -13,3 +13,28 @@
 > A curated list of theories, frameworks, benchmarks, research, and writing about managing groups of AI agents and their flows.
 
 AI agent factories are systems for coordinating groups of agents: assigning roles, routing tasks, managing handoffs, supervising execution, sharing state, and evaluating group-level behavior.
+
+## Scope
+
+This list focuses on AI agent factories: systems, theories, frameworks, and practices for managing groups of agents and their flows.
+
+Included:
+
+- Multi-agent orchestration
+- Agent teams, swarms, crews, societies, and supervisors
+- Task delegation, routing, handoffs, and flow control
+- Agent communication protocols
+- Shared state and shared workspaces
+- Group-level benchmarks and evaluation methods
+- Research on agent coordination, cooperation, competition, and organization
+- Production case studies involving groups of agents
+
+Excluded unless directly relevant:
+
+- Single-agent chatbots
+- Generic LLM SDKs
+- Prompt collections
+- Standalone RAG tools
+- Generic observability tools
+- Generic workflow engines with no agent-specific usage
+- Model provider SDKs
