@@ -30,6 +30,7 @@ func run() error {
 	results = append(results, validateAlphabeticalOrder(doc)...)
 	results = append(results, validateBareURLs(doc)...)
 	results = append(results, validateTrackingURLs(doc)...)
+	results = append(results, validateScopeKeywords(doc)...)
 
 	failureCount := 0
 	for _, result := range results {

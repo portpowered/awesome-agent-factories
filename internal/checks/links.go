@@ -212,3 +212,26 @@ func validateTrackingURLs(doc *ReadmeDocument) []CheckResult {
 
 	return results
 }
+
+func validateScopeKeywords(doc *ReadmeDocument) []CheckResult {
+	var results []CheckResult
+
+	for _, entry := range collectResourceEntries(doc) {
+		if descriptionHasScopeKeyword(entry.Description) {
+			continue
+		}
+
+		results = append(results, CheckResult{
+			Level: "warning",
+			Rule:  "scope-keyword",
+			Message: fmt.Sprintf(
+				`section %q line %d entry %q: description lacks agent-factory scope keyword (coordination, orchestration, delegation, routing, handoffs, shared state, or group-level evaluation)`,
+				entry.Section,
+				entry.Line,
+				entry.Name,
+			),
+		})
+	}
+
+	return results
+}

@@ -20,7 +20,7 @@ var bannedMarketingPhrases = []string{
 
 var bannedMarketingPhrasePatterns []*regexp.Regexp
 
-func init() {
+func initBannedMarketingPhrasePatterns() {
 	for _, phrase := range bannedMarketingPhrases {
 		escaped := regexp.QuoteMeta(phrase)
 		bannedMarketingPhrasePatterns = append(
@@ -41,6 +41,47 @@ func findBannedPhraseInDescription(description string) (string, bool) {
 		}
 	}
 	return "", false
+}
+
+// scopeKeywords lists positive agent-factory angle terms from CONTRIBUTING.md.
+var scopeKeywords = []string{
+	"coordination",
+	"orchestration",
+	"delegation",
+	"routing",
+	"handoff",
+	"shared state",
+	"group-level evaluation",
+}
+
+var scopeKeywordPatterns []*regexp.Regexp
+
+func init() {
+	initBannedMarketingPhrasePatterns()
+	for _, phrase := range scopeKeywords {
+		var pattern *regexp.Regexp
+		switch phrase {
+		case "handoff":
+			pattern = regexp.MustCompile(`(?i)\bhandoffs?\b`)
+		case "shared state":
+			pattern = regexp.MustCompile(`(?i)shared\s+state`)
+		case "group-level evaluation":
+			pattern = regexp.MustCompile(`(?i)group[- ]level\s+evaluation`)
+		default:
+			escaped := regexp.QuoteMeta(phrase)
+			pattern = regexp.MustCompile(`(?i)\b` + escaped + `\b`)
+		}
+		scopeKeywordPatterns = append(scopeKeywordPatterns, pattern)
+	}
+}
+
+func descriptionHasScopeKeyword(description string) bool {
+	for _, pattern := range scopeKeywordPatterns {
+		if pattern.MatchString(description) {
+			return true
+		}
+	}
+	return false
 }
 
 // ReadmeDocument holds parsed README content for downstream validation rules.

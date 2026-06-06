@@ -327,3 +327,69 @@ func TestValidateTrackingURLs(t *testing.T) {
 		})
 	}
 }
+
+func TestValidateScopeKeywords(t *testing.T) {
+	makeDoc := func(markdown string) *ReadmeDocument {
+		return &ReadmeDocument{
+			Raw:      markdown,
+			Sections: parseSections(markdown),
+		}
+	}
+
+	tests := []struct {
+		name        string
+		markdown    string
+		wantWarning bool
+		wantRules   []string
+		wantNoFail  bool
+	}{
+		{
+			name: "description with scope keyword has no warning",
+			markdown: resourceSectionFixture("Frameworks", strings.TrimSpace(`
+- [AutoGen](https://github.com/microsoft/autogen) - A framework for multi-agent orchestration applications.
+`)),
+			wantWarning: false,
+			wantNoFail:  true,
+		},
+		{
+			name: "description without scope keyword emits warning only",
+			markdown: resourceSectionFixture("Frameworks", strings.TrimSpace(`
+- [AutoGen](https://github.com/microsoft/autogen) - A framework for multi-agent applications.
+`)),
+			wantWarning: true,
+			wantRules:   []string{"scope-keyword"},
+			wantNoFail:  true,
+		},
+		{
+			name:        "empty resource section produces no scope warnings",
+			markdown:    resourceSectionFixture("Frameworks", "Optional intro without resource entries.\n"),
+			wantWarning: false,
+			wantNoFail:  true,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			scopeResults := validateScopeKeywords(makeDoc(tt.markdown))
+			warnings := filterWarnings(scopeResults)
+			if tt.wantWarning && len(warnings) == 0 {
+				t.Fatal("expected warnings, got none")
+			}
+			if !tt.wantWarning && len(warnings) > 0 {
+				t.Fatalf("expected no warnings, got %#v", warnings)
+			}
+			for _, rule := range tt.wantRules {
+				if !containsRule(warnings, rule) {
+					t.Fatalf("expected warning with rule %q, got %#v", rule, warnings)
+				}
+			}
+
+			if tt.wantNoFail {
+				failures := filterFailures(scopeResults)
+				if len(failures) > 0 {
+					t.Fatalf("expected scope findings to be warnings only, got failures %#v", failures)
+				}
+			}
+		})
+	}
+}
