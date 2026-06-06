@@ -1,0 +1,5 @@
+.claude
+tasks/
+docs/internal
+factory/Makefile
+factory/docs
