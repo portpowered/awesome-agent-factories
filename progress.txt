@@ -1,5 +1,7 @@
 ## Codebase Patterns
-- No package.json or CI tooling in this worktree; quality gates pass vacuously when no typecheck/lint/test scripts exist.
+- Root Go module is `github.com/portpowered/awesome-agent-factories` with `go 1.24`; run `go build ./internal/checks` and `go test ./...` from repository root.
+- `internal/checks` is a `package main` CLI with responsibilities split across `main.go`, `readme.go`, `links.go`, `sections.go`, `alphabetical.go`, and `duplicates.go`.
+- No package.json or CI tooling in this worktree; Go quality gates are `go build` and `go test ./...`.
 - Use the standard Awesome badge markup: `[![Awesome](https://awesome.re/badge.svg)](https://awesome.re)` on the H1 line.
 - `docs/internal/customer-ask.md` contains suggested opening copy and Contents anchor patterns for later stories.
 
@@ -18,4 +20,15 @@
 - **Learnings for future iterations:**
   - `docs/internal/customer-ask.md` lines 99–126 provide copy-ready Scope section text that matches PRD acceptance criteria exactly.
   - Scope section belongs immediately after the opening narrative and before Contents (story 003).
+---
+
+## 2026-06-07T00:00:00Z - phase-4-go-readme-checker-core-001
+- Bootstrapped root `go.mod` with module path `github.com/portpowered/awesome-agent-factories` and Go 1.24 toolchain.
+- Added `internal/checks` package skeleton with `main.go`, `readme.go`, `links.go`, `sections.go`, `alphabetical.go`, and `duplicates.go` preserving planned responsibilities via shared types (`ReadmeDocument`, `Section`, `ResourceEntry`, `CheckResult`).
+- Verified `go build ./internal/checks` and `go test ./...` succeed from repository root.
+- Files changed: go.mod, internal/checks/main.go, internal/checks/readme.go, internal/checks/links.go, internal/checks/sections.go, internal/checks/alphabetical.go, internal/checks/duplicates.go
+- **Learnings for future iterations:**
+  - `internal/checks` uses `package main` so `go run ./internal/checks` works without a separate `cmd/` directory.
+  - Story 001 intentionally leaves `run()` as a no-op; story 002+ wire README loading and validation rules.
+  - No external Go dependencies yet, so `go.sum` is not required.
 ---
