@@ -51,3 +51,43 @@ Excluded unless directly relevant:
 - [Case Studies](#case-studies)
 - [Examples and Templates](#examples-and-templates)
 - [Related Lists](#related-lists)
+
+## Theories
+
+Foundational ideas for organizing agent groups.
+
+## Coordination Patterns
+
+Reusable system shapes for coordinating agent groups and flows.
+
+## Frameworks
+
+Software that manages agent groups, flows, handoffs, or orchestration.
+
+## Protocols and Interfaces
+
+Standards or conventions for agent interaction, handoffs, and shared interfaces.
+
+## Benchmarks
+
+Benchmarks that evaluate group or workflow behavior.
+
+## Research Papers
+
+Academic or technical papers about agent groups and flows.
+
+## Blog Posts
+
+Technical writing that explains real patterns, architectures, or failures in multi-agent systems.
+
+## Case Studies
+
+Real-world uses of multiple agents or agent flows.
+
+## Examples and Templates
+
+Runnable or forkable examples of multi-agent coordination.
+
+## Related Lists
+
+Other awesome lists and curated resources related to agent orchestration and multi-agent systems.
