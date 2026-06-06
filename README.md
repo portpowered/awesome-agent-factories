@@ -94,7 +94,7 @@ Other awesome lists and curated resources related to agent orchestration and mul
 
 ## Contributing
 
-Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for submission rules (this file will be added in a follow-up governance phase).
+See [CONTRIBUTING.md](CONTRIBUTING.md) for submission format and discipline rules.
 
 ## License
 
