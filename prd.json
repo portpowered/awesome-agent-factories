@@ -1,0 +1,110 @@
+{
+  "project": "Awesome AI Agent Factories",
+  "branchName": "awesome-readme-foundation",
+  "description": "Replace the placeholder README with the first credible Awesome AI Agent Factories foundation document: identity header, scope, Contents navigation, ten category skeletons, and footer contribution/license notes—without bulk content seeding.",
+  "context": {
+    "customerAsk": "Phases 0 and 1 foundation: replace the placeholder README with the first strong `Awesome AI Agent Factories` document. Add the Awesome badge, a lightweight header/logo treatment, short neutral description, explicit scope, contents, and the required section skeletons: Theories, Coordination Patterns, Frameworks, Protocols and Interfaces, Benchmarks, Research Papers, Blog Posts, Case Studies, Examples and Templates, and Related Lists. The scope must include multi-agent orchestration, teams/swarms/crews/societies/supervisors, task delegation/routing/handoffs/flow control, agent communication protocols, shared state/workspaces, group-level benchmarks/evaluation, research on coordination/cooperation/competition/organization, and production case studies. The scope must exclude generic single-agent chatbots, generic LLM SDKs, prompt collections, standalone RAG tools, generic observability tools, generic workflow engines with no agent-specific usage, and model provider SDKs unless directly relevant to agent groups or flows. Add contribution and license notes at the bottom without adding a large content inventory yet. Acceptance: README presents a credible curated awesome list, all anchors in Contents match headings, wording is factual and non-promotional, and the file no longer reads as a generic AI agents list.",
+    "problem": "The repository currently has a one-line placeholder README that provides no scope, taxonomy, or trust signal. Without a focused Awesome-list foundation, later governance, review policy, automation, and content seeding lack a coherent public contract, and the project is easily mistaken for a generic AI agents roundup.",
+    "solution": "Ship a single structured README.md that establishes Awesome list identity, defines agent-factory scope with explicit include/exclude rules, provides working Contents navigation to ten category skeletons, and closes with lightweight contribution and license notes—deferring bulk link inventory to later phases."
+  },
+  "acceptanceCriteria": [
+    "README.md replaces the placeholder and presents a credible Awesome list focused on managing groups of AI agents and their flows.",
+    "The document includes the Awesome badge, lightweight header/logo treatment, neutral description, explicit scope, Contents section, and all ten required category skeletons.",
+    "Scope includes multi-agent orchestration, teams/swarms/crews/societies/supervisors, delegation/routing/handoffs/flow control, communication protocols, shared state/workspaces, group-level evaluation, coordination research, and production case studies; scope excludes generic single-agent chatbots, LLM SDKs, prompt collections, standalone RAG, generic observability, non-agent workflow engines, and model provider SDKs unless directly relevant to agent groups or flows.",
+    "Every Contents anchor resolves to the matching section heading when rendered on GitHub.",
+    "Wording is factual and non-promotional; the README does not read as a generic AI agents list.",
+    "Contribution and license notes appear at the bottom without a large content inventory.",
+    "Quality gate: typecheck, lint, and tests pass for any repository tooling invoked by the change (or pass vacuously when no such tooling exists yet)."
+  ],
+  "userStories": [
+    {
+      "id": "awesome-readme-foundation-001",
+      "title": "Establish README identity and opening narrative",
+      "description": "As a visitor landing on the repository, I want a clear title, Awesome badge, and concise explanation of agent factories so I know what this list is about before scrolling.",
+      "acceptanceCriteria": [
+        "README.md opens with `# Awesome AI Agent Factories` and the standard Awesome badge linking to https://awesome.re",
+        "A lightweight header or logo treatment appears near the top (banner image, SVG, or restrained typographic mark)",
+        "A short neutral blockquote tagline describes curated theories, frameworks, benchmarks, research, and writing about managing groups of AI agents and their flows",
+        "One or two factual sentences define agent factories as systems for coordinating groups of agents (roles, routing, handoffs, supervision, shared state, group-level evaluation)",
+        "The placeholder heading `# awesome-agent-factories` is fully removed",
+        "Typecheck passes"
+      ],
+      "priority": 1,
+      "passes": true,
+      "notes": ""
+    },
+    {
+      "id": "awesome-readme-foundation-002",
+      "title": "Define inclusive and exclusive scope",
+      "description": "As a contributor or maintainer, I want an explicit Scope section so I can tell whether a resource fits before opening a pull request.",
+      "acceptanceCriteria": [
+        "A `## Scope` section states the list focuses on AI agent factories: systems, theories, frameworks, and practices for managing groups of agents and their flows",
+        "An Included list covers multi-agent orchestration; agent teams, swarms, crews, societies, and supervisors; task delegation, routing, handoffs, and flow control; agent communication protocols; shared state and shared workspaces; group-level benchmarks and evaluation methods; research on agent coordination, cooperation, competition, and organization; and production case studies involving groups of agents",
+        "An Excluded unless directly relevant list covers single-agent chatbots; generic LLM SDKs; prompt collections; standalone RAG tools; generic observability tools; generic workflow engines with no agent-specific usage; and model provider SDKs",
+        "Scope language is neutral and factual with no superlatives or vendor promotion",
+        "Typecheck passes"
+      ],
+      "priority": 2,
+      "passes": true,
+      "notes": ""
+    },
+    {
+      "id": "awesome-readme-foundation-003",
+      "title": "Add Contents navigation aligned to categories",
+      "description": "As a reader, I want a table of contents so I can jump directly to the category I care about.",
+      "acceptanceCriteria": [
+        "A `## Contents` section lists exactly these entries in order: Theories; Coordination Patterns; Frameworks; Protocols and Interfaces; Benchmarks; Research Papers; Blog Posts; Case Studies; Examples and Templates; Related Lists",
+        "Each Contents entry is a markdown link whose anchor target matches the GitHub-rendered slug for the corresponding `##` section heading",
+        "Contents appears after the opening narrative and scope, before the first category section",
+        "Typecheck passes"
+      ],
+      "priority": 3,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "awesome-readme-foundation-004",
+      "title": "Add required category section skeletons",
+      "description": "As a future contributor, I want every category to exist as a labeled section so I know where entries will live when content seeding begins.",
+      "acceptanceCriteria": [
+        "README.md contains `##` headings for all ten categories: Theories; Coordination Patterns; Frameworks; Protocols and Interfaces; Benchmarks; Research Papers; Blog Posts; Case Studies; Examples and Templates; Related Lists",
+        "Each section includes at most one short neutral sentence describing what belongs there (no bullet inventories of specific projects, papers, or URLs)",
+        "Sections contain no fabricated entries; they may be empty aside from the descriptive sentence",
+        "Section order matches the Contents list order",
+        "Typecheck passes"
+      ],
+      "priority": 4,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "awesome-readme-foundation-005",
+      "title": "Add contribution and license footer notes",
+      "description": "As a prospective contributor, I want bottom-of-page guidance on how to contribute and how list content is licensed.",
+      "acceptanceCriteria": [
+        "A contribution note near the end explains that contributions are welcome and points readers to CONTRIBUTING.md for submission rules",
+        "A license note states that list content is intended to be released under CC0-1.0 and that linked third-party resources retain their own licenses",
+        "Footer notes are concise and do not duplicate a large entry inventory",
+        "Typecheck passes"
+      ],
+      "priority": 5,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "awesome-readme-foundation-006",
+      "title": "Converge README quality and anchor correctness",
+      "description": "As a maintainer reviewing the foundation batch, I want confidence that the README reads as a focused agent-factories list and that navigation works end-to-end.",
+      "acceptanceCriteria": [
+        "Clicking every Contents link in a GitHub-rendered preview jumps to the correct section heading",
+        "A reader skimming the full document can distinguish this list from a generic AI agents roundup because scope, intro, and category descriptions emphasize groups, flows, orchestration, and coordination",
+        "No promotional phrases such as revolutionary, game-changing, or best-in-class appear outside official resource titles",
+        "README.md is the only user-facing list document changed for this work item; no unrelated repository cleanup is bundled in",
+        "Typecheck passes"
+      ],
+      "priority": 6,
+      "passes": false,
+      "notes": ""
+    }
+  ]
+}

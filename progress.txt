@@ -1,0 +1,21 @@
+## Codebase Patterns
+- No package.json or CI tooling in this worktree; quality gates pass vacuously when no typecheck/lint/test scripts exist.
+- Use the standard Awesome badge markup: `[![Awesome](https://awesome.re/badge.svg)](https://awesome.re)` on the H1 line.
+- `docs/internal/customer-ask.md` contains suggested opening copy and Contents anchor patterns for later stories.
+
+## 2026-06-06T00:00:00Z - awesome-readme-foundation-001
+- Established README identity: Awesome H1 with badge, inline SVG logo mark (three connected nodes), blockquote tagline, and factual agent-factory definition; removed placeholder `# awesome-agent-factories` heading.
+- Files changed: README.md
+- **Learnings for future iterations:**
+  - Story 001 is intentionally limited to opening narrative only; Scope, Contents, category skeletons, and footer notes are separate stories (002–005).
+  - Place the H1 first to satisfy "opens with" acceptance criteria; logo treatment can follow immediately after.
+  - Customer-ask suggested copy aligns well with PRD acceptance criteria for the opening block.
+---
+
+## 2026-06-06T12:00:00Z - awesome-readme-foundation-002
+- Added `## Scope` section with introductory statement, Included list (8 items covering orchestration, teams/swarms/crews/societies/supervisors, delegation/routing/handoffs, protocols, shared state, group benchmarks, coordination research, production case studies), and Excluded unless directly relevant list (7 items); language is neutral and factual per customer-ask template.
+- Files changed: README.md
+- **Learnings for future iterations:**
+  - `docs/internal/customer-ask.md` lines 99–126 provide copy-ready Scope section text that matches PRD acceptance criteria exactly.
+  - Scope section belongs immediately after the opening narrative and before Contents (story 003).
+---
