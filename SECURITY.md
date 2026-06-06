@@ -88,7 +88,7 @@ Report security issues through one of these channels:
    - [@portpowered](https://github.com/portpowered)
    - [@AndreasAbdi](https://github.com/AndreasAbdi)
 
-Maintainer review responsibilities and contact policy are also described in [MAINTAINERS.md](MAINTAINERS.md) when that document is published.
+Maintainer review responsibilities and contact policy are described in [MAINTAINERS.md](MAINTAINERS.md).
 
 ### What to include
 

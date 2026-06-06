@@ -235,3 +235,11 @@ Maintainers review scope, link stability, and formatting manually. Following the
 ## Security
 
 If you find a malicious, typosquatted, compromised, or otherwise unsafe linked resource, see [SECURITY.md](SECURITY.md) for what we watch for and how to report concerns.
+
+## Related policies
+
+- [README.md](README.md) — scope statement and section headings
+- [MAINTAINERS.md](MAINTAINERS.md) — review, merge, stale pull request, and removal policy
+- [SECURITY.md](SECURITY.md) — malicious links, typosquatting, supply-chain concerns, and reporting
+- [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) — community behavior in issues and pull requests
+- [LICENSE](LICENSE) — license for curated list content

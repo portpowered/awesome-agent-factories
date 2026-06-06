@@ -61,7 +61,7 @@ If you experience or witness unacceptable behavior, report it through one of the
    - [@AndreasAbdi](https://github.com/AndreasAbdi)
 2. **Private report** — Use [GitHub private vulnerability reporting](https://github.com/portpowered/awesome-agent-factories/security/advisories/new) for sensitive conduct reports if you cannot use a public issue safely.
 
-Maintainer contact details and review policy will also be listed in [MAINTAINERS.md](MAINTAINERS.md) when that document is published.
+Maintainer contact details and review policy are listed in [MAINTAINERS.md](MAINTAINERS.md).
 
 Include:
 
@@ -87,3 +87,10 @@ Consequences are intended to protect participants and keep collaboration product
 ## Attribution
 
 This policy is adapted from common open-source community guidelines. It is tailored for a small, manually maintained awesome list and may be updated as maintainer policy matures.
+
+## Related policies
+
+- [CONTRIBUTING.md](CONTRIBUTING.md) — submission rules, scope, and agent-factory relevance
+- [MAINTAINERS.md](MAINTAINERS.md) — review, merge, and enforcement contacts
+- [SECURITY.md](SECURITY.md) — reporting malicious or suspicious linked resources
+- [LICENSE](LICENSE) — license for curated list content

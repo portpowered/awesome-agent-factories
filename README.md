@@ -94,8 +94,20 @@ Other awesome lists and curated resources related to agent orchestration and mul
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for submission format and discipline rules.
+Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for the full submission path:
+
+- **Scope** — whether your resource fits agent-factory topics (groups of agents, flows, orchestration)
+- **Category** — which of the ten README sections applies (Theories, Coordination Patterns, Frameworks, and the rest)
+- **Entry format** — `- [Resource Name](URL) - Description.` with the exact resource name as link text
+- **Agent-factory relevance** — what to state in your pull request about coordination, orchestration, handoffs, or related flows
+
+[MAINTAINERS.md](MAINTAINERS.md) describes review and merge policy.
 
 ## License
 
-List content is intended to be released under [CC0-1.0](https://creativecommons.org/publicdomain/zero/1.0/). Linked third-party resources retain their own licenses.
+List content is released under [CC0-1.0](LICENSE). Linked third-party resources retain their own licenses.
+
+## Community
+
+- [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) — behavior expectations in issues and pull requests
+- [SECURITY.md](SECURITY.md) — reporting malicious, typosquatted, or compromised linked resources
