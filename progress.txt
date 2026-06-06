@@ -103,3 +103,21 @@
   - `docs/internal/customer-ask.md` lines 389–422 provide the full target `ci.yml` shape for later stories.
   - Local typecheck for Go changes is `go build ./...`; no separate `make typecheck` target exists in this repo.
 ---
+
+## 2026-06-07T12:30:00Z - phase-5-core-ci-workflow-002
+- Added read-only **Format check** step to `.github/workflows/ci.yml` using `test -z "$(gofmt -l internal)"` after dependency download; matches local `make fmt` scope without `gofmt -w`.
+- Files changed: `.github/workflows/ci.yml`
+- **Learnings for future iterations:**
+  - Use `gofmt -l internal` (list-only) in CI; local `make fmt` uses `gofmt -w` for fixing, CI must never write.
+  - `docs/internal/customer-ask.md` lines 414–415 show the exact format-check step for Phase 5 CI.
+  - No `docs/internal/processes/` directory in this worktree; skip relevant-files updates until that layout exists.
+---
+
+## 2026-06-07T13:00:00Z - phase-5-core-ci-workflow-003
+- Added **Go tests** step to `.github/workflows/ci.yml` running `go test ./...` from the repository root; matches `make test` in the root `Makefile` and fails the workflow on any package test failure.
+- Files changed: `.github/workflows/ci.yml`
+- **Learnings for future iterations:**
+  - Story 003 uses the same `go test ./...` command as `make test`; no wrapper or extra flags needed.
+  - `docs/internal/customer-ask.md` lines 417–418 show the exact Go test step for Phase 5 CI.
+  - README validation (`make check`) lands in story 004; read-only guarantees in story 005.
+---
