@@ -130,3 +130,30 @@
   - `docs/internal/customer-ask.md` lines 420–421 show the minimal `go run ./internal/checks` step; PRD story 004 prefers `make check` first to mirror CONTRIBUTING.md local gates.
   - Story 005 covers read-only guarantees and final local regression verification across the full workflow.
 ---
+
+## 2026-06-07T14:00:00Z - phase-5-workflow-integration-repair-001
+- Integrated `.github/workflows/link-check.yml` from `origin/phase-5-link-awesome-maintenance-workflows`: workflow name Link Check; triggers on `pull_request` to `main` and weekly Monday schedule (`0 8 * * 1`); read-only lychee scan of README.md and docs/*.md via `lychee-action@v2` honoring root `.lychee.toml`; step comment and name identify local equivalent `make links`.
+- Files changed: `.github/workflows/link-check.yml`
+- **Learnings for future iterations:**
+  - Source branch `phase-5-link-awesome-maintenance-workflows` has all three maintenance workflows ready to cherry-pick or copy verbatim; match `ci.yml` on main unchanged.
+  - `lychee-action@v2` with `args: --verbose --no-progress README.md docs/*.md` mirrors `make links` without explicit `--config` because lychee auto-discovers `.lychee.toml` at repo root.
+  - Stories 002–003 can reuse the same lychee step shape from link-check.yml inside scheduled-maintenance.yml.
+---
+
+## 2026-06-07T15:00:00Z - phase-5-workflow-integration-repair-002
+- Integrated `.github/workflows/awesome-lint.yml` from `origin/phase-5-link-awesome-maintenance-workflows`: workflow name Awesome Lint; triggers on `pull_request` and `push` to `main`; read-only `npx awesome-lint` on ubuntu-latest with `actions/checkout@v4`; step comment and name identify local equivalent `npx awesome-lint`.
+- Files changed: `.github/workflows/awesome-lint.yml`
+- **Learnings for future iterations:**
+  - awesome-lint.yml is standalone (no Node setup step needed); `npx awesome-lint` downloads and runs on ubuntu-latest without a package.json in the repo.
+  - Copy maintenance workflows verbatim from `origin/phase-5-link-awesome-maintenance-workflows`; they were authored together and stay aligned with CONTRIBUTING.md story 004.
+  - Story 003 scheduled-maintenance.yml combines make check + lychee steps from ci.yml and link-check.yml patterns.
+---
+
+## 2026-06-07T16:00:00Z - phase-5-workflow-integration-repair-003
+- Integrated `.github/workflows/scheduled-maintenance.yml` from `origin/phase-5-link-awesome-maintenance-workflows`: workflow name Scheduled Maintenance; monthly first-of-month schedule (`0 9 1 * *`); read-only README checks via `make check` with `go run ./internal/checks` fallback; link checks via `lychee-action@v2` on README.md and docs/*.md honoring root `.lychee.toml`; step names and comments identify local equivalents `make check` and `make links`.
+- Files changed: `.github/workflows/scheduled-maintenance.yml`
+- **Learnings for future iterations:**
+  - scheduled-maintenance.yml reuses the same make-check conditional and lychee step shape as ci.yml and link-check.yml; copy verbatim from the source branch to stay aligned.
+  - Story 003 requires tests pass; `make check`, `make test`, and `go test ./...` all exit 0 after adding the workflow file (YAML-only change).
+  - Story 004 updates CONTRIBUTING.md GitHub Actions subsection; story 005 verifies ci.yml unchanged on main.
+---
