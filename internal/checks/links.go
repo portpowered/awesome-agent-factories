@@ -17,6 +17,11 @@ type ResourceEntry struct {
 
 var resourceEntryPattern = regexp.MustCompile(`^\s*-\s+\[([^\]]+)\]\(([^)]+)\)\s+-\s+(.+)$`)
 
+var markdownLinkPattern = regexp.MustCompile(`\[[^\]]*\]\([^)]*\)`)
+var bareURLPattern = regexp.MustCompile(`https?://[^\s\])<>"]+`)
+
+var trackingURLPatterns = []string{"utm_", "fbclid", "gclid", "mc_eid"}
+
 func isResourceSection(heading string) bool {
 	for _, required := range requiredResourceSections {
 		if required == heading {
@@ -126,6 +131,83 @@ func validateDescriptionRules(doc *ReadmeDocument) []CheckResult {
 				})
 			}
 		}
+	}
+
+	return results
+}
+
+func lineWithoutMarkdownLinks(line string) string {
+	return markdownLinkPattern.ReplaceAllString(line, "")
+}
+
+func findBareURLsInLine(line string) []string {
+	return bareURLPattern.FindAllString(lineWithoutMarkdownLinks(line), -1)
+}
+
+func findTrackingPatternInURL(rawURL string) (string, bool) {
+	lower := strings.ToLower(rawURL)
+	for _, pattern := range trackingURLPatterns {
+		if strings.Contains(lower, pattern) {
+			return pattern, true
+		}
+	}
+	return "", false
+}
+
+func validateBareURLs(doc *ReadmeDocument) []CheckResult {
+	var results []CheckResult
+
+	for _, section := range doc.Sections {
+		if !isResourceSection(section.Heading) {
+			continue
+		}
+
+		bodyLines := strings.Split(section.Body, "\n")
+		for i, line := range bodyLines {
+			bareURLs := findBareURLsInLine(line)
+			if len(bareURLs) == 0 {
+				continue
+			}
+
+			lineNum := section.Line + 1 + i
+			for _, bareURL := range bareURLs {
+				results = append(results, CheckResult{
+					Level: "failure",
+					Rule:  "bare-url",
+					Message: fmt.Sprintf(
+						`section %q line %d: bare URL %q is not allowed; use - [Name](URL) - Description.`,
+						section.Heading,
+						lineNum,
+						bareURL,
+					),
+				})
+			}
+		}
+	}
+
+	return results
+}
+
+func validateTrackingURLs(doc *ReadmeDocument) []CheckResult {
+	var results []CheckResult
+
+	for _, entry := range collectResourceEntries(doc) {
+		pattern, found := findTrackingPatternInURL(entry.URL)
+		if !found {
+			continue
+		}
+
+		results = append(results, CheckResult{
+			Level: "warning",
+			Rule:  "tracking-url",
+			Message: fmt.Sprintf(
+				`section %q line %d entry %q: URL contains tracking or suspicious pattern %q`,
+				entry.Section,
+				entry.Line,
+				entry.Name,
+				pattern,
+			),
+		})
 	}
 
 	return results

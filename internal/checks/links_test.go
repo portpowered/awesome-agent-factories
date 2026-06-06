@@ -186,3 +186,144 @@ func TestValidateDescriptionRules(t *testing.T) {
 		})
 	}
 }
+
+func filterWarnings(results []CheckResult) []CheckResult {
+	var warnings []CheckResult
+	for _, result := range results {
+		if result.Level == "warning" {
+			warnings = append(warnings, result)
+		}
+	}
+	return warnings
+}
+
+func TestValidateBareURLs(t *testing.T) {
+	makeDoc := func(markdown string) *ReadmeDocument {
+		return &ReadmeDocument{
+			Raw:      markdown,
+			Sections: parseSections(markdown),
+		}
+	}
+
+	tests := []struct {
+		name      string
+		markdown  string
+		wantFail  bool
+		wantRules []string
+	}{
+		{
+			name: "clean canonical URL in markdown link passes",
+			markdown: resourceSectionFixture("Frameworks", strings.TrimSpace(`
+- [AutoGen](https://github.com/microsoft/autogen) - A framework for multi-agent applications.
+`)),
+			wantFail: false,
+		},
+		{
+			name: "bare URL in resource section fails",
+			markdown: resourceSectionFixture("Frameworks", strings.TrimSpace(`
+See https://example.com for upstream docs.
+
+- [AutoGen](https://github.com/microsoft/autogen) - A framework for multi-agent applications.
+`)),
+			wantFail:  true,
+			wantRules: []string{"bare-url"},
+		},
+		{
+			name: "bare URL in description fails",
+			markdown: resourceSectionFixture("Frameworks", strings.TrimSpace(`
+- [AutoGen](https://github.com/microsoft/autogen) - Also see https://example.com for docs.
+`)),
+			wantFail:  true,
+			wantRules: []string{"bare-url"},
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			results := validateBareURLs(makeDoc(tt.markdown))
+			failures := filterFailures(results)
+			if tt.wantFail && len(failures) == 0 {
+				t.Fatal("expected failures, got none")
+			}
+			if !tt.wantFail && len(failures) > 0 {
+				t.Fatalf("expected no failures, got %#v", failures)
+			}
+			for _, rule := range tt.wantRules {
+				if !containsRule(failures, rule) {
+					t.Fatalf("expected failure with rule %q, got %#v", rule, failures)
+				}
+			}
+		})
+	}
+}
+
+func TestValidateTrackingURLs(t *testing.T) {
+	makeDoc := func(markdown string) *ReadmeDocument {
+		return &ReadmeDocument{
+			Raw:      markdown,
+			Sections: parseSections(markdown),
+		}
+	}
+
+	tests := []struct {
+		name        string
+		markdown    string
+		wantWarning bool
+		wantRules   []string
+		wantNoFail  bool
+	}{
+		{
+			name: "clean canonical URL has no warning",
+			markdown: resourceSectionFixture("Frameworks", strings.TrimSpace(`
+- [AutoGen](https://github.com/microsoft/autogen) - A framework for multi-agent applications.
+`)),
+			wantWarning: false,
+			wantNoFail:  true,
+		},
+		{
+			name: "tracking URL emits warning only",
+			markdown: resourceSectionFixture("Frameworks", strings.TrimSpace(`
+- [AutoGen](https://github.com/microsoft/autogen?utm_source=newsletter) - A framework for multi-agent applications.
+`)),
+			wantWarning: true,
+			wantRules:   []string{"tracking-url"},
+			wantNoFail:  true,
+		},
+		{
+			name: "fbclid tracking parameter emits warning",
+			markdown: resourceSectionFixture("Frameworks", strings.TrimSpace(`
+- [AutoGen](https://example.com/docs?fbclid=abc123) - A framework for multi-agent applications.
+`)),
+			wantWarning: true,
+			wantRules:   []string{"tracking-url"},
+			wantNoFail:  true,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			trackingResults := validateTrackingURLs(makeDoc(tt.markdown))
+			warnings := filterWarnings(trackingResults)
+			if tt.wantWarning && len(warnings) == 0 {
+				t.Fatal("expected warnings, got none")
+			}
+			if !tt.wantWarning && len(warnings) > 0 {
+				t.Fatalf("expected no warnings, got %#v", warnings)
+			}
+			for _, rule := range tt.wantRules {
+				if !containsRule(warnings, rule) {
+					t.Fatalf("expected warning with rule %q, got %#v", rule, warnings)
+				}
+			}
+
+			if tt.wantNoFail {
+				bareResults := validateBareURLs(makeDoc(tt.markdown))
+				allResults := append(trackingResults, bareResults...)
+				failures := filterFailures(allResults)
+				if len(failures) > 0 {
+					t.Fatalf("expected tracking findings to be warnings only, got failures %#v", failures)
+				}
+			}
+		})
+	}
+}

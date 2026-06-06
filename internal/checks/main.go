@@ -22,20 +22,27 @@ func run() error {
 		return err
 	}
 
-	var failures []CheckResult
-	failures = append(failures, validateRequiredSections(doc)...)
-	failures = append(failures, validateResourceEntryFormat(doc)...)
-	failures = append(failures, validateDescriptionRules(doc)...)
-	failures = append(failures, validateDuplicates(doc)...)
-	failures = append(failures, validateAlphabeticalOrder(doc)...)
+	var results []CheckResult
+	results = append(results, validateRequiredSections(doc)...)
+	results = append(results, validateResourceEntryFormat(doc)...)
+	results = append(results, validateDescriptionRules(doc)...)
+	results = append(results, validateDuplicates(doc)...)
+	results = append(results, validateAlphabeticalOrder(doc)...)
+	results = append(results, validateBareURLs(doc)...)
+	results = append(results, validateTrackingURLs(doc)...)
 
-	for _, result := range failures {
-		if result.Level == "failure" {
+	failureCount := 0
+	for _, result := range results {
+		switch result.Level {
+		case "failure":
+			fmt.Fprintln(os.Stderr, result.Message)
+			failureCount++
+		case "warning":
 			fmt.Fprintln(os.Stderr, result.Message)
 		}
 	}
-	if len(failures) > 0 {
-		return fmt.Errorf("%d check failure(s)", len(failures))
+	if failureCount > 0 {
+		return fmt.Errorf("%d check failure(s)", failureCount)
 	}
 	return nil
 }
