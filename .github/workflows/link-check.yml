@@ -14,7 +14,7 @@ jobs:
       - uses: actions/checkout@v4
 
       # Local equivalent: make links (lychee README.md docs/*.md; honors root .lychee.toml)
-      - name: Check links (local: make links)
+      - name: "Check links (local: make links)"
         uses: lycheeverse/lychee-action@v2
         with:
           args: --verbose --no-progress README.md docs/*.md
