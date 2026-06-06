@@ -1,5 +1,6 @@
 ## Codebase Patterns
-- No package.json or CI tooling in this worktree; quality gates pass vacuously when no typecheck/lint/test scripts exist.
+- Phase 5 core CI: `.github/workflows/ci.yml` uses `actions/checkout@v4`, `actions/setup-go@v5` with `go-version: stable`, and `go mod download`; full gate steps (gofmt, tests, README checks) are added incrementally per PRD stories 002–004.
+- No package.json in this worktree; Go quality gates are `go build ./...`, `make check`, `make test`, and `git diff --check`.
 - Use the standard Awesome badge markup: `[![Awesome](https://awesome.re/badge.svg)](https://awesome.re)` on the H1 line.
 - `docs/internal/customer-ask.md` contains suggested opening copy and Contents anchor patterns for later stories.
 - Phase 4 lint config: `.golangci.yml` uses golangci-lint v2 schema (`version: "2"`); `gofmt`/`gofumpt` live under `formatters.enable`, other linters under `linters.enable`.
@@ -92,4 +93,13 @@
   - Place **Local checks** immediately before **Before you open a pull request** so contributors run Makefile targets before the submission checklist.
   - Mirror Makefile stderr install hints in CONTRIBUTING.md for optional tools to keep docs aligned with missing-tool behavior.
   - All Phase 4 PRD stories are complete after 007; create the PR when no existing PR is open.
+---
+
+## 2026-06-07T12:00:00Z - phase-5-core-ci-workflow-001
+- Added `.github/workflows/ci.yml` with workflow name `CI`, `pull_request`/`push` triggers on `main`, single `go-checks` job on `ubuntu-latest`, `actions/checkout@v4`, `actions/setup-go@v5` (`go-version: stable`), and `go mod download`.
+- Files changed: `.github/workflows/ci.yml`
+- **Learnings for future iterations:**
+  - Story 001 is setup-only; format check, `go test ./...`, and README validation land in stories 002–004 per `docs/internal/customer-ask.md` Phase 5 template.
+  - `docs/internal/customer-ask.md` lines 389–422 provide the full target `ci.yml` shape for later stories.
+  - Local typecheck for Go changes is `go build ./...`; no separate `make typecheck` target exists in this repo.
 ---
