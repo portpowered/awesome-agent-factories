@@ -27,6 +27,7 @@ func run() error {
 	failures = append(failures, validateResourceEntryFormat(doc)...)
 	failures = append(failures, validateDescriptionRules(doc)...)
 	failures = append(failures, validateDuplicates(doc)...)
+	failures = append(failures, validateAlphabeticalOrder(doc)...)
 
 	for _, result := range failures {
 		if result.Level == "failure" {
