@@ -13,6 +13,10 @@ func main() {
 }
 
 func run() error {
-	// Full README validation is wired in later stories; bootstrap ensures build succeeds.
-	return nil
+	path, err := readmePath()
+	if err != nil {
+		return err
+	}
+	_, err = loadReadme(path)
+	return err
 }
