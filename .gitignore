@@ -1,5 +1,17 @@
+# Monorepo / factory worktree paths
 .claude
 tasks/
 docs/internal
 factory/Makefile
 factory/docs
+
+# Local editor and OS artifacts
+.DS_Store
+.idea/
+.vscode/
+
+# Build, test, and runtime artifacts
+*.log
+tmp/
+dist/
+coverage.out
