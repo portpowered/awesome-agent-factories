@@ -25,3 +25,12 @@ jobs:
 
       - name: Go tests
         run: go test ./...
+
+      - name: Custom README checks
+        # Prefer make check (matches local CONTRIBUTING.md); fallback to go run when make is unavailable.
+        run: |
+          if command -v make >/dev/null 2>&1; then
+            make check
+          else
+            go run ./internal/checks
+          fi
