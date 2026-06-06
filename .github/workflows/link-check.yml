@@ -1,0 +1,20 @@
+name: Link Check
+
+on:
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: "0 8 * * 1"
+
+jobs:
+  link-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # Local equivalent: make links (lychee README.md docs/*.md; honors root .lychee.toml)
+      - name: "Check links (local: make links)"
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --verbose --no-progress README.md docs/*.md
