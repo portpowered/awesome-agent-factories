@@ -223,6 +223,23 @@ Your README description should imply this relevance factually. Do not rely on ma
 - "Great SDK for chat applications." (single-agent focus)
 - "Popular in the AI community." (no technical relevance)
 
+## Local checks
+
+Run these commands from the repository root before you open a pull request:
+
+- **`make check`** — validate README structure and entry rules with the Go checker.
+- **`make test`** — run Go checker tests (`go test ./...`).
+- **`make all`** — same as `make check`; use this as the primary pre-submit shortcut.
+
+Optional targets:
+
+- **`make lint`** — Go static analysis with [golangci-lint](https://golangci-lint.run/welcome/install/). Install with `go install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@latest` or follow upstream installation docs for your platform.
+- **`make links`** — markdown link checking with [lychee](https://lychee.cli.rs/guides/getting-started/). Install with `brew install lychee` or follow upstream installation docs for your platform.
+
+Thin shell wrappers `scripts/check-readme.sh` and `scripts/normalize-readme.sh` delegate to `make check` and `make fmt` when you prefer script entry points.
+
+GitHub Actions and scheduled CI are not configured in this repository yet. Use these local Makefile targets to self-verify changes before maintainer review.
+
 ## Before you open a pull request
 
 1. Confirm your change adds **one resource** only (unless proposing a new category with at least three entries).
