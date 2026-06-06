@@ -84,3 +84,12 @@
   - Story 006 adds scripts rather than Makefile help text because the customer-ask directory layout includes `scripts/` entry points.
   - Story 007 will document `make check`, `make test`, and `make all` in CONTRIBUTING.md; scripts remain optional aliases.
 ---
+
+## 2026-06-07T05:00:00Z - phase-4-makefile-and-lint-config-007
+- Added a **Local checks** section to `CONTRIBUTING.md` naming `make check`, `make test`, and `make all` as primary pre-submit commands; documented optional `make lint` (golangci-lint) and `make links` (lychee) with upstream install pointers; noted script wrappers and that GitHub Actions/scheduled CI are not configured yet.
+- Files changed: `CONTRIBUTING.md`
+- **Learnings for future iterations:**
+  - Place **Local checks** immediately before **Before you open a pull request** so contributors run Makefile targets before the submission checklist.
+  - Mirror Makefile stderr install hints in CONTRIBUTING.md for optional tools to keep docs aligned with missing-tool behavior.
+  - All Phase 4 PRD stories are complete after 007; create the PR when no existing PR is open.
+---
