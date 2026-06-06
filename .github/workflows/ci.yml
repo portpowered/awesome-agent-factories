@@ -19,3 +19,6 @@ jobs:
 
       - name: Download dependencies
         run: go mod download
+
+      - name: Format check
+        run: test -z "$(gofmt -l internal)"
