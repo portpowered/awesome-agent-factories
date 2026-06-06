@@ -11,6 +11,7 @@ factory/docs
 .vscode/
 
 # Build, test, and runtime artifacts
+/checks
 *.log
 tmp/
 dist/
