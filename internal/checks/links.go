@@ -78,3 +78,55 @@ func validateResourceEntryFormat(doc *ReadmeDocument) []CheckResult {
 
 	return results
 }
+
+func validateDescriptionRules(doc *ReadmeDocument) []CheckResult {
+	var results []CheckResult
+
+	for _, section := range doc.Sections {
+		if !isResourceSection(section.Heading) {
+			continue
+		}
+
+		bodyLines := strings.Split(section.Body, "\n")
+		for i, line := range bodyLines {
+			if !looksLikeResourceEntry(line) {
+				continue
+			}
+
+			lineNum := section.Line + 1 + i
+			entry, ok := parseResourceEntry(line, section.Heading, lineNum)
+			if !ok {
+				continue
+			}
+
+			if !descriptionEndsWithPeriod(entry.Description) {
+				results = append(results, CheckResult{
+					Level: "failure",
+					Rule:  "description-period",
+					Message: fmt.Sprintf(
+						`section %q line %d entry %q: description must end with a period`,
+						entry.Section,
+						entry.Line,
+						entry.Name,
+					),
+				})
+			}
+
+			if phrase, found := findBannedPhraseInDescription(entry.Description); found {
+				results = append(results, CheckResult{
+					Level: "failure",
+					Rule:  "banned-marketing-phrase",
+					Message: fmt.Sprintf(
+						`section %q line %d entry %q: description contains banned marketing phrase %q`,
+						entry.Section,
+						entry.Line,
+						entry.Name,
+						phrase,
+					),
+				})
+			}
+		}
+	}
+
+	return results
+}

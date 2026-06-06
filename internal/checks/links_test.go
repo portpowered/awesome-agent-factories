@@ -121,3 +121,68 @@ Foundational orchestration frameworks.
 		})
 	}
 }
+
+func TestValidateDescriptionRules(t *testing.T) {
+	makeDoc := func(markdown string) *ReadmeDocument {
+		return &ReadmeDocument{
+			Raw:      markdown,
+			Sections: parseSections(markdown),
+		}
+	}
+
+	tests := []struct {
+		name      string
+		markdown  string
+		wantFail  bool
+		wantRules []string
+	}{
+		{
+			name: "valid entry passes description rules",
+			markdown: resourceSectionFixture("Frameworks", strings.TrimSpace(`
+- [AutoGen](https://github.com/microsoft/autogen) - A framework for multi-agent applications.
+`)),
+			wantFail: false,
+		},
+		{
+			name: "missing terminal period",
+			markdown: resourceSectionFixture("Frameworks", strings.TrimSpace(`
+- [AutoGen](https://github.com/microsoft/autogen) - A framework for multi-agent applications
+`)),
+			wantFail:  true,
+			wantRules: []string{"description-period"},
+		},
+		{
+			name: "banned phrase in description",
+			markdown: resourceSectionFixture("Frameworks", strings.TrimSpace(`
+- [AutoGen](https://github.com/microsoft/autogen) - A revolutionary framework for multi-agent applications.
+`)),
+			wantFail:  true,
+			wantRules: []string{"banned-marketing-phrase"},
+		},
+		{
+			name: "banned phrase allowed in link text only",
+			markdown: resourceSectionFixture("Frameworks", strings.TrimSpace(`
+- [The Best AutoGen Fork](https://example.com/best-autogen) - A maintained fork for multi-agent orchestration flows.
+`)),
+			wantFail: false,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			results := validateDescriptionRules(makeDoc(tt.markdown))
+			failures := filterFailures(results)
+			if tt.wantFail && len(failures) == 0 {
+				t.Fatal("expected failures, got none")
+			}
+			if !tt.wantFail && len(failures) > 0 {
+				t.Fatalf("expected no failures, got %#v", failures)
+			}
+			for _, rule := range tt.wantRules {
+				if !containsRule(failures, rule) {
+					t.Fatalf("expected failure with rule %q, got %#v", rule, failures)
+				}
+			}
+		})
+	}
+}

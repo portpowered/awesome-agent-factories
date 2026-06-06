@@ -25,6 +25,7 @@ func run() error {
 	var failures []CheckResult
 	failures = append(failures, validateRequiredSections(doc)...)
 	failures = append(failures, validateResourceEntryFormat(doc)...)
+	failures = append(failures, validateDescriptionRules(doc)...)
 
 	for _, result := range failures {
 		if result.Level == "failure" {

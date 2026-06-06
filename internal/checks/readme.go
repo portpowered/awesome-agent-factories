@@ -5,8 +5,43 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"regexp"
 	"strings"
 )
+
+// bannedMarketingPhrases lists promotional wording rejected in resource descriptions per CONTRIBUTING.md.
+var bannedMarketingPhrases = []string{
+	"revolutionary",
+	"game-changing",
+	"best",
+	"ultimate",
+	"cutting-edge",
+}
+
+var bannedMarketingPhrasePatterns []*regexp.Regexp
+
+func init() {
+	for _, phrase := range bannedMarketingPhrases {
+		escaped := regexp.QuoteMeta(phrase)
+		bannedMarketingPhrasePatterns = append(
+			bannedMarketingPhrasePatterns,
+			regexp.MustCompile(`(?i)\b`+escaped+`\b`),
+		)
+	}
+}
+
+func descriptionEndsWithPeriod(description string) bool {
+	return strings.HasSuffix(strings.TrimSpace(description), ".")
+}
+
+func findBannedPhraseInDescription(description string) (string, bool) {
+	for i, pattern := range bannedMarketingPhrasePatterns {
+		if pattern.MatchString(description) {
+			return bannedMarketingPhrases[i], true
+		}
+	}
+	return "", false
+}
 
 // ReadmeDocument holds parsed README content for downstream validation rules.
 type ReadmeDocument struct {
