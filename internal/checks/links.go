@@ -17,8 +17,10 @@ type ResourceEntry struct {
 
 var resourceEntryPattern = regexp.MustCompile(`^\s*-\s+\[([^\]]+)\]\(([^)]+)\)\s+-\s+(.+)$`)
 
-var markdownLinkPattern = regexp.MustCompile(`\[[^\]]*\]\([^)]*\)`)
-var bareURLPattern = regexp.MustCompile(`https?://[^\s\])<>"]+`)
+var (
+	markdownLinkPattern = regexp.MustCompile(`\[[^\]]*\]\([^)]*\)`)
+	bareURLPattern      = regexp.MustCompile(`https?://[^\s\])<>"]+`)
+)
 
 var trackingURLPatterns = []string{"utm_", "fbclid", "gclid", "mc_eid"}
 

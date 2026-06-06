@@ -1,3 +1,4 @@
+// Command checks validates README.md structure and entry rules.
 package main
 
 import (
