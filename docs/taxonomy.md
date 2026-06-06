@@ -24,7 +24,7 @@ Use these definitions during manual review when deciding which section a resourc
 
 ## Theories
 
-**README section:** [Theories](../README.md#theories)  
+**README section:** [Theories](../README.md#theories)
 **Label:** `resource:theory`
 
 Foundational ideas for organizing agent groups: how societies form roles, how tasks decompose, how information is shared, and how groups coordinate without naming a specific product.
@@ -54,7 +54,7 @@ Foundational ideas for organizing agent groups: how societies form roles, how ta
 
 ## Coordination Patterns
 
-**README section:** [Coordination Patterns](../README.md#coordination-patterns)  
+**README section:** [Coordination Patterns](../README.md#coordination-patterns)
 **Label:** `resource:pattern`
 
 Reusable system shapes for multi-agent work: who decides, who executes, how messages flow, and how subtasks combine.
@@ -88,7 +88,7 @@ Reusable system shapes for multi-agent work: who decides, who executes, how mess
 
 ## Frameworks
 
-**README section:** [Frameworks](../README.md#frameworks)  
+**README section:** [Frameworks](../README.md#frameworks)
 **Label:** `resource:framework`
 
 Software that manages agent groups, flows, handoffs, or orchestration.
@@ -116,7 +116,7 @@ Software that manages agent groups, flows, handoffs, or orchestration.
 
 ## Protocols and Interfaces
 
-**README section:** [Protocols and Interfaces](../README.md#protocols-and-interfaces)  
+**README section:** [Protocols and Interfaces](../README.md#protocols-and-interfaces)
 **Label:** `resource:protocol`
 
 Standards or conventions for how agents, tools, and runtimes interact in multi-agent flows.
@@ -146,7 +146,7 @@ Standards or conventions for how agents, tools, and runtimes interact in multi-a
 
 ## Benchmarks
 
-**README section:** [Benchmarks](../README.md#benchmarks)  
+**README section:** [Benchmarks](../README.md#benchmarks)
 **Label:** `resource:benchmark`
 
 Benchmarks that evaluate **group** or **workflow** behavior, not isolated single-turn model quality alone.
@@ -175,7 +175,7 @@ Benchmarks that evaluate **group** or **workflow** behavior, not isolated single
 
 ## Research Papers
 
-**README section:** [Research Papers](../README.md#research-papers)  
+**README section:** [Research Papers](../README.md#research-papers)
 **Label:** `resource:paper`
 
 Academic or technical papers about agent groups and flows.
@@ -207,7 +207,7 @@ Maintainers may group entries mentally (not necessarily as README subsections) b
 
 ## Blog Posts
 
-**README section:** [Blog Posts](../README.md#blog-posts)  
+**README section:** [Blog Posts](../README.md#blog-posts)
 **Label:** `resource:blog`
 
 Technical writing that explains real patterns, architectures, failures, or lessons from multi-agent systems.
@@ -235,7 +235,7 @@ Technical writing that explains real patterns, architectures, failures, or lesso
 
 ## Case Studies
 
-**README section:** [Case Studies](../README.md#case-studies)  
+**README section:** [Case Studies](../README.md#case-studies)
 **Label:** `resource:case-study`
 
 Real-world uses of multiple agents or agent flows in production, enterprise, or sustained operational settings.
@@ -263,7 +263,7 @@ Real-world uses of multiple agents or agent flows in production, enterprise, or 
 
 ## Examples and Templates
 
-**README section:** [Examples and Templates](../README.md#examples-and-templates)  
+**README section:** [Examples and Templates](../README.md#examples-and-templates)
 **Label:** `resource:example`
 
 Runnable or forkable examples that demonstrate multi-agent coordination, not abstract pattern descriptions alone.
