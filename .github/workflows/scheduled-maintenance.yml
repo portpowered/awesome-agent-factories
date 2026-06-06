@@ -1,0 +1,31 @@
+name: Scheduled Maintenance
+
+on:
+  schedule:
+    - cron: "0 9 1 * *"
+
+jobs:
+  maintenance:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: stable
+
+      # Local equivalent: make check (or go run ./internal/checks)
+      - name: "Custom README checks (local: make check)"
+        run: |
+          if command -v make >/dev/null 2>&1; then
+            make check
+          else
+            go run ./internal/checks
+          fi
+
+      # Local equivalent: make links (lychee README.md docs/*.md; honors root .lychee.toml)
+      - name: "Check links (local: make links)"
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --verbose --no-progress README.md docs/*.md
