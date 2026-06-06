@@ -121,3 +121,12 @@
   - `docs/internal/customer-ask.md` lines 417–418 show the exact Go test step for Phase 5 CI.
   - README validation (`make check`) lands in story 004; read-only guarantees in story 005.
 ---
+
+## 2026-06-07T13:30:00Z - phase-5-core-ci-workflow-004
+- Added **Custom README checks** step to `.github/workflows/ci.yml` that runs `make check` when `make` is on PATH (ubuntu-latest default) and falls back to `go run ./internal/checks` with the same pass/fail semantics; does not invoke `make links`, `make lint`, lychee, or awesome-lint.
+- Files changed: `.github/workflows/ci.yml`
+- **Learnings for future iterations:**
+  - `make check` on ubuntu-latest is reliable because it only wraps `go run ./internal/checks`; the conditional documents the PRD fallback without changing behavior on standard runners.
+  - `docs/internal/customer-ask.md` lines 420–421 show the minimal `go run ./internal/checks` step; PRD story 004 prefers `make check` first to mirror CONTRIBUTING.md local gates.
+  - Story 005 covers read-only guarantees and final local regression verification across the full workflow.
+---
