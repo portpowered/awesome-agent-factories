@@ -100,7 +100,7 @@ Not every removal is a hard delete. Route outcomes as follows:
 | **Document as commonly rejected** | [docs/rejected.md](rejected.md) | The submission type is **commonly submitted** but **out of scope** (for example, single-agent chatbots, generic LLM SDKs, prompt collections). Decline the pull request and cite `rejected.md` when the pattern repeats. Apply the `rejected` label. See [docs/taxonomy.md](taxonomy.md) for category-level include/exclude rules. |
 | **Remove outright** | *(no list entry)* | The resource is duplicate, spam, unsafe, not historically important, or otherwise should not remain traceable on the list. |
 
-Until [docs/historical.md](historical.md) and [docs/rejected.md](rejected.md) exist, maintainers may still apply the triggers and labels above and document the intended relocation in the pull request comment. Those files will hold the durable citations once merged.
+Until [docs/rejected.md](rejected.md) exists, maintainers may still apply the triggers and labels above for commonly rejected types and document the intended relocation in the pull request comment. [docs/historical.md](historical.md) holds durable citations for historically important inactive resources.
 
 ### Removal workflow summary
 
