@@ -4,6 +4,11 @@
 - No package.json or CI tooling in this worktree; Go quality gates are `go build` and `go test ./...`.
 - Use the standard Awesome badge markup: `[![Awesome](https://awesome.re/badge.svg)](https://awesome.re)` on the H1 line.
 - `docs/internal/customer-ask.md` contains suggested opening copy and Contents anchor patterns for later stories.
+- Resource entry format validation applies only to `- [` lines in the ten `requiredResourceSections`; use `parseResourceEntry` for downstream entry rules.
+- Description rules (`description-period`, `banned-marketing-phrase`) live in `validateDescriptionRules` (links.go) with helpers in `readme.go`; banned phrases use word-boundary regex and only inspect description text, not link text.
+- Duplicate detection lives in `validateDuplicates` (duplicates.go); use `collectResourceEntries` to gather parsed entries globally; `normalizeURL` lowercases scheme/host, strips fragments, and trims trailing slashes before URL comparison; names compare case-insensitively.
+- Alphabetization lives in `validateAlphabeticalOrder` (alphabetical.go); use `collectSectionEntries` per resource section and compare adjacent link-text names case-insensitively; sections with zero or one parsed entry pass.
+- URL hygiene lives in `validateBareURLs` and `validateTrackingURLs` (links.go); strip `[text](url)` markdown links before scanning for bare `http(s)://` URLs; tracking patterns (`utm_`, `fbclid`, `gclid`, `mc_eid`) on parsed entry URLs emit `warning` level results only.
 
 ## 2026-06-06T00:00:00Z - awesome-readme-foundation-001
 - Established README identity: Awesome H1 with badge, inline SVG logo mark (three connected nodes), blockquote tagline, and factual agent-factory definition; removed placeholder `# awesome-agent-factories` heading.
@@ -55,4 +60,69 @@
   - `requiredResourceSections` mirrors CONTRIBUTING.md's ten category headings; keep in sync if categories change.
   - Contents links are parsed with `contentsLinkPattern` matching `- [Text](#anchor)` list items only.
   - Empty resource sections (intro prose, no `- [` entries) pass; entry-format validation belongs in story 004+.
+---
+
+## 2026-06-07T19:30:00Z - phase-4-go-readme-checker-core-004
+- Implemented `validateResourceEntryFormat` and `parseResourceEntry` in `links.go` to enforce `- [Name](URL) - Description.` shape in the ten resource sections.
+- Lines starting with `- [` that fail the format regex emit hard failures with section, line number, and expected format rule; intro paragraphs and other non-entry lines are skipped.
+- Wired entry-format validation into `run()` after required-section checks.
+- Added table-driven tests in `links_test.go` for valid entry with intro, missing description, wrong separator, non-link bullets, and multiple invalid shapes.
+- Verified `go build ./internal/checks`, `go test ./...`, and `go run ./internal/checks` pass.
+- Files changed: internal/checks/links.go, internal/checks/main.go, internal/checks/links_test.go
+- **Learnings for future iterations:**
+  - `looksLikeResourceEntry` limits checks to `- [` lines so section intro prose and plain bullets do not false-positive.
+  - `parseResourceEntry` is ready for stories 005–009 (punctuation, duplicates, alphabetization, URLs, scope).
+  - `go build ./internal/checks` emits a `checks` binary at repo root; do not commit it.
+---
+
+## 2026-06-07T20:15:00Z - phase-4-go-readme-checker-core-005
+- Implemented `validateDescriptionRules` to require terminal periods and reject banned marketing phrases in resource descriptions.
+- Added `descriptionEndsWithPeriod` and `findBannedPhraseInDescription` helpers in `readme.go` with word-boundary matching for revolutionary, game-changing, best, ultimate, and cutting-edge.
+- Wired description validation into `run()` after entry-format checks; failures cite section, line, entry name, and rule (`description-period` or `banned-marketing-phrase`).
+- Added table-driven tests in `links_test.go` for missing period, phrase in description, and phrase allowed in link text only.
+- Verified `go build ./internal/checks`, `go test ./...`, and `go run ./internal/checks` pass.
+- Files changed: internal/checks/readme.go, internal/checks/links.go, internal/checks/main.go, internal/checks/links_test.go
+- **Learnings for future iterations:**
+  - Marketing phrase checks intentionally skip link text; only the hyphen-separated description is scanned.
+  - Entries that fail format parsing are skipped here so `entry-format` remains the single format failure.
+  - Use `\b` word boundaries for short phrases like `best` to avoid substring false positives.
+---
+
+## 2026-06-06T17:37:18Z - phase-4-go-readme-checker-core-006
+- Implemented `validateDuplicates` with global URL and resource-name collision detection across all ten resource sections.
+- Added `normalizeURL` (lowercase scheme/host, strip fragment, trim trailing slash) and `collectResourceEntries` helpers in `duplicates.go`.
+- Wired duplicate validation into `run()` after description rules; failures use rules `duplicate-url` and `duplicate-name` with both colliding entries cited.
+- Added table-driven tests in `duplicates_test.go` for distinct entries, duplicate URL (including normalization), and case-insensitive duplicate names.
+- Verified `go build ./internal/checks`, `go test ./...`, and `go run ./internal/checks` pass.
+- Files changed: internal/checks/duplicates.go, internal/checks/duplicates_test.go, internal/checks/main.go
+- **Learnings for future iterations:**
+  - Duplicate checks only consider successfully parsed `- [` entries; malformed lines remain the responsibility of `entry-format`.
+  - URL normalization intentionally preserves query strings; only host/scheme case, fragments, and trailing slashes are normalized.
+  - `go build ./internal/checks` emits a `checks` binary at repo root; do not commit it.
+---
+
+## 2026-06-07T21:15:00Z - phase-4-go-readme-checker-core-007
+- Implemented `validateAlphabeticalOrder` with per-section adjacent link-text comparison using case-insensitive ordering.
+- Added `collectSectionEntries` helper in `alphabetical.go` to gather successfully parsed entries within each resource section.
+- Wired alphabetization validation into `run()` after duplicate checks; failures use rule `alphabetical-order` and cite section plus out-of-order adjacent entries with line numbers.
+- Added table-driven tests in `alphabetical_test.go` for in-order, out-of-order, single-entry, empty, and case-insensitive fixtures.
+- Verified `go build ./internal/checks`, `go test ./...`, and `go run ./internal/checks` pass.
+- Files changed: internal/checks/alphabetical.go, internal/checks/alphabetical_test.go, internal/checks/main.go
+- **Learnings for future iterations:**
+  - Alphabetization checks only parsed `- [` entries within each section; malformed lines remain the responsibility of `entry-format`.
+  - Compare adjacent entries only—multiple out-of-order pairs each emit a separate failure for clearer fixes.
+  - `CheckResult` type remains defined in `alphabetical.go` alongside alphabetization logic.
+---
+
+## 2026-06-06T17:39:23Z - phase-4-go-readme-checker-core-008
+- Implemented `validateBareURLs` to reject bare `http`/`https` URLs in resource sections after stripping markdown link syntax.
+- Implemented `validateTrackingURLs` to warn on `utm_`, `fbclid`, `gclid`, and `mc_eid` patterns in parsed resource entry URLs.
+- Updated `run()` to print warnings to stderr without affecting exit code when no hard failures exist.
+- Added table-driven tests in `links_test.go` for bare URL failure, tracking URL warning, and clean canonical URL fixtures.
+- Verified `go build ./internal/checks`, `go test ./...`, and `go run ./internal/checks` pass.
+- Files changed: internal/checks/links.go, internal/checks/links_test.go, internal/checks/main.go
+- **Learnings for future iterations:**
+  - Bare URL detection strips `\[[^\]]*\]\([^)]*\)` spans first so link targets are not false positives.
+  - Tracking checks use `collectResourceEntries` and only inspect parsed entry URLs, not intro prose.
+  - `main.run()` now distinguishes `failure` vs `warning` levels; story 010 should aggregate all check output consistently.
 ---
