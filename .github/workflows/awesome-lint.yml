@@ -13,5 +13,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Run awesome-lint
+      # Local equivalent: npx awesome-lint (requires Node.js)
+      - name: Run awesome-lint (local: npx awesome-lint)
         run: npx awesome-lint

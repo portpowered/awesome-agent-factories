@@ -238,7 +238,17 @@ Optional targets:
 
 Thin shell wrappers `scripts/check-readme.sh` and `scripts/normalize-readme.sh` delegate to `make check` and `make fmt` when you prefer script entry points.
 
-GitHub Actions and scheduled CI are not configured in this repository yet. Use these local Makefile targets to self-verify changes before maintainer review.
+### GitHub Actions
+
+These workflows mirror the local commands above (read-only; no repository mutations):
+
+| Workflow | Triggers | Local equivalent |
+| --- | --- | --- |
+| [Link Check](.github/workflows/link-check.yml) | Pull requests to `main`, weekly | `make links` |
+| [Awesome Lint](.github/workflows/awesome-lint.yml) | Pull requests and pushes to `main` | `npx awesome-lint` |
+| [Scheduled Maintenance](.github/workflows/scheduled-maintenance.yml) | Monthly schedule | `make check` and `make links` |
+
+Run the local commands to reproduce CI failures before pushing. Link checks honor root [`.lychee.toml`](.lychee.toml); README validation rules live in [`internal/checks`](internal/checks)—workflow YAML does not duplicate them.
 
 ## Before you open a pull request
 

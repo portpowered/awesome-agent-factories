@@ -15,8 +15,8 @@ jobs:
         with:
           go-version: stable
 
-      - name: Custom README checks
-        # Local equivalent: make check (or go run ./internal/checks)
+      # Local equivalent: make check (or go run ./internal/checks)
+      - name: Custom README checks (local: make check)
         run: |
           if command -v make >/dev/null 2>&1; then
             make check
@@ -24,8 +24,8 @@ jobs:
             go run ./internal/checks
           fi
 
-      - name: Check links
-        # Local equivalent: make links
+      # Local equivalent: make links (lychee README.md docs/*.md; honors root .lychee.toml)
+      - name: Check links (local: make links)
         uses: lycheeverse/lychee-action@v2
         with:
           args: --verbose --no-progress README.md docs/*.md
