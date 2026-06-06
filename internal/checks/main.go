@@ -17,6 +17,21 @@ func run() error {
 	if err != nil {
 		return err
 	}
-	_, err = loadReadme(path)
-	return err
+	doc, err := loadReadme(path)
+	if err != nil {
+		return err
+	}
+
+	var failures []CheckResult
+	failures = append(failures, validateRequiredSections(doc)...)
+
+	for _, result := range failures {
+		if result.Level == "failure" {
+			fmt.Fprintln(os.Stderr, result.Message)
+		}
+	}
+	if len(failures) > 0 {
+		return fmt.Errorf("%d check failure(s)", len(failures))
+	}
+	return nil
 }
