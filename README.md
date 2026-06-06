@@ -38,3 +38,16 @@ Excluded unless directly relevant:
 - Generic observability tools
 - Generic workflow engines with no agent-specific usage
 - Model provider SDKs
+
+## Contents
+
+- [Theories](#theories)
+- [Coordination Patterns](#coordination-patterns)
+- [Frameworks](#frameworks)
+- [Protocols and Interfaces](#protocols-and-interfaces)
+- [Benchmarks](#benchmarks)
+- [Research Papers](#research-papers)
+- [Blog Posts](#blog-posts)
+- [Case Studies](#case-studies)
+- [Examples and Templates](#examples-and-templates)
+- [Related Lists](#related-lists)
