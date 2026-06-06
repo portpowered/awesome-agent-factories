@@ -15,6 +15,12 @@ check:
 	go run ./internal/checks
 
 links:
+	@command -v lychee >/dev/null 2>&1 || { \
+		echo "lychee: not found on PATH (required for markdown link checking)" >&2; \
+		echo "Install: brew install lychee" >&2; \
+		echo "See also: https://lychee.cli.rs/guides/getting-started/" >&2; \
+		exit 1; \
+	}
 	lychee README.md docs/*.md
 
 fmt:
