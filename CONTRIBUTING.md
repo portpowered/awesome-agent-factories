@@ -1,8 +1,8 @@
 # Contributing
 
-Thank you for helping improve **Awesome AI Agent Factories**. This document covers submission format and discipline rules so your pull request matches list conventions before maintainers review scope.
+Thank you for helping improve **Awesome AI Agent Factories**. This document covers submission format, scope, category rules, and discipline so your pull request matches list conventions before maintainers review it.
 
-See [README.md](README.md) for list scope and categories.
+See [README.md](README.md) for the canonical scope statement and section headings.
 
 ## One resource per pull request
 
@@ -94,12 +94,140 @@ Within each README section, entries must be sorted in **alphabetical order by li
 - Insert your entry in the correct position; do not append to the end of a section if that breaks order.
 - When renaming link text, re-sort the affected section if needed.
 
+## Scope
+
+This list focuses on **AI agent factories**: systems, theories, frameworks, and practices for managing **groups of agents** and their **flows**.
+
+### Included
+
+Submissions should fit one or more of these themes:
+
+- Multi-agent orchestration
+- Agent teams, swarms, crews, societies, and supervisors
+- Task delegation, routing, handoffs, and flow control
+- Agent communication protocols
+- Shared state and shared workspaces
+- Group-level benchmarks and evaluation methods
+- Research on agent coordination, cooperation, competition, and organization
+- Production case studies involving groups of agents
+
+### Excluded unless directly relevant
+
+Do not submit resources that are primarily about the following unless they clearly address group coordination, flows, or orchestration:
+
+- Single-agent chatbots
+- Generic LLM SDKs
+- Prompt collections
+- Standalone RAG tools
+- Generic observability tools
+- Generic workflow engines with no agent-specific usage
+- Model provider SDKs
+
+When a borderline resource is directly relevant, explain in your pull request how it helps manage groups of agents or their flows.
+
+## Categories
+
+Add each resource to **one** existing README section. Choose the section that best matches the resource type.
+
+Contributors must choose from these ten categories (README section headings):
+
+1. **Theories** — Foundational ideas for organizing agent groups.
+2. **Coordination Patterns** — Reusable system shapes for coordinating agent groups and flows.
+3. **Frameworks** — Software that manages agent groups, flows, handoffs, or orchestration.
+4. **Protocols and Interfaces** — Standards or conventions for agent interaction, handoffs, and shared interfaces.
+5. **Benchmarks** — Benchmarks that evaluate group or workflow behavior.
+6. **Research Papers** — Academic or technical papers about agent groups and flows.
+7. **Blog Posts** — Technical writing about real patterns, architectures, or failures in multi-agent systems.
+8. **Case Studies** — Real-world uses of multiple agents or agent flows.
+9. **Examples and Templates** — Runnable or forkable examples of multi-agent coordination.
+10. **Related Lists** — Other awesome lists and curated resources related to agent orchestration and multi-agent systems.
+
+Do not invent new top-level README sections in a single-resource pull request.
+
+### New categories
+
+If you believe the list needs a **new category**, open a pull request that adds **at least three entries** for that category in the same change.
+
+- All three entries must meet scope and formatting rules.
+- Each entry must be alphabetized within the new section.
+- Explain in the pull request why the existing ten categories are insufficient.
+
+Maintainers may reject category proposals with fewer than three qualifying entries.
+
+## Section-specific rules
+
+### Frameworks
+
+Framework submissions must help users **manage groups of agents, flows, handoffs, or orchestration**.
+
+Include:
+
+- Multi-agent frameworks
+- Agent graph frameworks
+- Crew, team, or society frameworks
+- Workflow-oriented agent frameworks
+- Handoff-oriented frameworks
+
+Exclude:
+
+- Generic model or inference SDKs
+- Single-agent chatbot frameworks
+- Prompt-only libraries
+
+If the project supports both single-agent and multi-agent modes, your description and pull request must focus on the multi-agent or orchestration capabilities.
+
+### Blog posts
+
+Blog posts must be **technical**. Acceptable topics include architecture breakdowns, production lessons, failure analyses, evaluation writeups, and multi-agent design patterns.
+
+Exclude:
+
+- Product launch posts
+- Shallow trend pieces
+- Vendor marketing or sponsored content
+- Prompt collections without substantive systems discussion
+
+### Research papers, case studies, benchmarks, and examples
+
+These categories still require an agent-factory angle. A paper about a single model, a benchmark for isolated tool use, or an example of one chatbot is out of scope unless it materially addresses coordination, orchestration, or group-level behavior.
+
+## Agent-factory relevance
+
+Every submission must explain the **agent-factory angle**: how the resource helps people manage **groups of agents** or their **flows**.
+
+In your pull request description, state how the resource relates to at least one of:
+
+- Coordination
+- Orchestration
+- Delegation
+- Routing
+- Handoffs
+- Shared state
+- Group-level evaluation
+
+Your README description should imply this relevance factually. Do not rely on marketing claims; state what the resource does for multi-agent or flow management.
+
+### Valid relevance examples
+
+- "Documents a supervisor-worker pattern for delegating subtasks across specialized agents."
+- "Defines a message protocol for agent-to-agent handoffs in a shared workspace."
+- "Benchmarks collaboration quality across teams of tool-using agents."
+
+### Invalid relevance examples
+
+- "Useful for anyone building with LLMs." (no group or flow angle)
+- "Great SDK for chat applications." (single-agent focus)
+- "Popular in the AI community." (no technical relevance)
+
 ## Before you open a pull request
 
-1. Confirm your change adds **one resource** only.
-2. Use the required entry format with the **exact resource name** as link text.
-3. Write a **concise, factual** description that **ends with a period** and avoids marketing language.
-4. Verify the URL is **not already present** in [README.md](README.md).
-5. Place the entry in the correct section in **alphabetical order** by link text.
+1. Confirm your change adds **one resource** only (unless proposing a new category with at least three entries).
+2. Choose one of the **ten README categories** (or meet the new-category rule above).
+3. Verify the resource fits **scope** and is not a generic single-agent SDK or other excluded type unless directly relevant.
+4. Use the required entry format with the **exact resource name** as link text.
+5. Write a **concise, factual** description that **ends with a period**, avoids marketing language, and reflects the **agent-factory angle**.
+6. Verify the URL is **not already present** in [README.md](README.md).
+7. Place the entry in the correct section in **alphabetical order** by link text.
+8. In the pull request description, explain **how the resource helps manage groups of agents or their flows**.
 
 Maintainers review scope, link stability, and formatting manually. Following these rules reduces review churn and helps your pull request move forward.
