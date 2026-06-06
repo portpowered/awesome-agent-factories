@@ -22,3 +22,6 @@ jobs:
 
       - name: Format check
         run: test -z "$(gofmt -l internal)"
+
+      - name: Go tests
+        run: go test ./...
