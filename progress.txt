@@ -32,3 +32,27 @@
   - Story 001 intentionally leaves `run()` as a no-op; story 002+ wire README loading and validation rules.
   - No external Go dependencies yet, so `go.sum` is not required.
 ---
+
+## 2026-06-07T12:00:00Z - phase-4-go-readme-checker-core-002
+- Implemented README loading with `loadReadme` and repository-root resolution via `readmePath` (walks up from cwd to find `README.md` or detects missing README at `go.mod` root).
+- Added `parseSections` to extract `##` headings, body content, and 1-based line numbers; `ReadmeDocument` now carries parsed `Sections`.
+- Wired `run()` to load README and fail with exit code 1 when `README.md` is missing.
+- Added table-driven tests in `readme_test.go` for missing README, section extraction fixtures, and load+parse integration.
+- Files changed: internal/checks/main.go, internal/checks/readme.go, internal/checks/sections.go, internal/checks/readme_test.go
+- **Learnings for future iterations:**
+  - `sectionHeading` only treats `## ` as section boundaries; `###` and deeper headings stay in section body for downstream entry parsing.
+  - `readmePath` uses `go.mod` presence to distinguish repository root from arbitrary parent directories when README is absent.
+  - Story 003+ can consume `doc.Sections` without re-parsing; validation rules should iterate sections by heading name.
+---
+
+## 2026-06-07T18:45:00Z - phase-4-go-readme-checker-core-003
+- Implemented `validateRequiredSections` to enforce the ten Phase 1 category headings, require `## Contents`, and align Contents anchor links with section headings via GitHub-style `headingAnchor` slugs.
+- Wired `run()` to emit hard failures to stderr and exit non-zero when section or Contents alignment checks fail.
+- Added table-driven tests in `sections_test.go` for missing section, missing Contents, missing Contents entry, and valid empty-section fixture.
+- Verified `go test ./...` and `go run ./internal/checks` pass against the current repository README.
+- Files changed: internal/checks/main.go, internal/checks/sections.go, internal/checks/sections_test.go
+- **Learnings for future iterations:**
+  - `requiredResourceSections` mirrors CONTRIBUTING.md's ten category headings; keep in sync if categories change.
+  - Contents links are parsed with `contentsLinkPattern` matching `- [Text](#anchor)` list items only.
+  - Empty resource sections (intro prose, no `- [` entries) pass; entry-format validation belongs in story 004+.
+---
