@@ -91,3 +91,11 @@ Runnable or forkable examples of multi-agent coordination.
 ## Related Lists
 
 Other awesome lists and curated resources related to agent orchestration and multi-agent systems.
+
+## Contributing
+
+Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for submission rules (this file will be added in a follow-up governance phase).
+
+## License
+
+List content is intended to be released under [CC0-1.0](https://creativecommons.org/publicdomain/zero/1.0/). Linked third-party resources retain their own licenses.
