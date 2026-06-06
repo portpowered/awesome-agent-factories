@@ -1,14 +1,10 @@
 ## Codebase Patterns
-- Root Go module is `github.com/portpowered/awesome-agent-factories` with `go 1.24`; run `go build ./internal/checks` and `go test ./...` from repository root.
-- `internal/checks` is a `package main` CLI with responsibilities split across `main.go`, `readme.go`, `links.go`, `sections.go`, `alphabetical.go`, and `duplicates.go`.
-- No package.json or CI tooling in this worktree; Go quality gates are `go build` and `go test ./...`.
+- No package.json or CI tooling in this worktree; quality gates pass vacuously when no typecheck/lint/test scripts exist.
 - Use the standard Awesome badge markup: `[![Awesome](https://awesome.re/badge.svg)](https://awesome.re)` on the H1 line.
 - `docs/internal/customer-ask.md` contains suggested opening copy and Contents anchor patterns for later stories.
-- Resource entry format validation applies only to `- [` lines in the ten `requiredResourceSections`; use `parseResourceEntry` for downstream entry rules.
-- Description rules (`description-period`, `banned-marketing-phrase`) live in `validateDescriptionRules` (links.go) with helpers in `readme.go`; banned phrases use word-boundary regex and only inspect description text, not link text.
-- Duplicate detection lives in `validateDuplicates` (duplicates.go); use `collectResourceEntries` to gather parsed entries globally; `normalizeURL` lowercases scheme/host, strips fragments, and trims trailing slashes before URL comparison; names compare case-insensitively.
-- Alphabetization lives in `validateAlphabeticalOrder` (alphabetical.go); use `collectSectionEntries` per resource section and compare adjacent link-text names case-insensitively; sections with zero or one parsed entry pass.
-- URL hygiene lives in `validateBareURLs` and `validateTrackingURLs` (links.go); strip `[text](url)` markdown links before scanning for bare `http(s)://` URLs; tracking patterns (`utm_`, `fbclid`, `gclid`, `mc_eid`) on parsed entry URLs emit `warning` level results only.
+- Phase 4 lint config: `.golangci.yml` uses golangci-lint v2 schema (`version: "2"`); `gofmt`/`gofumpt` live under `formatters.enable`, other linters under `linters.enable`.
+- This worktree fast-forwarded `phase-4-go-readme-checker-core` to obtain `go.mod` and `internal/checks/` before adding Makefile/lint automation.
+- Optional-tool Makefile targets: guard with `command -v <tool>`; print tool name, purpose, `go install` hint, and upstream docs URL to stderr before exiting 1.
 
 ## 2026-06-06T00:00:00Z - awesome-readme-foundation-001
 - Established README identity: Awesome H1 with badge, inline SVG logo mark (three connected nodes), blockquote tagline, and factual agent-factory definition; removed placeholder `# awesome-agent-factories` heading.
@@ -27,102 +23,64 @@
   - Scope section belongs immediately after the opening narrative and before Contents (story 003).
 ---
 
-## 2026-06-07T00:00:00Z - phase-4-go-readme-checker-core-001
-- Bootstrapped root `go.mod` with module path `github.com/portpowered/awesome-agent-factories` and Go 1.24 toolchain.
-- Added `internal/checks` package skeleton with `main.go`, `readme.go`, `links.go`, `sections.go`, `alphabetical.go`, and `duplicates.go` preserving planned responsibilities via shared types (`ReadmeDocument`, `Section`, `ResourceEntry`, `CheckResult`).
-- Verified `go build ./internal/checks` and `go test ./...` succeed from repository root.
-- Files changed: go.mod, internal/checks/main.go, internal/checks/readme.go, internal/checks/links.go, internal/checks/sections.go, internal/checks/alphabetical.go, internal/checks/duplicates.go
+## 2026-06-07T00:50:00Z - phase-4-makefile-and-lint-config-001
+- Added root `.golangci.yml` (v2 schema with `run.timeout: 5m`, govet/staticcheck/errcheck/ineffassign/unused/revive/misspell linters, gofmt/gofumpt formatters), `.markdownlint.yaml` (MD013/MD033/MD041 disabled, MD024 siblings_only), and `.lychee.toml` (max_retries 2, timeout 20, accept codes, localhost/127.0.0.1 excludes) per `docs/internal/customer-ask.md` Phase 4.
+- Fast-forwarded `phase-4-go-readme-checker-core` into this worktree so `golangci-lint run --config .golangci.yml ./internal/...` can validate config against checker code.
+- Files changed: `.golangci.yml`, `.markdownlint.yaml`, `.lychee.toml`
 - **Learnings for future iterations:**
-  - `internal/checks` uses `package main` so `go run ./internal/checks` works without a separate `cmd/` directory.
-  - Story 001 intentionally leaves `run()` as a no-op; story 002+ wire README loading and validation rules.
-  - No external Go dependencies yet, so `go.sum` is not required.
+  - golangci-lint v2 (2.x) rejects v1 config without `version: "2"`; migrate formatters (`gofmt`, `gofumpt`) to the `formatters` section.
+  - Config parse success is distinct from lint findings; story 001 only requires no parse errors.
+  - `go build ./internal/checks` emits a `checks` binary at repo root—remove before committing.
 ---
 
-## 2026-06-07T12:00:00Z - phase-4-go-readme-checker-core-002
-- Implemented README loading with `loadReadme` and repository-root resolution via `readmePath` (walks up from cwd to find `README.md` or detects missing README at `go.mod` root).
-- Added `parseSections` to extract `##` headings, body content, and 1-based line numbers; `ReadmeDocument` now carries parsed `Sections`.
-- Wired `run()` to load README and fail with exit code 1 when `README.md` is missing.
-- Added table-driven tests in `readme_test.go` for missing README, section extraction fixtures, and load+parse integration.
-- Files changed: internal/checks/main.go, internal/checks/readme.go, internal/checks/sections.go, internal/checks/readme_test.go
+## 2026-06-07T01:15:00Z - phase-4-makefile-and-lint-config-002
+- Added root `Makefile` with `.PHONY` targets `all`, `lint`, `check`, `links`, `fmt`, and `test` matching `docs/internal/customer-ask.md` Phase 4; `all` delegates to `check`, `check` runs `go run ./internal/checks`, `test` runs `go test ./...`, `fmt` runs `gofmt -w internal`.
+- Verified `make all`, `make check`, `make test`, and `make fmt` exit 0 against the current README and checker tests.
+- Files changed: `Makefile`
 - **Learnings for future iterations:**
-  - `sectionHeading` only treats `## ` as section boundaries; `###` and deeper headings stay in section body for downstream entry parsing.
-  - `readmePath` uses `go.mod` presence to distinguish repository root from arbitrary parent directories when README is absent.
-  - Story 003+ can consume `doc.Sections` without re-parsing; validation rules should iterate sections by heading name.
+  - Story 002 only requires core targets (`all`, `check`, `test`, `fmt`); `lint` and `links` are declared with direct tool invocations for stories 003–004 to add missing-tool guidance.
+  - Remove the `checks` binary after `go build ./internal/checks` before committing.
+  - `make fmt` is idempotent when checker Go files are already formatted.
 ---
 
-## 2026-06-07T18:45:00Z - phase-4-go-readme-checker-core-003
-- Implemented `validateRequiredSections` to enforce the ten Phase 1 category headings, require `## Contents`, and align Contents anchor links with section headings via GitHub-style `headingAnchor` slugs.
-- Wired `run()` to emit hard failures to stderr and exit non-zero when section or Contents alignment checks fail.
-- Added table-driven tests in `sections_test.go` for missing section, missing Contents, missing Contents entry, and valid empty-section fixture.
-- Verified `go test ./...` and `go run ./internal/checks` pass against the current repository README.
-- Files changed: internal/checks/main.go, internal/checks/sections.go, internal/checks/sections_test.go
+## 2026-06-06T17:49:31Z - phase-4-makefile-and-lint-config-003
+- Wired `make lint` with `command -v golangci-lint` guard, stderr install guidance (`go install` path and upstream docs URL), and explicit `golangci-lint run --config .golangci.yml ./...`.
+- Fixed pre-existing golangci findings so `make lint` exits 0: grouped regexp vars in `links.go` (gofumpt) and added package comment in `main.go` (revive).
+- Verified missing-tool path with `PATH="/usr/bin:/bin" make lint` (exit 1, human-readable stderr).
+- Files changed: `Makefile`, `internal/checks/links.go`, `internal/checks/main.go`
 - **Learnings for future iterations:**
-  - `requiredResourceSections` mirrors CONTRIBUTING.md's ten category headings; keep in sync if categories change.
-  - Contents links are parsed with `contentsLinkPattern` matching `- [Text](#anchor)` list items only.
-  - Empty resource sections (intro prose, no `- [` entries) pass; entry-format validation belongs in story 004+.
+  - `golangci-lint run --fix` auto-applies gofumpt grouping without a separate `gofumpt` binary.
+  - Story 003 scope includes making checker code pass the wired linter, not only the Makefile guard.
+  - Story 004 can mirror the same `command -v` + stderr install-hint pattern for `lychee`.
 ---
 
-## 2026-06-07T19:30:00Z - phase-4-go-readme-checker-core-004
-- Implemented `validateResourceEntryFormat` and `parseResourceEntry` in `links.go` to enforce `- [Name](URL) - Description.` shape in the ten resource sections.
-- Lines starting with `- [` that fail the format regex emit hard failures with section, line number, and expected format rule; intro paragraphs and other non-entry lines are skipped.
-- Wired entry-format validation into `run()` after required-section checks.
-- Added table-driven tests in `links_test.go` for valid entry with intro, missing description, wrong separator, non-link bullets, and multiple invalid shapes.
-- Verified `go build ./internal/checks`, `go test ./...`, and `go run ./internal/checks` pass.
-- Files changed: internal/checks/links.go, internal/checks/main.go, internal/checks/links_test.go
+## 2026-06-07T02:30:00Z - phase-4-makefile-and-lint-config-004
+- Wired `make links` with `command -v lychee` guard, stderr install guidance (`brew install lychee` and upstream docs URL), and `lychee README.md docs/*.md` invocation that picks up root `.lychee.toml` automatically.
+- Verified missing-tool path with `PATH="/usr/bin:/bin" make links` (exit 1, human-readable stderr).
+- Verified installed path with `make links` (exit 0, 138 links OK, no config parse errors).
+- Files changed: `Makefile`
 - **Learnings for future iterations:**
-  - `looksLikeResourceEntry` limits checks to `- [` lines so section intro prose and plain bullets do not false-positive.
-  - `parseResourceEntry` is ready for stories 005–009 (punctuation, duplicates, alphabetization, URLs, scope).
-  - `go build ./internal/checks` emits a `checks` binary at repo root; do not commit it.
+  - Lychee auto-discovers `.lychee.toml` in the repo root; no explicit `--config` flag needed when run from repository root.
+  - `docs/*.md` glob in the Makefile expands to the four existing docs markdown files; lychee honors exclude rules for localhost/127.0.0.1 from `.lychee.toml`.
+  - Mirror the lint target's `command -v` + stderr install-hint pattern for any future optional-tool Makefile targets.
 ---
 
-## 2026-06-07T20:15:00Z - phase-4-go-readme-checker-core-005
-- Implemented `validateDescriptionRules` to require terminal periods and reject banned marketing phrases in resource descriptions.
-- Added `descriptionEndsWithPeriod` and `findBannedPhraseInDescription` helpers in `readme.go` with word-boundary matching for revolutionary, game-changing, best, ultimate, and cutting-edge.
-- Wired description validation into `run()` after entry-format checks; failures cite section, line, entry name, and rule (`description-period` or `banned-marketing-phrase`).
-- Added table-driven tests in `links_test.go` for missing period, phrase in description, and phrase allowed in link text only.
-- Verified `go build ./internal/checks`, `go test ./...`, and `go run ./internal/checks` pass.
-- Files changed: internal/checks/readme.go, internal/checks/links.go, internal/checks/main.go, internal/checks/links_test.go
+## 2026-06-07T03:00:00Z - phase-4-makefile-and-lint-config-005
+- Verified existing `.gitignore` factory/monorepo entries (`.claude`, `tasks/`, `docs/internal`, `factory/Makefile`, `factory/docs`) and editor/OS/build patterns remain unchanged in meaning; confirmed `.editorconfig` still matches Phase 2 charset, LF, final newline, markdown trailing-whitespace exception, Go tabs, and two-space YAML/TOML/JSON/Markdown indent.
+- Added `/checks` to `.gitignore` so the root binary emitted by `go build ./internal/checks` is ignored without broad Go artifact patterns.
+- Files changed: `.gitignore`
 - **Learnings for future iterations:**
-  - Marketing phrase checks intentionally skip link text; only the hyphen-separated description is scanned.
-  - Entries that fail format parsing are skipped here so `entry-format` remains the single format failure.
-  - Use `\b` word boundaries for short phrases like `best` to avoid substring false positives.
+  - `go build ./internal/checks` names the output binary `checks` at the repository root; anchor with `/checks` to avoid ignoring unrelated paths.
+  - Hygiene story 005 is verification-first: only extend ignore rules when the checker introduces artifacts not already covered.
+  - No `docs/internal/processes/` directory exists yet in this worktree; skip relevant-files updates until that layout lands.
 ---
 
-## 2026-06-06T17:37:18Z - phase-4-go-readme-checker-core-006
-- Implemented `validateDuplicates` with global URL and resource-name collision detection across all ten resource sections.
-- Added `normalizeURL` (lowercase scheme/host, strip fragment, trim trailing slash) and `collectResourceEntries` helpers in `duplicates.go`.
-- Wired duplicate validation into `run()` after description rules; failures use rules `duplicate-url` and `duplicate-name` with both colliding entries cited.
-- Added table-driven tests in `duplicates_test.go` for distinct entries, duplicate URL (including normalization), and case-insensitive duplicate names.
-- Verified `go build ./internal/checks`, `go test ./...`, and `go run ./internal/checks` pass.
-- Files changed: internal/checks/duplicates.go, internal/checks/duplicates_test.go, internal/checks/main.go
+## 2026-06-07T04:00:00Z - phase-4-makefile-and-lint-config-006
+- Added thin `scripts/check-readme.sh` and `scripts/normalize-readme.sh` wrappers that `cd` to the repository root and `exec make check` / `exec make fmt` without duplicating checker or formatting logic.
+- Verified both scripts are executable, runnable from the repository root, and exit with the same results as their Makefile targets.
+- Files changed: `scripts/check-readme.sh`, `scripts/normalize-readme.sh`
 - **Learnings for future iterations:**
-  - Duplicate checks only consider successfully parsed `- [` entries; malformed lines remain the responsibility of `entry-format`.
-  - URL normalization intentionally preserves query strings; only host/scheme case, fragments, and trailing slashes are normalized.
-  - `go build ./internal/checks` emits a `checks` binary at repo root; do not commit it.
----
-
-## 2026-06-07T21:15:00Z - phase-4-go-readme-checker-core-007
-- Implemented `validateAlphabeticalOrder` with per-section adjacent link-text comparison using case-insensitive ordering.
-- Added `collectSectionEntries` helper in `alphabetical.go` to gather successfully parsed entries within each resource section.
-- Wired alphabetization validation into `run()` after duplicate checks; failures use rule `alphabetical-order` and cite section plus out-of-order adjacent entries with line numbers.
-- Added table-driven tests in `alphabetical_test.go` for in-order, out-of-order, single-entry, empty, and case-insensitive fixtures.
-- Verified `go build ./internal/checks`, `go test ./...`, and `go run ./internal/checks` pass.
-- Files changed: internal/checks/alphabetical.go, internal/checks/alphabetical_test.go, internal/checks/main.go
-- **Learnings for future iterations:**
-  - Alphabetization checks only parsed `- [` entries within each section; malformed lines remain the responsibility of `entry-format`.
-  - Compare adjacent entries only—multiple out-of-order pairs each emit a separate failure for clearer fixes.
-  - `CheckResult` type remains defined in `alphabetical.go` alongside alphabetization logic.
----
-
-## 2026-06-06T17:39:23Z - phase-4-go-readme-checker-core-008
-- Implemented `validateBareURLs` to reject bare `http`/`https` URLs in resource sections after stripping markdown link syntax.
-- Implemented `validateTrackingURLs` to warn on `utm_`, `fbclid`, `gclid`, and `mc_eid` patterns in parsed resource entry URLs.
-- Updated `run()` to print warnings to stderr without affecting exit code when no hard failures exist.
-- Added table-driven tests in `links_test.go` for bare URL failure, tracking URL warning, and clean canonical URL fixtures.
-- Verified `go build ./internal/checks`, `go test ./...`, and `go run ./internal/checks` pass.
-- Files changed: internal/checks/links.go, internal/checks/links_test.go, internal/checks/main.go
-- **Learnings for future iterations:**
-  - Bare URL detection strips `\[[^\]]*\]\([^)]*\)` spans first so link targets are not false positives.
-  - Tracking checks use `collectResourceEntries` and only inspect parsed entry URLs, not intro prose.
-  - `main.run()` now distinguishes `failure` vs `warning` levels; story 010 should aggregate all check output consistently.
+  - Use `cd "$(dirname "$0")/.."` plus `exec make <target>` so scripts work from any working directory and propagate exit codes.
+  - Story 006 adds scripts rather than Makefile help text because the customer-ask directory layout includes `scripts/` entry points.
+  - Story 007 will document `make check`, `make test`, and `make all` in CONTRIBUTING.md; scripts remain optional aliases.
 ---

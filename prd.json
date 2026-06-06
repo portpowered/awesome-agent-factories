@@ -1,30 +1,32 @@
 {
   "project": "Awesome AI Agent Factories",
-  "branchName": "phase-4-go-readme-checker-core",
-  "description": "Add the root Go module and internal/checks README validator that enforces Phase 1-3 structure and entry rules (sections, Contents alignment, entry format, punctuation, marketing phrases, duplicates, alphabetization, URL hygiene) with hard failures and scope/tracking warnings, table-tested behavior, and a passing go run ./internal/checks against the current empty-section README—without GitHub Actions, templates, Makefile, or bulk content.",
+  "branchName": "phase-4-makefile-and-lint-config",
+  "description": "Wire repository-level Phase 4 quality automation around the Go README checker: root Makefile targets (all, lint, check, links, fmt, test), aligned .golangci.yml, .markdownlint.yaml, and .lychee.toml config, optional thin shell wrappers, preserved hygiene files, and contributor documentation—so make check, make test, and go test ./... pass locally while optional tools fail with clear missing-tool guidance.",
   "context": {
-    "customerAsk": "Phase 4 automation: add the root Go module and custom README checker requested in docs/internal/customer-ask.md. Implement go.mod, go.sum if needed, and internal/checks with focused code split across main.go, readme.go, links.go, sections.go, alphabetical.go, and duplicates.go or an equivalent small Go package structure that preserves those responsibilities. The checker must validate that README exists; required sections exist; Contents links match required headings; README entries use - [Name](URL) - Description.; descriptions end with a period; duplicate URLs and duplicate resource names are rejected; entries are alphabetized within sections; bare URLs are rejected; tracking-heavy or suspicious URLs are reported; marketing phrases such as revolutionary, game-changing, best, ultimate, and cutting-edge are rejected unless part of a resource title; and scope keywords are warnings rather than hard failures. Keep empty starter sections allowed until the content phase fills them. Include deterministic Go tests or table tests for the checker behavior using in-memory or fixture markdown. Do not add GitHub Actions, issue templates, or bulk README resource entries in this item. Acceptance: go test ./... passes, go run ./internal/checks passes against the current README, failures explain the specific resource-entry rule, and existing Phase 1-3 docs remain aligned.",
-    "problem": "Phases 1-3 established README structure, governance, and manual review policy, but there is no executable enforcement of CONTRIBUTING and review-policy rules. Contributors and maintainers cannot run a deterministic local check for formatting, duplicates, alphabetization, promotional language, or scope signals before Phase 5 CI wiring.",
-    "solution": "Introduce a root Go module (github.com/portpowered/awesome-agent-factories) and an internal/checks command that reads README.md, applies focused validations aligned with Phase 1-3 policy, prints actionable hard failures and non-blocking warnings, exits non-zero only on hard failures, and is covered by table-driven Go tests—allowing empty resource sections until Phase 7 content seeding."
+    "customerAsk": "Phase 4 automation integration: wire repository-level quality commands and config around the Go checker after phase-4-go-readme-checker-core lands. Add a root Makefile with the requested targets all, lint, check, links, fmt, and test; all should run check, check should run go run ./internal/checks, fmt should format Go checker code, and test should run go test ./.... Add .golangci.yml, .markdownlint.yaml, and .lychee.toml matching the customer ask where practical. Add scripts/check-readme.sh and scripts/normalize-readme.sh only if they help expose the same checker/formatting commands without duplicating logic. Preserve existing .gitignore and .editorconfig behavior, extending only when necessary for Go/build artifacts. Do not add GitHub Actions, issue templates, or content seeding. Acceptance: make check, make test, and go test ./... pass locally; optional external tools such as golangci-lint or lychee are documented or fail with clear missing-tool guidance; and root automation files match Phase 4 checklist names.",
+    "problem": "The Go README checker validates structure and entry rules, but contributors lack a single documented local entry point for quality checks. Without a root Makefile and aligned lint/link configuration, everyone must remember raw go run, go test, and optional third-party tool commands, and Phase 5 CI cannot mirror stable repository conventions.",
+    "solution": "Add Phase 4 root automation: a Makefile delegating check and test to the existing Go checker, fmt to gofmt on internal/, lint to golangci-lint, and links to lychee; plus .golangci.yml, .markdownlint.yaml, and .lychee.toml aligned with docs/internal/customer-ask.md. Optional shell scripts thinly delegate to make targets. Preserve .gitignore and .editorconfig, extending only for necessary Go artifacts, and document local commands for contributors."
   },
   "acceptanceCriteria": [
-    "Root go.mod (and go.sum if dependencies are used) exist with module path github.com/portpowered/awesome-agent-factories.",
-    "internal/checks is implemented across main.go, readme.go, links.go, sections.go, alphabetical.go, and duplicates.go preserving the specified responsibilities.",
-    "go test ./... passes with deterministic table tests for hard-failure and warning behaviors.",
-    "go run ./internal/checks exits 0 against the current repository README.md with empty resource sections allowed.",
-    "Hard failures identify the specific resource-entry rule, section, and entry context; scope and tracking findings are warnings only.",
-    "No GitHub Actions, issue templates, Makefile, bulk README entries, or unrelated refactors are added.",
-    "Quality gate: go build ./internal/checks succeeds; go test ./... passes; checker rules remain aligned with CONTRIBUTING.md, docs/review-policy.md, and README.md Phase 1 structure."
+    "Root Makefile exists with .PHONY targets all, lint, check, links, fmt, and test matching the Phase 4 checklist in docs/internal/customer-ask.md.",
+    "make all runs check; make check runs go run ./internal/checks; make test runs go test ./...; make fmt runs gofmt -w internal.",
+    "make check, make test, and go test ./... pass locally against the current Phase 1 README skeleton with empty resource sections.",
+    "Root .golangci.yml, .markdownlint.yaml, and .lychee.toml exist and match the customer ask configuration where practical.",
+    "make lint and make links either run successfully when golangci-lint and lychee are installed or exit non-zero with clear missing-tool installation guidance.",
+    "Existing .gitignore and .editorconfig behavior is preserved; any extensions cover only necessary Go/build artifacts without removing factory or monorepo ignore rules.",
+    "No GitHub Actions workflows, issue/PR templates, bulk README entries, or unrelated repository refactors are added.",
+    "Quality gate: go build ./internal/checks succeeds; go test ./... passes; make check and make test pass; optional-tool targets provide documented or self-explanatory missing-tool guidance."
   ],
   "userStories": [
     {
-      "id": "phase-4-go-readme-checker-core-001",
-      "title": "Bootstrap Go module and checks package layout",
-      "description": "As a maintainer introducing Phase 4 automation, I want a root Go module and an internal/checks package skeleton so later validation stories have a stable build and ownership boundary.",
+      "id": "phase-4-makefile-and-lint-config-001",
+      "title": "Add Phase 4 root lint and link configuration files",
+      "description": "As a maintainer wiring Phase 4 automation, I want root linter and link-checker configuration files so golangci-lint, markdownlint consumers, and lychee share predictable repository defaults.",
       "acceptanceCriteria": [
-        "go.mod exists at repository root with module path github.com/portpowered/awesome-agent-factories and a supported Go toolchain version",
-        "Package internal/checks exists with main.go, readme.go, links.go, sections.go, alphabetical.go, and duplicates.go preserving those responsibilities",
-        "go build ./internal/checks succeeds from repository root",
+        "Root .golangci.yml exists with run.timeout 5m and enables govet, staticcheck, errcheck, ineffassign, unused, gofmt, gofumpt, revive, and misspell with issues.exclude-use-default false",
+        "Root .markdownlint.yaml exists with MD013 false, MD033 false, MD041 false, and MD024.siblings_only true",
+        "Root .lychee.toml exists with max_retries 2, timeout 20, accept codes 200 204 206 301 302 403 429, and exclude entries for localhost and 127.0.0.1",
+        "When golangci-lint is installed, golangci-lint run --config .golangci.yml ./internal/... completes against the current checker code without configuration parse errors",
         "Typecheck passes"
       ],
       "priority": 1,
@@ -32,13 +34,15 @@
       "notes": ""
     },
     {
-      "id": "phase-4-go-readme-checker-core-002",
-      "title": "Load README and parse document structure",
-      "description": "As a contributor running the checker locally, I want a clear failure when README.md is missing and reliable parsing of headings and sections so downstream rules operate on structured content.",
+      "id": "phase-4-makefile-and-lint-config-002",
+      "title": "Add Makefile core quality targets",
+      "description": "As a contributor preparing a pull request, I want make check, make test, make fmt, and make all so I can validate README rules and Go tests from the repository root without memorizing raw commands.",
       "acceptanceCriteria": [
-        "Running the checker when README.md is absent exits non-zero with a message stating the README is missing",
-        "The checker reads README.md from the repository root and identifies ## section headings and their body content",
-        "Table tests use in-memory markdown fixtures to verify missing-README failure and basic section extraction",
+        "Root Makefile declares .PHONY all lint check links fmt test",
+        "make check runs go run ./internal/checks and exits 0 against the current repository README.md",
+        "make test runs go test ./... and exits 0",
+        "make fmt runs gofmt -w internal and leaves checker Go files formatted",
+        "make all runs the check target equivalent to make check",
         "Typecheck passes",
         "Tests pass"
       ],
@@ -47,131 +51,73 @@
       "notes": ""
     },
     {
-      "id": "phase-4-go-readme-checker-core-003",
-      "title": "Validate required sections and Contents-heading alignment",
-      "description": "As a maintainer guarding list structure, I want required README sections and Contents anchor links to match headings so the Phase 1 skeleton cannot drift silently.",
+      "id": "phase-4-makefile-and-lint-config-003",
+      "title": "Wire lint target with golangci-lint and missing-tool guidance",
+      "description": "As a maintainer running optional Go static analysis, I want make lint to use the repository golangci config or tell me clearly how to install the tool when it is missing.",
       "acceptanceCriteria": [
-        "Hard failure when any required resource section heading is missing among the ten Phase 1 categories",
-        "Hard failure when ## Contents is missing or a Contents anchor does not match an existing ## heading for required resource sections",
-        "Empty resource sections with zero resource entries pass without error",
-        "Table tests cover missing section, missing Contents entry, and valid empty-section fixture",
-        "Typecheck passes",
-        "Tests pass"
+        "make lint runs golangci-lint run ./... using the root .golangci.yml configuration",
+        "When golangci-lint is not on PATH, make lint exits non-zero and prints a human-readable message naming the missing binary and at least one installation option",
+        "When golangci-lint is installed and checker code is clean, make lint exits 0",
+        "Typecheck passes"
       ],
       "priority": 3,
       "passes": true,
       "notes": ""
     },
     {
-      "id": "phase-4-go-readme-checker-core-004",
-      "title": "Enforce resource entry list-item format",
-      "description": "As a contributor adding a resource, I want invalid list-item shapes rejected with a specific format error so I can fix entries to match - [Name](URL) - Description.",
+      "id": "phase-4-makefile-and-lint-config-004",
+      "title": "Wire links target with lychee and missing-tool guidance",
+      "description": "As a maintainer checking documentation link health, I want make links to run lychee against README and docs markdown or fail clearly when lychee is not installed.",
       "acceptanceCriteria": [
-        "Each resource entry must match - [Name](URL) - Description with a single markdown link and hyphen-separated description",
-        "Hard failure for malformed lines in resource sections with a message identifying section, approximate line, and expected format rule",
-        "Non-entry lines such as section intro paragraphs do not false-positive as entries",
-        "Table tests cover valid entry and multiple invalid shapes",
-        "Typecheck passes",
-        "Tests pass"
+        "make links runs lychee README.md docs/*.md or equivalent invocation that honors root .lychee.toml",
+        "When lychee is not on PATH, make links exits non-zero and prints a human-readable message naming the missing binary and at least one installation option",
+        "When lychee is installed, make links executes using the repository .lychee.toml settings without configuration parse errors",
+        "Typecheck passes"
       ],
       "priority": 4,
       "passes": true,
       "notes": ""
     },
     {
-      "id": "phase-4-go-readme-checker-core-005",
-      "title": "Enforce description punctuation and banned marketing phrases",
-      "description": "As a maintainer enforcing encyclopedic tone, I want descriptions to end with a period and promotional phrases rejected unless they appear in the official resource title link text.",
+      "id": "phase-4-makefile-and-lint-config-005",
+      "title": "Preserve and minimally extend repository hygiene files",
+      "description": "As a factory operator maintaining multiple worktrees, I want .gitignore and .editorconfig to keep their current factory and monorepo rules while ignoring any new Go build artifacts introduced by the checker module.",
       "acceptanceCriteria": [
-        "Hard failure when a resource description does not end with a period",
-        "Hard failure when description text contains banned phrases revolutionary, game-changing, best, ultimate, or cutting-edge case-insensitively unless only present in link text",
-        "Failure messages cite the entry and specific rule for missing period versus banned phrase",
-        "Table tests cover period violation, phrase in description, and phrase allowed in title only",
-        "Typecheck passes",
-        "Tests pass"
+        "Existing .gitignore entries for .claude, tasks/, docs/internal, factory/Makefile, factory/docs, editor/OS artifacts, logs, tmp/, dist/, and coverage.out remain present and unchanged in meaning",
+        ".editorconfig content remains aligned with current Phase 2 behavior for charset, line endings, final newline, markdown trailing-whitespace exception, Go tabs, and YAML/TOML/JSON/Markdown two-space indent",
+        "If the Go checker introduces local build outputs not already ignored, add only the minimal patterns needed without broad unrelated cleanup",
+        "Typecheck passes"
       ],
       "priority": 5,
       "passes": true,
       "notes": ""
     },
     {
-      "id": "phase-4-go-readme-checker-core-006",
-      "title": "Reject duplicate URLs and duplicate resource names",
-      "description": "As a maintainer preventing duplicate submissions, I want duplicate URLs and duplicate link-text names rejected anywhere in README resource entries.",
+      "id": "phase-4-makefile-and-lint-config-006",
+      "title": "Add optional helper scripts that delegate to Makefile targets",
+      "description": "As a contributor or automation author expecting shell entry points, I want thin wrapper scripts that expose the same README check and formatting commands without reimplementing checker logic.",
       "acceptanceCriteria": [
-        "Hard failure when the same normalized URL appears on more than one resource entry",
-        "Hard failure when the same resource name link text appears on more than one entry using case-insensitive comparison",
-        "Failure messages identify both colliding entries with section and name or URL",
-        "Table tests cover duplicate URL, duplicate name, and distinct entries",
-        "Typecheck passes",
-        "Tests pass"
+        "If added, scripts/check-readme.sh exits with the same result as make check by delegating to make check or go run ./internal/checks without embedding duplicate validation rules",
+        "If added, scripts/normalize-readme.sh exits with the same formatting outcome as make fmt by delegating to make fmt without embedding duplicate formatting logic",
+        "If either script is omitted, CONTRIBUTING.md or Makefile help text states that make check and make fmt are the canonical entry points",
+        "Any added scripts are executable and runnable from the repository root",
+        "Typecheck passes"
       ],
       "priority": 6,
       "passes": true,
       "notes": ""
     },
     {
-      "id": "phase-4-go-readme-checker-core-007",
-      "title": "Enforce alphabetical order within each resource section",
-      "description": "As a contributor inserting a resource, I want alphabetization violations reported per section so I can place entries in the correct order by link text.",
+      "id": "phase-4-makefile-and-lint-config-007",
+      "title": "Document local quality commands for contributors",
+      "description": "As a contributor following CONTRIBUTING.md, I want documented local commands for README validation and optional lint/link checks so I can self-verify before maintainer review.",
       "acceptanceCriteria": [
-        "Hard failure when entries in a resource section are not sorted alphabetically by link text case-insensitively",
-        "Failure message names the section and out-of-order adjacent entries",
-        "Sections with zero or one entry pass alphabetization check",
-        "Table tests cover in-order, out-of-order, and single-entry sections",
-        "Typecheck passes",
-        "Tests pass"
+        "CONTRIBUTING.md includes a short Local checks section naming make check, make test, and make all as the primary pre-submit commands",
+        "The section notes that make lint requires golangci-lint and make links requires lychee with install pointers or references to upstream install documentation",
+        "Documentation does not claim GitHub Actions or scheduled CI already enforce checks",
+        "Typecheck passes"
       ],
       "priority": 7,
-      "passes": true,
-      "notes": ""
-    },
-    {
-      "id": "phase-4-go-readme-checker-core-008",
-      "title": "Reject bare URLs and warn on tracking-heavy or suspicious links",
-      "description": "As a maintainer protecting link quality, I want bare URLs rejected and tracking-heavy or suspicious URLs surfaced as warnings without failing an otherwise valid README.",
-      "acceptanceCriteria": [
-        "Hard failure for bare http or https URLs in resource sections not inside markdown link syntax",
-        "Warning when a resource URL contains common tracking or suspicious patterns such as utm_, fbclid, gclid, or mc_eid",
-        "Warnings print with entry context and do not cause non-zero exit when no hard failures exist",
-        "Table tests cover bare URL failure, tracking URL warning, and clean canonical URL",
-        "Typecheck passes",
-        "Tests pass"
-      ],
-      "priority": 8,
-      "passes": true,
-      "notes": ""
-    },
-    {
-      "id": "phase-4-go-readme-checker-core-009",
-      "title": "Emit scope-keyword warnings without failing valid structure",
-      "description": "As a maintainer nudging agent-factory relevance, I want scope-related keyword gaps reported as warnings so contributors strengthen descriptions without blocking empty starter sections.",
-      "acceptanceCriteria": [
-        "Warning when a resource description lacks any positive scope keyword from the CONTRIBUTING agent-factory angle set",
-        "Scope keyword findings are warnings only and never cause non-zero exit by themselves",
-        "Empty sections with no entries produce no scope warnings",
-        "Table tests cover description with scope keyword, without scope keyword, and empty section",
-        "Typecheck passes",
-        "Tests pass"
-      ],
-      "priority": 9,
-      "passes": false,
-      "notes": ""
-    },
-    {
-      "id": "phase-4-go-readme-checker-core-010",
-      "title": "CLI integration passes current README with aligned policy docs",
-      "description": "As a factory operator completing Phase 4 core work, I want go run ./internal/checks to run all checks against the real README with clear aggregated output so the repository is ready for Makefile and CI wiring.",
-      "acceptanceCriteria": [
-        "go run ./internal/checks from repository root runs all structure, format, duplicate, alphabetization, URL, marketing, and scope checks",
-        "Exit code 0 when current README.md has no hard failures with empty resource sections allowed",
-        "Exit code non-zero when any hard failure exists with stderr listing each failure and specific resource-entry rule",
-        "go test ./... passes for the full internal/checks package",
-        "Phase 1-3 docs are not contradicted and no doc claims GitHub Actions or CI already enforce checks",
-        "Typecheck passes",
-        "Tests pass"
-      ],
-      "priority": 10,
       "passes": false,
       "notes": ""
     }
