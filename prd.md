@@ -1,113 +1,101 @@
-# PRD: Phase 7 Core Sections Expansion
+# PRD: Phase 7 Research Papers and Blog Posts Expansion
 
 ## Introduction
 
-Expand the three underfilled **core** README resource sections—**Theories**, **Coordination Patterns**, and **Frameworks**—so each meets a minimum density bar without weakening scope discipline. Phase 7 foundational seeding already placed entries in all ten curated sections on `main`; this batch deepens the conceptual backbone (theories), reusable topologies (patterns), and runnable orchestration software (frameworks) that readers rely on first when learning agent-factory design.
+Expand the two underfilled **research and writing** README resource sections—**Research Papers** and **Blog Posts**—so each meets Phase 7 minimum density without weakening scope discipline. Phase 7 foundational seeding already placed entries in all ten curated sections on `main`; the core-sections batch (Theories, Coordination Patterns, Frameworks) may land first, but this batch is independent and targets only academic research and technical writing lanes.
 
-The concrete change: add at least **3** theories entries (5 → ≥8), **4** coordination-pattern entries (4 → ≥8), and **3** framework entries (5 → ≥8). Every addition must clearly fit [docs/taxonomy.md](../../docs/taxonomy.md) include rules and [CONTRIBUTING.md](../../CONTRIBUTING.md) submission rules, use canonical stable URLs, stay alphabetized by link text, avoid duplicate URLs anywhere in README.md, and describe resources factually with explicit ties to coordination, orchestration, delegation, routing, handoffs, shared state, or group-level evaluation.
+The concrete change: add at least **8** research-paper entries (7 → ≥15) and **4** blog-post entries (6 → ≥10). Every addition must be academically relevant or a substantive technical article clearly justified by the agent-factory angle (coordination, orchestration, delegation, routing, handoffs, shared state, or group-level evaluation). Avoid launch posts, shallow trend pieces, generic AI content, and vendor marketing. Keep sections alphabetized by link text, descriptions neutral and factual, and URLs canonical and stable.
 
 ## Context
 
 ### Customer ask
 
-Phase 7 content expansion: extend the underfilled README core sections without weakening scope discipline. Expand Theories from 5 entries to at least 8, Coordination Patterns from 4 entries to at least 8, and Frameworks from 5 entries to at least 8. Add only high-signal resources that clearly fit docs/taxonomy.md and CONTRIBUTING.md, keep entries alphabetized, use canonical stable URLs where possible, avoid duplicates, and keep descriptions factual and explicitly tied to coordination, orchestration, delegation, routing, handoffs, shared state, or group-level evaluation.
+Phase 7 content expansion: after the core section update lands, expand the README Research Papers and Blog Posts sections to meet the customer ask minimums while preserving quality. Increase Research Papers from 7 entries to at least 15 and Blog Posts from 6 entries to at least 10. Use academically relevant papers and technical articles only; avoid launch posts, shallow trend pieces, generic AI content, and vendor marketing. Keep sections alphabetized, descriptions neutral, and every added item clearly justified by the agent-factory angle.
 
 ### Problem
 
-The three core sections that anchor agent-factory literacy—foundational theories, coordination topologies, and orchestration frameworks—remain thin relative to later Phase 7 sections (for example, Research Papers and Blog Posts). Readers and contributors lack enough on-main exemplars to compare category fit across conceptual models, pattern catalogs, and runnable multi-agent runtimes. Underfilled core sections also make it harder to defend scope boundaries when borderline submissions arrive, because there are fewer high-quality reference entries in each lane.
+Research Papers and Blog Posts remain below Phase 7 minimum targets (15–25 papers and 10–15 blogs per [docs/internal/customer-ask.md](../../docs/internal/customer-ask.md)). Readers researching multi-agent coordination lack enough on-main academic references and practitioner writeups to compare category fit, learn from production lessons, and distinguish high-signal research from product marketing. Thin writing sections also weaken maintainer scope enforcement when borderline blog submissions arrive, because there are fewer exemplars of acceptable technical depth and tone.
 
 ### Solution
 
-Add curated, taxonomy-aligned entries only to the three target README sections. Preserve existing seed entries unless a merge conflict requires trivial hygiene. Do not modify governance prose (Scope, Contributing, Community), other curated sections, or category definitions in docs/taxonomy.md. Verify automated README checks (`make check`, `make test`) and whitespace hygiene (`git diff --check`) pass before merge.
+Add curated, taxonomy-aligned entries only to the two target README sections. Preserve existing seed entries unless merge conflict requires trivial hygiene. Do not modify governance prose (Scope, Contributing, Community), other curated sections, or category definitions in docs/taxonomy.md unless a factual count correction is strictly required. Verify automated README checks (`make check`, `make test`) and whitespace hygiene (`git diff --check`) pass before merge.
 
 ## Goals
 
-- Raise **Theories** to at least 8 entries covering diverse foundational ideas for organizing agent groups.
-- Raise **Coordination Patterns** to at least 8 entries covering distinct reusable multi-agent topologies.
-- Raise **Frameworks** to at least 8 entries covering distinct multi-agent orchestration software.
+- Raise **Research Papers** to at least 15 entries covering diverse research on agent groups, coordination, communication, planning, societies, evaluation, and governance.
+- Raise **Blog Posts** to at least 10 entries covering architecture breakdowns, failure analyses, evaluation writeups, and engineering lessons on multi-agent orchestration.
 - Keep every new entry high-signal, non-promotional, scope-aligned, and alphabetized within its section.
 - Pass all repository quality gates with no regressions to governance or unrelated README sections.
 
 ## Project-level acceptance criteria
 
-- [ ] README **Theories** contains at least 8 resource entries (currently 5) using `- [Resource Name](URL) - Description.` format with descriptions ending in a period and entries alphabetized by link text.
-- [ ] README **Coordination Patterns** contains at least 8 resource entries (currently 4) using the same format, tone, and alphabetization rules.
-- [ ] README **Frameworks** contains at least 8 resource entries (currently 5) using the same format, tone, and alphabetization rules.
-- [ ] Every new entry uses a stable canonical URL, fits docs/taxonomy.md include rules for its section, includes at least one agent-factory scope keyword in the description (coordination, orchestration, delegation, routing, handoffs, shared state, or group-level evaluation), and introduces no duplicate URLs anywhere in README.md.
-- [ ] README governance sections (Scope, Contributing, Community) and all non-target curated sections remain unchanged except unavoidable whitespace or merge hygiene.
-- [ ] Quality gate: `make check`, `make test`, and `git diff --check` all pass from the repository root.
+- [x] README **Research Papers** contains at least 15 resource entries (currently 7) using `- [Resource Name](URL) - Description.` format with descriptions ending in a period and entries alphabetized by link text.
+- [x] README **Blog Posts** contains at least 10 resource entries (currently 6) using the same format, tone, and alphabetization rules.
+- [x] Every new entry is academically relevant (papers) or a substantive technical article (blogs); excludes launch posts, shallow trend pieces, generic AI content, and vendor marketing per [docs/taxonomy.md](../../docs/taxonomy.md) and [docs/rejected.md](../../docs/rejected.md).
+- [x] Every new entry includes at least one agent-factory scope keyword in the description (coordination, orchestration, delegation, routing, handoffs, shared state, or group-level evaluation) and introduces no duplicate URLs anywhere in README.md.
+- [x] README governance sections (Scope, Contributing, Community) and all non-target curated sections remain unchanged except unavoidable whitespace or merge hygiene.
+- [x] Quality gate: `make check`, `make test`, and `git diff --check` all pass from the repository root.
 
 ## User Stories
 
-### US-001: Expand Theories section to minimum density
+### US-001: Expand Research Papers section to minimum density
 
-**Description:** As a reader designing agent societies, I want more foundational theories indexed on main so I can compare enduring conceptual models for group organization, cooperation, and planning beyond the current five seed entries.
+**Description:** As a researcher or architect studying multi-agent systems, I want more academically relevant papers indexed on main so I can explore coordination, communication, planning, societies, evaluation, and governance research beyond the current seven seed entries.
 
 **Acceptance Criteria:**
 
-- [x] README Theories contains at least 8 entries below the section intro (at least 3 new entries beyond the existing five: Actor Model, An Introduction to MultiAgent Systems, Blackboard Architecture, Contract Net Protocol, Swarm Intelligence).
-- [x] Each new entry is a foundational idea for organizing agent groups per docs/taxonomy.md Theories include rules (for example role-based organization, hierarchical planning, BDI-style rational agents, stigmergic coordination, human–agent teaming, or market-based group allocation)—not a runnable SDK or pattern-only topology writeup.
+- [x] README Research Papers contains at least 15 entries below the section intro (at least 8 new entries beyond the existing seven: A Survey on Large Language Model based Autonomous Agents, AutoGen, CAMEL, Communicative Agents for Software Development, Generative Agents, Large Language Model based Multi-Agents: A Survey of Progress and Challenges, MetaGPT).
+- [x] Each new entry is peer-reviewed or widely cited research whose primary contribution is multi-agent coordination, orchestration, communication, planning, delegation, agent societies, group-level evaluation, safety, or governance per docs/taxonomy.md Research Papers include rules—not a blog post, vendor whitepaper, framework repository, or benchmark landing page.
+- [x] New entries diversify themes beyond the current survey-and-framework-paper cluster (for example coordination protocols, debate or deliberation, tool-use orchestration, human–agent teaming, safety or governance, or empirical multi-agent evaluation)—without duplicating papers whose primary home is another README section.
 - [x] Each entry uses exact format `- [Resource Name](URL) - Description.` with a factual one-sentence description ending in a period; description explicitly ties to coordination, orchestration, delegation, routing, handoffs, shared state, or group-level evaluation.
 - [x] Entries are alphabetized by link text across the full section; no duplicate URLs are introduced anywhere in README.md.
-- [x] `make check` passes after Theories expansion.
+- [x] `make check` passes after Research Papers expansion.
 - [x] Typecheck passes.
 - [x] Tests pass.
 
-### US-002: Expand Coordination Patterns section to minimum density
+### US-002: Expand Blog Posts section to minimum density
 
-**Description:** As a system architect choosing multi-agent topologies, I want more pattern references on main so I can study distinct orchestration shapes (supervision, routing, deliberation, pipelines, shared workspaces) beyond the current four seed entries.
-
-**Acceptance Criteria:**
-
-- [ ] README Coordination Patterns contains at least 8 entries below the section intro (at least 4 new entries beyond the existing four: Agent orchestration, AI Agent Orchestration Patterns, Building Effective Agents, Multi-agent).
-- [ ] Each new entry documents a reusable multi-agent topology per docs/taxonomy.md Coordination Patterns include rules (for example supervisor-worker, planner-executor, router-specialist, debate, pipeline, hub-and-spoke, critic-reviewer, or shared-workspace coordination)—not a framework product page whose primary value is the software itself.
-- [ ] Each entry uses exact format `- [Resource Name](URL) - Description.` with a factual one-sentence description ending in a period and an explicit agent-factory scope keyword.
-- [ ] New URLs do not duplicate URLs already present elsewhere in README.md (including existing pattern docs and framework repos); entries are alphabetized by link text across the full section.
-- [ ] `make check` passes after Coordination Patterns expansion.
-- [ ] Typecheck passes.
-- [ ] Tests pass.
-
-### US-003: Expand Frameworks section to minimum density
-
-**Description:** As a builder selecting orchestration software, I want more multi-agent frameworks indexed on main so I can compare distinct runtimes for delegation, handoffs, and group coordination beyond the current five seed entries.
+**Description:** As a practitioner building agent factories, I want more technical articles indexed on main so I can learn from architecture breakdowns, failure analyses, and production orchestration lessons beyond the current six seed entries.
 
 **Acceptance Criteria:**
 
-- [ ] README Frameworks contains at least 8 entries below the section intro (at least 3 new entries beyond the existing five: AutoGen, CrewAI, LangGraph, MetaGPT, Symphony).
-- [ ] Each new entry is software whose core purpose is multi-agent coordination, orchestration, routing, or handoffs per docs/taxonomy.md Frameworks include rules—not a generic LLM SDK, single-agent chatbot framework, prompt library, or example-only repository already listed under Examples and Templates.
-- [ ] Each entry uses exact format `- [Resource Name](URL) - Description.` with a factual one-sentence description ending in a period; description emphasizes orchestration, delegation, handoffs, or group coordination capabilities.
-- [ ] New framework URLs point to canonical project homes (typically repository roots or official documentation roots), not duplicate URLs already in README.md; entries are alphabetized by link text across the full section.
-- [ ] `make check` passes after Frameworks expansion.
-- [ ] Typecheck passes.
-- [ ] Tests pass.
+- [x] README Blog Posts contains at least 10 entries below the section intro (at least 4 new entries beyond the existing six: AWS LangGraph/Bedrock, Anthropic multi-agent research system, LangGraph multi-agent workflows, distributed-systems coordination essay, Agentflow orchestration lessons, multi-agent failure analysis).
+- [x] Each new entry is technical writing that teaches how groups of agents were designed, operated, or measured per docs/taxonomy.md Blog Posts include rules—not a launch announcement, shallow trend piece, generic AI overview, prompt collection, or primarily promotional vendor page.
+- [x] New URLs do not duplicate URLs already present elsewhere in README.md (including Coordination Patterns entries such as `anthropic.com/engineering/building-effective-agents` and framework or example repository roots listed under other sections).
+- [x] Each entry uses exact format `- [Resource Name](URL) - Description.` with a factual one-sentence description ending in a period and an explicit agent-factory scope keyword.
+- [x] Entries are alphabetized by link text across the full section.
+- [x] `make check` passes after Blog Posts expansion.
+- [x] Typecheck passes.
+- [x] Tests pass.
 
-### US-004: Verify batch quality gates and section integrity
+### US-003: Verify batch quality gates and section integrity
 
-**Description:** As a maintainer merging this batch, I want end-to-end verification that expanded core sections satisfy automated checks and leave unrelated repository content untouched.
+**Description:** As a maintainer merging this batch, I want end-to-end verification that expanded research and writing sections satisfy automated checks and leave unrelated repository content untouched.
 
 **Acceptance Criteria:**
 
-- [ ] From repository root, `make check` exits 0.
-- [ ] From repository root, `make test` exits 0.
-- [ ] `git diff --check` reports no whitespace errors on changed files.
-- [ ] README Theories, Coordination Patterns, and Frameworks each contain at least 8 entries; combined they include at least 10 new entries relative to pre-batch counts.
-- [ ] README Scope, Contributing, and Community sections remain present and unweakened; Protocols and Interfaces, Benchmarks, Research Papers, Blog Posts, Case Studies, Examples and Templates, and Related Lists contain no unintended edits.
-- [ ] Changed content files are limited to README.md and planning artifacts for this batch.
-- [ ] Typecheck passes.
-- [ ] Tests pass.
+- [x] From repository root, `make check` exits 0.
+- [x] From repository root, `make test` exits 0.
+- [x] `git diff --check` reports no whitespace errors on changed files.
+- [x] README Research Papers contains at least 15 entries and Blog Posts contains at least 10 entries; combined they include at least 12 new entries relative to pre-batch counts.
+- [x] README Scope, Contributing, and Community sections remain present and unweakened; Theories, Coordination Patterns, Frameworks, Protocols and Interfaces, Benchmarks, Case Studies, Examples and Templates, and Related Lists contain no unintended edits.
+- [x] Changed content files are limited to README.md and planning artifacts for this batch.
+- [x] Typecheck passes.
+- [x] Tests pass.
 
 ## Functional Requirements
 
-- FR-1: Add at least 3 new Theories entries so the section totals at least 8 alphabetized resources.
-- FR-2: Add at least 4 new Coordination Patterns entries so the section totals at least 8 alphabetized resources.
-- FR-3: Add at least 3 new Frameworks entries so the section totals at least 8 alphabetized resources.
-- FR-4: Every new entry must satisfy CONTRIBUTING.md entry format, agent-factory relevance keywords enforced by `internal/checks`, and docs/taxonomy.md category include/exclude rules.
-- FR-5: No README URL may appear more than once across all sections after this batch lands.
-- FR-6: Existing seed entries in the three target sections remain unless an unavoidable merge requires trivial formatting hygiene; do not remove or rewrite entries to force alphabetization—insert new entries in correct sort order.
+- FR-1: Add at least 8 new Research Papers entries so the section totals at least 15 alphabetized resources.
+- FR-2: Add at least 4 new Blog Posts entries so the section totals at least 10 alphabetized resources.
+- FR-3: Every new entry must satisfy CONTRIBUTING.md entry format, agent-factory relevance keywords enforced by `internal/checks`, and docs/taxonomy.md category include/exclude rules.
+- FR-4: Research Papers entries must use stable canonical URLs (typically arXiv abs pages, DOI landing pages, or enduring publisher links)—not blog mirrors or campaign landing pages.
+- FR-5: Blog Posts entries must have verifiable technical depth (architecture detail, failure analysis, evaluation methodology, or orchestration engineering tradeoffs) maintainers can confirm from the linked content.
+- FR-6: No README URL may appear more than once across all sections after this batch lands.
+- FR-7: Existing seed entries in the two target sections remain unless an unavoidable merge requires trivial formatting hygiene; insert new entries in correct alphabetized sort order without removing entries to force reordering.
 
 ## Non-Goals
 
-- Expanding Research Papers, Blog Posts, Case Studies, Examples and Templates, Protocols and Interfaces, Benchmarks, or Related Lists (handled by sibling Phase 7 batches).
+- Expanding Theories, Coordination Patterns, Frameworks, Protocols and Interfaces, Benchmarks, Case Studies, Examples and Templates, or Related Lists (handled by sibling Phase 7 batches).
 - Rewriting docs/taxonomy.md category definitions or Phase 7 status prose unless a factual count correction is strictly required.
 - Adding new top-level README sections or changing section headings.
 - Broad README cleanup, URL audit, or removal of weak entries (handled by phase-7-source-quality-audit).
@@ -118,16 +106,16 @@ Add curated, taxonomy-aligned entries only to the three target README sections. 
 
 This batch is a **content-only README expansion** validated by existing Phase 4 Go checks in `internal/checks`. No new packages, APIs, or UI are introduced.
 
-**Change surface:** `README.md` sections `## Theories`, `## Coordination Patterns`, and `## Frameworks` only.
+**Change surface:** `README.md` sections `## Research Papers` and `## Blog Posts` only.
 
 **Validation path:** `make check` runs structural validation (section headings, Contents alignment, entry format, description period, scope keywords, banned marketing phrases, alphabetization, duplicate URL detection). `make test` runs checker unit tests. CI mirrors these commands.
 
 **Selection workflow for implementers:**
 
-1. Identify gaps against docs/taxonomy.md representative examples not yet represented on main.
-2. Confirm each candidate's **primary** contribution matches the target section (theory vs pattern vs framework).
-3. Choose canonical stable URLs (Wikipedia or enduring references for theories; official pattern/architecture docs for patterns; repository or official docs roots for frameworks).
-4. Draft one-sentence descriptions with an explicit scope keyword; avoid promotional wording.
+1. Identify taxonomy gaps not yet represented among the seven seed papers or six seed blogs (evaluation, safety, debate, human–agent teaming, routing lessons, postmortems).
+2. Confirm each candidate's **primary** contribution matches the target section (research paper vs technical article vs case study).
+3. Choose canonical stable URLs (arXiv abs or DOI for papers; official engineering blogs or independent technical essays for blogs).
+4. Draft one-sentence neutral descriptions with an explicit scope keyword; avoid promotional wording and banned phrases (`revolutionary`, `game-changing`, `best`, `ultimate`, `cutting-edge`).
 5. Insert entries in alphabetized position; run `make check` after each section edit.
 
 ```mermaid
@@ -144,20 +132,20 @@ flowchart LR
 
 ## Supporting technical and UX considerations
 
-- **Category boundaries:** A CAMEL repository belongs in Frameworks; the CAMEL arXiv paper stays in Research Papers—use distinct URLs. A LangGraph concepts page may already be listed under Coordination Patterns; do not duplicate the same URL under Frameworks.
-- **Description style:** Match existing seeded tone—one factual sentence ending with a period, emphasizing group coordination rather than product hype.
-- **Stable URLs:** Prefer enduring references (Wikipedia, official docs, repository roots) over campaign landing pages or version-fragile deep links when equally canonical.
-- **Alphabetization:** Sort by markdown link text, not URL or author name; re-read the full section after inserts.
-- **Automated enforcement:** Scope keywords and description periods are enforced at check time; failing entries block merge.
+- **Category boundaries:** A framework's GitHub repository belongs in Frameworks; its arXiv paper belongs in Research Papers—use distinct URLs. A vendor customer deployment story belongs in Case Studies; an engineering architecture essay belongs in Blog Posts.
+- **Paper vs blog:** Peer-reviewed or widely cited preprints with research contributions go in Research Papers even when authors also published a summary blog—file by primary contribution.
+- **Blog depth bar:** Prefer posts with concrete system detail (orchestration topology, failure modes, evaluation setup, handoff design) over product launch narratives or listicles restating common talking points.
+- **URL stability:** Verify links respond before merge; prefer arXiv abs URLs and established engineering-blog permalinks over campaign or version-fragile deep links.
+- **Alphabetization:** Sort by markdown link text (paper or article title), not author name or URL domain; re-read the full section after inserts.
+- **Scope keywords:** `internal/checks` warns when descriptions omit agent-factory angle terms; include at least one keyword naturally in each description.
 
-## Success metrics
+## Success Metrics
 
-- Each of the three core sections reaches ≥8 entries with zero duplicate URLs and zero `make check` failures.
-- New theories entries cover at least three distinct conceptual families not already represented (for example rational-agent modeling, hierarchical planning, stigmergy, or human–agent teaming).
-- New pattern entries cover at least three distinct topologies not already represented by the four seed links.
-- New framework entries represent at least three distinct orchestration products not already listed.
-- No regression in CI README validation or contributor governance sections.
+- Research Papers section reaches at least 15 entries with thematic diversity across coordination, communication, planning, societies, and evaluation.
+- Blog Posts section reaches at least 10 entries with a mix of architecture, failure-analysis, and orchestration-engineering lessons.
+- `make check` and `make test` pass with zero failures on the expanded README.
+- No duplicate URLs and no unintended edits to non-target README sections.
 
 ## Open Questions
 
-None. Category definitions, entry format, and quality gates are documented; implementers should reject borderline candidates rather than expand scope.
+None. Minimum counts, quality bar, and section boundaries are defined by the customer ask and existing taxonomy.

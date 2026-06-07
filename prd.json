@@ -1,31 +1,32 @@
 {
   "project": "Awesome AI Agent Factories",
-  "branchName": "phase-7-core-sections-expansion",
-  "description": "Expand the underfilled README core sections Theories (5→≥8), Coordination Patterns (4→≥8), and Frameworks (5→≥8) with high-signal, taxonomy-aligned entries that preserve scope discipline, alphabetization, canonical URLs, and agent-factory relevance keywords; pass make check, make test, and git diff --check.",
+  "branchName": "phase-7-research-and-blogs-expansion",
+  "description": "Expand the underfilled README Research Papers (7→≥15) and Blog Posts (6→≥10) sections with academically relevant papers and substantive technical articles that preserve scope discipline, alphabetization, canonical URLs, neutral descriptions, and agent-factory relevance keywords; pass make check, make test, and git diff --check.",
   "context": {
-    "customerAsk": "Phase 7 content expansion: extend the underfilled README core sections without weakening scope discipline. Expand Theories from 5 entries to at least 8, Coordination Patterns from 4 entries to at least 8, and Frameworks from 5 entries to at least 8. Add only high-signal resources that clearly fit docs/taxonomy.md and CONTRIBUTING.md, keep entries alphabetized, use canonical stable URLs where possible, avoid duplicates, and keep descriptions factual and explicitly tied to coordination, orchestration, delegation, routing, handoffs, shared state, or group-level evaluation.",
-    "problem": "The three core README sections that anchor agent-factory literacy—Theories, Coordination Patterns, and Frameworks—remain thin relative to other Phase 7 sections. Readers and contributors lack enough on-main exemplars to compare conceptual models, coordination topologies, and orchestration frameworks. Underfilled core sections weaken scope enforcement because borderline submissions have fewer high-quality reference entries per lane.",
-    "solution": "Add curated entries only to the three target README sections until each meets the minimum count bar, following docs/taxonomy.md include rules and CONTRIBUTING.md formatting and relevance rules. Preserve governance prose and all non-target curated sections. Verify make check, make test, and git diff --check pass before merge."
+    "customerAsk": "Phase 7 content expansion: after the core section update lands, expand the README Research Papers and Blog Posts sections to meet the customer ask minimums while preserving quality. Increase Research Papers from 7 entries to at least 15 and Blog Posts from 6 entries to at least 10. Use academically relevant papers and technical articles only; avoid launch posts, shallow trend pieces, generic AI content, and vendor marketing. Keep sections alphabetized, descriptions neutral, and every added item clearly justified by the agent-factory angle.",
+    "problem": "Research Papers and Blog Posts remain below Phase 7 minimum targets. Readers lack enough on-main academic references and practitioner writeups to study multi-agent coordination, learn from production lessons, and compare acceptable technical depth against borderline submissions. Thin writing sections weaken maintainer scope enforcement.",
+    "solution": "Add curated entries only to the two target README sections until each meets the minimum count bar, following docs/taxonomy.md include rules and CONTRIBUTING.md formatting and relevance rules. Preserve governance prose and all non-target curated sections. Verify make check, make test, and git diff --check pass before merge."
   },
   "acceptanceCriteria": [
-    "README Theories contains at least 8 resource entries (currently 5) using - [Resource Name](URL) - Description. format with descriptions ending in a period and entries alphabetized by link text",
-    "README Coordination Patterns contains at least 8 resource entries (currently 4) using the same format, tone, and alphabetization rules",
-    "README Frameworks contains at least 8 resource entries (currently 5) using the same format, tone, and alphabetization rules",
-    "Every new entry uses a stable canonical URL, fits docs/taxonomy.md include rules for its section, includes an agent-factory scope keyword in the description, and introduces no duplicate URLs anywhere in README.md",
+    "README Research Papers contains at least 15 resource entries (currently 7) using - [Resource Name](URL) - Description. format with descriptions ending in a period and entries alphabetized by link text",
+    "README Blog Posts contains at least 10 resource entries (currently 6) using the same format, tone, and alphabetization rules",
+    "Every new entry is academically relevant (papers) or a substantive technical article (blogs); excludes launch posts, shallow trend pieces, generic AI content, and vendor marketing per docs/taxonomy.md and docs/rejected.md",
+    "Every new entry includes an agent-factory scope keyword in the description and introduces no duplicate URLs anywhere in README.md",
     "README governance sections (Scope, Contributing, Community) and all non-target curated sections remain unchanged except unavoidable whitespace or merge hygiene",
     "Quality gate: make check, make test, and git diff --check all pass from the repository root"
   ],
   "userStories": [
     {
-      "id": "phase-7-core-sections-expansion-001",
-      "title": "Expand Theories section to minimum density",
-      "description": "As a reader designing agent societies, I want more foundational theories indexed on main so I can compare enduring conceptual models for group organization, cooperation, and planning beyond the current five seed entries.",
+      "id": "phase-7-research-and-blogs-expansion-001",
+      "title": "Expand Research Papers section to minimum density",
+      "description": "As a researcher or architect studying multi-agent systems, I want more academically relevant papers indexed on main so I can explore coordination, communication, planning, societies, evaluation, and governance research beyond the current seven seed entries.",
       "acceptanceCriteria": [
-        "README Theories contains at least 8 entries below the section intro (at least 3 new entries beyond the existing five seed entries)",
-        "Each new entry is a foundational idea for organizing agent groups per docs/taxonomy.md Theories include rules—not a runnable SDK or pattern-only topology writeup",
+        "README Research Papers contains at least 15 entries below the section intro (at least 8 new entries beyond the existing seven seed entries)",
+        "Each new entry is peer-reviewed or widely cited research on multi-agent coordination, orchestration, communication, planning, delegation, agent societies, group-level evaluation, safety, or governance per docs/taxonomy.md Research Papers include rules—not a blog post, vendor whitepaper, framework repository, or benchmark landing page",
+        "New entries diversify themes beyond the current survey-and-framework-paper cluster without duplicating resources whose primary home is another README section",
         "Each entry uses exact format - [Resource Name](URL) - Description. with a factual one-sentence description ending in a period and an explicit agent-factory scope keyword",
         "Entries are alphabetized by link text across the full section and no duplicate URLs are introduced anywhere in README.md",
-        "make check passes after Theories expansion",
+        "make check passes after Research Papers expansion",
         "Typecheck passes",
         "Tests pass"
       ],
@@ -34,15 +35,16 @@
       "notes": ""
     },
     {
-      "id": "phase-7-core-sections-expansion-002",
-      "title": "Expand Coordination Patterns section to minimum density",
-      "description": "As a system architect choosing multi-agent topologies, I want more pattern references on main so I can study distinct orchestration shapes beyond the current four seed entries.",
+      "id": "phase-7-research-and-blogs-expansion-002",
+      "title": "Expand Blog Posts section to minimum density",
+      "description": "As a practitioner building agent factories, I want more technical articles indexed on main so I can learn from architecture breakdowns, failure analyses, and production orchestration lessons beyond the current six seed entries.",
       "acceptanceCriteria": [
-        "README Coordination Patterns contains at least 8 entries below the section intro (at least 4 new entries beyond the existing four seed entries)",
-        "Each new entry documents a reusable multi-agent topology per docs/taxonomy.md Coordination Patterns include rules—not a framework product page whose primary value is the software itself",
+        "README Blog Posts contains at least 10 entries below the section intro (at least 4 new entries beyond the existing six seed entries)",
+        "Each new entry is technical writing that teaches how groups of agents were designed, operated, or measured per docs/taxonomy.md Blog Posts include rules—not a launch announcement, shallow trend piece, generic AI overview, prompt collection, or primarily promotional vendor page",
+        "New URLs do not duplicate URLs already present elsewhere in README.md including Coordination Patterns and other curated sections",
         "Each entry uses exact format - [Resource Name](URL) - Description. with a factual one-sentence description ending in a period and an explicit agent-factory scope keyword",
-        "New URLs do not duplicate URLs already present elsewhere in README.md and entries are alphabetized by link text across the full section",
-        "make check passes after Coordination Patterns expansion",
+        "Entries are alphabetized by link text across the full section",
+        "make check passes after Blog Posts expansion",
         "Typecheck passes",
         "Tests pass"
       ],
@@ -51,38 +53,21 @@
       "notes": ""
     },
     {
-      "id": "phase-7-core-sections-expansion-003",
-      "title": "Expand Frameworks section to minimum density",
-      "description": "As a builder selecting orchestration software, I want more multi-agent frameworks indexed on main so I can compare distinct runtimes for delegation, handoffs, and group coordination beyond the current five seed entries.",
-      "acceptanceCriteria": [
-        "README Frameworks contains at least 8 entries below the section intro (at least 3 new entries beyond the existing five seed entries)",
-        "Each new entry is software whose core purpose is multi-agent coordination, orchestration, routing, or handoffs per docs/taxonomy.md Frameworks include rules—not a generic LLM SDK, single-agent chatbot framework, prompt library, or example-only repository already listed under Examples and Templates",
-        "Each entry uses exact format - [Resource Name](URL) - Description. with a factual one-sentence description ending in a period emphasizing orchestration, delegation, handoffs, or group coordination",
-        "New framework URLs point to canonical project homes and do not duplicate URLs already in README.md; entries are alphabetized by link text across the full section",
-        "make check passes after Frameworks expansion",
-        "Typecheck passes",
-        "Tests pass"
-      ],
-      "priority": 3,
-      "passes": true,
-      "notes": ""
-    },
-    {
-      "id": "phase-7-core-sections-expansion-004",
+      "id": "phase-7-research-and-blogs-expansion-003",
       "title": "Verify batch quality gates and section integrity",
-      "description": "As a maintainer merging this batch, I want end-to-end verification that expanded core sections satisfy automated checks and leave unrelated repository content untouched.",
+      "description": "As a maintainer merging this batch, I want end-to-end verification that expanded research and writing sections satisfy automated checks and leave unrelated repository content untouched.",
       "acceptanceCriteria": [
         "From repository root, make check exits 0",
         "From repository root, make test exits 0",
         "git diff --check reports no whitespace errors on changed files",
-        "README Theories, Coordination Patterns, and Frameworks each contain at least 8 entries with at least 10 combined new entries relative to pre-batch counts",
+        "README Research Papers contains at least 15 entries and Blog Posts contains at least 10 entries with at least 12 combined new entries relative to pre-batch counts",
         "README Scope, Contributing, and Community sections remain present and unweakened; non-target curated sections contain no unintended edits",
         "Changed content files are limited to README.md and planning artifacts for this batch",
         "Typecheck passes",
         "Tests pass"
       ],
-      "priority": 4,
-      "passes": false,
+      "priority": 3,
+      "passes": true,
       "notes": ""
     }
   ]
