@@ -1,183 +1,152 @@
-# PRD: Phase 7 Foundational Content Integration Repair
+# PRD: Phase 7 Protocols, Benchmarks, and Research Papers Seed
 
 ## Introduction
 
-Converge the completed Phase 7 foundational content seed from `origin/phase-7-foundational-content-seed` onto `main`. Reapply the intended README resource entries for **Theories**, **Coordination Patterns**, **Frameworks**, and **Related Lists** so readers and contributors see exemplar curated content on the default branch. Update `docs/taxonomy.md` so its Phase 7 status note reflects that foundational seeding is now present on `main` for those four sections. Preserve README **Scope**, **Contributing**, and **Community** sections without weakening or rewriting them.
-
-This is a narrow integration repair: land two file deltas (`README.md`, `docs/taxonomy.md`) that match the completed seed work, pass repository quality gates, and avoid unrelated documentation churn or new categories.
+Extend Phase 7 README content seeding from the four foundational sections already on `main` (Theories, Coordination Patterns, Frameworks, and Related Lists) into Protocols and Interfaces, Benchmarks, and Research Papers. This batch adds the next high-confidence curated slice of canonical resources that directly enable or evaluate multi-agent coordination, agent-to-agent contracts, handoffs, shared state, workflow orchestration, or group-level agent performance. Blog Posts, Case Studies, and Examples and Templates remain empty for a later batch.
 
 ## Context
 
-### Customer ask
+**Customer ask:** Populate Protocols and Interfaces, Benchmarks, and Research Papers with roughly 3–5 stable entries per protocol/benchmark section and 5–8 stable entries for Research Papers. Use exact resource names as link text, concise factual descriptions ending in periods, and alphabetical order within each section. Update `docs/taxonomy.md` so its Phase 7 status note reflects that foundational seeding is already present on `main` for Theories, Coordination Patterns, Frameworks, and Related Lists, and that this batch extends seeding into the three target sections. Keep `make check`, `make test`, and `git diff --check` passing.
 
-Converge the completed Phase 7 foundational content seed onto main. Reapply the intended README additions for Theories, Coordination Patterns, Frameworks, and Related Lists from the completed `origin/phase-7-foundational-content-seed` work without weakening existing scope, contribution, or community sections. Keep entries canonical, factual, non-promotional, description-final-period compliant, and alphabetized within each section. Update `docs/taxonomy.md` so its Phase 7 status note reflects that foundational seeding is now present on main for those four sections. Keep the change narrow: do not start new categories, do not add extra docs churn, and keep `make check`, `make test`, and `git diff --check` passing.
+**Problem:** The README has populated foundational sections but leaves Protocols and Interfaces, Benchmarks, and Research Papers empty despite taxonomy definitions and automated checks already enforcing entry format, alphabetization, scope keywords, and section structure. Contributors and planners lack canonical starting points for contracts, evaluation harnesses, and research literature in the agent-factory domain.
 
-### Problem
-
-Phase 7 foundational content was completed on branch `phase-7-foundational-content-seed` but is not yet on `main`. The default branch still shows empty resource sections for the four seeded categories, and `docs/taxonomy.md` still states Phase 7 content seeding has not started. Contributors lack on-main exemplars for entry format, tone, category fit, and alphabetization.
-
-### Solution
-
-Integrate the seed branch README entries and taxonomy status update onto `main` as a focused repair batch. Copy the eighteen curated entries exactly as validated on the seed branch (or equivalent content meeting the same bar), verify automated README checks pass, and confirm Scope, Contributing, and Community prose remain intact.
+**Solution:** Add a curated, non-promotional seed set to each target README section following existing entry conventions, then update the taxonomy Phase 7 status paragraph to document completed and remaining seeding scope accurately.
 
 ## Goals
 
-- Land all seed-branch entries for Theories, Coordination Patterns, Frameworks, and Related Lists on `main`
-- Preserve README Scope, Contributing, and Community sections without semantic weakening
-- Keep entries canonical, factual, non-promotional, period-terminated, and alphabetized by link text within each section
-- Update `docs/taxonomy.md` Phase 7 status to state foundational seeding is present on `main` for the four seeded sections
-- Leave deferred README sections empty (Protocols and Interfaces, Benchmarks, Research Papers, Blog Posts, Case Studies, Examples and Templates)
-- Pass `make check`, `make test`, and `git diff --check` from the repository root
-
-## Project-level acceptance criteria
-
-- [ ] README **Theories**, **Coordination Patterns**, **Frameworks**, and **Related Lists** each contain the intended seed-branch entries (18 total) using `- [Resource Name](URL) - Description.` format
-- [ ] Every description ends with a period, uses factual non-promotional tone, and states agent-factory relevance
-- [ ] Entries within each seeded section are alphabetized by link text with no duplicate URLs in README.md
-- [ ] README **Scope**, **Contributing**, and **Community** sections remain present and are not weakened, shortened, or contradicted
-- [ ] Deferred README sections receive no new entries; no new categories or unrelated doc files are introduced
-- [ ] `docs/taxonomy.md` Phase 7 status prose states foundational seeding is present on `main` for the four seeded sections and that other sections remain empty for later batches
-- [ ] Quality gate: `make check`, `make test`, and `git diff --check` all pass from the repository root
+- Seed Protocols and Interfaces with 5 canonical agent-interaction and contract specifications.
+- Seed Benchmarks with 5 canonical group- or workflow-oriented evaluation suites.
+- Seed Research Papers with 7 widely cited papers on multi-agent coordination, orchestration, and societies.
+- Keep entries alphabetized by link text, scope-aligned, and free of banned marketing language.
+- Update `docs/taxonomy.md` Phase 7 status to reflect sections seeded on `main` versus sections deferred.
+- Pass all repository quality gates with no unrelated changes.
 
 ## User Stories
 
-### US-001: Integrate Theories entries onto main
+### US-001: Seed Protocols and Interfaces section
 
-**Description:** As a reader learning conceptual models for agent groups, I want foundational theory entries visible on `main` so I can study coordination and delegation ideas before choosing frameworks.
-
-**Acceptance Criteria:**
-
-- [x] README **Theories** contains five entries matching the seed branch: Actor Model, An Introduction to MultiAgent Systems, Blackboard Architecture, Contract Net Protocol, and Swarm Intelligence
-- [x] Entries appear below the section intro in alphabetical order by link text
-- [x] Each entry uses exact resource name as link text and a description ending with a period
-- [x] `make check` passes after Theories integration
-- [x] Typecheck passes
-- [x] Tests pass
-
-### US-002: Integrate Coordination Patterns entries onto main
-
-**Description:** As a system designer, I want coordination-pattern documentation linked from `main` so I can compare supervisor, handoff, and routing topologies when designing agent flows.
+**Description:** As a contributor designing multi-agent handoffs, I want the Protocols and Interfaces section to list canonical interaction contracts so I can find interoperable standards without guessing category fit.
 
 **Acceptance Criteria:**
 
-- [x] README **Coordination Patterns** contains four entries matching the seed branch: Agent orchestration, AI Agent Orchestration Patterns, Building Effective Agents, and Multi-agent
-- [x] Entries appear below the section intro in alphabetical order by link text
-- [x] Descriptions emphasize reusable coordination topology rather than promotional product language
-- [x] `make check` passes after Coordination Patterns integration
-- [x] Typecheck passes
-- [x] Tests pass
+- [ ] `## Protocols and Interfaces` contains exactly these five entries in alphabetical order by link text:
+  - [Agent2Agent Protocol](https://google.github.io/A2A/) — open agent-to-agent interoperability specification for discovery, task delegation, and message exchange across heterogeneous agent runtimes.
+  - [AGNTCY Agent Connect Protocol](https://docs.agntcy.org/) — specification for secure agent-to-agent connectivity, identity, and message routing across distributed multi-agent networks.
+  - [FIPA Agent Communication Language](http://www.fipa.org/repository/aclspecs.html) — standard message-representation and interaction-protocol vocabulary for structured coordination among software agents.
+  - [Model Context Protocol](https://modelcontextprotocol.io/) — open protocol for sharing tools, resources, and context between agents and runtimes in multi-step orchestration flows.
+  - [Open Agent Schema Framework](https://github.com/agntcy/oasf) — schema specification for describing agent capabilities and interfaces to support routing and delegation in multi-agent systems.
+- [ ] Each entry uses format `- [Resource Name](URL) - Description.` with description ending in a period and containing at least one agent-factory scope keyword enforced by `make check`.
+- [ ] No new entries appear in Blog Posts, Case Studies, or Examples and Templates.
+- [ ] `make check` exits 0 after the README update.
+- [ ] Typecheck passes.
 
-### US-003: Integrate Frameworks entries onto main
+### US-002: Seed Benchmarks section
 
-**Description:** As a builder implementing agent factories, I want canonical multi-agent frameworks listed on `main` so I can evaluate orchestration runtimes for teams, handoffs, and flow control.
-
-**Acceptance Criteria:**
-
-- [x] README **Frameworks** contains five entries matching the seed branch: AutoGen, CrewAI, LangGraph, MetaGPT, and Symphony
-- [x] Descriptions emphasize multi-agent orchestration, delegation, or handoff capabilities
-- [x] Entries appear below the section intro in alphabetical order by link text
-- [x] `make check` passes after Frameworks integration
-- [x] Typecheck passes
-- [x] Tests pass
-
-### US-004: Integrate Related Lists entries onto main
-
-**Description:** As a reader exploring the agent-factory ecosystem, I want complementary awesome lists indexed on `main` so I can discover broader curated resources without duplicating them in this list.
+**Description:** As a maintainer evaluating agent factories, I want the Benchmarks section to list canonical group- and workflow-oriented evaluation suites so readers can measure coordination and multi-step flow behavior.
 
 **Acceptance Criteria:**
 
-- [x] README **Related Lists** contains four entries matching the seed branch: Awesome AI agents, Awesome Generative Multi-Agent Systems, Awesome Multi-Agent Learning, and Awesome Multi-Agent Papers
-- [x] Link text uses each list's official title; entries are alphabetized by link text
-- [x] `make check` passes after Related Lists integration
-- [x] Typecheck passes
-- [x] Tests pass
+- [ ] `## Benchmarks` contains exactly these five entries in alphabetical order by link text:
+  - [AgentBench](https://github.com/THUDM/AgentBench) — benchmark suite measuring LLM agents on multi-turn tool use, delegation, and environment interaction across diverse coordination tasks.
+  - [AgentBoard](https://github.com/hkust-nlp/AgentBoard) — evaluation framework tracking longitudinal multi-step agent progress across planning, memory, and handoff-heavy scenarios.
+  - [MultiAgentBench](https://github.com/MultiAgentBench/MultiAgentBench) — benchmark measuring collaboration quality, coordination, and role specialization across multi-agent teams.
+  - [SWE-bench](https://www.swebench.com/) — software-engineering benchmark evaluating multi-step coding workflows with tool use, delegation, and verification between agent roles.
+  - [WebArena](https://webarena.dev/) — realistic web-environment benchmark for autonomous agents performing multi-step navigation, planning, and orchestrated tool actions.
+- [ ] Each entry follows README entry format and passes scope-keyword and marketing-phrase checks.
+- [ ] No duplicate URLs or resource names (case-insensitive) with entries in other README sections.
+- [ ] `make check` exits 0 after the README update.
+- [ ] Typecheck passes.
 
-### US-005: Update taxonomy Phase 7 status for main convergence
+### US-003: Seed Research Papers section
 
-**Description:** As a maintainer or factory operator tracking phase status, I want `docs/taxonomy.md` to reflect that Phase 7 foundational seeding is present on `main` so documentation matches repository state.
-
-**Acceptance Criteria:**
-
-- [ ] `docs/taxonomy.md` Phase 7 content-seeding prose states foundational seeding is **present on main** for Theories, Coordination Patterns, Frameworks, and Related Lists
-- [ ] Taxonomy notes that Blog Posts, Case Studies, Benchmarks, Research Papers, Protocols and Interfaces, and Examples and Templates remain empty for later batches
-- [ ] Category definitions, include/exclude rules, and README section headings in taxonomy are unchanged
-- [ ] No new README entries are added in deferred sections as part of this story
-- [ ] Typecheck passes
-
-### US-006: Verify integration repair quality gates and section integrity
-
-**Description:** As a maintainer merging the integration repair, I want end-to-end verification that seeded content landed correctly and repository gates pass without regressing governance sections.
+**Description:** As a researcher or practitioner, I want the Research Papers section to list foundational multi-agent coordination literature so the list anchors academic context for agent-factory design.
 
 **Acceptance Criteria:**
 
-- [ ] From repository root, `make check` exits 0
-- [ ] From repository root, `make test` exits 0
-- [ ] `git diff --check` reports no whitespace errors on changed files
-- [ ] README **Scope**, **Contributing**, and **Community** sections match pre-integration intent (present, unweakened, no contradictory edits)
-- [ ] Deferred README sections contain no new resource entries
-- [ ] Changed files are limited to `README.md`, `docs/taxonomy.md`, and planning artifacts—no unrelated cleanup
-- [ ] Typecheck passes
-- [ ] Tests pass
+- [ ] `## Research Papers` contains exactly these seven entries in alphabetical order by link text:
+  - [A Survey on Large Language Model based Autonomous Agents](https://arxiv.org/abs/2308.11432) — survey of autonomous-agent architectures covering planning, memory, tool use, and multi-agent orchestration patterns.
+  - [AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation](https://arxiv.org/abs/2308.08155) — framework paper on conversational multi-agent orchestration, role specialization, and delegated task flows.
+  - [CAMEL: Communicative Agents for Mind Exploration of Large Language Model Society](https://arxiv.org/abs/2303.17760) — role-playing agent society design for scalable multi-agent communication and task coordination.
+  - [Communicative Agents for Software Development](https://arxiv.org/abs/2307.07924) — multi-agent software-development workflow study on role-based delegation, handoffs, and collaborative orchestration.
+  - [Generative Agents: Interactive Simulacra of Human Behavior](https://arxiv.org/abs/2304.03442) — architecture for agent societies with shared memory, planning, and emergent group-level coordination in interactive environments.
+  - [Large Language Model based Multi-Agents: A Survey of Progress and Challenges](https://arxiv.org/abs/2402.01680) — survey of LLM multi-agent systems covering coordination, communication, planning, and group-level evaluation methods.
+  - [MetaGPT: Meta Programming for A Multi-Agent Collaborative Framework](https://arxiv.org/abs/2308.00352) — multi-agent framework paper on standardized operating procedures, role workflows, and orchestrated software-team coordination.
+- [ ] Paper link text uses exact publication titles; descriptions are factual, end with periods, and include agent-factory scope keywords.
+- [ ] Framework README entries (for example AutoGen, MetaGPT) remain in Frameworks; paper entries link to arXiv or equivalent research URLs, not duplicate framework homepages.
+- [ ] `make check` exits 0 after the README update.
+- [ ] Typecheck passes.
+
+### US-004: Update taxonomy Phase 7 seeding status
+
+**Description:** As a planner or maintainer reading taxonomy guidance, I want the Phase 7 status note to accurately describe which README sections are seeded on `main` and which remain for later batches.
+
+**Acceptance Criteria:**
+
+- [ ] `docs/taxonomy.md` Phase 7 status paragraph states that foundational seeding is present on `main` for Theories, Coordination Patterns, Frameworks, and Related Lists.
+- [ ] The same paragraph states this batch extends seeding into Protocols and Interfaces, Benchmarks, and Research Papers.
+- [ ] The paragraph explicitly defers Blog Posts, Case Studies, and Examples and Templates to a later batch.
+- [ ] No contradictory claims remain that Protocols and Interfaces, Benchmarks, or Research Papers are empty after this batch lands.
+- [ ] Typecheck passes.
+
+### US-005: Verify repository quality gate
+
+**Description:** As a maintainer merging Phase 7 content, I want end-to-end verification that the seeded README and taxonomy update pass all automated checks without whitespace regressions.
+
+**Acceptance Criteria:**
+
+- [ ] From repository root, `make check` exits 0.
+- [ ] From repository root, `make test` exits 0.
+- [ ] From repository root, `git diff --check` exits 0.
+- [ ] README Contents anchor list still matches section headings; no new top-level sections are introduced.
+- [ ] Blog Posts, Case Studies, and Examples and Templates sections remain without resource entries.
+- [ ] Typecheck passes.
+- [ ] Tests pass.
 
 ## Functional Requirements
 
-- FR-1: Integrate eighteen README entries from `origin/phase-7-foundational-content-seed` across four sections (Theories: 5, Coordination Patterns: 4, Frameworks: 5, Related Lists: 4)
-- FR-2: Enforce CONTRIBUTING.md entry format: exact resource name link text, canonical URL, hyphen-separated description ending with a period
-- FR-3: Enforce alphabetical order by link text within each seeded section per automated checks in `internal/checks`
-- FR-4: Preserve README Scope, Contributing, and Community sections without semantic weakening
-- FR-5: Update `docs/taxonomy.md` Phase 7 status to document on-main presence for the four seeded sections
-- FR-6: Leave six deferred README sections without new entries
+- FR-1: Add five alphabetized resource entries under `## Protocols and Interfaces` per US-001.
+- FR-2: Add five alphabetized resource entries under `## Benchmarks` per US-002.
+- FR-3: Add seven alphabetized resource entries under `## Research Papers` per US-003.
+- FR-4: Update `docs/taxonomy.md` Phase 7 seeding status per US-004.
+- FR-5: All new descriptions must satisfy automated scope-keyword checks and avoid banned marketing phrases defined in `internal/checks`.
+- FR-6: No duplicate resource names or normalized URLs across README sections.
 
 ## Non-Goals
 
-- Seeding Blog Posts, Case Studies, Benchmarks, Research Papers, Protocols and Interfaces, or Examples and Templates
-- Adding new README categories or restructuring the Contents block
-- Rewriting CONTRIBUTING.md, review-policy.md, historical.md, or factory planner docs beyond the taxonomy status note
-- Changing Go checker logic, Makefile targets, or GitHub workflows
-- Link-checking external URLs (optional `make links` is out of scope unless CI requires it)
-- Broad refactors, unrelated formatting sweeps, or marketing tone edits to seed entries
+- Seeding Blog Posts, Case Studies, or Examples and Templates.
+- Adding new README sections or changing scope exclusions.
+- Modifying Go check rules, GitHub workflows, or issue templates.
+- Link-check remediation for third-party sites beyond what existing automation handles.
+- Expanding Related Lists, Theories, Coordination Patterns, or Frameworks beyond their current seeded entries.
 
-## High-level technical design
+## Technical Design
 
-Integration is a two-file convergence from a completed feature branch:
+This batch is README and taxonomy documentation only. No application code changes are required unless a check failure exposes a pre-existing defect.
 
-```mermaid
-flowchart LR
-  seed["origin/phase-7-foundational-content-seed"]
-  main["main branch"]
-  readme["README.md\n4 seeded sections"]
-  tax["docs/taxonomy.md\nPhase 7 status"]
-  checks["make check / make test"]
+**Content contract:** Each entry is a single markdown list item:
 
-  seed --> readme
-  seed --> tax
-  readme --> checks
-  tax --> checks
-  checks --> main
+```markdown
+- [Exact Resource Name](canonical-url) - Factual description ending with a period.
 ```
 
-**Source of truth:** `git diff main origin/phase-7-foundational-content-seed` for `README.md` and `docs/taxonomy.md` defines the intended delta (+22 / −1 lines).
+**Validation path:** `make check` runs Go-based README validators in `internal/checks` for section presence, Contents alignment, entry format, alphabetical order, duplicate detection, scope keywords, and banned marketing phrases. `make test` runs the same package's unit tests.
 
-**Validation layer:** `go run ./internal/checks` (via `make check`) enforces section headings, Contents alignment, entry format, description terminal periods, and alphabetization. `go test ./...` (via `make test`) guards checker regressions.
+**Dependency order:** Protocols, Benchmarks, and Research Papers seeding stories are independent and may land in one commit, but acceptance is verified incrementally so partial failures are diagnosable. Taxonomy update depends on README content being finalized. Quality gate runs last.
 
-**Governance guard:** Scope, Contributing, and Community blocks are outside the seed diff and must remain unchanged in substance.
+## Supporting Considerations
 
-## Supporting technical and UX considerations
+- Prefer durable canonical URLs (project homepages, arXiv abs links, specification docs) over ephemeral blog or social links.
+- Descriptions must imply agent-factory relevance through scope keywords (`coordination`, `orchestration`, `delegation`, `routing`, `handoffs`, `shared state`, `group-level evaluation`) without marketing tone.
+- Framework papers (AutoGen, MetaGPT) belong in Research Papers; shipped frameworks stay in Frameworks with distinct URLs.
+- MCP is included because taxonomy explicitly allows MCP resources relevant to multi-agent flow management.
 
-- Prefer cherry-picking or applying the seed-branch patch over reauthoring entries to avoid drift from reviewed content
-- If a seed entry fails an automated check on current `main`, fix only that entry to meet the same canonical intent—do not rewrite unrelated sections
-- Related Lists is a curated category section but is intentionally omitted from the Contents TOC; do not add it during integration
-- Taxonomy status wording should say seeding is **present on main**, not merely "started in this batch," to reflect post-merge state
-- No browser verification is required; observable outcomes are README rendering and automated check exit codes
+## Success Metrics
 
-## Success metrics
-
-- All eighteen seed entries visible on `main` in the four target sections
-- Zero automated README check failures after integration
-- Zero whitespace errors from `git diff --check`
-- Taxonomy Phase 7 status accurately describes on-main seeding state
-- No contributor-facing regression in Scope, Contributing, or Community guidance
+- Three previously empty README sections contain stable, reviewer-verifiable canonical entries.
+- `make check` and `make test` pass on the first merge attempt without follow-up content fixes.
+- Taxonomy Phase 7 status requires no further correction before the next content batch.
+- A contributor can self-categorize a protocol, benchmark, or paper submission by comparing against seeded examples.
 
 ## Open Questions
 
-None. The seed branch diff is the authoritative integration target; scope and file boundaries are explicit.
+None. Resource selection, counts, and deferred sections are specified in the customer ask.
