@@ -347,3 +347,40 @@
   - Scope keywords enforced by `make check` are coordination, orchestration, delegation, routing, handoff, shared state, and group-level evaluation; each protocol description must match at least one.
   - Stories 002–003 follow the same README entry pattern; story 004 updates taxonomy Phase 7 status after all three sections are seeded.
 ---
+
+## 2026-06-07T17:00:00Z - phase-7-interfaces-benchmarks-papers-seed-002
+- Seeded README `## Benchmarks` with five alphabetized canonical entries: AgentBench, AgentBoard, MultiAgentBench, SWE-bench, and WebArena; descriptions end with periods and include scope keywords (orchestration, group-level evaluation, coordination, delegation).
+- Files changed: README.md
+- **Learnings for future iterations:**
+  - Canonical benchmark URLs: GitHub for AgentBench and MultiAgentBench (ulab-uiuc/MARBLE), project sites for AgentBoard, SWE-bench, and WebArena.
+  - Scope-keyword checker matches whole phrases (`delegation`, not `delegate`); use explicit keyword forms in descriptions.
+  - Story 003 seeds Research Papers; story 004 updates taxonomy after all three target sections are seeded.
+---
+
+## 2026-06-07T18:30:00Z - phase-7-interfaces-benchmarks-papers-seed-003
+- Seeded README `## Research Papers` with seven alphabetized canonical entries: A Survey on Large Language Model based Autonomous Agents, AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation, CAMEL: Communicative Agents for Mind Exploration of Large Language Model Society, Communicative Agents for Software Development, Generative Agents: Interactive Simulacra of Human Behavior, Large Language Model based Multi-Agents: A Survey of Progress and Challenges, and MetaGPT: Meta Programming for A Multi-Agent Collaborative Framework; all link to arXiv abs URLs (not Frameworks GitHub homepages).
+- Files changed: README.md
+- **Learnings for future iterations:**
+  - Use `https://arxiv.org/abs/<id>` for paper entries; Frameworks already lists AutoGen and MetaGPT GitHub repos, so Research Papers must use distinct arXiv URLs to avoid duplicate-url failures.
+  - Paper link text can include colons and subtitles; duplicate-name checks are case-insensitive on exact link text, so "AutoGen" (Frameworks) and "AutoGen: Enabling..." (Research Papers) are distinct.
+  - Story 004 updates `docs/taxonomy.md` Phase 7 status now that all three target README sections are seeded.
+---
+
+## 2026-06-07T19:00:00Z - phase-7-interfaces-benchmarks-papers-seed-004
+- Updated `docs/taxonomy.md` Phase 7 status paragraph: foundational seeding remains **present on main** for Theories, Coordination Patterns, Frameworks, and Related Lists; this batch extends seeding into Protocols and Interfaces, Benchmarks, and Research Papers with README anchor links; Blog Posts, Case Studies, and Examples and Templates explicitly deferred for a later batch.
+- Files changed: docs/taxonomy.md
+- **Learnings for future iterations:**
+  - Story 004 is a single-paragraph edit in the `## Automation, workflow gates, and Phase 7 content seeding` section; mirror README anchor links when naming seeded sections.
+  - Remove prior "remain empty" wording for sections this batch seeds to avoid contradictory claims after stories 001–003 land.
+  - Story 005 runs full quality-gate verification; create the PR only after all five stories pass.
+---
+
+## 2026-06-07T20:00:00Z - phase-7-interfaces-benchmarks-papers-seed-005
+- Verified repository quality gate on the full branch: `make check`, `make test`, `go build ./...`, and `git diff --check` all exit 0 from repository root.
+- Confirmed README Contents anchors match section headings; Blog Posts, Case Studies, and Examples and Templates remain without resource entries; branch diff vs `origin/main` limited to README.md and docs/taxonomy.md (plus local prd.json/progress.txt tracking).
+- Files changed: none (verification-only story)
+- **Learnings for future iterations:**
+  - Story 005 completes the PRD; create the PR when no open PR exists and all five stories pass.
+  - Use `git diff origin/main...HEAD --name-only` before marking verification stories complete to confirm scope.
+  - `go build ./...` is the local typecheck equivalent when no package.json exists.
+---
