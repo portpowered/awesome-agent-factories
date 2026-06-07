@@ -61,12 +61,12 @@ Integrate the seed-branch README entries and taxonomy status update onto `main` 
 
 **Acceptance Criteria:**
 
-- [ ] README **Benchmarks** contains five entries matching the seed branch: AgentBench, AgentBoard, MultiAgentBench, SWE-bench, and WebArena
-- [ ] Entries appear below the section intro in alphabetical order by link text
-- [ ] Descriptions emphasize group or workflow evaluation rather than promotional product language
-- [ ] `make check` passes after Benchmarks integration
-- [ ] Typecheck passes
-- [ ] Tests pass
+- [x] README **Benchmarks** contains five entries matching the seed branch: AgentBench, AgentBoard, MultiAgentBench, SWE-bench, and WebArena
+- [x] Entries appear below the section intro in alphabetical order by link text
+- [x] Descriptions emphasize group or workflow evaluation rather than promotional product language
+- [x] `make check` passes after Benchmarks integration
+- [x] Typecheck passes
+- [x] Tests pass
 
 ### US-003: Integrate Research Papers entries onto main
 
@@ -74,12 +74,12 @@ Integrate the seed-branch README entries and taxonomy status update onto `main` 
 
 **Acceptance Criteria:**
 
-- [ ] README **Research Papers** contains seven entries matching the seed branch: A Survey on Large Language Model based Autonomous Agents; AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation; CAMEL: Communicative Agents for Mind Exploration of Large Language Model Society; Communicative Agents for Software Development; Generative Agents: Interactive Simulacra of Human Behavior; Large Language Model based Multi-Agents: A Survey of Progress and Challenges; and MetaGPT: Meta Programming for A Multi-Agent Collaborative Framework
-- [ ] Entries appear below the section intro in alphabetical order by link text
-- [ ] Descriptions emphasize research contribution to coordination, orchestration, or group-level behavior
-- [ ] `make check` passes after Research Papers integration
-- [ ] Typecheck passes
-- [ ] Tests pass
+- [x] README **Research Papers** contains seven entries matching the seed branch: A Survey on Large Language Model based Autonomous Agents; AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation; CAMEL: Communicative Agents for Mind Exploration of Large Language Model Society; Communicative Agents for Software Development; Generative Agents: Interactive Simulacra of Human Behavior; Large Language Model based Multi-Agents: A Survey of Progress and Challenges; and MetaGPT: Meta Programming for A Multi-Agent Collaborative Framework
+- [x] Entries appear below the section intro in alphabetical order by link text
+- [x] Descriptions emphasize research contribution to coordination, orchestration, or group-level behavior
+- [x] `make check` passes after Research Papers integration
+- [x] Typecheck passes
+- [x] Tests pass
 
 ### US-004: Update taxonomy Phase 7 status for protocols, benchmarks, and papers convergence
 

@@ -44,8 +44,8 @@
         "Tests pass"
       ],
       "priority": 2,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Verified on main via merged PR #18; branch head matches origin/main for Benchmarks section."
     },
     {
       "id": "phase-7-interfaces-benchmarks-papers-integration-repair-003",
@@ -59,8 +59,8 @@
         "Tests pass"
       ],
       "priority": 3,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Verified on main via merged PR #18; branch head matches origin/main for Research Papers section."
     },
     {
       "id": "phase-7-interfaces-benchmarks-papers-integration-repair-004",
@@ -74,8 +74,8 @@
         "Typecheck passes"
       ],
       "priority": 4,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Updated Phase 7 status prose to state Protocols and Interfaces, Benchmarks, and Research Papers are seeded on main; deferred sections unchanged."
     },
     {
       "id": "phase-7-interfaces-benchmarks-papers-integration-repair-005",
