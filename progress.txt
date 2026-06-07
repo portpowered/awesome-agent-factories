@@ -443,3 +443,13 @@
   - Insert new Theories entries in strict link-text alphabetical order; "BDI Software Agent" sorts between "An Introduction to MultiAgent Systems" and "Blackboard Architecture".
   - Story 002 seeds Coordination Patterns (four→≥8); reuse distinct URLs from Coordination Patterns and Blog Posts sections to avoid duplicate-URL checker failures.
 ---
+
+## 2026-06-07T11:06:00Z - phase-7-core-sections-expansion-002
+- Expanded README Coordination Patterns from four to eight alphabetized entries by adding Choose a design pattern for your agentic AI system, Improving Factuality and Reasoning in Language Models through Multiagent Debate, Saga orchestration patterns, and Scheduler Agent Supervisor with canonical Google Cloud, ICML, AWS, and Azure Architecture Center URLs.
+- Files changed: README.md
+- **Learnings for future iterations:**
+  - Architecture-center pattern catalogs (Google Cloud, Azure, AWS Prescriptive Guidance) map cleanly to taxonomy representative examples such as coordinator, debate, saga orchestration, and scheduler-supervisor topologies.
+  - README checker scope keywords require exact stems: use "coordination" not "coordinate", "orchestration" not "orchestrator", and "delegation" not only "delegate".
+  - Insert new Coordination Patterns entries in strict link-text alphabetical order; "Choose..." sorts after "Building Effective Agents" and before "Improving..."; "Saga..." sorts before "Scheduler Agent Supervisor".
+  - Story 003 seeds Frameworks (five→≥8); avoid framework homepages already listed under Frameworks and example trees already under Examples and Templates.
+---
