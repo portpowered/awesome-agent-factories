@@ -74,7 +74,11 @@ Reusable system shapes for coordinating agent groups and flows.
 - [Agent orchestration](https://openai.github.io/openai-agents-python/multi_agent/) - OpenAI Agents SDK guide comparing manager-style orchestration with specialist handoffs.
 - [AI Agent Orchestration Patterns](https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/ai-agent-design-patterns) - Architecture guide for sequential, concurrent, group-chat, and handoff orchestration topologies.
 - [Building Effective Agents](https://www.anthropic.com/engineering/building-effective-agents) - Engineering patterns including orchestrator-workers, routing, and evaluator-optimizer flows.
+- [Choose a design pattern for your agentic AI system](https://docs.cloud.google.com/architecture/choose-design-pattern-agentic-ai-system) - Google Cloud Architecture Center guide comparing multi-agent sequential, parallel, coordinator, swarm, and review-and-critique orchestration topologies for delegating specialized sub-tasks.
+- [Improving Factuality and Reasoning in Language Models through Multiagent Debate](https://proceedings.mlr.press/v235/du24e.html) - ICML proceedings defining a debate topology where multiple model instances use multi-agent coordination through iterative argument exchange and critique to improve reasoning quality.
 - [Multi-agent](https://langchain-ai.github.io/langgraph/concepts/multi_agent/) - LangGraph concepts for supervisor, swarm, and hierarchical handoff topologies.
+- [Saga orchestration patterns](https://docs.aws.amazon.com/prescriptive-guidance/latest/agentic-ai-patterns/saga-orchestration-patterns.html) - AWS Prescriptive Guidance on centralized orchestration where coordinator agents decompose tasks, use delegation to specialist worker agents, and coordinate fault-tolerant multi-step agentic workflows.
+- [Scheduler Agent Supervisor](https://learn.microsoft.com/en-us/azure/architecture/patterns/scheduler-agent-supervisor) - Azure Architecture Center pattern separating scheduler workflow orchestration, agent execution, and supervisor recovery for reliable multi-step delegation pipelines.
 
 ## Frameworks
 
