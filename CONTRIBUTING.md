@@ -244,11 +244,12 @@ These workflows mirror the local commands above (read-only; no repository mutati
 
 | Workflow | Triggers | Local equivalent |
 | --- | --- | --- |
-| [Link Check](.github/workflows/link-check.yml) | Pull requests to `main`, weekly | `make links` |
+| [CI](.github/workflows/ci.yml) | Pull requests and pushes to `main` | `make test`, `make check` |
+| [Link Check](.github/workflows/link-check.yml) | Pull requests to `main`, weekly (Mondays) | `make links` |
 | [Awesome Lint](.github/workflows/awesome-lint.yml) | Pull requests and pushes to `main` | `npx awesome-lint` |
-| [Scheduled Maintenance](.github/workflows/scheduled-maintenance.yml) | Monthly schedule | `make check` and `make links` |
+| [Scheduled Maintenance](.github/workflows/scheduled-maintenance.yml) | Monthly (1st of month) | `make check`, `make links` |
 
-Run the local commands to reproduce CI failures before pushing. Link checks honor root [`.lychee.toml`](.lychee.toml); README validation rules live in [`internal/checks`](internal/checks)—workflow YAML does not duplicate them.
+The CI workflow runs Go format checks, `go test ./...`, and README validation (`make check` / `internal/checks`). Run the local commands above to reproduce workflow failures before pushing. Link checks honor root [`.lychee.toml`](.lychee.toml); README validation rules live in [`internal/checks`](internal/checks)—workflow YAML does not duplicate them. Maintainer merge expectations and recurring stewardship cadence are in [MAINTAINERS.md](MAINTAINERS.md).
 
 ## Before you open a pull request
 
@@ -266,7 +267,7 @@ For issues, GitHub disables blank reports; use the issue chooser (**Suggest a re
 8. In the pull request description, explain **how the resource helps manage groups of agents or their flows**.
 9. Self-check against the questions in [docs/review-policy.md](docs/review-policy.md) to reduce review churn.
 
-Maintainers review scope, link stability, and formatting manually. Following these rules reduces review churn and helps your pull request move forward.
+Automated checks cover README structure, Go tests, link health, and awesome-list conventions; maintainers still review scope, canonical URLs, and quality manually. Following these rules reduces review churn and helps your pull request move forward.
 
 ## Security
 
