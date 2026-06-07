@@ -14,6 +14,20 @@
 
 AI agent factories are systems for coordinating groups of agents: assigning roles, routing tasks, managing handoffs, supervising execution, sharing state, and evaluating group-level behavior.
 
+## Contents
+
+- [Scope](#scope)
+- [Theories](#theories)
+- [Coordination Patterns](#coordination-patterns)
+- [Frameworks](#frameworks)
+- [Protocols and Interfaces](#protocols-and-interfaces)
+- [Benchmarks](#benchmarks)
+- [Research Papers](#research-papers)
+- [Blog Posts](#blog-posts)
+- [Case Studies](#case-studies)
+- [Examples and Templates](#examples-and-templates)
+- [Community](#community)
+
 ## Scope
 
 This list focuses on AI agent factories: systems, theories, frameworks, and practices for managing groups of agents and their flows.
@@ -38,19 +52,6 @@ Excluded unless directly relevant:
 - Generic observability tools
 - Generic workflow engines with no agent-specific usage
 - Model provider SDKs
-
-## Contents
-
-- [Theories](#theories)
-- [Coordination Patterns](#coordination-patterns)
-- [Frameworks](#frameworks)
-- [Protocols and Interfaces](#protocols-and-interfaces)
-- [Benchmarks](#benchmarks)
-- [Research Papers](#research-papers)
-- [Blog Posts](#blog-posts)
-- [Case Studies](#case-studies)
-- [Examples and Templates](#examples-and-templates)
-- [Related Lists](#related-lists)
 
 ## Theories
 
@@ -94,22 +95,26 @@ Other awesome lists and curated resources related to agent orchestration and mul
 
 ## Contributing
 
-Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for the full submission path:
+Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for the full submission path.
 
-- **Scope** — whether your resource fits agent-factory topics (groups of agents, flows, orchestration)
-- **Category** — which of the ten README sections applies (Theories, Coordination Patterns, Frameworks, and the rest)
-- **Entry format** — `- [Resource Name](URL) - Description.` with the exact resource name as link text
-- **Agent-factory relevance** — what to state in your pull request about coordination, orchestration, handoffs, or related flows
+**Scope** — whether your resource fits agent-factory topics (groups of agents, flows, orchestration).
+
+**Category** — which of the ten README sections applies (Theories, Coordination Patterns, Frameworks, and the rest).
+
+**Entry format** — `- [Resource Name](URL) - Description.` with the exact resource name as link text.
+
+**Agent-factory relevance** — what to state in your pull request about coordination, orchestration, handoffs, or related flows.
 
 Before opening a pull request, read [docs/taxonomy.md](docs/taxonomy.md) for category definitions and [docs/review-policy.md](docs/review-policy.md) for the maintainer review checklist you can self-check against.
 
 [MAINTAINERS.md](MAINTAINERS.md) describes review and merge policy.
 
-## License
-
-List content is released under [CC0-1.0](LICENSE). Linked third-party resources retain their own licenses.
-
 ## Community
 
-- [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) — behavior expectations in issues and pull requests
-- [SECURITY.md](SECURITY.md) — reporting malicious, typosquatted, or compromised linked resources
+See [CODE_OF_CONDUCT.md](https://github.com/portpowered/awesome-agent-factories/blob/main/CODE_OF_CONDUCT.md) for behavior expectations in issues and pull requests. See [SECURITY.md](https://github.com/portpowered/awesome-agent-factories/blob/main/SECURITY.md) for reporting malicious, typosquatted, or compromised linked resources.
+
+---
+
+[![CC0](https://mirrors.creativecommons.org/presskit/buttons/88x31/svg/cc-zero.svg)](https://creativecommons.org/publicdomain/zero/1.0/)
+
+List content is released under [CC0-1.0](LICENSE). Linked third-party resources retain their own licenses.
