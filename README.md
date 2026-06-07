@@ -58,13 +58,30 @@ Excluded unless directly relevant:
 
 Foundational ideas for organizing agent groups.
 
+- [Actor Model](https://en.wikipedia.org/wiki/Actor_model) - Message-passing model where autonomous agents coordinate through asynchronous delegation.
+- [An Introduction to MultiAgent Systems](https://www.cs.ox.ac.uk/people/michael.wooldridge/pubs/imas/IMAS2e.html) - Textbook on multi-agent coordination, communication, and cooperation.
+- [Blackboard Architecture](https://en.wikipedia.org/wiki/Blackboard_architecture) - Shared-workspace coordination model where specialists contribute to emergent group solutions.
+- [Contract Net Protocol](https://en.wikipedia.org/wiki/Contract_Net_Protocol) - Market-based delegation protocol for task allocation among autonomous agents.
+- [Swarm Intelligence](https://en.wikipedia.org/wiki/Swarm_intelligence) - Collective coordination principles for decentralized group-level behavior.
+
 ## Coordination Patterns
 
 Reusable system shapes for coordinating agent groups and flows.
 
+- [Agent orchestration](https://openai.github.io/openai-agents-python/multi_agent/) - OpenAI Agents SDK guide comparing manager-style orchestration with specialist handoffs.
+- [AI Agent Orchestration Patterns](https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/ai-agent-design-patterns) - Architecture guide for sequential, concurrent, group-chat, and handoff orchestration topologies.
+- [Building Effective Agents](https://www.anthropic.com/engineering/building-effective-agents) - Engineering patterns including orchestrator-workers, routing, and evaluator-optimizer flows.
+- [Multi-agent](https://langchain-ai.github.io/langgraph/concepts/multi_agent/) - LangGraph concepts for supervisor, swarm, and hierarchical handoff topologies.
+
 ## Frameworks
 
 Software that manages agent groups, flows, handoffs, or orchestration.
+
+- [AutoGen](https://github.com/microsoft/autogen) - Framework for multi-agent conversations, group chat orchestration, and delegated agent workflows.
+- [CrewAI](https://github.com/crewAIInc/crewAI) - Role-based crew framework for task delegation and hierarchical agent coordination.
+- [LangGraph](https://github.com/langchain-ai/langgraph) - Graph-based orchestration library for stateful multi-agent workflows and handoffs.
+- [MetaGPT](https://github.com/FoundationAgents/MetaGPT) - Multi-agent framework that assigns software-company roles for coordination of planning and execution flows.
+- [Symphony](https://github.com/openai/symphony) - Orchestration spec and service for dispatching isolated coding-agent runs from issue-tracker workflows.
 
 ## Protocols and Interfaces
 
@@ -93,6 +110,11 @@ Runnable or forkable examples of multi-agent coordination.
 ## Related Lists
 
 Other awesome lists and curated resources related to agent orchestration and multi-agent systems.
+
+- [Awesome AI agents](https://github.com/e2b-dev/awesome-ai-agents) - Curated index of autonomous and multi-agent agent projects covering orchestration frameworks and coordination tooling.
+- [Awesome Generative Multi-Agent Systems](https://github.com/richardblythman/awesome-multi-agent-systems) - Curated libraries and resources for generative multi-agent orchestration and coordination patterns.
+- [Awesome Multi-Agent Learning](https://github.com/WeiChengTseng/awesome-multi-agent) - Curated multi-agent reinforcement-learning papers and tutorials on coordination and delegation strategies.
+- [Awesome Multi-Agent Papers](https://github.com/kyegomez/awesome-multi-agent-papers) - Compilation of multi-agent systems research papers on coordination, orchestration, and group-level evaluation.
 
 ## Contributing
 
