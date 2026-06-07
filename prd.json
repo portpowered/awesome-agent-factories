@@ -1,31 +1,32 @@
 {
   "project": "Awesome AI Agent Factories",
-  "branchName": "phase-6-community-submission-templates",
-  "description": "Add GitHub pull request and issue templates that guide contributors toward awesome-list scope, one-resource-per-PR discipline, and maintainer review expectations—aligned with CONTRIBUTING.md, README.md, and docs/review-policy.md—without adding README list entries.",
+  "branchName": "phase-5-workflow-integration-repair",
+  "description": "Selectively integrate the remaining Phase 5 GitHub Actions workflows (link-check, awesome-lint, scheduled-maintenance) and CONTRIBUTING.md GitHub Actions documentation from origin/phase-5-link-awesome-maintenance-workflows onto main while preserving the already-merged core ci.yml—so all four workflow files exist with correct read-only triggers aligned to Makefile/config behavior, and make check, make test, go test ./..., and git diff --check pass before Phase 6.",
   "context": {
-    "customerAsk": "Add the missing GitHub pull request and issue templates that guide contributors toward the awesome-list scope and submission rules. Deliver .github/PULL_REQUEST_TEMPLATE.md, .github/ISSUE_TEMPLATE/add-resource.yml, remove-resource.yml, broken-link.yml, and config.yml. Keep wording factual, concise, and consistent with one-resource-per-PR and non-promotional rules. Update related docs only when needed for consistency.",
-    "problem": "Phases 1–5 established governance, review policy, automation, and GitHub Actions, but contributors still open unstructured issues and pull requests. Maintainers must repeatedly request missing metadata (resource name, URL, section, agent-factory relevance, format acknowledgements, link-health detail). Phase 6 checklist items for PR and issue templates remain unchecked.",
-    "solution": "Add a PR template with submission metadata and self-check acknowledgements, three issue templates (add resource, remove resource, broken link), and config.yml that disables blank issues and routes contributors to CONTRIBUTING.md and docs/review-policy.md. Limit doc edits to consistency fixes; do not add README content in this batch."
+    "customerAsk": "Phase 5 integration repair: converge the completed GitHub Actions work onto main before Phase 6 starts. Local main has the merged core .github/workflows/ci.yml from origin/main, but the completed phase-5-link-awesome-maintenance-workflows output is still only on its branch. Integrate the remaining Phase 5 outputs into main: .github/workflows/link-check.yml, .github/workflows/awesome-lint.yml, .github/workflows/scheduled-maintenance.yml, and the CONTRIBUTING.md GitHub Actions documentation if still applicable. Preserve the already-integrated core CI workflow. Acceptance: all four requested workflow files exist on main; link check runs on pull requests to main and weekly; awesome lint runs on pull requests to main and pushes to main; scheduled maintenance runs monthly, performs read-only custom README checks and link checks, and does not mutate repository content; workflow commands remain aligned with local Makefile/config behavior; local make check, make test, go test ./..., and git diff --check pass.",
+    "problem": "Phase 5 is split across two branches: core CI (ci.yml) merged to main, but link checking, awesome-list linting, scheduled maintenance workflows, and CONTRIBUTING.md GitHub Actions documentation exist only on phase-5-link-awesome-maintenance-workflows. Contributors on main cannot rely on automated link or awesome-list gates, CONTRIBUTING.md incorrectly states GitHub Actions are not configured, and Phase 6 cannot start until Phase 5 converges.",
+    "solution": "Create integration branch phase-5-workflow-integration-repair from current main, selectively bring in the three maintenance workflow files and CONTRIBUTING.md GitHub Actions subsection from origin/phase-5-link-awesome-maintenance-workflows, preserve ci.yml unchanged, verify read-only triggers and Makefile-aligned commands, and confirm convergence with make check, make test, go test ./..., and git diff --check."
   },
   "acceptanceCriteria": [
-    ".github/PULL_REQUEST_TEMPLATE.md exists and aligns with CONTRIBUTING.md, README.md, and docs/review-policy.md",
-    ".github/ISSUE_TEMPLATE/add-resource.yml collects resource name, URL, README section, and why the resource fits agent-factory scope",
-    ".github/ISSUE_TEMPLATE/remove-resource.yml supports dead links, out-of-scope resources, archived projects, and misleading descriptions",
-    ".github/ISSUE_TEMPLATE/broken-link.yml collects enough detail for maintainers to verify broken or suspicious links",
-    ".github/ISSUE_TEMPLATE/config.yml disables blank issues and routes contributors toward contribution and review documentation",
-    "Template wording is factual, concise, non-promotional, and consistent with one-resource-per-PR discipline",
-    "Related docs (CONTRIBUTING.md, README.md) are updated only when needed to keep template guidance consistent with current reviewer policy",
-    "Quality gate: make check, make test, and git diff --check pass from repository root"
+    "All four workflow files exist on the integrated branch: .github/workflows/ci.yml, .github/workflows/link-check.yml, .github/workflows/awesome-lint.yml, and .github/workflows/scheduled-maintenance.yml",
+    "link-check.yml triggers on pull_request to main and weekly schedule; scans README.md and docs/*.md with lychee honoring .lychee.toml without content mutation",
+    "awesome-lint.yml triggers on pull_request and push to main; runs npx awesome-lint without content mutation",
+    "scheduled-maintenance.yml triggers monthly; runs read-only README checks (make check or go run ./internal/checks) and link checks without repository mutations",
+    "ci.yml is preserved from current main with Go format check, go test ./..., and README checks on PR and push to main",
+    "CONTRIBUTING.md documents the three maintenance workflows and maps each to local commands (make links, npx awesome-lint, make check)",
+    "Quality gate: make check, make test, go test ./..., and git diff --check pass from repository root on the integrated branch"
   ],
   "userStories": [
     {
-      "id": "phase-6-community-submission-templates-001",
-      "title": "Configure issue template chooser and contributor routing",
-      "description": "As a contributor, I want GitHub to block blank issues and point me to the right contribution docs and issue types so I do not open unstructured reports.",
+      "id": "phase-5-workflow-integration-repair-001",
+      "title": "Integrate link-check workflow onto main",
+      "description": "As a maintainer, I want link checking enforced on pull requests to main and on a weekly schedule so broken links in README.md and documentation are caught before or soon after merge.",
       "acceptanceCriteria": [
-        ".github/ISSUE_TEMPLATE/config.yml sets blank_issues_enabled to false",
-        "contact_links include at least one link to CONTRIBUTING.md and one to docs/review-policy.md with factual, concise about text",
-        "Config copy does not reference issue templates that are absent from the repository once the batch is complete",
+        ".github/workflows/link-check.yml exists on the integration branch with workflow name Link Check",
+        "Workflow on includes pull_request with branches: [main] and schedule with weekly cron (0 8 * * 1 or equivalent Monday schedule)",
+        "A job on ubuntu-latest checks out the repository with actions/checkout@v4 and runs lychee on README.md and docs/*.md via lycheeverse/lychee-action@v2 so root .lychee.toml settings apply",
+        "Step names or comments identify the local equivalent (make links)",
+        "The workflow performs no file writes, commits, or content mutation",
         "Typecheck passes"
       ],
       "priority": 1,
@@ -33,14 +34,15 @@
       "notes": ""
     },
     {
-      "id": "phase-6-community-submission-templates-002",
-      "title": "Add issue template for proposing a new resource",
-      "description": "As a contributor, I want a structured issue form to propose a resource before opening a pull request so maintainers can confirm scope and section fit early.",
+      "id": "phase-5-workflow-integration-repair-002",
+      "title": "Integrate awesome-lint workflow onto main",
+      "description": "As a maintainer, I want awesome-list lint rules enforced on pull requests and pushes to main so list structure violations are blocked before they land on the default branch.",
       "acceptanceCriteria": [
-        ".github/ISSUE_TEMPLATE/add-resource.yml defines a template for adding a resource with neutral, non-promotional description text",
-        "Required fields collect resource name (official title), canonical URL, README section, and why the resource fits agent-factory scope (groups of agents or flows)",
-        "README section is a dropdown with all ten README sections: Theories, Coordination Patterns, Frameworks, Protocols and Interfaces, Benchmarks, Research Papers, Blog Posts, Case Studies, Examples and Templates, Related Lists",
-        "Template body reminds contributors that pull requests must add one resource only and links to CONTRIBUTING.md",
+        ".github/workflows/awesome-lint.yml exists on the integration branch with workflow name Awesome Lint",
+        "Workflow on includes pull_request with branches: [main] and push with branches: [main]",
+        "A job on ubuntu-latest checks out the repository with actions/checkout@v4 and runs npx awesome-lint",
+        "Step names or comments identify the local equivalent (npx awesome-lint)",
+        "The workflow performs no file writes, commits, or content mutation",
         "Typecheck passes"
       ],
       "priority": 2,
@@ -48,29 +50,33 @@
       "notes": ""
     },
     {
-      "id": "phase-6-community-submission-templates-003",
-      "title": "Add issue template for resource removal requests",
-      "description": "As a contributor or maintainer, I want a structured issue form to request removal or relocation when an entry is dead, out of scope, archived, or misleading.",
+      "id": "phase-5-workflow-integration-repair-003",
+      "title": "Integrate scheduled maintenance workflow onto main",
+      "description": "As a maintainer, I want a monthly scheduled job that re-validates README rules and link health on main so drift is detected even when no pull requests are open.",
       "acceptanceCriteria": [
-        ".github/ISSUE_TEMPLATE/remove-resource.yml defines a template for removal or relocation requests with factual description text",
-        "Required fields include affected resource name, README section or link text as listed, canonical URL, and reason for removal",
-        "Reason field covers at least dead link, out of scope, archived project, and misleading description, with optional detail textarea",
-        "Template references docs/review-policy.md removal guidance for relocate-vs-remove outcomes without duplicating the full policy",
-        "Typecheck passes"
+        ".github/workflows/scheduled-maintenance.yml exists on the integration branch with workflow name Scheduled Maintenance",
+        "Workflow on includes schedule with monthly cron (0 9 1 * * or equivalent first-of-month schedule)",
+        "A job on ubuntu-latest checks out the repository, sets up Go with actions/setup-go@v5 (go-version: stable), and runs custom README checks via make check (preferred) or go run ./internal/checks",
+        "The same job runs link checks on README.md and docs/*.md using the same lychee approach as link-check.yml, honoring .lychee.toml",
+        "Step names or comments identify local equivalents (make check, make links)",
+        "The workflow performs no file writes, commits, issue bots, or auto-fix steps",
+        "Typecheck passes",
+        "Tests pass"
       ],
       "priority": 3,
       "passes": true,
       "notes": ""
     },
     {
-      "id": "phase-6-community-submission-templates-004",
-      "title": "Add issue template for broken or suspicious link reports",
-      "description": "As a contributor, I want to report broken or suspicious links with verifiable detail so maintainers can confirm link health and apply the broken-link outcome when appropriate.",
+      "id": "phase-5-workflow-integration-repair-004",
+      "title": "Update CONTRIBUTING.md with GitHub Actions documentation",
+      "description": "As a contributor, I want CONTRIBUTING.md to document which GitHub workflows run and how they map to local commands so I can reproduce CI failures before pushing.",
       "acceptanceCriteria": [
-        ".github/ISSUE_TEMPLATE/broken-link.yml defines a template for broken or suspicious link reports",
-        "Required fields include affected resource name (README link text), URL as listed in README, observed behavior (HTTP error, bad redirect, domain mismatch), and when the problem was observed",
-        "Template asks whether the reporter rechecked the URL and aligns with docs/review-policy.md link-stability guidance",
-        "Template points credible security concerns to SECURITY.md and avoids accusatory language",
+        "CONTRIBUTING.md replaces the statement that GitHub Actions are not configured with a GitHub Actions subsection under Local checks",
+        "The subsection includes a table mapping Link Check, Awesome Lint, and Scheduled Maintenance workflows to their triggers and local equivalents (make links, npx awesome-lint, make check and make links)",
+        "Documentation states workflows are read-only and that link checks honor .lychee.toml while README rules live in internal/checks (not duplicated in workflow YAML)",
+        "Links in the table point to .github/workflows/link-check.yml, .github/workflows/awesome-lint.yml, and .github/workflows/scheduled-maintenance.yml",
+        "No README list entries or unrelated governance prose changes are introduced",
         "Typecheck passes"
       ],
       "priority": 4,
@@ -78,49 +84,34 @@
       "notes": ""
     },
     {
-      "id": "phase-6-community-submission-templates-005",
-      "title": "Add pull request template for resource submissions",
-      "description": "As a contributor opening a resource pull request, I want a PR template that collects submission metadata and self-check acknowledgements so my change matches maintainer review expectations.",
+      "id": "phase-5-workflow-integration-repair-005",
+      "title": "Preserve core CI workflow during integration",
+      "description": "As a maintainer, I want the already-merged core CI workflow preserved unchanged so Phase 5 integration does not regress Go formatting, test, or README check gates on pull requests and pushes to main.",
       "acceptanceCriteria": [
-        ".github/PULL_REQUEST_TEMPLATE.md exists with markdown sections for resource name, resource URL, target README section, and agent-factory relevance (why it belongs)",
-        "Template includes acknowledgement prompts for one resource only, scope fit, entry format (- [Resource Name](URL) - Description.), factual non-promotional description, description ends with a period, alphabetical placement, duplicate URL check, and live canonical link verified",
-        "Template links to CONTRIBUTING.md, docs/taxonomy.md, and docs/review-policy.md and reminds contributors to run make check (and make links when URLs change) before review",
-        "Wording is concise, encyclopedic, and non-promotional, consistent with CONTRIBUTING.md",
-        "Typecheck passes"
+        ".github/workflows/ci.yml on the integration branch matches current main (workflow name CI; triggers on pull_request and push to main; Go format check on internal/; go test ./...; README checks via make check with go run ./internal/checks fallback)",
+        "No integration change modifies ci.yml step commands, action versions, or trigger configuration unless fixing a merge conflict in favor of the main version",
+        "Core CI workflow remains read-only and non-mutating",
+        "Typecheck passes",
+        "Tests pass"
       ],
       "priority": 5,
       "passes": true,
       "notes": ""
     },
     {
-      "id": "phase-6-community-submission-templates-006",
-      "title": "Align contribution docs with new templates (only if needed)",
-      "description": "As a contributor reading CONTRIBUTING.md or README.md, I want any references to issue and PR intake to match the new templates so guidance is not contradictory.",
+      "id": "phase-5-workflow-integration-repair-006",
+      "title": "Verify Phase 5 workflow convergence on integrated main",
+      "description": "As a planner preparing the Phase 5 loopback review, I want end-to-end verification that all four workflows exist, triggers and read-only behavior match the customer ask, and local quality gates pass so Phase 6 can start from a converged main.",
       "acceptanceCriteria": [
-        "If CONTRIBUTING.md or README.md mention opening issues or pull requests, only those sentences are updated to reference the new GitHub templates and chooser flow",
-        "If no doc changes are required for consistency, the implementing pull request states that explicitly with no gratuitous edits",
-        "No README resource entries are added or modified",
-        "No unrelated governance, workflow, or planner-owned file changes",
-        "Typecheck passes"
-      ],
-      "priority": 6,
-      "passes": true,
-      "notes": ""
-    },
-    {
-      "id": "phase-6-community-submission-templates-007",
-      "title": "Verify Phase 6 template delivery and quality gates",
-      "description": "As a maintainer preparing Phase 6 convergence review, I want all five template artifacts present, internally consistent, and passing local quality gates so Phase 7 content work can start.",
-      "acceptanceCriteria": [
-        "All required files exist: .github/PULL_REQUEST_TEMPLATE.md, .github/ISSUE_TEMPLATE/config.yml, add-resource.yml, remove-resource.yml, and broken-link.yml",
-        "Issue template YAML files are valid GitHub issue forms with name, description, and body fields using recognized field types",
-        "Template copy states one-resource-per-PR in both the PR template and add-resource issue template and remains factual and non-promotional throughout",
-        "From repository root: make check, make test, and git diff --check exit 0",
-        "No README list entries, workflow changes, or bulk unrelated edits are introduced in this batch",
+        "All four workflow files exist on the integration branch: ci.yml, link-check.yml, awesome-lint.yml, and scheduled-maintenance.yml",
+        "Observable trigger configuration matches the customer ask (link check: PR + weekly; awesome lint: PR + push to main; scheduled maintenance: monthly; core CI: PR + push to main)",
+        "From repository root: make check, make test, go test ./..., and git diff --check all exit 0",
+        "No issue templates, PR templates, or bulk README resource entries are added as part of this integration",
+        "Only .github/workflows/link-check.yml, .github/workflows/awesome-lint.yml, .github/workflows/scheduled-maintenance.yml, and narrowly scoped CONTRIBUTING.md updates are introduced—no unrelated cleanup",
         "Typecheck passes",
         "Tests pass"
       ],
-      "priority": 7,
+      "priority": 6,
       "passes": true,
       "notes": ""
     }
