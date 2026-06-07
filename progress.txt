@@ -434,3 +434,12 @@
   - Use `git diff origin/main HEAD --name-only` (not three-dot) when predicting PR file list for verification-only branches whose merge-base differs from main tip.
   - All four PRD stories complete; create PR `phase-8-9-maintainer-ops-integration-repair` with `prd.json` body when no open PR exists.
 ---
+
+## 2026-06-07T11:04:07Z - phase-7-core-sections-expansion-001
+- Expanded README Theories from five to eight alphabetized entries by adding BDI Software Agent, Distributed Artificial Intelligence, and Hierarchical Task Network with canonical Wikipedia URLs and scope keywords (delegation, coordination, orchestration).
+- Files changed: README.md
+- **Learnings for future iterations:**
+  - Taxonomy representative examples (role-based organizations, hierarchical planning, market-based coordination) map well to enduring Wikipedia theory articles when seed entries need stable canonical URLs.
+  - Insert new Theories entries in strict link-text alphabetical order; "BDI Software Agent" sorts between "An Introduction to MultiAgent Systems" and "Blackboard Architecture".
+  - Story 002 seeds Coordination Patterns (four→≥8); reuse distinct URLs from Coordination Patterns and Blog Posts sections to avoid duplicate-URL checker failures.
+---

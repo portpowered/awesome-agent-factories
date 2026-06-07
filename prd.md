@@ -1,169 +1,163 @@
-# PRD: Phase 8/9 Maintainer Operations Integration Repair
+# PRD: Phase 7 Core Sections Expansion
 
 ## Introduction
 
-Integrate the already-reviewed governance documentation from `origin/phase-8-9-maintainer-ops-convergence` onto `main` for four files only: `MAINTAINERS.md`, `CONTRIBUTING.md`, `docs/review-policy.md`, and `docs/taxonomy.md`. This is an **integration repair**, not new governance authoring — the convergence branch diff is clean and limited to documentation drift between implemented Phase 4/5 automation and maintainer-facing policy prose.
+Expand the three underfilled **core** README resource sections—**Theories**, **Coordination Patterns**, and **Frameworks**—so each meets a minimum density bar without weakening scope discipline. Phase 7 foundational seeding already placed entries in all ten curated sections on `main`; this batch deepens the conceptual backbone (theories), reusable topologies (patterns), and runnable orchestration software (frameworks) that readers rely on first when learning agent-factory design.
 
-**Intent:** After Phase 4 README checks and Phase 5 GitHub workflows landed on `main`, maintainer docs still describe a pre-automation world (for example, “no required CI gate” and “no scheduled link checker”). Contributors and maintainers need one truthful, cross-linked governance story about what automation runs, what local commands reproduce it, and what human judgment remains.
+The concrete change: add at least **3** theories entries (5 → ≥8), **4** coordination-pattern entries (4 → ≥8), and **3** framework entries (5 → ≥8). Every addition must clearly fit [docs/taxonomy.md](../../docs/taxonomy.md) include rules and [CONTRIBUTING.md](../../CONTRIBUTING.md) submission rules, use canonical stable URLs, stay alphabetized by link text, avoid duplicate URLs anywhere in README.md, and describe resources factually with explicit ties to coordination, orchestration, delegation, routing, handoffs, shared state, or group-level evaluation.
 
 ## Context
 
 ### Customer ask
 
-Integrate the completed branch diff from `origin/phase-8-9-maintainer-ops-convergence` onto `main` for only `MAINTAINERS.md`, `CONTRIBUTING.md`, `docs/review-policy.md`, and `docs/taxonomy.md`. Ensure `MAINTAINERS.md` truthfully reflects implemented automation and maintainer-owned weekly, monthly, and quarterly stewardship without inventing staffing, SLAs, or automation the repository does not have. Keep all four documents consistent about CI, link checks, awesome-lint, scheduled maintenance, local equivalents, and maintainer judgment boundaries. Do not add or remove README resource entries. Do not edit planner-owned `docs/internal/*` files. Leave `make check`, `make test`, and `git diff --check` passing.
+Phase 7 content expansion: extend the underfilled README core sections without weakening scope discipline. Expand Theories from 5 entries to at least 8, Coordination Patterns from 4 entries to at least 8, and Frameworks from 5 entries to at least 8. Add only high-signal resources that clearly fit docs/taxonomy.md and CONTRIBUTING.md, keep entries alphabetized, use canonical stable URLs where possible, avoid duplicates, and keep descriptions factual and explicitly tied to coordination, orchestration, delegation, routing, handoffs, shared state, or group-level evaluation.
 
 ### Problem
 
-Governance documentation on `main` is stale relative to implemented repository automation:
-
-- `MAINTAINERS.md` still states there is no scheduled link checker, no CI gate, and no awesome-lint enforcement, contradicting `.github/workflows/ci.yml`, `link-check.yml`, `awesome-lint.yml`, and `scheduled-maintenance.yml`.
-- `CONTRIBUTING.md` omits the CI workflow from its GitHub Actions table and understates what automated checks cover before maintainer review.
-- `docs/review-policy.md` and `docs/taxonomy.md` cross-reference tables do not point maintainers to the converged automation summary and maintenance cadence in `MAINTAINERS.md`.
-
-This drift confuses contributors reproducing CI locally, maintainers triaging workflow failures, and reviewers applying merge policy.
+The three core sections that anchor agent-factory literacy—foundational theories, coordination topologies, and orchestration frameworks—remain thin relative to later Phase 7 sections (for example, Research Papers and Blog Posts). Readers and contributors lack enough on-main exemplars to compare category fit across conceptual models, pattern catalogs, and runnable multi-agent runtimes. Underfilled core sections also make it harder to defend scope boundaries when borderline submissions arrive, because there are fewer high-quality reference entries in each lane.
 
 ### Solution
 
-Cherry-pick or apply the reviewed four-file diff from `origin/phase-8-9-maintainer-ops-convergence` onto the integration branch. Verify every automation claim against existing workflow YAML and `Makefile` targets. Confirm cross-document consistency for workflow names, triggers, local equivalents, and maintainer-judgment boundaries. Run repository quality gates. Do not broaden scope beyond these four files.
+Add curated, taxonomy-aligned entries only to the three target README sections. Preserve existing seed entries unless a merge conflict requires trivial hygiene. Do not modify governance prose (Scope, Contributing, Community), other curated sections, or category definitions in docs/taxonomy.md. Verify automated README checks (`make check`, `make test`) and whitespace hygiene (`git diff --check`) pass before merge.
 
 ## Goals
 
-- Land the reviewed convergence documentation onto `main` without re-authoring governance prose.
-- Make `MAINTAINERS.md` the canonical, truthful description of implemented automation and optional human stewardship cadence (weekly link triage, monthly scheduled maintenance review, quarterly governance spot-check).
-- Align `CONTRIBUTING.md`, `docs/review-policy.md`, and `docs/taxonomy.md` with the same CI, link-check, awesome-lint, and scheduled-maintenance facts.
-- Preserve explicit boundaries: automation does not replace maintainer scope, canonical-link, quality, or merge decisions; no SLAs, staffing levels, or auto-merge are claimed.
+- Raise **Theories** to at least 8 entries covering diverse foundational ideas for organizing agent groups.
+- Raise **Coordination Patterns** to at least 8 entries covering distinct reusable multi-agent topologies.
+- Raise **Frameworks** to at least 8 entries covering distinct multi-agent orchestration software.
+- Keep every new entry high-signal, non-promotional, scope-aligned, and alphabetized within its section.
+- Pass all repository quality gates with no regressions to governance or unrelated README sections.
 
 ## Project-level acceptance criteria
 
-- [ ] Only `MAINTAINERS.md`, `CONTRIBUTING.md`, `docs/review-policy.md`, and `docs/taxonomy.md` differ from `main` for governance content (plus this batch’s planning artifacts under `tasks/todo/`).
-- [ ] `MAINTAINERS.md` documents CI, Link Check, Awesome Lint, and Scheduled Maintenance with triggers and local equivalents that match `.github/workflows/*.yml` and `Makefile` targets.
-- [ ] `MAINTAINERS.md` describes weekly, monthly, and quarterly maintainer stewardship as availability-based human tasks tied to existing workflow schedules, without inventing dedicated staff, 24/7 coverage, or response-time SLAs.
-- [ ] `CONTRIBUTING.md`, `docs/review-policy.md`, and `docs/taxonomy.md` agree with `MAINTAINERS.md` on automation scope, local reproduction commands, and maintainer judgment boundaries.
-- [ ] No README resource entries are added or removed; no `docs/internal/*` files are edited.
+- [ ] README **Theories** contains at least 8 resource entries (currently 5) using `- [Resource Name](URL) - Description.` format with descriptions ending in a period and entries alphabetized by link text.
+- [ ] README **Coordination Patterns** contains at least 8 resource entries (currently 4) using the same format, tone, and alphabetization rules.
+- [ ] README **Frameworks** contains at least 8 resource entries (currently 5) using the same format, tone, and alphabetization rules.
+- [ ] Every new entry uses a stable canonical URL, fits docs/taxonomy.md include rules for its section, includes at least one agent-factory scope keyword in the description (coordination, orchestration, delegation, routing, handoffs, shared state, or group-level evaluation), and introduces no duplicate URLs anywhere in README.md.
+- [ ] README governance sections (Scope, Contributing, Community) and all non-target curated sections remain unchanged except unavoidable whitespace or merge hygiene.
 - [ ] Quality gate: `make check`, `make test`, and `git diff --check` all pass from the repository root.
 
 ## User Stories
 
-### US-001: Integrate MAINTAINERS.md automation and cadence documentation
+### US-001: Expand Theories section to minimum density
 
-**Description:** As a maintainer, I want `MAINTAINERS.md` to describe implemented automation and recurring stewardship so I can triage workflow failures and set contributor expectations without referencing obsolete pre-Phase-5 prose.
-
-**Acceptance Criteria:**
-
-- [ ] Apply the reviewed `MAINTAINERS.md` changes from `origin/phase-8-9-maintainer-ops-convergence` (intro, **Automated checks**, **Maintainer maintenance cadence**, merge policy, and **What maintainers do not do today** sections).
-- [ ] The **Automated checks** table lists CI, Link Check, Awesome Lint, and Scheduled Maintenance with triggers and local equivalents matching `.github/workflows/ci.yml`, `link-check.yml`, `awesome-lint.yml`, and `scheduled-maintenance.yml`.
-- [ ] Weekly, monthly, and quarterly cadence sections describe human tasks “when maintainers have availability” and explicitly deny dedicated staff, 24/7 coverage, and response-time SLAs.
-- [ ] Merge policy states resource PRs should have passing automated checks before merge while preserving manual scope and quality review.
-- [ ] No claims of auto-merge, dedicated moderation staff, or automation the repository does not implement.
-- [ ] Typecheck passes
-
-### US-002: Integrate CONTRIBUTING.md GitHub Actions and review guidance
-
-**Description:** As a contributor, I want `CONTRIBUTING.md` to list all CI workflows and explain the split between automated checks and maintainer review so I can reproduce failures locally before opening a pull request.
+**Description:** As a reader designing agent societies, I want more foundational theories indexed on main so I can compare enduring conceptual models for group organization, cooperation, and planning beyond the current five seed entries.
 
 **Acceptance Criteria:**
 
-- [ ] Apply the reviewed `CONTRIBUTING.md` changes from `origin/phase-8-9-maintainer-ops-convergence` (GitHub Actions table, CI workflow row, schedule wording, and pre-merge review paragraph).
-- [ ] GitHub Actions table includes CI with local equivalents `make test` and `make check`, Link Check (PRs + weekly Mondays), Awesome Lint, and Scheduled Maintenance (monthly 1st).
-- [ ] Prose states CI runs Go format checks, `go test ./...`, and README validation via `make check` / `internal/checks`.
-- [ ] Closing paragraph distinguishes automated README/Go/link/awesome-list checks from manual maintainer scope, canonical-link, and quality review; links to `MAINTAINERS.md`.
-- [ ] Typecheck passes
+- [x] README Theories contains at least 8 entries below the section intro (at least 3 new entries beyond the existing five: Actor Model, An Introduction to MultiAgent Systems, Blackboard Architecture, Contract Net Protocol, Swarm Intelligence).
+- [x] Each new entry is a foundational idea for organizing agent groups per docs/taxonomy.md Theories include rules (for example role-based organization, hierarchical planning, BDI-style rational agents, stigmergic coordination, human–agent teaming, or market-based group allocation)—not a runnable SDK or pattern-only topology writeup.
+- [x] Each entry uses exact format `- [Resource Name](URL) - Description.` with a factual one-sentence description ending in a period; description explicitly ties to coordination, orchestration, delegation, routing, handoffs, shared state, or group-level evaluation.
+- [x] Entries are alphabetized by link text across the full section; no duplicate URLs are introduced anywhere in README.md.
+- [x] `make check` passes after Theories expansion.
+- [x] Typecheck passes.
+- [x] Tests pass.
 
-### US-003: Align review-policy and taxonomy cross-references
+### US-002: Expand Coordination Patterns section to minimum density
 
-**Description:** As a reviewer, I want `docs/review-policy.md` and `docs/taxonomy.md` to point to the converged maintainer automation and cadence documentation so governance docs stay mutually consistent.
-
-**Acceptance Criteria:**
-
-- [ ] Apply the reviewed `docs/review-policy.md` change: the governance-documents table row for `MAINTAINERS.md` references automated checks summary and maintainer maintenance cadence.
-- [ ] Apply the reviewed `docs/taxonomy.md` changes: governance-documents table rows reference local checks, automated enforcement, and `MAINTAINERS.md` merge policy and cadence; the Phase 4/5 automation paragraph links to `MAINTAINERS.md#automated-checks`.
-- [ ] Cross-reference wording does not contradict `MAINTAINERS.md` or `CONTRIBUTING.md` on workflow names, triggers, or local equivalents.
-- [ ] Typecheck passes
-
-### US-004: Verify governance consistency and repository quality gates
-
-**Description:** As a maintainer merging this integration repair, I want end-to-end verification that the four governance files are consistent, scope-limited, and pass repository checks.
+**Description:** As a system architect choosing multi-agent topologies, I want more pattern references on main so I can study distinct orchestration shapes (supervision, routing, deliberation, pipelines, shared workspaces) beyond the current four seed entries.
 
 **Acceptance Criteria:**
 
-- [ ] Diff against `main` is limited to the four governance files and this batch’s `tasks/todo/` planning artifacts — no README edits, no `docs/internal/*` edits, no workflow or Go source changes unless required to fix a factual doc error discovered during verification.
-- [ ] Manual read confirms all four files agree on: CI (`make test`, `make check`), Link Check (`make links`, weekly Mondays), Awesome Lint (`npx awesome-lint`), Scheduled Maintenance (monthly 1st, `make check` + `make links`), and maintainer judgment boundaries automation cannot replace.
-- [ ] `make check` exits 0 from repository root.
-- [ ] `make test` exits 0 from repository root.
+- [ ] README Coordination Patterns contains at least 8 entries below the section intro (at least 4 new entries beyond the existing four: Agent orchestration, AI Agent Orchestration Patterns, Building Effective Agents, Multi-agent).
+- [ ] Each new entry documents a reusable multi-agent topology per docs/taxonomy.md Coordination Patterns include rules (for example supervisor-worker, planner-executor, router-specialist, debate, pipeline, hub-and-spoke, critic-reviewer, or shared-workspace coordination)—not a framework product page whose primary value is the software itself.
+- [ ] Each entry uses exact format `- [Resource Name](URL) - Description.` with a factual one-sentence description ending in a period and an explicit agent-factory scope keyword.
+- [ ] New URLs do not duplicate URLs already present elsewhere in README.md (including existing pattern docs and framework repos); entries are alphabetized by link text across the full section.
+- [ ] `make check` passes after Coordination Patterns expansion.
+- [ ] Typecheck passes.
+- [ ] Tests pass.
+
+### US-003: Expand Frameworks section to minimum density
+
+**Description:** As a builder selecting orchestration software, I want more multi-agent frameworks indexed on main so I can compare distinct runtimes for delegation, handoffs, and group coordination beyond the current five seed entries.
+
+**Acceptance Criteria:**
+
+- [ ] README Frameworks contains at least 8 entries below the section intro (at least 3 new entries beyond the existing five: AutoGen, CrewAI, LangGraph, MetaGPT, Symphony).
+- [ ] Each new entry is software whose core purpose is multi-agent coordination, orchestration, routing, or handoffs per docs/taxonomy.md Frameworks include rules—not a generic LLM SDK, single-agent chatbot framework, prompt library, or example-only repository already listed under Examples and Templates.
+- [ ] Each entry uses exact format `- [Resource Name](URL) - Description.` with a factual one-sentence description ending in a period; description emphasizes orchestration, delegation, handoffs, or group coordination capabilities.
+- [ ] New framework URLs point to canonical project homes (typically repository roots or official documentation roots), not duplicate URLs already in README.md; entries are alphabetized by link text across the full section.
+- [ ] `make check` passes after Frameworks expansion.
+- [ ] Typecheck passes.
+- [ ] Tests pass.
+
+### US-004: Verify batch quality gates and section integrity
+
+**Description:** As a maintainer merging this batch, I want end-to-end verification that expanded core sections satisfy automated checks and leave unrelated repository content untouched.
+
+**Acceptance Criteria:**
+
+- [ ] From repository root, `make check` exits 0.
+- [ ] From repository root, `make test` exits 0.
 - [ ] `git diff --check` reports no whitespace errors on changed files.
-- [ ] Typecheck passes
-- [ ] Tests pass
+- [ ] README Theories, Coordination Patterns, and Frameworks each contain at least 8 entries; combined they include at least 10 new entries relative to pre-batch counts.
+- [ ] README Scope, Contributing, and Community sections remain present and unweakened; Protocols and Interfaces, Benchmarks, Research Papers, Blog Posts, Case Studies, Examples and Templates, and Related Lists contain no unintended edits.
+- [ ] Changed content files are limited to README.md and planning artifacts for this batch.
+- [ ] Typecheck passes.
+- [ ] Tests pass.
 
 ## Functional Requirements
 
-- FR-1: Integrate the reviewed four-file diff from `origin/phase-8-9-maintainer-ops-convergence` without expanding scope.
-- FR-2: Document CI workflow with PR/push-to-`main` triggers and local equivalents `make test` and `make check`.
-- FR-3: Document Link Check with PR and weekly Monday schedule and local equivalent `make links`.
-- FR-4: Document Awesome Lint with PR/push-to-`main` triggers and local equivalent `npx awesome-lint`.
-- FR-5: Document Scheduled Maintenance with monthly 1st schedule and local equivalents `make check` and `make links`.
-- FR-6: Document weekly (link triage), monthly (scheduled maintenance + stale-PR spot-check), and quarterly (optional governance spot-check) maintainer cadences as availability-based human stewardship.
-- FR-7: State explicitly that maintainers retain scope, canonical-link, quality, merge, and removal judgments automation cannot make.
-- FR-8: Update cross-reference tables in `docs/review-policy.md` and `docs/taxonomy.md` to point at converged maintainer documentation.
+- FR-1: Add at least 3 new Theories entries so the section totals at least 8 alphabetized resources.
+- FR-2: Add at least 4 new Coordination Patterns entries so the section totals at least 8 alphabetized resources.
+- FR-3: Add at least 3 new Frameworks entries so the section totals at least 8 alphabetized resources.
+- FR-4: Every new entry must satisfy CONTRIBUTING.md entry format, agent-factory relevance keywords enforced by `internal/checks`, and docs/taxonomy.md category include/exclude rules.
+- FR-5: No README URL may appear more than once across all sections after this batch lands.
+- FR-6: Existing seed entries in the three target sections remain unless an unavoidable merge requires trivial formatting hygiene; do not remove or rewrite entries to force alphabetization—insert new entries in correct sort order.
 
 ## Non-Goals
 
-- No new governance authoring beyond integrating the reviewed convergence diff.
-- No README resource entry additions, removals, or rewording.
-- No edits to planner-owned `docs/internal/*` files.
-- No changes to GitHub workflow YAML, Go checks, or Makefile targets unless a factual mismatch is discovered and must be corrected to keep docs truthful.
-- No claims of auto-merge bots, dedicated moderation staff, fixed-hour coverage, or response-time SLAs.
-- No Phase 7 category deepening or Phase 10 launch-readiness work in this batch.
+- Expanding Research Papers, Blog Posts, Case Studies, Examples and Templates, Protocols and Interfaces, Benchmarks, or Related Lists (handled by sibling Phase 7 batches).
+- Rewriting docs/taxonomy.md category definitions or Phase 7 status prose unless a factual count correction is strictly required.
+- Adding new top-level README sections or changing section headings.
+- Broad README cleanup, URL audit, or removal of weak entries (handled by phase-7-source-quality-audit).
+- Lowering scope discipline to hit count targets (quality and fit trump minimum counts).
+- Meta-test planning such as inventorying registration files or asserting internal bundle structure.
 
 ## High-level technical design
 
-This batch is documentation-only integration:
+This batch is a **content-only README expansion** validated by existing Phase 4 Go checks in `internal/checks`. No new packages, APIs, or UI are introduced.
 
-1. **Source of truth for automation facts:** `.github/workflows/ci.yml`, `link-check.yml`, `awesome-lint.yml`, `scheduled-maintenance.yml`, root `Makefile`, and `.lychee.toml`.
-2. **Source of truth for governance prose:** reviewed diff on `origin/phase-8-9-maintainer-ops-convergence` for the four target files.
-3. **Integration method:** apply or cherry-pick the four-file diff onto branch `phase-8-9-maintainer-ops-integration-repair`; resolve conflicts only within those files while preserving factual alignment with workflows.
-4. **Verification:** cross-doc consistency read plus `make check`, `make test`, and `git diff --check`.
+**Change surface:** `README.md` sections `## Theories`, `## Coordination Patterns`, and `## Frameworks` only.
+
+**Validation path:** `make check` runs structural validation (section headings, Contents alignment, entry format, description period, scope keywords, banned marketing phrases, alphabetization, duplicate URL detection). `make test` runs checker unit tests. CI mirrors these commands.
+
+**Selection workflow for implementers:**
+
+1. Identify gaps against docs/taxonomy.md representative examples not yet represented on main.
+2. Confirm each candidate's **primary** contribution matches the target section (theory vs pattern vs framework).
+3. Choose canonical stable URLs (Wikipedia or enduring references for theories; official pattern/architecture docs for patterns; repository or official docs roots for frameworks).
+4. Draft one-sentence descriptions with an explicit scope keyword; avoid promotional wording.
+5. Insert entries in alphabetized position; run `make check` after each section edit.
 
 ```mermaid
 flowchart LR
-  subgraph source [Convergence branch]
-    C[Four-file reviewed diff]
-  end
-  subgraph verify [Verification]
-    W[Workflow YAML + Makefile]
-    Q[make check / make test / git diff --check]
-  end
-  subgraph target [Main integration]
-    M[MAINTAINERS.md]
-    CO[CONTRIBUTING.md]
-    RP[docs/review-policy.md]
-    TX[docs/taxonomy.md]
-  end
-  C --> M
-  C --> CO
-  C --> RP
-  C --> TX
-  W --> M
-  W --> CO
-  M --> Q
-  CO --> Q
-  RP --> Q
-  TX --> Q
+  A[Select candidate resource] --> B{Fits taxonomy include rules?}
+  B -->|No| C[Reject candidate]
+  B -->|Yes| D{Primary section match?}
+  D -->|No| E[Reassign or reject]
+  D -->|Yes| F{URL already in README?}
+  F -->|Yes| C
+  F -->|No| G[Add alphabetized entry]
+  G --> H[make check / make test]
 ```
 
 ## Supporting technical and UX considerations
 
-- **Truthfulness over aspiration:** Every workflow named in governance docs must exist in `.github/workflows/` with matching triggers. Do not document `make lint` (golangci-lint) as a required CI gate unless the CI workflow runs it — optional local tooling stays optional.
-- **Consistent vocabulary:** Use the same workflow display names (CI, Link Check, Awesome Lint, Scheduled Maintenance) and local command pairs across all four files.
-- **Maintainer UX:** Cadence sections should read as checklists tied to workflow signals (failing Link Check runs, monthly Scheduled Maintenance results, quarterly doc drift review), not as operational runbooks implying staffing.
-- **Contributor UX:** `CONTRIBUTING.md` should remain the primary “how to reproduce CI locally” entry point; `MAINTAINERS.md` is the canonical maintainer-facing automation summary linked from other docs.
+- **Category boundaries:** A CAMEL repository belongs in Frameworks; the CAMEL arXiv paper stays in Research Papers—use distinct URLs. A LangGraph concepts page may already be listed under Coordination Patterns; do not duplicate the same URL under Frameworks.
+- **Description style:** Match existing seeded tone—one factual sentence ending with a period, emphasizing group coordination rather than product hype.
+- **Stable URLs:** Prefer enduring references (Wikipedia, official docs, repository roots) over campaign landing pages or version-fragile deep links when equally canonical.
+- **Alphabetization:** Sort by markdown link text, not URL or author name; re-read the full section after inserts.
+- **Automated enforcement:** Scope keywords and description periods are enforced at check time; failing entries block merge.
 
 ## Success metrics
 
-- Zero factual contradictions between the four governance files and implemented workflows after merge.
-- Contributors can find CI, link, and awesome-lint local reproduction commands from `CONTRIBUTING.md` without reading workflow YAML.
-- Maintainers can follow weekly/monthly/quarterly cadence guidance without encountering obsolete “no CI yet” language.
-- Integration repair completes with passing `make check`, `make test`, and `git diff --check` on first merge attempt.
+- Each of the three core sections reaches ≥8 entries with zero duplicate URLs and zero `make check` failures.
+- New theories entries cover at least three distinct conceptual families not already represented (for example rational-agent modeling, hierarchical planning, stigmergy, or human–agent teaming).
+- New pattern entries cover at least three distinct topologies not already represented by the four seed links.
+- New framework entries represent at least three distinct orchestration products not already listed.
+- No regression in CI README validation or contributor governance sections.
 
 ## Open Questions
 
-None — convergence review already confirmed a clean four-file documentation diff with no `git diff --check` issues. Treat factual verification against workflow YAML as implementation due diligence, not open design work.
+None. Category definitions, entry format, and quality gates are documented; implementers should reject borderline candidates rather than expand scope.

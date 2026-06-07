@@ -1,82 +1,89 @@
 {
   "project": "Awesome AI Agent Factories",
-  "branchName": "phase-8-9-maintainer-ops-integration-repair",
-  "description": "Integrate the reviewed Phase 8/9 maintainer-operations convergence documentation onto main for MAINTAINERS.md, CONTRIBUTING.md, docs/review-policy.md, and docs/taxonomy.md so governance prose truthfully reflects implemented Phase 4/5 automation, local check equivalents, availability-based maintainer stewardship cadence, and human judgment boundaries—without README changes, docs/internal edits, or invented SLAs or staffing.",
+  "branchName": "phase-7-core-sections-expansion",
+  "description": "Expand the underfilled README core sections Theories (5→≥8), Coordination Patterns (4→≥8), and Frameworks (5→≥8) with high-signal, taxonomy-aligned entries that preserve scope discipline, alphabetization, canonical URLs, and agent-factory relevance keywords; pass make check, make test, and git diff --check.",
   "context": {
-    "customerAsk": "Integrate the completed branch diff from origin/phase-8-9-maintainer-ops-convergence onto main for only MAINTAINERS.md, CONTRIBUTING.md, docs/review-policy.md, and docs/taxonomy.md. Ensure MAINTAINERS.md truthfully reflects implemented automation and maintainer-owned weekly, monthly, and quarterly stewardship without inventing staffing, SLAs, or automation that the repository does not have. Keep CONTRIBUTING.md, MAINTAINERS.md, docs/review-policy.md, and docs/taxonomy.md consistent about CI, link checks, awesome-lint, scheduled maintenance, local equivalents, and maintainer judgment boundaries. Do not add or remove README resource entries. Do not edit planner-owned docs/internal/* files. Leave make check, make test, and git diff --check passing.",
-    "problem": "Governance documentation on main still describes a pre-automation world—MAINTAINERS.md claims there is no CI gate or scheduled link checker while Phase 4 README checks and Phase 5 GitHub workflows are implemented. CONTRIBUTING.md omits the CI workflow from its GitHub Actions table. docs/review-policy.md and docs/taxonomy.md cross-references do not point maintainers to the converged automation summary and maintenance cadence, causing contributor and maintainer confusion.",
-    "solution": "Apply the already-reviewed four-file documentation diff from origin/phase-8-9-maintainer-ops-convergence onto branch phase-8-9-maintainer-ops-integration-repair. Verify every automation claim against existing workflow YAML and Makefile targets. Confirm cross-document consistency for workflow names, triggers, local equivalents, and maintainer-judgment boundaries. Run make check, make test, and git diff --check. Do not broaden scope beyond these four governance files."
+    "customerAsk": "Phase 7 content expansion: extend the underfilled README core sections without weakening scope discipline. Expand Theories from 5 entries to at least 8, Coordination Patterns from 4 entries to at least 8, and Frameworks from 5 entries to at least 8. Add only high-signal resources that clearly fit docs/taxonomy.md and CONTRIBUTING.md, keep entries alphabetized, use canonical stable URLs where possible, avoid duplicates, and keep descriptions factual and explicitly tied to coordination, orchestration, delegation, routing, handoffs, shared state, or group-level evaluation.",
+    "problem": "The three core README sections that anchor agent-factory literacy—Theories, Coordination Patterns, and Frameworks—remain thin relative to other Phase 7 sections. Readers and contributors lack enough on-main exemplars to compare conceptual models, coordination topologies, and orchestration frameworks. Underfilled core sections weaken scope enforcement because borderline submissions have fewer high-quality reference entries per lane.",
+    "solution": "Add curated entries only to the three target README sections until each meets the minimum count bar, following docs/taxonomy.md include rules and CONTRIBUTING.md formatting and relevance rules. Preserve governance prose and all non-target curated sections. Verify make check, make test, and git diff --check pass before merge."
   },
   "acceptanceCriteria": [
-    "Only MAINTAINERS.md, CONTRIBUTING.md, docs/review-policy.md, and docs/taxonomy.md differ from main for governance content (plus this batch planning artifacts under tasks/todo/)",
-    "MAINTAINERS.md documents CI, Link Check, Awesome Lint, and Scheduled Maintenance with triggers and local equivalents matching .github/workflows/*.yml and Makefile targets",
-    "MAINTAINERS.md describes weekly, monthly, and quarterly maintainer stewardship as availability-based human tasks tied to existing workflow schedules, without inventing dedicated staff, 24/7 coverage, or response-time SLAs",
-    "CONTRIBUTING.md, docs/review-policy.md, and docs/taxonomy.md agree with MAINTAINERS.md on automation scope, local reproduction commands, and maintainer judgment boundaries",
-    "No README resource entries are added or removed; no docs/internal/* files are edited",
+    "README Theories contains at least 8 resource entries (currently 5) using - [Resource Name](URL) - Description. format with descriptions ending in a period and entries alphabetized by link text",
+    "README Coordination Patterns contains at least 8 resource entries (currently 4) using the same format, tone, and alphabetization rules",
+    "README Frameworks contains at least 8 resource entries (currently 5) using the same format, tone, and alphabetization rules",
+    "Every new entry uses a stable canonical URL, fits docs/taxonomy.md include rules for its section, includes an agent-factory scope keyword in the description, and introduces no duplicate URLs anywhere in README.md",
+    "README governance sections (Scope, Contributing, Community) and all non-target curated sections remain unchanged except unavoidable whitespace or merge hygiene",
     "Quality gate: make check, make test, and git diff --check all pass from the repository root"
   ],
   "userStories": [
     {
-      "id": "phase-8-9-maintainer-ops-integration-repair-001",
-      "title": "Integrate MAINTAINERS.md automation and cadence documentation",
-      "description": "As a maintainer, I want MAINTAINERS.md to describe implemented automation and recurring stewardship so I can triage workflow failures and set contributor expectations without referencing obsolete pre-Phase-5 prose.",
+      "id": "phase-7-core-sections-expansion-001",
+      "title": "Expand Theories section to minimum density",
+      "description": "As a reader designing agent societies, I want more foundational theories indexed on main so I can compare enduring conceptual models for group organization, cooperation, and planning beyond the current five seed entries.",
       "acceptanceCriteria": [
-        "Apply the reviewed MAINTAINERS.md changes from origin/phase-8-9-maintainer-ops-convergence (intro, Automated checks, Maintainer maintenance cadence, merge policy, and What maintainers do not do today sections)",
-        "The Automated checks table lists CI, Link Check, Awesome Lint, and Scheduled Maintenance with triggers and local equivalents matching .github/workflows/ci.yml, link-check.yml, awesome-lint.yml, and scheduled-maintenance.yml",
-        "Weekly, monthly, and quarterly cadence sections describe human tasks when maintainers have availability and explicitly deny dedicated staff, 24/7 coverage, and response-time SLAs",
-        "Merge policy states resource PRs should have passing automated checks before merge while preserving manual scope and quality review",
-        "No claims of auto-merge, dedicated moderation staff, or automation the repository does not implement",
-        "Typecheck passes"
+        "README Theories contains at least 8 entries below the section intro (at least 3 new entries beyond the existing five seed entries)",
+        "Each new entry is a foundational idea for organizing agent groups per docs/taxonomy.md Theories include rules—not a runnable SDK or pattern-only topology writeup",
+        "Each entry uses exact format - [Resource Name](URL) - Description. with a factual one-sentence description ending in a period and an explicit agent-factory scope keyword",
+        "Entries are alphabetized by link text across the full section and no duplicate URLs are introduced anywhere in README.md",
+        "make check passes after Theories expansion",
+        "Typecheck passes",
+        "Tests pass"
       ],
       "priority": 1,
       "passes": true,
-      "notes": "Verified on main via merged phase-8-9-maintainer-ops-convergence commits 330835f and 69c56d7; branch head equals origin/main with no MAINTAINERS.md delta."
+      "notes": ""
     },
     {
-      "id": "phase-8-9-maintainer-ops-integration-repair-002",
-      "title": "Integrate CONTRIBUTING.md GitHub Actions and review guidance",
-      "description": "As a contributor, I want CONTRIBUTING.md to list all CI workflows and explain the split between automated checks and maintainer review so I can reproduce failures locally before opening a pull request.",
+      "id": "phase-7-core-sections-expansion-002",
+      "title": "Expand Coordination Patterns section to minimum density",
+      "description": "As a system architect choosing multi-agent topologies, I want more pattern references on main so I can study distinct orchestration shapes beyond the current four seed entries.",
       "acceptanceCriteria": [
-        "Apply the reviewed CONTRIBUTING.md changes from origin/phase-8-9-maintainer-ops-convergence (GitHub Actions table, CI workflow row, schedule wording, and pre-merge review paragraph)",
-        "GitHub Actions table includes CI with local equivalents make test and make check, Link Check (PRs plus weekly Mondays), Awesome Lint, and Scheduled Maintenance (monthly 1st)",
-        "Prose states CI runs Go format checks, go test ./..., and README validation via make check / internal/checks",
-        "Closing paragraph distinguishes automated README/Go/link/awesome-list checks from manual maintainer scope, canonical-link, and quality review and links to MAINTAINERS.md",
-        "Typecheck passes"
+        "README Coordination Patterns contains at least 8 entries below the section intro (at least 4 new entries beyond the existing four seed entries)",
+        "Each new entry documents a reusable multi-agent topology per docs/taxonomy.md Coordination Patterns include rules—not a framework product page whose primary value is the software itself",
+        "Each entry uses exact format - [Resource Name](URL) - Description. with a factual one-sentence description ending in a period and an explicit agent-factory scope keyword",
+        "New URLs do not duplicate URLs already present elsewhere in README.md and entries are alphabetized by link text across the full section",
+        "make check passes after Coordination Patterns expansion",
+        "Typecheck passes",
+        "Tests pass"
       ],
       "priority": 2,
-      "passes": true,
-      "notes": "Verified on main via merged phase-8-9-maintainer-ops-convergence commits; branch head equals origin/main with no CONTRIBUTING.md delta. GitHub Actions table includes CI, Link Check, Awesome Lint, and Scheduled Maintenance with triggers and local equivalents matching workflow YAML; CI prose and automated-vs-manual closing paragraph match convergence branch."
+      "passes": false,
+      "notes": ""
     },
     {
-      "id": "phase-8-9-maintainer-ops-integration-repair-003",
-      "title": "Align review-policy and taxonomy cross-references",
-      "description": "As a reviewer, I want docs/review-policy.md and docs/taxonomy.md to point to the converged maintainer automation and cadence documentation so governance docs stay mutually consistent.",
+      "id": "phase-7-core-sections-expansion-003",
+      "title": "Expand Frameworks section to minimum density",
+      "description": "As a builder selecting orchestration software, I want more multi-agent frameworks indexed on main so I can compare distinct runtimes for delegation, handoffs, and group coordination beyond the current five seed entries.",
       "acceptanceCriteria": [
-        "Apply the reviewed docs/review-policy.md change: the governance-documents table row for MAINTAINERS.md references automated checks summary and maintainer maintenance cadence",
-        "Apply the reviewed docs/taxonomy.md changes: governance-documents table rows reference local checks, automated enforcement, and MAINTAINERS.md merge policy and cadence; the Phase 4/5 automation paragraph links to MAINTAINERS.md#automated-checks",
-        "Cross-reference wording does not contradict MAINTAINERS.md or CONTRIBUTING.md on workflow names, triggers, or local equivalents",
-        "Typecheck passes"
+        "README Frameworks contains at least 8 entries below the section intro (at least 3 new entries beyond the existing five seed entries)",
+        "Each new entry is software whose core purpose is multi-agent coordination, orchestration, routing, or handoffs per docs/taxonomy.md Frameworks include rules—not a generic LLM SDK, single-agent chatbot framework, prompt library, or example-only repository already listed under Examples and Templates",
+        "Each entry uses exact format - [Resource Name](URL) - Description. with a factual one-sentence description ending in a period emphasizing orchestration, delegation, handoffs, or group coordination",
+        "New framework URLs point to canonical project homes and do not duplicate URLs already in README.md; entries are alphabetized by link text across the full section",
+        "make check passes after Frameworks expansion",
+        "Typecheck passes",
+        "Tests pass"
       ],
       "priority": 3,
-      "passes": true,
-      "notes": "Verified on main via merged phase-8-9-maintainer-ops-convergence commits; branch head equals origin/main with no review-policy.md or taxonomy.md delta. Governance-documents tables reference automated checks, local checks, automated enforcement, merge policy, and cadence; Phase 4/5 paragraph links to MAINTAINERS.md#automated-checks."
+      "passes": false,
+      "notes": ""
     },
     {
-      "id": "phase-8-9-maintainer-ops-integration-repair-004",
-      "title": "Verify governance consistency and repository quality gates",
-      "description": "As a maintainer merging this integration repair, I want end-to-end verification that the four governance files are consistent, scope-limited, and pass repository checks.",
+      "id": "phase-7-core-sections-expansion-004",
+      "title": "Verify batch quality gates and section integrity",
+      "description": "As a maintainer merging this batch, I want end-to-end verification that expanded core sections satisfy automated checks and leave unrelated repository content untouched.",
       "acceptanceCriteria": [
-        "Diff against main is limited to the four governance files and this batch tasks/todo/ planning artifacts — no README edits, no docs/internal/* edits, no workflow or Go source changes unless required to fix a factual doc error discovered during verification",
-        "Manual read confirms all four files agree on CI (make test, make check), Link Check (make links, weekly Mondays), Awesome Lint (npx awesome-lint), Scheduled Maintenance (monthly 1st, make check plus make links), and maintainer judgment boundaries automation cannot replace",
-        "make check exits 0 from repository root",
-        "make test exits 0 from repository root",
+        "From repository root, make check exits 0",
+        "From repository root, make test exits 0",
         "git diff --check reports no whitespace errors on changed files",
+        "README Theories, Coordination Patterns, and Frameworks each contain at least 8 entries with at least 10 combined new entries relative to pre-batch counts",
+        "README Scope, Contributing, and Community sections remain present and unweakened; non-target curated sections contain no unintended edits",
+        "Changed content files are limited to README.md and planning artifacts for this batch",
         "Typecheck passes",
         "Tests pass"
       ],
       "priority": 4,
-      "passes": true,
-      "notes": "Verification-only: PR #22 merged phase-8-9-maintainer-ops-convergence onto main; four governance files byte-identical to origin/main and convergence branch; make check, make test, go build ./..., and git diff --check all exit 0; branch diff vs main is planning artifacts only."
+      "passes": false,
+      "notes": ""
     }
   ]
 }
