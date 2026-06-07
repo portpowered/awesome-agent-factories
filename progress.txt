@@ -275,3 +275,13 @@
   - `factory/docs/overview.md` still requires `git add -f` because `factory/docs` is gitignored.
   - Story 005 is verification-only across the full repair branch; create the PR only after all stories pass.
 ---
+
+## 2026-06-07T11:15:00Z - phase-6-7-docs-convergence-repair-005
+- Verified documentation convergence quality gate on the full repair branch: `make check`, `make test`, `go test ./...`, `go build ./...`, and `git diff --check` all exit 0 from repository root.
+- Confirmed README Contents (Scope plus nine in-TOC curated sections), CONTRIBUTING ten-category list, `docs/taxonomy.md`, `docs/review-policy.md`, and `factory/docs/overview.md` agree on implemented Phase 4/5 automation and ten curated categories; no Phase 7 README resource entries added; branch diff vs `origin/main` limited to reconciliation scope.
+- Files changed: none (verification-only story)
+- **Learnings for future iterations:**
+  - Story 005 completes the repair PRD; create the PR when no open PR exists and all five stories pass.
+  - Use `git diff origin/main...HEAD --name-only` before marking verification stories complete to confirm scope.
+  - `docs/rejected.md` and `docs/historical.md` may still describe Phase 4 as unimplemented; out of scope for this repair batch per story 004 notes.
+---
