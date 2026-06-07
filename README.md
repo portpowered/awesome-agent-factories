@@ -26,7 +26,7 @@ AI agent factories are systems for coordinating groups of agents: assigning role
 - [Blog Posts](#blog-posts)
 - [Case Studies](#case-studies)
 - [Examples and Templates](#examples-and-templates)
-- [Community](#community)
+- [Related Lists](#related-lists)
 
 ## Scope
 
@@ -99,7 +99,7 @@ Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for the full s
 
 **Scope** — whether your resource fits agent-factory topics (groups of agents, flows, orchestration).
 
-**Category** — which of the ten README sections applies (Theories, Coordination Patterns, Frameworks, and the rest).
+**Category** — which of the ten curated README sections applies (Theories, Coordination Patterns, Frameworks, Protocols and Interfaces, Benchmarks, Research Papers, Blog Posts, Case Studies, Examples and Templates, or Related Lists).
 
 **Entry format** — `- [Resource Name](URL) - Description.` with the exact resource name as link text.
 

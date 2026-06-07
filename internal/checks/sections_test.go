@@ -8,7 +8,7 @@ import (
 
 func validEmptySectionFixture() string {
 	var b strings.Builder
-	b.WriteString("## Contents\n\n- [Scope](#scope)\n- [Community](#community)\n")
+	b.WriteString("## Contents\n\n- [Scope](#scope)\n")
 	for _, heading := range requiredResourceSections {
 		if contentsExcludedSections[heading] {
 			continue

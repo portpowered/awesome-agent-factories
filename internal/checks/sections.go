@@ -7,11 +7,10 @@ import (
 	"unicode"
 )
 
-// contentsExcludedSections matches awesome-lint sectionHeadingDenylist: these
-// headings must exist but are omitted from the Contents table.
+// contentsExcludedSections lists headings that must exist but are omitted from
+// the Contents navigation (non-curated sections such as Contributing).
 var contentsExcludedSections = map[string]bool{
-	"Related Lists": true,
-	"Contributing":  true,
+	"Contributing": true,
 }
 
 // requiredResourceSections lists the ten Phase 1 README category headings.
