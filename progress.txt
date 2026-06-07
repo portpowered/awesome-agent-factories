@@ -255,3 +255,12 @@
   - When checklist item 8 references link automation, cite Link Check and Scheduled Maintenance together so PR and monthly scans are both visible to reviewers.
   - Story 003 owns factory/docs/overview.md; story 004 owns taxonomy and cross-doc category alignment.
 ---
+
+## 2026-06-07T09:45:00Z - phase-6-7-docs-convergence-repair-003
+- Repaired `factory/docs/overview.md` for Awesome List planner guidance: tightened opening to agent-factory coordination/orchestration/flows framing; added `docs/internal/checklist.md` and `docs/internal/progress.txt` to Read First alongside `customer-ask.md`; reframed Phase Control around Awesome List build goal and planner state files; aligned Local State Files prose with Read First.
+- Files changed: factory/docs/overview.md
+- **Learnings for future iterations:**
+  - The prior cleanup batch already removed AI model reference and `documentation-site-pages-needed.md` on main; repair story 003 is a gap-fill for PRD Read First and Phase Control wording.
+  - `factory/docs` is gitignored but tracked files like `overview.md` require `git add -f` to stage edits.
+  - Story 004 owns taxonomy and cross-doc category alignment; story 005 runs full convergence verification.
+---
