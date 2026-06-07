@@ -8,14 +8,19 @@ import (
 
 func validEmptySectionFixture() string {
 	var b strings.Builder
-	b.WriteString("## Scope\n\nScope intro.\n\n## Contents\n\n")
+	b.WriteString("## Contents\n\n- [Scope](#scope)\n- [Community](#community)\n")
 	for _, heading := range requiredResourceSections {
+		if contentsExcludedSections[heading] {
+			continue
+		}
 		anchor := headingAnchor(heading)
 		fmt.Fprintf(&b, "- [%s](#%s)\n", heading, anchor)
 	}
+	b.WriteString("\n## Scope\n\nScope intro.\n")
 	for _, heading := range requiredResourceSections {
 		fmt.Fprintf(&b, "\n## %s\n\nOptional intro without resource entries.\n", heading)
 	}
+	b.WriteString("\n## Contributing\n\nSee CONTRIBUTING.md.\n\n## Community\n\nCommunity links.\n")
 	return strings.TrimSpace(b.String())
 }
 
