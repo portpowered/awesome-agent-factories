@@ -1,112 +1,100 @@
 {
   "project": "Awesome AI Agent Factories",
-  "branchName": "phase-7-foundational-content-integration-repair",
-  "description": "Converge the completed Phase 7 foundational content seed from origin/phase-7-foundational-content-seed onto main by reapplying README entries for Theories, Coordination Patterns, Frameworks, and Related Lists, updating docs/taxonomy.md to reflect on-main seeding status, preserving Scope/Contributing/Community sections, and passing make check, make test, and git diff --check.",
+  "branchName": "phase-7-blog-posts-case-studies-examples-seed",
+  "description": "Complete Phase 7 foundational content seeding by populating README Blog Posts (4–6 entries), Case Studies (3–5 entries), and Examples and Templates (4–6 entries) with factual, alphabetized, multi-agent-scoped resources; update docs/taxonomy.md Phase 7 status to record on-main seeding for those sections and full Phase 7 completion; preserve already-seeded sections and governance prose; pass make check, make test, and git diff --check.",
   "context": {
-    "customerAsk": "Converge the completed Phase 7 foundational content seed onto main. Reapply the intended README additions for Theories, Coordination Patterns, Frameworks, and Related Lists from the completed origin/phase-7-foundational-content-seed work without weakening existing scope, contribution, or community sections. Keep entries canonical, factual, non-promotional, description-final-period compliant, and alphabetized within each section. Update docs/taxonomy.md so its Phase 7 status note reflects that foundational seeding is now present on main for those four sections. Keep the change narrow: do not start new categories, do not add extra docs churn, and keep make check, make test, and git diff --check passing.",
-    "problem": "Phase 7 foundational content was completed on branch phase-7-foundational-content-seed but is not on main. The default branch still has empty Theories, Coordination Patterns, Frameworks, and Related Lists sections, and docs/taxonomy.md still states Phase 7 content seeding has not started. Contributors lack on-main exemplars for entry format, tone, category placement, and alphabetization.",
-    "solution": "Integrate the seed-branch README entries and taxonomy status update onto main as a focused two-file repair. Reapply eighteen curated entries validated on origin/phase-7-foundational-content-seed, update docs/taxonomy.md to state foundational seeding is present on main for the four seeded sections, preserve Scope/Contributing/Community prose, leave deferred sections empty, and verify make check, make test, and git diff --check pass."
+    "customerAsk": "Advance the unfinished Phase 7 README sections now that Theories, Coordination Patterns, Frameworks, Protocols and Interfaces, Benchmarks, Research Papers, and Related Lists are already seeded on main. Add coherent first seeds for Blog Posts (roughly 4–6 high-confidence technical entries), Case Studies (roughly 3–5 stable deployment entries), and Examples and Templates (roughly 4–6 runnable or forkable multi-agent examples). Keep entries factual, neutral, non-promotional, alphabetized within each section, and formatted as - [Resource Name](URL) - Description. with descriptions ending in periods. Use stable direct URLs scoped to groups of agents or agent-flow management. Update docs/taxonomy.md so its Phase 7 status note reflects that Blog Posts, Case Studies, and Examples and Templates are now seeded on main. Leave make check, make test, and git diff --check passing.",
+    "problem": "README Blog Posts, Case Studies, and Examples and Templates are empty on main while the other seven curated sections already have Phase 7 seed content. Contributors lack on-main exemplars for category fit, tone, and entry format in these three sections. docs/taxonomy.md still defers Blog Posts, Case Studies, and Examples and Templates to a later batch, which will be stale once this work lands.",
+    "solution": "Add a focused two-file content seed: populate each empty README section with curated entries that satisfy docs/taxonomy.md include rules and CONTRIBUTING.md formatting rules, then update the Phase 7 status paragraph in docs/taxonomy.md to record that all ten curated README resource sections are seeded on main. Preserve Scope, Contributing, and Community prose. Do not modify already-seeded sections. Verify make check, make test, and git diff --check pass."
   },
   "acceptanceCriteria": [
-    "README Theories, Coordination Patterns, Frameworks, and Related Lists each contain the intended seed-branch entries (18 total) using - [Resource Name](URL) - Description. format",
-    "Every description ends with a period, uses factual non-promotional tone, and entries are alphabetized by link text within each section with no duplicate URLs in README.md",
-    "README Scope, Contributing, and Community sections remain present and are not weakened, shortened, or contradicted",
-    "Deferred README sections (Protocols and Interfaces, Benchmarks, Research Papers, Blog Posts, Case Studies, Examples and Templates) receive no new entries; no new categories or unrelated doc churn",
-    "docs/taxonomy.md Phase 7 status prose states foundational seeding is present on main for Theories, Coordination Patterns, Frameworks, and Related Lists",
-    "Changed files are limited to README.md, docs/taxonomy.md Phase 7 status update, and planning artifacts",
+    "README Blog Posts contains 4–6 curated entries using - [Resource Name](URL) - Description. format with descriptions ending in a period and entries alphabetized by link text",
+    "README Case Studies contains 3–5 curated entries using the same format, tone, and alphabetization rules, describing real multi-agent or agent-flow deployments",
+    "README Examples and Templates contains 4–6 curated entries using the same format and alphabetization rules, linking runnable or forkable multi-agent coordination artifacts",
+    "Every new entry uses a stable direct URL, stays factual and non-promotional, addresses multi-agent coordination or agent-flow management, and introduces no duplicate URLs in README.md",
+    "Already-seeded README sections and governance sections (Scope, Contributing, Community) remain unchanged except unavoidable whitespace or merge hygiene",
+    "docs/taxonomy.md Phase 7 status note states Blog Posts, Case Studies, and Examples and Templates are seeded on main and that Phase 7 foundational content seeding is complete across all ten curated README resource sections",
     "Quality gate: make check, make test, and git diff --check all pass from the repository root"
   ],
   "userStories": [
     {
-      "id": "phase-7-foundational-content-integration-repair-001",
-      "title": "Integrate Theories entries onto main",
-      "description": "As a reader learning conceptual models for agent groups, I want foundational theory entries visible on main so I can study coordination and delegation ideas before choosing frameworks.",
+      "id": "phase-7-blog-posts-case-studies-examples-seed-001",
+      "title": "Seed Blog Posts section",
+      "description": "As a reader learning from production multi-agent experience, I want technical blog posts linked from the README so I can study real architectures, orchestration lessons, evaluation approaches, and failure analyses.",
       "acceptanceCriteria": [
-        "README Theories contains five entries matching the seed branch: Actor Model, An Introduction to MultiAgent Systems, Blackboard Architecture, Contract Net Protocol, and Swarm Intelligence",
-        "Entries appear below the section intro in alphabetical order by link text with exact resource names and descriptions ending in a period",
-        "make check passes after Theories integration",
+        "README Blog Posts contains 4–6 new entries below the section intro covering technical multi-agent topics such as architecture, orchestration patterns, group-workflow evaluation, or failure analysis",
+        "Each entry uses exact format - [Resource Name](URL) - Description. with descriptions ending in a period and entries alphabetized by link text",
+        "No duplicate URLs are introduced anywhere in README.md",
+        "make check passes after Blog Posts seeding",
         "Typecheck passes",
         "Tests pass"
       ],
       "priority": 1,
       "passes": true,
-      "notes": "Verification-only: PR #16 merged seed onto main; Theories section byte-identical to origin/phase-7-foundational-content-seed."
+      "notes": ""
     },
     {
-      "id": "phase-7-foundational-content-integration-repair-002",
-      "title": "Integrate Coordination Patterns entries onto main",
-      "description": "As a system designer, I want coordination-pattern documentation linked from main so I can compare supervisor, handoff, and routing topologies when designing agent flows.",
+      "id": "phase-7-blog-posts-case-studies-examples-seed-002",
+      "title": "Seed Case Studies section",
+      "description": "As a practitioner evaluating agent-factory adoption, I want real deployment case studies indexed on main so I can compare how organizations operate multiple agents or explicit agent flows in production.",
       "acceptanceCriteria": [
-        "README Coordination Patterns contains four entries matching the seed branch: Agent orchestration, AI Agent Orchestration Patterns, Building Effective Agents, and Multi-agent",
-        "Entries appear below the section intro in alphabetical order by link text with factual topology-focused descriptions ending in a period",
-        "make check passes after Coordination Patterns integration",
+        "README Case Studies contains 3–5 new entries below the section intro describing real-world or sustained operational multi-agent or agent-flow use",
+        "Each entry uses exact format - [Resource Name](URL) - Description. with factual encyclopedic descriptions ending in a period and entries alphabetized by link text",
+        "No duplicate URLs are introduced anywhere in README.md",
+        "make check passes after Case Studies seeding",
         "Typecheck passes",
         "Tests pass"
       ],
       "priority": 2,
       "passes": true,
-      "notes": "Verification-only: PR #16 merged seed onto main; Coordination Patterns section byte-identical to origin/phase-7-foundational-content-seed."
+      "notes": ""
     },
     {
-      "id": "phase-7-foundational-content-integration-repair-003",
-      "title": "Integrate Frameworks entries onto main",
-      "description": "As a builder implementing agent factories, I want canonical multi-agent frameworks listed on main so I can evaluate orchestration runtimes for teams, handoffs, and flow control.",
+      "id": "phase-7-blog-posts-case-studies-examples-seed-003",
+      "title": "Seed Examples and Templates section",
+      "description": "As a builder starting a multi-agent project, I want runnable or forkable examples linked from the README so I can adapt coordination, handoff, and orchestration patterns without guessing category fit.",
       "acceptanceCriteria": [
-        "README Frameworks contains five entries matching the seed branch: AutoGen, CrewAI, LangGraph, MetaGPT, and Symphony",
-        "Descriptions emphasize multi-agent orchestration, delegation, or handoff capabilities; entries are alphabetized by link text",
-        "make check passes after Frameworks integration",
+        "README Examples and Templates contains 4–6 new entries below the section intro linking runnable or forkable multi-agent coordination artifacts",
+        "Each entry uses exact format - [Resource Name](URL) - Description. with descriptions ending in a period and entries alphabetized by link text",
+        "No duplicate URLs are introduced anywhere in README.md",
+        "make check passes after Examples and Templates seeding",
         "Typecheck passes",
         "Tests pass"
       ],
       "priority": 3,
       "passes": true,
-      "notes": "Verification-only: PR #16 merged seed onto main; Frameworks section byte-identical to origin/phase-7-foundational-content-seed."
+      "notes": ""
     },
     {
-      "id": "phase-7-foundational-content-integration-repair-004",
-      "title": "Integrate Related Lists entries onto main",
-      "description": "As a reader exploring the agent-factory ecosystem, I want complementary awesome lists indexed on main so I can discover broader curated resources without duplicating them in this list.",
+      "id": "phase-7-blog-posts-case-studies-examples-seed-004",
+      "title": "Update taxonomy Phase 7 status for completed seeding",
+      "description": "As a maintainer or contributor checking phase status, I want docs/taxonomy.md to reflect that Blog Posts, Case Studies, and Examples and Templates are seeded on main so documentation matches repository state.",
       "acceptanceCriteria": [
-        "README Related Lists contains four entries matching the seed branch: Awesome AI agents, Awesome Generative Multi-Agent Systems, Awesome Multi-Agent Learning, and Awesome Multi-Agent Papers",
-        "Link text uses each list's official title; entries are alphabetized by link text with descriptions ending in a period",
-        "make check passes after Related Lists integration",
-        "Typecheck passes",
-        "Tests pass"
-      ],
-      "priority": 4,
-      "passes": true,
-      "notes": "Verification-only: PR #16 merged seed onto main; Related Lists section byte-identical to origin/phase-7-foundational-content-seed."
-    },
-    {
-      "id": "phase-7-foundational-content-integration-repair-005",
-      "title": "Update taxonomy Phase 7 status for main convergence",
-      "description": "As a maintainer or factory operator tracking phase status, I want docs/taxonomy.md to reflect that Phase 7 foundational seeding is present on main so documentation matches repository state.",
-      "acceptanceCriteria": [
-        "docs/taxonomy.md Phase 7 content-seeding prose states foundational seeding is present on main for Theories, Coordination Patterns, Frameworks, and Related Lists",
-        "Taxonomy notes that Blog Posts, Case Studies, Benchmarks, Research Papers, Protocols and Interfaces, and Examples and Templates remain empty for later batches",
-        "Category definitions, include/exclude rules, and README section headings in taxonomy are unchanged",
-        "No new README entries are added in deferred sections as part of this story",
+        "docs/taxonomy.md Phase 7 content-seeding paragraph states Blog Posts, Case Studies, and Examples and Templates are seeded on main",
+        "The same paragraph records Phase 7 foundational content seeding is present on main for all ten curated README resource sections",
+        "Category definitions, include/exclude rules, and README section headings elsewhere in taxonomy are unchanged",
+        "No new README entries are added outside the three sections seeded in earlier stories",
         "Typecheck passes"
       ],
-      "priority": 5,
+      "priority": 4,
       "passes": false,
       "notes": ""
     },
     {
-      "id": "phase-7-foundational-content-integration-repair-006",
-      "title": "Verify integration repair quality gates and section integrity",
-      "description": "As a maintainer merging the integration repair, I want end-to-end verification that seeded content landed correctly and repository gates pass without regressing governance sections.",
+      "id": "phase-7-blog-posts-case-studies-examples-seed-005",
+      "title": "Verify batch quality gates and section integrity",
+      "description": "As a maintainer merging this batch, I want end-to-end verification that seeded content satisfies automated README checks and repository gates without regressing governance sections.",
       "acceptanceCriteria": [
         "From repository root, make check exits 0",
         "From repository root, make test exits 0",
         "git diff --check reports no whitespace errors on changed files",
-        "README Scope, Contributing, and Community sections remain present and unweakened with no contradictory edits",
-        "Deferred README sections contain no new resource entries",
-        "Changed files are limited to README.md, docs/taxonomy.md, and planning artifacts with no unrelated cleanup",
+        "README Scope, Contributing, and Community sections remain present and unweakened",
+        "Already-seeded sections contain no unintended edits",
+        "Changed files are limited to README.md, docs/taxonomy.md, and planning artifacts for this batch",
         "Typecheck passes",
         "Tests pass"
       ],
-      "priority": 6,
+      "priority": 5,
       "passes": false,
       "notes": ""
     }
