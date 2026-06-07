@@ -44,8 +44,8 @@
         "Typecheck passes"
       ],
       "priority": 2,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Verified on main via merged phase-8-9-maintainer-ops-convergence commits; branch head equals origin/main with no CONTRIBUTING.md delta. GitHub Actions table includes CI, Link Check, Awesome Lint, and Scheduled Maintenance with triggers and local equivalents matching workflow YAML; CI prose and automated-vs-manual closing paragraph match convergence branch."
     },
     {
       "id": "phase-8-9-maintainer-ops-integration-repair-003",
@@ -58,8 +58,8 @@
         "Typecheck passes"
       ],
       "priority": 3,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Verified on main via merged phase-8-9-maintainer-ops-convergence commits; branch head equals origin/main with no review-policy.md or taxonomy.md delta. Governance-documents tables reference automated checks, local checks, automated enforcement, merge policy, and cadence; Phase 4/5 paragraph links to MAINTAINERS.md#automated-checks."
     },
     {
       "id": "phase-8-9-maintainer-ops-integration-repair-004",
@@ -75,8 +75,8 @@
         "Tests pass"
       ],
       "priority": 4,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Verification-only: PR #22 merged phase-8-9-maintainer-ops-convergence onto main; four governance files byte-identical to origin/main and convergence branch; make check, make test, go build ./..., and git diff --check all exit 0; branch diff vs main is planning artifacts only."
     }
   ]
 }
