@@ -130,6 +130,12 @@ Technical writing that explains real patterns, architectures, or failures in mul
 
 Real-world uses of multiple agents or agent flows.
 
+- [Allianz launched its first agentic AI to automate claims](https://www.allianz.com/en/mediacenter/news/articles/251103-when-the-storm-clears-so-should-the-claim-queue.html) - Allianz case narrative on Project Nemo, a seven-agent claims workflow with planner orchestration, specialist verification agents, human payout handoffs, and roughly 80% faster low-complexity claim settlement in Australia.
+- [Faire: Swarm-Coding with Multiple Background Agents for Large-Scale Code Maintenance](https://www.zenml.io/llmops-database/swarm-coding-with-multiple-background-agents-for-large-scale-code-maintenance) - Faire case writeup on coordinating hierarchical GitHub Copilot background agents with MCP delegation to parallelize feature-flag cleanup and maintenance pull requests across production repositories.
+- [How Planview built a scalable AI Assistant for portfolio and project management using Amazon Bedrock](https://aws.amazon.com/blogs/machine-learning/how-planview-built-a-scalable-ai-assistant-for-portfolio-and-project-management-using-amazon-bedrock/) - Planview deployment story on Planview Copilot, a Bedrock-backed multi-agent assistant with a central orchestrator routing portfolio questions to specialized application agents for enterprise project workflows.
+- [How Schroders built its multi-agent financial analysis research assistant](https://cloud.google.com/blog/topics/customers/how-schroders-built-its-multi-agent-financial-analysis-research-assistant) - Schroders customer case on a Vertex AI Agent Builder research assistant using specialized analyst agents, LangGraph parent-child orchestration, and evaluation gates to shorten equity research coordination cycles.
+- [How Thomson Reuters built an Agentic Platform Engineering Hub with Amazon Bedrock AgentCore](https://aws.amazon.com/blogs/machine-learning/how-thomson-reuters-built-an-agentic-platform-engineering-hub-with-amazon-bedrock-agentcore/) - Thomson Reuters platform engineering case on an AgentCore hub where a central orchestrator delegates AWS provisioning and patching tasks to service-specific agents with human-in-the-loop approval handoffs.
+
 ## Examples and Templates
 
 Runnable or forkable examples of multi-agent coordination.
