@@ -87,13 +87,33 @@ Software that manages agent groups, flows, handoffs, or orchestration.
 
 Standards or conventions for agent interaction, handoffs, and shared interfaces.
 
+- [Agent2Agent Protocol](https://a2a-protocol.org/) - Open agent-to-agent interoperability specification for discovery, task delegation, and message exchange across heterogeneous agent runtimes.
+- [AGNTCY Agent Connect Protocol](https://docs.agntcy.org/) - Specification for secure agent-to-agent connectivity, identity, and message routing across distributed multi-agent networks.
+- [FIPA Agent Communication Language](http://www.fipa.org/repository/aclspecs.html) - Standard message-representation and interaction-protocol vocabulary for structured coordination among software agents.
+- [Model Context Protocol](https://modelcontextprotocol.io/) - Open protocol for sharing tools, resources, and context between agents and runtimes in multi-step orchestration flows.
+- [Open Agent Schema Framework](https://github.com/agntcy/oasf) - Schema specification for describing agent capabilities and interfaces to support routing and delegation in multi-agent systems.
+
 ## Benchmarks
 
 Benchmarks that evaluate group or workflow behavior.
 
+- [AgentBench](https://github.com/THUDM/AgentBench) - Multi-environment benchmark for evaluating LLM-as-agent reasoning, tool use, and multi-turn orchestration across diverse interactive task flows.
+- [AgentBoard](https://hkust-nlp.github.io/agentboard/) - Analytical evaluation board for multi-turn LLM agents spanning embodied, web, game, and tool domains with group-level evaluation metrics.
+- [MultiAgentBench](https://github.com/ulab-uiuc/MARBLE) - Benchmark for evaluating collaboration, competition, and coordination among LLM-based multi-agent systems across diverse interactive scenarios.
+- [SWE-bench](https://www.swebench.com/) - Benchmark of real GitHub issues for evaluating agent workflows with task delegation across multi-step software engineering flows.
+- [WebArena](https://webarena.dev/) - Self-hostable web environment benchmarking autonomous agents on long-horizon multi-step tasks across realistic site orchestration flows.
+
 ## Research Papers
 
 Academic or technical papers about agent groups and flows.
+
+- [A Survey on Large Language Model based Autonomous Agents](https://arxiv.org/abs/2308.11432) - Survey of LLM-based autonomous agents covering planning, memory, and action modules for multi-step orchestration and coordination in agent factories.
+- [AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation](https://arxiv.org/abs/2308.08155) - Research on conversational multi-agent orchestration patterns for task delegation, group chat, and cooperative problem solving across specialized agents.
+- [CAMEL: Communicative Agents for Mind Exploration of Large Language Model Society](https://arxiv.org/abs/2303.17760) - Framework for role-playing communicative agents that coordinate through structured dialogue to explore emergent multi-agent behavior and delegation strategies.
+- [Communicative Agents for Software Development](https://arxiv.org/abs/2307.07924) - ChatDev paper describing multi-agent software teams with role-based delegation, handoffs, and coordinated orchestration flows across development phases.
+- [Generative Agents: Interactive Simulacra of Human Behavior](https://arxiv.org/abs/2304.03442) - Architecture for believable agent societies with shared state, memory, and planning that coordinate daily activities in interactive simulated environments.
+- [Large Language Model based Multi-Agents: A Survey of Progress and Challenges](https://arxiv.org/abs/2402.01680) - IJCAI survey of LLM multi-agent systems covering agent communication, profiling, coordination paradigms, and group-level evaluation benchmarks.
+- [MetaGPT: Meta Programming for A Multi-Agent Collaborative Framework](https://arxiv.org/abs/2308.00352) - Multi-agent collaborative framework assigning software-company roles with structured message passing for coordination of planning and execution flows.
 
 ## Blog Posts
 
