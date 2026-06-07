@@ -1,98 +1,112 @@
 {
   "project": "Awesome AI Agent Factories",
-  "branchName": "phase-7-interfaces-benchmarks-papers-integration-repair",
-  "description": "Converge the completed Phase 7 seed from origin/phase-7-interfaces-benchmarks-papers-seed onto main by reapplying README entries for Protocols and Interfaces, Benchmarks, and Research Papers, updating docs/taxonomy.md to reflect on-main seeding status for those three sections, preserving existing seeded sections and governance prose, and passing make check, make test, and git diff --check.",
+  "branchName": "phase-7-foundational-content-integration-repair",
+  "description": "Converge the completed Phase 7 foundational content seed from origin/phase-7-foundational-content-seed onto main by reapplying README entries for Theories, Coordination Patterns, Frameworks, and Related Lists, updating docs/taxonomy.md to reflect on-main seeding status, preserving Scope/Contributing/Community sections, and passing make check, make test, and git diff --check.",
   "context": {
-    "customerAsk": "Update README.md to add the completed seeded entries for Protocols and Interfaces, Benchmarks, and Research Papers from the finished origin/phase-7-interfaces-benchmarks-papers-seed work. Keep the existing Phase 7 seeded sections for Theories, Coordination Patterns, Frameworks, and Related Lists intact and untouched except for ordering or formatting strictly required to integrate the new entries coherently. Keep all new README entries factual, neutral, non-promotional, alphabetized within their sections, and compliant with the repository entry format requirements. Update docs/taxonomy.md so its Phase 7 status note reflects that Protocols and Interfaces, Benchmarks, and Research Papers are now seeded on main once this repair lands, while Blog Posts, Case Studies, and Examples and Templates remain deferred. Do not start Blog Posts, Case Studies, or Examples and Templates in this batch. Leave make check, make test, and git diff --check passing.",
-    "problem": "Phase 7 content for Protocols and Interfaces, Benchmarks, and Research Papers was completed on branch phase-7-interfaces-benchmarks-papers-seed and marked complete by the factory, but convergence review found the intended README additions still absent from main. The default branch still has empty Protocols and Interfaces, Benchmarks, and Research Papers sections, and docs/taxonomy.md still lists those categories as deferred. Contributors lack on-main exemplars for protocol, benchmark, and research-paper entry format, tone, category placement, and alphabetization.",
-    "solution": "Integrate the seed-branch README entries and taxonomy status update onto main as a focused two-file repair. Reapply seventeen curated entries validated on origin/phase-7-interfaces-benchmarks-papers-seed, preserve existing seeded sections (Theories, Coordination Patterns, Frameworks, Related Lists) without substantive edits, update docs/taxonomy.md to state Protocols and Interfaces, Benchmarks, and Research Papers are seeded on main, leave Blog Posts, Case Studies, and Examples and Templates deferred, and verify make check, make test, and git diff --check pass."
+    "customerAsk": "Converge the completed Phase 7 foundational content seed onto main. Reapply the intended README additions for Theories, Coordination Patterns, Frameworks, and Related Lists from the completed origin/phase-7-foundational-content-seed work without weakening existing scope, contribution, or community sections. Keep entries canonical, factual, non-promotional, description-final-period compliant, and alphabetized within each section. Update docs/taxonomy.md so its Phase 7 status note reflects that foundational seeding is now present on main for those four sections. Keep the change narrow: do not start new categories, do not add extra docs churn, and keep make check, make test, and git diff --check passing.",
+    "problem": "Phase 7 foundational content was completed on branch phase-7-foundational-content-seed but is not on main. The default branch still has empty Theories, Coordination Patterns, Frameworks, and Related Lists sections, and docs/taxonomy.md still states Phase 7 content seeding has not started. Contributors lack on-main exemplars for entry format, tone, category placement, and alphabetization.",
+    "solution": "Integrate the seed-branch README entries and taxonomy status update onto main as a focused two-file repair. Reapply eighteen curated entries validated on origin/phase-7-foundational-content-seed, update docs/taxonomy.md to state foundational seeding is present on main for the four seeded sections, preserve Scope/Contributing/Community prose, leave deferred sections empty, and verify make check, make test, and git diff --check pass."
   },
   "acceptanceCriteria": [
-    "README Protocols and Interfaces, Benchmarks, and Research Papers each contain the intended seed-branch entries (17 total) using - [Resource Name](URL) - Description. format",
-    "Every new description ends with a period, uses factual non-promotional tone, and entries are alphabetized by link text within each newly seeded section with no duplicate URLs in README.md",
-    "README Theories, Coordination Patterns, Frameworks, and Related Lists sections remain intact except for ordering or formatting strictly required for coherent integration; Scope, Contributing, and Community sections are not weakened",
-    "Deferred README sections (Blog Posts, Case Studies, Examples and Templates) receive no new entries; no new categories or unrelated doc churn",
-    "docs/taxonomy.md Phase 7 status prose reflects that Protocols and Interfaces, Benchmarks, and Research Papers are seeded on main and Blog Posts, Case Studies, and Examples and Templates remain deferred",
+    "README Theories, Coordination Patterns, Frameworks, and Related Lists each contain the intended seed-branch entries (18 total) using - [Resource Name](URL) - Description. format",
+    "Every description ends with a period, uses factual non-promotional tone, and entries are alphabetized by link text within each section with no duplicate URLs in README.md",
+    "README Scope, Contributing, and Community sections remain present and are not weakened, shortened, or contradicted",
+    "Deferred README sections (Protocols and Interfaces, Benchmarks, Research Papers, Blog Posts, Case Studies, Examples and Templates) receive no new entries; no new categories or unrelated doc churn",
+    "docs/taxonomy.md Phase 7 status prose states foundational seeding is present on main for Theories, Coordination Patterns, Frameworks, and Related Lists",
     "Changed files are limited to README.md, docs/taxonomy.md Phase 7 status update, and planning artifacts",
     "Quality gate: make check, make test, and git diff --check all pass from the repository root"
   ],
   "userStories": [
     {
-      "id": "phase-7-interfaces-benchmarks-papers-integration-repair-001",
-      "title": "Integrate Protocols and Interfaces entries onto main",
-      "description": "As a builder designing interoperable agent factories, I want protocol and interface standards listed on main so I can adopt reusable contracts for agent discovery, delegation, and message exchange.",
+      "id": "phase-7-foundational-content-integration-repair-001",
+      "title": "Integrate Theories entries onto main",
+      "description": "As a reader learning conceptual models for agent groups, I want foundational theory entries visible on main so I can study coordination and delegation ideas before choosing frameworks.",
       "acceptanceCriteria": [
-        "README Protocols and Interfaces contains five entries matching the seed branch: Agent2Agent Protocol, AGNTCY Agent Connect Protocol, FIPA Agent Communication Language, Model Context Protocol, and Open Agent Schema Framework",
+        "README Theories contains five entries matching the seed branch: Actor Model, An Introduction to MultiAgent Systems, Blackboard Architecture, Contract Net Protocol, and Swarm Intelligence",
         "Entries appear below the section intro in alphabetical order by link text with exact resource names and descriptions ending in a period",
-        "make check passes after Protocols and Interfaces integration",
+        "make check passes after Theories integration",
         "Typecheck passes",
         "Tests pass"
       ],
       "priority": 1,
       "passes": true,
-      "notes": "Verified on main via merged PR #18; branch head matches origin/main for Protocols and Interfaces section."
+      "notes": "Verification-only: PR #16 merged seed onto main; Theories section byte-identical to origin/phase-7-foundational-content-seed."
     },
     {
-      "id": "phase-7-interfaces-benchmarks-papers-integration-repair-002",
-      "title": "Integrate Benchmarks entries onto main",
-      "description": "As a researcher or maintainer evaluating agent factories, I want group- and workflow-level benchmarks linked from main so I can compare coordination, delegation, and multi-step flow performance.",
+      "id": "phase-7-foundational-content-integration-repair-002",
+      "title": "Integrate Coordination Patterns entries onto main",
+      "description": "As a system designer, I want coordination-pattern documentation linked from main so I can compare supervisor, handoff, and routing topologies when designing agent flows.",
       "acceptanceCriteria": [
-        "README Benchmarks contains five entries matching the seed branch: AgentBench, AgentBoard, MultiAgentBench, SWE-bench, and WebArena",
-        "Entries appear below the section intro in alphabetical order by link text with factual group- or workflow-evaluation descriptions ending in a period",
-        "make check passes after Benchmarks integration",
+        "README Coordination Patterns contains four entries matching the seed branch: Agent orchestration, AI Agent Orchestration Patterns, Building Effective Agents, and Multi-agent",
+        "Entries appear below the section intro in alphabetical order by link text with factual topology-focused descriptions ending in a period",
+        "make check passes after Coordination Patterns integration",
         "Typecheck passes",
         "Tests pass"
       ],
       "priority": 2,
       "passes": true,
-      "notes": "Verified on main via merged PR #18; branch head matches origin/main for Benchmarks section."
+      "notes": "Verification-only: PR #16 merged seed onto main; Coordination Patterns section byte-identical to origin/phase-7-foundational-content-seed."
     },
     {
-      "id": "phase-7-interfaces-benchmarks-papers-integration-repair-003",
-      "title": "Integrate Research Papers entries onto main",
-      "description": "As a reader studying multi-agent coordination research, I want foundational papers indexed on main so I can explore surveys, frameworks, and coordination paradigms for agent groups and flows.",
+      "id": "phase-7-foundational-content-integration-repair-003",
+      "title": "Integrate Frameworks entries onto main",
+      "description": "As a builder implementing agent factories, I want canonical multi-agent frameworks listed on main so I can evaluate orchestration runtimes for teams, handoffs, and flow control.",
       "acceptanceCriteria": [
-        "README Research Papers contains seven entries matching the seed branch: A Survey on Large Language Model based Autonomous Agents; AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation; CAMEL: Communicative Agents for Mind Exploration of Large Language Model Society; Communicative Agents for Software Development; Generative Agents: Interactive Simulacra of Human Behavior; Large Language Model based Multi-Agents: A Survey of Progress and Challenges; and MetaGPT: Meta Programming for A Multi-Agent Collaborative Framework",
-        "Entries appear below the section intro in alphabetical order by link text with research-focused descriptions ending in a period",
-        "make check passes after Research Papers integration",
+        "README Frameworks contains five entries matching the seed branch: AutoGen, CrewAI, LangGraph, MetaGPT, and Symphony",
+        "Descriptions emphasize multi-agent orchestration, delegation, or handoff capabilities; entries are alphabetized by link text",
+        "make check passes after Frameworks integration",
         "Typecheck passes",
         "Tests pass"
       ],
       "priority": 3,
       "passes": true,
-      "notes": "Verified on main via merged PR #18; branch head matches origin/main for Research Papers section."
+      "notes": "Verification-only: PR #16 merged seed onto main; Frameworks section byte-identical to origin/phase-7-foundational-content-seed."
     },
     {
-      "id": "phase-7-interfaces-benchmarks-papers-integration-repair-004",
-      "title": "Update taxonomy Phase 7 status for protocols, benchmarks, and papers convergence",
-      "description": "As a maintainer or factory operator tracking phase status, I want docs/taxonomy.md to reflect that Phase 7 seeding now includes Protocols and Interfaces, Benchmarks, and Research Papers on main so documentation matches repository state.",
+      "id": "phase-7-foundational-content-integration-repair-004",
+      "title": "Integrate Related Lists entries onto main",
+      "description": "As a reader exploring the agent-factory ecosystem, I want complementary awesome lists indexed on main so I can discover broader curated resources without duplicating them in this list.",
       "acceptanceCriteria": [
-        "docs/taxonomy.md Phase 7 content-seeding prose states Protocols and Interfaces, Benchmarks, and Research Papers are seeded on main as part of this batch",
-        "Taxonomy notes that Blog Posts, Case Studies, and Examples and Templates remain deferred for a later batch",
-        "Existing taxonomy note for Theories, Coordination Patterns, Frameworks, and Related Lists seeding on main remains accurate",
-        "Category definitions, include/exclude rules, and README section headings in taxonomy are unchanged",
-        "Typecheck passes"
+        "README Related Lists contains four entries matching the seed branch: Awesome AI agents, Awesome Generative Multi-Agent Systems, Awesome Multi-Agent Learning, and Awesome Multi-Agent Papers",
+        "Link text uses each list's official title; entries are alphabetized by link text with descriptions ending in a period",
+        "make check passes after Related Lists integration",
+        "Typecheck passes",
+        "Tests pass"
       ],
       "priority": 4,
       "passes": true,
-      "notes": "Updated Phase 7 status prose to state Protocols and Interfaces, Benchmarks, and Research Papers are seeded on main; deferred sections unchanged."
+      "notes": "Verification-only: PR #16 merged seed onto main; Related Lists section byte-identical to origin/phase-7-foundational-content-seed."
     },
     {
-      "id": "phase-7-interfaces-benchmarks-papers-integration-repair-005",
+      "id": "phase-7-foundational-content-integration-repair-005",
+      "title": "Update taxonomy Phase 7 status for main convergence",
+      "description": "As a maintainer or factory operator tracking phase status, I want docs/taxonomy.md to reflect that Phase 7 foundational seeding is present on main so documentation matches repository state.",
+      "acceptanceCriteria": [
+        "docs/taxonomy.md Phase 7 content-seeding prose states foundational seeding is present on main for Theories, Coordination Patterns, Frameworks, and Related Lists",
+        "Taxonomy notes that Blog Posts, Case Studies, Benchmarks, Research Papers, Protocols and Interfaces, and Examples and Templates remain empty for later batches",
+        "Category definitions, include/exclude rules, and README section headings in taxonomy are unchanged",
+        "No new README entries are added in deferred sections as part of this story",
+        "Typecheck passes"
+      ],
+      "priority": 5,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "phase-7-foundational-content-integration-repair-006",
       "title": "Verify integration repair quality gates and section integrity",
-      "description": "As a maintainer merging the integration repair, I want end-to-end verification that seeded content landed correctly, prior seeded sections remain intact, and repository gates pass without regressing governance sections.",
+      "description": "As a maintainer merging the integration repair, I want end-to-end verification that seeded content landed correctly and repository gates pass without regressing governance sections.",
       "acceptanceCriteria": [
         "From repository root, make check exits 0",
         "From repository root, make test exits 0",
         "git diff --check reports no whitespace errors on changed files",
-        "README Theories, Coordination Patterns, Frameworks, and Related Lists sections match pre-integration content except for ordering or formatting strictly required for integration",
         "README Scope, Contributing, and Community sections remain present and unweakened with no contradictory edits",
-        "Deferred README sections (Blog Posts, Case Studies, Examples and Templates) contain no new resource entries",
+        "Deferred README sections contain no new resource entries",
         "Changed files are limited to README.md, docs/taxonomy.md, and planning artifacts with no unrelated cleanup",
         "Typecheck passes",
         "Tests pass"
       ],
-      "priority": 5,
+      "priority": 6,
       "passes": false,
       "notes": ""
     }
