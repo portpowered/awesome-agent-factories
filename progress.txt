@@ -1,4 +1,5 @@
 ## Codebase Patterns
+- Phase 8/9 maintainer-ops convergence content may already be on `origin/main` via merged `phase-8-9-maintainer-ops-convergence` commits; run `git diff origin/main origin/phase-8-9-maintainer-ops-convergence -- MAINTAINERS.md CONTRIBUTING.md docs/review-policy.md docs/taxonomy.md` before reapplying governance diffs.
 - Phase 5 core CI: `.github/workflows/ci.yml` uses `actions/checkout@v4`, `actions/setup-go@v5` with `go-version: stable`, and `go mod download`; full gate steps (gofmt, tests, README checks) are added incrementally per PRD stories 002–004.
 - No package.json in this worktree; Go quality gates are `go build ./...`, `make check`, `make test`, and `git diff --check`.
 - Use the standard Awesome badge markup: `[![Awesome](https://awesome.re/badge.svg)](https://awesome.re)` on the H1 line.
@@ -387,4 +388,49 @@
   - Story 005 completes the PRD; create the PR when no open PR exists and all five stories pass.
   - Use `git diff origin/main...HEAD --name-only` to confirm changed-file scope before marking verification stories complete.
   - `go build ./...` is the local typecheck equivalent when no package.json exists.
+---
+
+## 2026-06-07T10:50:26Z - phase-8-9-maintainer-ops-integration-repair-001
+- Verified `MAINTAINERS.md` on this branch matches `origin/phase-8-9-maintainer-ops-convergence` and `origin/main` (zero diff); convergence commits `330835f` and `69c56d7` already landed the intro, **Automated checks** table, **Maintainer maintenance cadence** (weekly/monthly/quarterly), merge policy, and **What maintainers do not do today** sections.
+- Confirmed automated-checks table triggers and local equivalents align with `.github/workflows/ci.yml` (`make test`, `make check`), `link-check.yml` (PRs to `main`, weekly Mondays, `make links`), `awesome-lint.yml` (PR/push to `main`, `npx awesome-lint`), and `scheduled-maintenance.yml` (monthly 1st, `make check` + `make links`); cadence prose denies dedicated staff, 24/7 coverage, and response-time SLAs; merge policy requires passing CI/Link Check/Awesome Lint before merge without auto-merge claims.
+- Ran quality gates: `make check`, `make test`, `go build ./...`, and `git diff --check` all exit 0.
+- Files changed: none (verification-only story)
+- **Learnings for future iterations:**
+  - Branch head equals `origin/main` (`abc8ba3`); integration repair stories 002–004 may follow the same verify-not-reapply pattern if convergence is fully merged.
+  - Use `git diff origin/main origin/phase-8-9-maintainer-ops-convergence -- <four governance files>` before editing; empty diff means story work is verification-only.
+  - No PR exists yet; create only after all four stories pass.
+---
+
+## 2026-06-07T14:30:00Z - phase-8-9-maintainer-ops-integration-repair-002
+- Verified `CONTRIBUTING.md` on this branch matches `origin/phase-8-9-maintainer-ops-convergence` and `origin/main` (zero diff); convergence commits already landed the **GitHub Actions** table (CI, Link Check, Awesome Lint, Scheduled Maintenance), CI workflow prose (`gofmt`, `go test ./...`, `make check` / `internal/checks`), and closing automated-vs-manual review paragraph.
+- Confirmed table triggers and local equivalents align with `.github/workflows/ci.yml` (`make test`, `make check`), `link-check.yml` (PRs to `main`, weekly Mondays, `make links`), `awesome-lint.yml` (PR/push to `main`, `npx awesome-lint`), and `scheduled-maintenance.yml` (monthly 1st, `make check` + `make links`); GitHub Actions section links to [MAINTAINERS.md](MAINTAINERS.md) for merge expectations and stewardship cadence.
+- Ran quality gates: `make check`, `make test`, `go build ./...`, and `git diff --check` all exit 0.
+- Files changed: none (verification-only story)
+- **Learnings for future iterations:**
+  - Story 002 follows the same verify-not-reapply pattern as story 001 when `git diff origin/main origin/phase-8-9-maintainer-ops-convergence -- CONTRIBUTING.md` is empty.
+  - The closing paragraph at end of **Before you open a pull request** distinguishes automated checks from manual maintainer review; MAINTAINERS.md link lives in the GitHub Actions subsection prose (line 252), matching the reviewed convergence branch.
+  - Stories 003–004 remain; no PR until all four stories pass.
+---
+
+## 2026-06-07T15:00:00Z - phase-8-9-maintainer-ops-integration-repair-003
+- Verified `docs/review-policy.md` and `docs/taxonomy.md` on this branch match `origin/phase-8-9-maintainer-ops-convergence` and `origin/main` (zero diff); convergence commits already landed governance-documents cross-references and Phase 4/5 automation paragraph.
+- Confirmed `docs/review-policy.md` **Related documents** row for MAINTAINERS.md references automated checks summary and maintainer maintenance cadence; `docs/taxonomy.md` **Related documents** rows reference local checks (CONTRIBUTING.md), automated enforcement (review-policy.md), and MAINTAINERS.md merge policy and cadence; **Automation, workflow gates, and Phase 7 content seeding** paragraph links to [MAINTAINERS.md#automated-checks](../MAINTAINERS.md#automated-checks) alongside review-policy and CONTRIBUTING anchors.
+- Cross-reference wording agrees with MAINTAINERS.md and CONTRIBUTING.md on workflow names (CI, Link Check, Awesome Lint, Scheduled Maintenance), triggers, and local equivalents (`make test`, `make check`, `make links`, `npx awesome-lint`).
+- Ran quality gates: `make check`, `make test`, `go build ./...`, and `git diff --check` all exit 0.
+- Files changed: none (verification-only story)
+- **Learnings for future iterations:**
+  - Story 003 follows the same verify-not-reapply pattern as stories 001–002 when `git diff origin/main origin/phase-8-9-maintainer-ops-convergence -- docs/review-policy.md docs/taxonomy.md` is empty.
+  - Taxonomy **Related documents** table uses split references (local checks on CONTRIBUTING, automated enforcement on review-policy, merge policy/cadence on MAINTAINERS) rather than duplicating full automation prose in each row.
+  - Story 004 runs end-to-end governance consistency verification; no PR until all four stories pass.
+---
+
+## 2026-06-07T10:53:20Z - phase-8-9-maintainer-ops-integration-repair-004
+- Verified end-to-end governance consistency and repository quality gates: `git diff origin/main HEAD -- MAINTAINERS.md CONTRIBUTING.md docs/review-policy.md docs/taxonomy.md` is empty (zero-byte diff); convergence content already on `origin/main` via merged PR #22 (`phase-8-9-maintainer-ops-convergence`).
+- Manual read confirms all four governance files agree on CI (`make test`, `make check`), Link Check (`make links`, weekly Mondays), Awesome Lint (`npx awesome-lint`), Scheduled Maintenance (monthly 1st, `make check` + `make links`), and maintainer judgment boundaries automation cannot replace.
+- Ran quality gates from repository root: `make check`, `make test`, `go build ./...`, and `git diff --check` all exit 0; branch diff vs `origin/main` is planning artifacts only (no README edits, no `docs/internal/*` edits, no workflow or Go source changes).
+- Files changed: none (verification-only story)
+- **Learnings for future iterations:**
+  - When `git diff origin/main origin/phase-8-9-maintainer-ops-convergence -- <four governance files>` is empty and PR #22 already merged, integration repair stories 001–004 are all verify-not-reapply; create the PR after story 004 to close the batch.
+  - Use `git diff origin/main HEAD --name-only` (not three-dot) when predicting PR file list for verification-only branches whose merge-base differs from main tip.
+  - All four PRD stories complete; create PR `phase-8-9-maintainer-ops-integration-repair` with `prd.json` body when no open PR exists.
 ---
