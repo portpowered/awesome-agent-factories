@@ -264,3 +264,14 @@
   - `factory/docs` is gitignored but tracked files like `overview.md` require `git add -f` to stage edits.
   - Story 004 owns taxonomy and cross-doc category alignment; story 005 runs full convergence verification.
 ---
+
+## 2026-06-07T10:30:00Z - phase-6-7-docs-convergence-repair-004
+- Aligned taxonomy and cross-document category workflow language: reframed `docs/taxonomy.md` closing section to distinguish implemented Phase 4 structural checks and Phase 5 workflow gates from not-yet-started Phase 7 content seeding; expanded `factory/docs/overview.md` contributor and quality-gate prose to reference the same ten curated README categories and CONTRIBUTING local-check guidance (`make all`, optional `make lint` / `make links`, GitHub Actions table).
+- Verified README section headings, CONTRIBUTING category list, review-policy checklist item 2, and taxonomy quick-reference table already name matching ten categories with no Phase 4-as-unimplemented claims outside historical/rejected sibling docs (out of scope).
+- Files changed: docs/taxonomy.md, factory/docs/overview.md
+- **Learnings for future iterations:**
+  - Story 004 is primarily taxonomy future-automation reframing plus factory overview cross-references; README, CONTRIBUTING, and review-policy category alignment landed in prior Phase 4/5/6 stories.
+  - Mirror review-policy `## Future automation beyond Phase 4` and CONTRIBUTING `#github-actions` anchors when updating taxonomy automation prose.
+  - `factory/docs/overview.md` still requires `git add -f` because `factory/docs` is gitignored.
+  - Story 005 is verification-only across the full repair branch; create the PR only after all stories pass.
+---
