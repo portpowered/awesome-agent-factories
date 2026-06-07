@@ -119,6 +119,13 @@ Academic or technical papers about agent groups and flows.
 
 Technical writing that explains real patterns, architectures, or failures in multi-agent systems.
 
+- [Build multi-agent systems with LangGraph and Amazon Bedrock](https://aws.amazon.com/blogs/machine-learning/build-multi-agent-systems-with-langgraph-and-amazon-bedrock/) - AWS blog post on designing supervisor-worker and peer orchestration workflows with LangGraph state graphs and coordinated agent handoffs on Amazon Bedrock.
+- [How we built our multi-agent research system](https://www.anthropic.com/engineering/multi-agent-research-system) - Anthropic engineering post on Claude Research's orchestrator-worker architecture with parallel subagents, tool design, and production coordination lessons.
+- [LangGraph: Multi-Agent Workflows](https://www.langchain.com/blog/langgraph-multi-agent-workflows) - LangChain post explaining multi-agent orchestration patterns implemented with LangGraph graphs, including network, supervisor, and hierarchical coordination designs.
+- [Multi-Agent AI Coordination: The Distributed Systems Challenge Nobody's Talking About](https://jonathangardner.io/multi-agent-ai-is-a-distributed-systems-problem-plan-accordingly/) - Essay framing multi-agent coordination as a distributed systems problem covering orchestration, timeouts, circuit breakers, and saga-style recovery.
+- [Why agent orchestration is harder than kubernetes - Lessons while building Agentflow](https://dev.to/siddhantkcode/why-agent-orchestration-is-harder-than-kubernetes-lessons-while-building-agentflow-4jm3) - DEV Community post contrasting container orchestration with agent workflows on semantic checkpointing, failure detection, and dynamic task decomposition.
+- [Why Multi-Agent LLM Systems Fail (and How to Build Ones That Don't)](https://tianpan.co/blog/2025-10-14-why-multi-agent-llm-systems-fail) - Failure analysis of multi-agent LLM execution traces covering specification, inter-agent coordination misalignment, and termination issues with mitigation guidance.
+
 ## Case Studies
 
 Real-world uses of multiple agents or agent flows.
