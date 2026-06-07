@@ -285,3 +285,11 @@
   - Use `git diff origin/main...HEAD --name-only` before marking verification stories complete to confirm scope.
   - `docs/rejected.md` and `docs/historical.md` may still describe Phase 4 as unimplemented; out of scope for this repair batch per story 004 notes.
 ---
+
+## 2026-06-07T11:25:00Z - phase-6-7-docs-convergence-repair-005 (mergeability)
+- Restored `<!--lint disable awesome-toc-->` / `<!--lint enable awesome-toc-->` around README Contents so `npx awesome-lint` passes while `## Community` remains a governance footer omitted from Contents navigation (PR #15 awesome-lint failure).
+- Files changed: README.md
+- **Learnings for future iterations:**
+  - awesome-toc requires every `##` heading in the TOC unless lint is disabled for the Contents block; Community exclusion from Contents still needs the disable/enable wrappers even when Related Lists is also omitted from Contents.
+  - Run `npx awesome-lint` locally before creating the PR when story 005 is the convergence gate.
+---
