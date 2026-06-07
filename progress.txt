@@ -6,6 +6,7 @@
 - Phase 4 lint config: `.golangci.yml` uses golangci-lint v2 schema (`version: "2"`); `gofmt`/`gofumpt` live under `formatters.enable`, other linters under `linters.enable`.
 - This worktree fast-forwarded `phase-4-go-readme-checker-core` to obtain `go.mod` and `internal/checks/` before adding Makefile/lint automation.
 - Optional-tool Makefile targets: guard with `command -v <tool>`; print tool name, purpose, `go install` hint, and upstream docs URL to stderr before exiting 1.
+- README `## Contents` lists all ten curated categories including Related Lists; only `Contributing` is in `contentsExcludedSections` (Community stays as a footer section, not Contents navigation).
 
 ## 2026-06-06T00:00:00Z - awesome-readme-foundation-001
 - Established README identity: Awesome H1 with badge, inline SVG logo mark (three connected nodes), blockquote tagline, and factual agent-factory definition; removed placeholder `# awesome-agent-factories` heading.
@@ -184,4 +185,54 @@
   - `origin/main` may already contain workflow content via a parallel branch (PR #9 merged phase-5-link-awesome-maintenance-workflows); use `git diff origin/main -- .github/workflows/` and blob hash comparison to confirm content convergence even when commit history diverges.
   - GitHub PR diff against main (`git diff origin/main HEAD`) differs from merge-base diff (`git diff origin/main...HEAD`); prefer direct main comparison when predicting what a PR will show.
   - Story 006 completes the PRD; create the PR when no open PR exists and all stories pass.
+---
+
+## 2026-06-07T20:00:00Z - phase-6-7-docs-convergence-cleanup-001
+- Aligned README `## Contents` with ten curated categories: replaced Community navigation link with Related Lists; expanded Contributing category prose to name all ten curated sections explicitly.
+- Removed Related Lists from `contentsExcludedSections` in `internal/checks/sections.go` so `make check` validates Related Lists in Contents; updated `sections_test.go` fixture accordingly.
+- Files changed: README.md, internal/checks/sections.go, internal/checks/sections_test.go
+- **Learnings for future iterations:**
+  - `contentsExcludedSections` previously mirrored awesome-lint denylist (Related Lists omitted); Phase 6–7 convergence prioritizes taxonomy accuracy—only non-curated sections like Contributing stay excluded.
+  - `## Community` remains at README footer for CODE_OF_CONDUCT/SECURITY links; it must not appear in Contents curated navigation.
+  - `docs/internal/customer-ask.md` lines 85–96 show the target Contents shape with all ten category anchors.
+---
+
+## 2026-06-07T21:00:00Z - phase-6-7-docs-convergence-cleanup-002
+- Modernized `docs/review-policy.md` for Phase 4 automation reality: added **Automated enforcement** section mapping Makefile targets, `internal/checks`, and four GitHub workflows to local equivalents; reframed opening to document automation plus manual maintainer review for scope, quality, category disputes, and convergence.
+- Updated checklist item 8 and `needs-link-review` triage guidance to reference `make links` and Link Check workflow results instead of claiming link checking is absent.
+- Renamed **Future automation (Phase 4)** to **Future automation beyond Phase 4** describing implemented checks and gaps (scope keywords, duplicate detection, banned phrases); added `resource:related-list` label for Related Lists.
+- Files changed: docs/review-policy.md
+- **Learnings for future iterations:**
+  - Mirror CONTRIBUTING.md GitHub Actions table shape when documenting workflows in review-policy; keep workflow filenames as relative links from `docs/`.
+  - Story 003 owns taxonomy.md and CONTRIBUTING cross-doc alignment; review-policy checklist section 2 already lists ten categories including Related Lists.
+  - No `docs/internal/processes/` directory exists yet; skip relevant-files updates until that layout lands.
+---
+
+## 2026-06-07T22:00:00Z - phase-6-7-docs-convergence-cleanup-003
+- Reconciled `docs/taxonomy.md` with ten curated categories: added `resource:related-list` label to Related Lists section and quick-reference table row; reframed Future automation section to state Phase 4 README checks and related CI are implemented and Phase 7 content seeding has not started in this batch.
+- Verified `CONTRIBUTING.md` (ten categories, Local checks, GitHub Actions table, PR template pointers) and `docs/review-policy.md` checklist section 2 already aligned from stories 001–002 — no CONTRIBUTING edits required.
+- Files changed: docs/taxonomy.md
+- **Learnings for future iterations:**
+  - Story 003 is primarily taxonomy.md quick-reference and Phase status prose; CONTRIBUTING and review-policy alignment landed in earlier Phase 4/5/6 stories.
+  - Mirror review-policy `resource:related-list` label and primary-question phrasing when extending taxonomy quick-reference rows.
+  - `docs/rejected.md` and `docs/historical.md` still describe Phase 4 as unimplemented; out of scope for story 003 but may need a follow-up convergence pass.
+---
+
+## 2026-06-07T23:00:00Z - phase-6-7-docs-convergence-cleanup-004
+- Rewrote `factory/docs/overview.md` for Awesome AI Agent Factories: replaced AI model reference website framing with curated-list purpose; updated Read First to existing paths (`factory/docs/batch-inputs.md`, `factory/docs/batch-input-example.json`, contributor docs) and removed `docs/documentation-site-pages-needed.md`; reframed phase control around `customer-ask.md` Phases 1–10; added worktree/setup-workspace note and quality-gate commands (`make check`, `make test`, `git diff --check`).
+- Files changed: factory/docs/overview.md
+- **Learnings for future iterations:**
+  - `factory/docs` is listed in `.gitignore` but tracked files like `overview.md` remain committable when already in git history.
+  - `docs/internal/checklist.md` and `docs/internal/progress.txt` are meta-planner contract paths per ideafy AGENTS.md even when not yet created; document creation responsibility instead of listing them in Read First.
+  - Story 005 is verification-only across the full reconciliation branch; create the PR only after all stories pass.
+---
+
+## 2026-06-07T23:30:00Z - phase-6-7-docs-convergence-cleanup-005
+- Verified doc reconciliation quality gates on the full branch: `make check`, `make test`, `go test ./...`, and `git diff --check` all exit 0 from repository root.
+- Confirmed branch diff vs `origin/main` is limited to reconciliation scope (README.md, docs/review-policy.md, docs/taxonomy.md, factory/docs/overview.md, internal/checks/sections.go, internal/checks/sections_test.go); CONTRIBUTING.md unchanged because prior Phase 4/5 stories already aligned; no Phase 7 README resource entries added.
+- Files changed: none (verification-only story)
+- **Learnings for future iterations:**
+  - Story 005 completes the PRD; create the PR when no open PR exists and all five stories pass.
+  - Use `git diff origin/main...HEAD --name-only` to confirm changed-file scope before marking verification stories complete.
+  - `go build ./...` is the local typecheck equivalent when no package.json exists.
 ---

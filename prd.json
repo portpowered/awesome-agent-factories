@@ -1,48 +1,48 @@
 {
   "project": "Awesome AI Agent Factories",
-  "branchName": "phase-5-workflow-integration-repair",
-  "description": "Selectively integrate the remaining Phase 5 GitHub Actions workflows (link-check, awesome-lint, scheduled-maintenance) and CONTRIBUTING.md GitHub Actions documentation from origin/phase-5-link-awesome-maintenance-workflows onto main while preserving the already-merged core ci.yml—so all four workflow files exist with correct read-only triggers aligned to Makefile/config behavior, and make check, make test, go test ./..., and git diff --check pass before Phase 6.",
+  "branchName": "phase-6-7-docs-convergence-cleanup",
+  "description": "Reconcile repository-facing contributor docs and planner-facing factory docs with the merged Phase 1–6 state—README Contents taxonomy, review policy automation accuracy, cross-doc category consistency, and factory overview retargeting—so Phase 7 content seeding starts from one coherent source of truth without adding list entries.",
   "context": {
-    "customerAsk": "Phase 5 integration repair: converge the completed GitHub Actions work onto main before Phase 6 starts. Local main has the merged core .github/workflows/ci.yml from origin/main, but the completed phase-5-link-awesome-maintenance-workflows output is still only on its branch. Integrate the remaining Phase 5 outputs into main: .github/workflows/link-check.yml, .github/workflows/awesome-lint.yml, .github/workflows/scheduled-maintenance.yml, and the CONTRIBUTING.md GitHub Actions documentation if still applicable. Preserve the already-integrated core CI workflow. Acceptance: all four requested workflow files exist on main; link check runs on pull requests to main and weekly; awesome lint runs on pull requests to main and pushes to main; scheduled maintenance runs monthly, performs read-only custom README checks and link checks, and does not mutate repository content; workflow commands remain aligned with local Makefile/config behavior; local make check, make test, go test ./..., and git diff --check pass.",
-    "problem": "Phase 5 is split across two branches: core CI (ci.yml) merged to main, but link checking, awesome-list linting, scheduled maintenance workflows, and CONTRIBUTING.md GitHub Actions documentation exist only on phase-5-link-awesome-maintenance-workflows. Contributors on main cannot rely on automated link or awesome-list gates, CONTRIBUTING.md incorrectly states GitHub Actions are not configured, and Phase 6 cannot start until Phase 5 converges.",
-    "solution": "Create integration branch phase-5-workflow-integration-repair from current main, selectively bring in the three maintenance workflow files and CONTRIBUTING.md GitHub Actions subsection from origin/phase-5-link-awesome-maintenance-workflows, preserve ci.yml unchanged, verify read-only triggers and Makefile-aligned commands, and confirm convergence with make check, make test, go test ./..., and git diff --check."
+    "customerAsk": "Reconcile repo-facing and planner-facing docs with the now-merged Phase 1-6 state so Phase 7 content seeding starts from one coherent source of truth. Update README.md Contents to reflect actual top-level list sections including Related Lists and stop implying Community is a curated category. Update docs/review-policy.md for current automation via make targets, Go checks, and GitHub workflows while preserving manual review for scope, quality, and convergence. Keep README.md, CONTRIBUTING.md, docs/review-policy.md, and docs/taxonomy.md consistent on ten curated categories and contributor submission path. Update factory/docs/overview.md for awesome-agent-factories and remove nonexistent file references. Leave make check, go test ./..., and git diff --check passing. Do not add Phase 7 content entries.",
+    "problem": "After Phase 6 template convergence, documentation drift remains: README Contents omits Related Lists but lists Community as navigation; docs/review-policy.md still claims Phase 4 automation does not exist despite make check, Go checks, and GitHub workflows on main; docs/taxonomy.md says Phase 4 is unimplemented and its quick-reference table omits Related Lists; factory/docs/overview.md still describes an AI model reference website and references missing paths such as docs/documentation-site-pages-needed.md. Contributors and factory executors therefore read conflicting guidance before Phase 7 content seeding.",
+    "solution": "Branch phase-6-7-docs-convergence-cleanup from main and reconcile README Contents plus minimal checker alignment, modernize review-policy automation framing, align taxonomy and contributing cross-references on ten categories, rewrite factory/docs/overview.md for this repository, and verify make check, go test ./..., and git diff --check pass without adding Phase 7 list content."
   },
   "acceptanceCriteria": [
-    "All four workflow files exist on the integrated branch: .github/workflows/ci.yml, .github/workflows/link-check.yml, .github/workflows/awesome-lint.yml, and .github/workflows/scheduled-maintenance.yml",
-    "link-check.yml triggers on pull_request to main and weekly schedule; scans README.md and docs/*.md with lychee honoring .lychee.toml without content mutation",
-    "awesome-lint.yml triggers on pull_request and push to main; runs npx awesome-lint without content mutation",
-    "scheduled-maintenance.yml triggers monthly; runs read-only README checks (make check or go run ./internal/checks) and link checks without repository mutations",
-    "ci.yml is preserved from current main with Go format check, go test ./..., and README checks on PR and push to main",
-    "CONTRIBUTING.md documents the three maintenance workflows and maps each to local commands (make links, npx awesome-lint, make check)",
-    "Quality gate: make check, make test, go test ./..., and git diff --check pass from repository root on the integrated branch"
+    "README.md Contents navigation lists all ten curated category sections including Related Lists and does not present Community as a curated content category",
+    "docs/review-policy.md accurately describes automated enforcement via make targets, Go README checks, and GitHub workflows while stating maintainers still perform manual review for scope, quality, category fit, and convergence decisions",
+    "README.md, CONTRIBUTING.md, docs/review-policy.md, and docs/taxonomy.md agree on the ten curated categories and contributor submission path without contradictory automation claims",
+    "factory/docs/overview.md describes Awesome AI Agent Factories and references only existing repository paths and factory CLI entry points",
+    "No Phase 7 README resource entries or content seeding changes are introduced in this batch",
+    "Changed files stay within documentation reconciliation scope plus minimal internal/checks updates required for make check after Contents alignment",
+    "Quality gate: make check, go test ./..., and git diff --check all pass from the repository root on the reconciliation branch"
   ],
   "userStories": [
     {
-      "id": "phase-5-workflow-integration-repair-001",
-      "title": "Integrate link-check workflow onto main",
-      "description": "As a maintainer, I want link checking enforced on pull requests to main and on a weekly schedule so broken links in README.md and documentation are caught before or soon after merge.",
+      "id": "phase-6-7-docs-convergence-cleanup-001",
+      "title": "Align README Contents with curated taxonomy",
+      "description": "As a reader browsing the list, I want the Contents navigation to reflect the ten curated resource sections—including Related Lists—so I can jump to any category without mistaking the Community footer for a list category.",
       "acceptanceCriteria": [
-        ".github/workflows/link-check.yml exists on the integration branch with workflow name Link Check",
-        "Workflow on includes pull_request with branches: [main] and schedule with weekly cron (0 8 * * 1 or equivalent Monday schedule)",
-        "A job on ubuntu-latest checks out the repository with actions/checkout@v4 and runs lychee on README.md and docs/*.md via lycheeverse/lychee-action@v2 so root .lychee.toml settings apply",
-        "Step names or comments identify the local equivalent (make links)",
-        "The workflow performs no file writes, commits, or content mutation",
-        "Typecheck passes"
+        "README ## Contents links to all ten curated category headings: Theories, Coordination Patterns, Frameworks, Protocols and Interfaces, Benchmarks, Research Papers, Blog Posts, Case Studies, Examples and Templates, and Related Lists",
+        "README ## Contents includes Related Lists and does not include Community as a curated navigation item; the ## Community section may remain at the document footer for conduct and security links",
+        "README ## Contributing prose states contributors choose among the ten curated categories and does not describe Community as a submission category",
+        "make check passes after Contents changes, including minimal internal/checks updates only if required so Related Lists is validated in Contents",
+        "Typecheck passes",
+        "Tests pass"
       ],
       "priority": 1,
       "passes": true,
       "notes": ""
     },
     {
-      "id": "phase-5-workflow-integration-repair-002",
-      "title": "Integrate awesome-lint workflow onto main",
-      "description": "As a maintainer, I want awesome-list lint rules enforced on pull requests and pushes to main so list structure violations are blocked before they land on the default branch.",
+      "id": "phase-6-7-docs-convergence-cleanup-002",
+      "title": "Modernize review policy for automation plus manual review",
+      "description": "As a maintainer or contributor reading review policy, I want an accurate description of what automation enforces today versus what still requires human judgment, so pre-submit self-checks and maintainer review align with repository reality.",
       "acceptanceCriteria": [
-        ".github/workflows/awesome-lint.yml exists on the integration branch with workflow name Awesome Lint",
-        "Workflow on includes pull_request with branches: [main] and push with branches: [main]",
-        "A job on ubuntu-latest checks out the repository with actions/checkout@v4 and runs npx awesome-lint",
-        "Step names or comments identify the local equivalent (npx awesome-lint)",
-        "The workflow performs no file writes, commits, or content mutation",
+        "docs/review-policy.md opening documents automated checks via local make targets (make check, make test, make links), Go README validation in internal/checks, and GitHub workflows (ci.yml, link-check.yml, awesome-lint.yml, scheduled-maintenance.yml), and states maintainers still perform manual review for scope fit, quality, category disputes, and convergence decisions",
+        "Checklist item 8 (link stability) references automated link checking via make links and the Link Check workflow instead of claiming link checking is not enabled",
+        "Triage guidance for needs-link-review references automated link-check results where applicable",
+        "The Future automation (Phase 4) section is reframed so Phase 4 is described as implemented and future work covers checks not yet automated, without claiming automation is absent",
+        "Recommended resource:* labels include Related Lists (for example resource:related-list) alongside the other nine category labels",
         "Typecheck passes"
       ],
       "priority": 2,
@@ -50,33 +50,30 @@
       "notes": ""
     },
     {
-      "id": "phase-5-workflow-integration-repair-003",
-      "title": "Integrate scheduled maintenance workflow onto main",
-      "description": "As a maintainer, I want a monthly scheduled job that re-validates README rules and link health on main so drift is detected even when no pull requests are open.",
+      "id": "phase-6-7-docs-convergence-cleanup-003",
+      "title": "Reconcile taxonomy and contributor docs on ten categories",
+      "description": "As a contributor choosing a README section, I want taxonomy, contributing, review policy, and README prose to name the same ten categories and submission path so I do not get conflicting guidance.",
       "acceptanceCriteria": [
-        ".github/workflows/scheduled-maintenance.yml exists on the integration branch with workflow name Scheduled Maintenance",
-        "Workflow on includes schedule with monthly cron (0 9 1 * * or equivalent first-of-month schedule)",
-        "A job on ubuntu-latest checks out the repository, sets up Go with actions/setup-go@v5 (go-version: stable), and runs custom README checks via make check (preferred) or go run ./internal/checks",
-        "The same job runs link checks on README.md and docs/*.md using the same lychee approach as link-check.yml, honoring .lychee.toml",
-        "Step names or comments identify local equivalents (make check, make links)",
-        "The workflow performs no file writes, commits, issue bots, or auto-fix steps",
-        "Typecheck passes",
-        "Tests pass"
+        "docs/taxonomy.md category quick-reference table includes all ten README sections, including Related Lists, with a matching resource:* label entry",
+        "docs/taxonomy.md future-automation section states Phase 4 automated README checks and related CI are implemented and Phase 7 content seeding has not started in this batch",
+        "CONTRIBUTING.md category list, PR template pointers, and local-checks / GitHub Actions subsections remain aligned with README.md section headings and docs/review-policy.md without claiming Go checks or GitHub Actions are unconfigured",
+        "docs/review-policy.md checklist section 2 lists the same ten categories as CONTRIBUTING.md and docs/taxonomy.md, including Related Lists",
+        "No new README list entries or Phase 7 seed content are added",
+        "Typecheck passes"
       ],
       "priority": 3,
       "passes": true,
       "notes": ""
     },
     {
-      "id": "phase-5-workflow-integration-repair-004",
-      "title": "Update CONTRIBUTING.md with GitHub Actions documentation",
-      "description": "As a contributor, I want CONTRIBUTING.md to document which GitHub workflows run and how they map to local commands so I can reproduce CI failures before pushing.",
+      "id": "phase-6-7-docs-convergence-cleanup-004",
+      "title": "Rewrite factory overview for this repository",
+      "description": "As a factory operator or executor reading planner docs, I want factory/docs/overview.md to describe the Awesome AI Agent Factories repository and factory workflow so batch submission guidance points at real files and commands.",
       "acceptanceCriteria": [
-        "CONTRIBUTING.md replaces the statement that GitHub Actions are not configured with a GitHub Actions subsection under Local checks",
-        "The subsection includes a table mapping Link Check, Awesome Lint, and Scheduled Maintenance workflows to their triggers and local equivalents (make links, npx awesome-lint, make check and make links)",
-        "Documentation states workflows are read-only and that link checks honor .lychee.toml while README rules live in internal/checks (not duplicated in workflow YAML)",
-        "Links in the table point to .github/workflows/link-check.yml, .github/workflows/awesome-lint.yml, and .github/workflows/scheduled-maintenance.yml",
-        "No README list entries or unrelated governance prose changes are introduced",
+        "factory/docs/overview.md describes coordinating work for Awesome AI Agent Factories, not an AI model reference website or documentation site product",
+        "Read First references only paths that exist in this repository (for example factory/factory.json, factory/workstations/ideafy/AGENTS.md, factory/docs/batch-inputs.md, factory/docs/batch-input-example.json, and you docs agents / you docs batch-inputs CLI outputs)",
+        "docs/documentation-site-pages-needed.md and other nonexistent documentation-site paths are removed or replaced with valid awesome-agent-factories references",
+        "Phase control, work types, workstation flow, batch submission (you submit batch), state inspection, and repair guidance remain accurate for the checked-in factory/factory.json flow",
         "Typecheck passes"
       ],
       "priority": 4,
@@ -84,34 +81,19 @@
       "notes": ""
     },
     {
-      "id": "phase-5-workflow-integration-repair-005",
-      "title": "Preserve core CI workflow during integration",
-      "description": "As a maintainer, I want the already-merged core CI workflow preserved unchanged so Phase 5 integration does not regress Go formatting, test, or README check gates on pull requests and pushes to main.",
+      "id": "phase-6-7-docs-convergence-cleanup-005",
+      "title": "Verify doc reconciliation quality gates",
+      "description": "As a maintainer preparing the Phase 6–7 convergence review, I want automated quality gates to pass and whitespace checks to stay clean so the reconciliation branch is safe to merge before Phase 7 content seeding.",
       "acceptanceCriteria": [
-        ".github/workflows/ci.yml on the integration branch matches current main (workflow name CI; triggers on pull_request and push to main; Go format check on internal/; go test ./...; README checks via make check with go run ./internal/checks fallback)",
-        "No integration change modifies ci.yml step commands, action versions, or trigger configuration unless fixing a merge conflict in favor of the main version",
-        "Core CI workflow remains read-only and non-mutating",
+        "From repository root, make check exits 0",
+        "From repository root, go test ./... exits 0",
+        "git diff --check reports no whitespace errors on changed files",
+        "Changed files are limited to documentation reconciliation scope: README.md, CONTRIBUTING.md only if needed for consistency, docs/review-policy.md, docs/taxonomy.md, factory/docs/overview.md, and minimal internal/checks updates required by README Contents alignment",
+        "No Phase 7 README resource entries are added",
         "Typecheck passes",
         "Tests pass"
       ],
       "priority": 5,
-      "passes": true,
-      "notes": ""
-    },
-    {
-      "id": "phase-5-workflow-integration-repair-006",
-      "title": "Verify Phase 5 workflow convergence on integrated main",
-      "description": "As a planner preparing the Phase 5 loopback review, I want end-to-end verification that all four workflows exist, triggers and read-only behavior match the customer ask, and local quality gates pass so Phase 6 can start from a converged main.",
-      "acceptanceCriteria": [
-        "All four workflow files exist on the integration branch: ci.yml, link-check.yml, awesome-lint.yml, and scheduled-maintenance.yml",
-        "Observable trigger configuration matches the customer ask (link check: PR + weekly; awesome lint: PR + push to main; scheduled maintenance: monthly; core CI: PR + push to main)",
-        "From repository root: make check, make test, go test ./..., and git diff --check all exit 0",
-        "No issue templates, PR templates, or bulk README resource entries are added as part of this integration",
-        "Only .github/workflows/link-check.yml, .github/workflows/awesome-lint.yml, .github/workflows/scheduled-maintenance.yml, and narrowly scoped CONTRIBUTING.md updates are introduced—no unrelated cleanup",
-        "Typecheck passes",
-        "Tests pass"
-      ],
-      "priority": 6,
       "passes": true,
       "notes": ""
     }
