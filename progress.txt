@@ -368,3 +368,12 @@
   - `microsoft/autogen` is in Frameworks; `microsoft/autogen/tree/main/python/samples` is a distinct URL suitable for the examples section.
   - Story 004 updates taxonomy Phase 7 status; story 005 runs full batch verification.
 ---
+
+## 2026-06-07T10:08:43Z - phase-7-blog-posts-case-studies-examples-seed-004
+- Updated `docs/taxonomy.md` Phase 7 status paragraph to record Blog Posts, Case Studies, and Examples and Templates are seeded on main and that foundational content seeding is present across all ten curated README resource sections (Theories through Related Lists).
+- Files changed: docs/taxonomy.md
+- **Learnings for future iterations:**
+  - Story 004 is docs-only; consolidate the Phase 7 paragraph into one sentence listing all ten section anchors rather than deferring sections to "later batch" once they are seeded.
+  - Category definitions, include/exclude rules, and section headings elsewhere in taxonomy.md remain unchanged per acceptance criteria.
+  - Story 005 runs full batch verification (`make check`, `make test`, `git diff --check`, section integrity); no PR exists yet until all stories pass.
+---
