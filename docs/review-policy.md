@@ -1,8 +1,23 @@
 # Review policy
 
-This document governs **manual human review** of resource pull requests for **Awesome AI Agent Factories** until Phase 4 automation (Go checks, GitHub Actions, and related tooling) is added to the repository.
+This document governs **human review** of resource pull requests for **Awesome AI Agent Factories**. Automated checks enforce README structure, formatting rules, and link health; maintainers still apply the checklist below for **scope fit**, **quality**, **category disputes**, and **convergence decisions** that automation cannot judge.
 
-Automation does **not** run today. Maintainers apply the checklist below by hand so weak or out-of-scope entries can be rejected consistently before automated enforcement exists. Future automation should adopt the same questions and outcomes described here.
+## Automated enforcement
+
+Phase 4 automation is **implemented**. Contributors should run local checks before opening a pull request; GitHub workflows run the same or equivalent checks on pull requests and on a schedule.
+
+| Layer | What runs | Local equivalent |
+|-------|-----------|------------------|
+| **Makefile** | `make check` (README validation), `make test` (Go checker tests), `make links` (markdown link scan) | Primary pre-submit commands — see [CONTRIBUTING.md](../CONTRIBUTING.md) |
+| **Go checker** | [`internal/checks`](../internal/checks) — section headings, Contents navigation, entry format, alphabetization, and related README rules | `make check` or `go run ./internal/checks` |
+| **CI** ([`ci.yml`](../.github/workflows/ci.yml)) | Go format check, `go test ./...`, and README validation on pull requests and pushes to `main` | `make test`, `make check` |
+| **Link Check** ([`link-check.yml`](../.github/workflows/link-check.yml)) | Read-only lychee scan of `README.md` and `docs/*.md` on pull requests and weekly | `make links` |
+| **Awesome Lint** ([`awesome-lint.yml`](../.github/workflows/awesome-lint.yml)) | Read-only awesome-list lint on pull requests and pushes to `main` | `npx awesome-lint` |
+| **Scheduled Maintenance** ([`scheduled-maintenance.yml`](../.github/workflows/scheduled-maintenance.yml)) | Monthly README checks and link scan | `make check`, `make links` |
+
+Link checks honor root [`.lychee.toml`](../.lychee.toml). README validation rules live in `internal/checks`; workflow YAML does not duplicate them.
+
+Maintainers use the checklist below so weak or out-of-scope entries are rejected consistently. Future automation should extend coverage without changing the intent of these questions and outcomes.
 
 ## Related documents
 
@@ -64,7 +79,7 @@ Use this checklist during review. Contributors should self-check the same items 
 
 - [ ] The URL resolves to the intended resource at review time.
 - [ ] The link appears to be an **official** or **durable** destination (not a redirect chain to unrelated content, a temporary campaign page, or a fork that does not represent the resource).
-- [ ] Maintainers note link-health concerns even though automated link checking is not yet enabled.
+- [ ] Link health is covered by automated checks (`make links` locally, [Link Check](../.github/workflows/link-check.yml) on pull requests). Maintainers still verify canonical URLs and note concerns when automation passes but the destination is misleading or unstable.
 
 ### 9. Is the entry alphabetized?
 
@@ -111,7 +126,7 @@ Not every removal is a hard delete. Route outcomes as follows:
 
 ## Recommended labels
 
-Apply GitHub labels during triage and when closing pull requests so outcomes stay consistent before Phase 4 automation. Labels fall into two groups: **resource category** (where an accepted entry belongs) and **triage or outcome** (review state or final disposition).
+Apply GitHub labels during triage and when closing pull requests so outcomes stay consistent alongside automated checks. Labels fall into two groups: **resource category** (where an accepted entry belongs) and **triage or outcome** (review state or final disposition).
 
 ### Resource category labels
 
@@ -128,6 +143,7 @@ Each `resource:*` label maps to a README section. Apply one category label when 
 | `resource:blog` | Blog Posts | Technical writing on architectures, production lessons, or multi-agent design patterns. |
 | `resource:case-study` | Case Studies | Real-world deployments or operations involving multiple agents or agent flows. |
 | `resource:example` | Examples and Templates | Runnable or forkable examples (supervisor-worker demos, crew templates, handoff workflows, and similar). |
+| `resource:related-list` | Related Lists | Other awesome lists or curated indexes that substantially cover multi-agent orchestration, agent teams, or agent-factory topics. |
 
 Category labels help filter open pull requests by intended destination. They do not by themselves approve a submission; maintainers still complete the full checklist.
 
@@ -138,7 +154,7 @@ Triage labels signal that a pull request needs maintainer or contributor action 
 | Label | Use when |
 |-------|----------|
 | `needs-scope-review` | Scope or README section fit is unclear. Consult [docs/taxonomy.md](taxonomy.md) and ask the contributor for an agent-factory justification. |
-| `needs-link-review` | The URL is broken, redirects suspiciously, or may not be canonical. Verify link health manually until automated link checking exists. |
+| `needs-link-review` | The URL is broken, redirects suspiciously, or may not be canonical. Check [Link Check](../.github/workflows/link-check.yml) workflow results and run `make links` locally when triaging; verify canonical destination and durability when automation passes but the link still looks wrong. |
 | `needs-maintainer-review` | A second maintainer opinion is required (borderline scope, category dispute, or maintainer-authored change per [MAINTAINERS.md](../MAINTAINERS.md)). |
 
 ### Outcome labels
@@ -163,6 +179,8 @@ Do not treat `resource:*` labels as substitutes for outcome labels. A pull reque
 5. For section-fit disputes, cite [docs/taxonomy.md](taxonomy.md) when asking the contributor to move or recategorize an entry.
 6. When declining, removing, or relocating, follow [Removal and relocation](#removal-and-relocation) and apply the matching **outcome label**.
 
-## Future automation (Phase 4)
+## Future automation beyond Phase 4
 
-This checklist is written so each item can later map to an automated check or warning (format validation, duplicate detection, alphabetization, banned phrases, scope keywords) without changing maintainer intent. Phase 4 implementation is **not** part of this document; no automation is claimed to be running until workflows are merged and documented in the repository.
+Phase 4 automated README checks, link scanning, awesome-list lint, and related GitHub workflows are **implemented** — see [Automated enforcement](#automated-enforcement) above.
+
+This checklist is written so each item can map to an automated check or warning without changing maintainer intent. Items **not yet fully automated** include scope-keyword matching, duplicate detection beyond URL search, banned-phrase enforcement, and maintainer judgment on borderline category fit. Future work should extend automation for those gaps; maintainers still perform manual review for scope, quality, category disputes, and convergence decisions in the meantime.
