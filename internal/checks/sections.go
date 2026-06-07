@@ -10,7 +10,8 @@ import (
 // contentsExcludedSections lists headings that must exist but are omitted from
 // the Contents navigation (non-curated sections such as Contributing).
 var contentsExcludedSections = map[string]bool{
-	"Contributing": true,
+	"Contributing":  true,
+	"Related Lists": true,
 }
 
 // requiredResourceSections lists the ten Phase 1 README category headings.
