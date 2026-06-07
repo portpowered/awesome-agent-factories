@@ -135,6 +135,73 @@ Intro only.
 			wantFail:  true,
 			wantRules: []string{"contents-alignment"},
 		},
+		{
+			name: "missing Related Lists in Contents",
+			markdown: strings.TrimSpace(`
+## Contents
+
+- [Scope](#scope)
+- [Theories](#theories)
+- [Coordination Patterns](#coordination-patterns)
+- [Frameworks](#frameworks)
+- [Protocols and Interfaces](#protocols-and-interfaces)
+- [Benchmarks](#benchmarks)
+- [Research Papers](#research-papers)
+- [Blog Posts](#blog-posts)
+- [Case Studies](#case-studies)
+- [Examples and Templates](#examples-and-templates)
+
+## Scope
+
+Scope intro.
+
+## Theories
+
+Intro only.
+
+## Coordination Patterns
+
+Intro only.
+
+## Frameworks
+
+Intro only.
+
+## Protocols and Interfaces
+
+Intro only.
+
+## Benchmarks
+
+Intro only.
+
+## Research Papers
+
+Intro only.
+
+## Blog Posts
+
+Intro only.
+
+## Case Studies
+
+Intro only.
+
+## Examples and Templates
+
+Intro only.
+
+## Related Lists
+
+Intro only.
+
+## Contributing
+
+See CONTRIBUTING.md.
+`),
+			wantFail:  true,
+			wantRules: []string{"contents-alignment"},
+		},
 	}
 
 	for _, tt := range tests {
