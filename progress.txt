@@ -8,6 +8,7 @@
 - Optional-tool Makefile targets: guard with `command -v <tool>`; print tool name, purpose, `go install` hint, and upstream docs URL to stderr before exiting 1.
 - Phase 6 issue intake: `.github/ISSUE_TEMPLATE/config.yml` disables blank issues (`blank_issues_enabled: false`); `contact_links` use full GitHub blob URLs to CONTRIBUTING.md and docs/review-policy.md; avoid naming issue templates in config copy until those YAML files exist in the repo.
 - Phase 6 add-resource form: use GitHub issue form YAML with `markdown` body block for one-resource-per-PR and CONTRIBUTING.md link; required `input` fields for name and URL, `dropdown` for all ten README sections, `textarea` for agent-factory relevance; label `needs-scope-review`; copy `docs/internal/customer-ask.md` Phase 6 field list as baseline.
+- Phase 6 broken-link form: label `needs-link-review`; markdown preface links review-policy.md link-stability and removal sections plus SECURITY.md for credible security reports; required fields for README link text, listed URL, observed-behavior dropdown, when-observed input, and recheck dropdown; optional detail textarea with factual-only guidance.
 
 ## 2026-06-06T00:00:00Z - awesome-readme-foundation-001
 - Established README identity: Awesome H1 with badge, inline SVG logo mark (three connected nodes), blockquote tagline, and factual agent-factory definition; removed placeholder `# awesome-agent-factories` heading.
@@ -213,4 +214,22 @@
   - Mirror add-resource.yml structure: markdown intro with doc links, then required inputs/dropdown, optional textarea for verification detail.
   - Reason dropdown options should map to review-policy.md removal triggers; point broken-link-only reports to the broken-link template in the markdown preface.
   - Story 004 broken-link template can reuse the same label and markdown/doc-link patterns.
+---
+
+## 2026-06-07T21:30:00Z - phase-6-community-submission-templates-004
+- Added `.github/ISSUE_TEMPLATE/broken-link.yml`: factual template description, markdown preface linking review-policy.md link-stability and removal guidance plus SECURITY.md for credible security concerns; required fields for affected resource name (README link text), URL as listed, observed-behavior dropdown (HTTP error, connection failure, bad redirect, domain mismatch, other), when observed, and recheck confirmation dropdown; optional detail textarea with factual-only guidance; `needs-link-review` label.
+- Files changed: `.github/ISSUE_TEMPLATE/broken-link.yml`
+- **Learnings for future iterations:**
+  - Use `needs-link-review` (not `needs-maintainer-review`) for broken-link reports per review-policy.md triage labels.
+  - Point broader removal requests to remove-resource template and security concerns to SECURITY.md in the markdown preface to keep reports routed correctly.
+  - Story 005 adds PULL_REQUEST_TEMPLATE.md; stories 006–007 cover doc alignment and convergence verification.
+---
+
+## 2026-06-07T22:00:00Z - phase-6-community-submission-templates-005
+- Added `.github/PULL_REQUEST_TEMPLATE.md`: Resource metadata sections (name, URL, section), agent-factory relevance prompt, checklist acknowledgements for one-resource-per-PR, scope fit, entry format, factual description, terminal period, alphabetization, duplicate URL check, and live canonical link; links to CONTRIBUTING.md, docs/taxonomy.md, and docs/review-policy.md; reminds contributors to run `make check` and `make links` when URLs change.
+- Files changed: `.github/PULL_REQUEST_TEMPLATE.md`
+- **Learnings for future iterations:**
+  - Extend `docs/internal/customer-ask.md` Phase 6 PR template skeleton with doc links and explicit entry-format checklist item (`- [Resource Name](URL) - Description.`).
+  - PR template is markdown-only; no labels or YAML; mirror issue-template field names (name, URL, section, relevance) for contributor consistency.
+  - Story 006 aligns CONTRIBUTING.md/README.md references; story 007 runs full convergence verification.
 ---
