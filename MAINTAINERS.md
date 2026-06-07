@@ -30,6 +30,34 @@ Optional local targets `make lint` (golangci-lint) and `make links` (lychee) are
 
 Automation does **not** replace maintainer judgment on scope fit, section-fit disputes, agent-factory relevance, canonical URLs, marketing tone, or merge approval.
 
+## Maintainer maintenance cadence
+
+Recurring stewardship work follows the schedules below. There is no dedicated maintenance staff, 24/7 coverage, or guaranteed response-time SLA — maintainers perform these tasks **as availability allows**.
+
+### Weekly
+
+The [Link Check](.github/workflows/link-check.yml) workflow runs on pull requests to `main` and on a weekly schedule (Mondays). When maintainers have availability:
+
+- Review failing Link Check workflow runs and triage broken or redirected URLs reported in workflow logs.
+- Triage open pull requests with failing link checks or the `needs-link-review` label — verify canonical destinations, request fixes, or apply [docs/review-policy.md](docs/review-policy.md) triage guidance. Run `make links` locally when a closer look is needed.
+
+### Monthly
+
+The [Scheduled Maintenance](.github/workflows/scheduled-maintenance.yml) workflow runs on the **1st of each month**, combining README checks (`make check`) and link scans (`make links`). When maintainers have availability:
+
+- Review combined README-check and link-scan results from the latest scheduled run.
+- Spot-check open pull requests approaching the **60-day** inactivity window described in **Stale pull request policy** below — comment or close per that policy when appropriate.
+
+### Quarterly
+
+On a lightweight human cadence (for example, once per calendar quarter), maintainers may perform optional governance spot-checks when availability allows:
+
+- Scan the open pull request backlog for stalled or outdated submissions.
+- Spot-check category fit against [docs/taxonomy.md](docs/taxonomy.md) for recent or borderline entries.
+- Compare [MAINTAINERS.md](MAINTAINERS.md), [CONTRIBUTING.md](CONTRIBUTING.md), [docs/review-policy.md](docs/review-policy.md), and [docs/taxonomy.md](docs/taxonomy.md) for drift from implemented workflows and review practice.
+
+Quarterly review does **not** introduce new automation, staffing levels, or response-time commitments — it is a human-only sanity check on top of existing weekly and monthly workflow signals.
+
 ## Review responsibilities
 
 Maintainers review pull requests and issues in good faith and as availability allows. There is no guaranteed response-time SLA.
