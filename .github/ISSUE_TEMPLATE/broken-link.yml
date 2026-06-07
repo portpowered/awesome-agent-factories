@@ -1,0 +1,77 @@
+name: Report a broken link
+description: Report a broken or suspicious link in a README entry so maintainers can verify link health.
+title: "Link: "
+labels:
+  - needs-link-review
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form to report broken or suspicious links listed in README entries. Maintainers verify link health manually and apply the `broken-link` outcome when a destination is persistently unreachable per [docs/review-policy.md — Is the link stable?](https://github.com/portpowered/awesome-agent-factories/blob/main/docs/review-policy.md#8-is-the-link-stable) and [Removal and relocation](https://github.com/portpowered/awesome-agent-factories/blob/main/docs/review-policy.md#removal-and-relocation).
+
+        For broader removal requests (out of scope, archived, misleading description), use the **Request resource removal** issue template instead.
+
+        For credible security concerns (malicious destinations, typosquatting, compromised projects), follow [SECURITY.md](https://github.com/portpowered/awesome-agent-factories/blob/main/SECURITY.md) rather than debating security details in this issue thread.
+
+  - type: input
+    id: name
+    attributes:
+      label: Affected resource name
+      description: Link text as it appears in README (not necessarily the page title at the destination).
+      placeholder: AutoGen
+    validations:
+      required: true
+
+  - type: input
+    id: url
+    attributes:
+      label: URL as listed in README
+      description: Exact URL from the README entry, including scheme and path.
+      placeholder: https://github.com/microsoft/autogen
+    validations:
+      required: true
+
+  - type: dropdown
+    id: behavior
+    attributes:
+      label: Observed behavior
+      description: What happens when you open the URL. Choose the closest match.
+      options:
+        - HTTP error (4xx or 5xx)
+        - Connection or DNS failure (unreachable host)
+        - Bad redirect (lands on unrelated or unexpected content)
+        - Domain or URL mismatch (does not match the listed resource)
+        - Other suspicious behavior (describe below)
+    validations:
+      required: true
+
+  - type: input
+    id: observed
+    attributes:
+      label: When observed
+      description: Date or approximate time range when you verified the problem (for example 2026-06-07 or early June 2026).
+      placeholder: 2026-06-07
+    validations:
+      required: true
+
+  - type: dropdown
+    id: rechecked
+    attributes:
+      label: Did you recheck the URL?
+      description: Maintainers prefer reports confirmed on a second attempt, consistent with review-policy link-stability guidance.
+      options:
+        - "Yes — I rechecked and the problem persists"
+        - "Yes — intermittent (works sometimes, fails sometimes)"
+        - "No — single attempt only"
+    validations:
+      required: true
+
+  - type: textarea
+    id: detail
+    attributes:
+      label: Additional detail (optional)
+      description: Facts that help verify the report (HTTP status code, redirect target, or replacement URL if known). Avoid accusatory language; state observable facts.
+      placeholder: |
+        Returns HTTP 404. Repository was renamed; current home may be https://github.com/example/new-repo.
+    validations:
+      required: false

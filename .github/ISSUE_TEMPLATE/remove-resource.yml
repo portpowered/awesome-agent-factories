@@ -1,0 +1,62 @@
+name: Request resource removal
+description: Request removal or relocation when a README entry is dead, out of scope, archived, or misleading.
+title: "Remove: "
+labels:
+  - needs-maintainer-review
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form to request removal or relocation of a README entry. Maintainers choose **remove outright** or **relocate** (for example to [docs/historical.md](https://github.com/portpowered/awesome-agent-factories/blob/main/docs/historical.md) when a resource is historically important but inactive) per [docs/review-policy.md — Removal and relocation](https://github.com/portpowered/awesome-agent-factories/blob/main/docs/review-policy.md#removal-and-relocation).
+
+        For broken or suspicious links without a broader removal request, use the **Report a broken link** issue template instead.
+
+  - type: input
+    id: name
+    attributes:
+      label: Affected resource name
+      description: Official title or name as it appears as README link text.
+      placeholder: AutoGen
+    validations:
+      required: true
+
+  - type: input
+    id: section
+    attributes:
+      label: README section or link text
+      description: Section heading where the entry appears, or the exact link text if it differs from the resource name.
+      placeholder: Frameworks
+    validations:
+      required: true
+
+  - type: input
+    id: url
+    attributes:
+      label: Canonical URL
+      description: URL as listed in README for the affected entry.
+      placeholder: https://github.com/microsoft/autogen
+    validations:
+      required: true
+
+  - type: dropdown
+    id: reason
+    attributes:
+      label: Reason for removal
+      description: Primary trigger. See review-policy.md for relocate-vs-remove outcomes and outcome labels.
+      options:
+        - Dead link (persistent for more than 30 days or no replacement URL)
+        - Out of scope (no longer about agent groups or flows)
+        - Archived project (inactive and not historically important)
+        - Misleading description (does not match the linked resource)
+    validations:
+      required: true
+
+  - type: textarea
+    id: detail
+    attributes:
+      label: Additional detail (optional)
+      description: Facts that help maintainers verify the request (for example archive notice, scope drift, or corrected description).
+      placeholder: |
+        The GitHub repository was archived on 2024-01-15 with no successor project. The README description still claims active maintenance.
+    validations:
+      required: false

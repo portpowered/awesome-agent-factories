@@ -105,7 +105,7 @@ Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for the full s
 
 **Agent-factory relevance** — what to state in your pull request about coordination, orchestration, handoffs, or related flows.
 
-Before opening a pull request, read [docs/taxonomy.md](docs/taxonomy.md) for category definitions and [docs/review-policy.md](docs/review-policy.md) for the maintainer review checklist you can self-check against.
+Before opening a pull request, use GitHub's [**pull request template**](.github/PULL_REQUEST_TEMPLATE.md) (pre-filled for new PRs) and read [docs/taxonomy.md](docs/taxonomy.md) for category definitions and [docs/review-policy.md](docs/review-policy.md) for the maintainer review checklist you can self-check against. For issues, pick a structured form from the GitHub issue chooser (blank issues are disabled).
 
 [MAINTAINERS.md](MAINTAINERS.md) describes review and merge policy.
 
