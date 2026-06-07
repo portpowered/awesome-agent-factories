@@ -21,7 +21,7 @@ links:
 		echo "See also: https://lychee.cli.rs/guides/getting-started/" >&2; \
 		exit 1; \
 	}
-	lychee README.md docs/*.md
+	lychee --config .lychee.toml README.md docs/*.md
 
 fmt:
 	gofmt -w internal
