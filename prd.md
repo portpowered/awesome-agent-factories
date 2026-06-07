@@ -29,12 +29,12 @@ Add curated, taxonomy-aligned entries only to the two target README sections. Pr
 
 ## Project-level acceptance criteria
 
-- [ ] README **Research Papers** contains at least 15 resource entries (currently 7) using `- [Resource Name](URL) - Description.` format with descriptions ending in a period and entries alphabetized by link text.
-- [ ] README **Blog Posts** contains at least 10 resource entries (currently 6) using the same format, tone, and alphabetization rules.
-- [ ] Every new entry is academically relevant (papers) or a substantive technical article (blogs); excludes launch posts, shallow trend pieces, generic AI content, and vendor marketing per [docs/taxonomy.md](../../docs/taxonomy.md) and [docs/rejected.md](../../docs/rejected.md).
-- [ ] Every new entry includes at least one agent-factory scope keyword in the description (coordination, orchestration, delegation, routing, handoffs, shared state, or group-level evaluation) and introduces no duplicate URLs anywhere in README.md.
-- [ ] README governance sections (Scope, Contributing, Community) and all non-target curated sections remain unchanged except unavoidable whitespace or merge hygiene.
-- [ ] Quality gate: `make check`, `make test`, and `git diff --check` all pass from the repository root.
+- [x] README **Research Papers** contains at least 15 resource entries (currently 7) using `- [Resource Name](URL) - Description.` format with descriptions ending in a period and entries alphabetized by link text.
+- [x] README **Blog Posts** contains at least 10 resource entries (currently 6) using the same format, tone, and alphabetization rules.
+- [x] Every new entry is academically relevant (papers) or a substantive technical article (blogs); excludes launch posts, shallow trend pieces, generic AI content, and vendor marketing per [docs/taxonomy.md](../../docs/taxonomy.md) and [docs/rejected.md](../../docs/rejected.md).
+- [x] Every new entry includes at least one agent-factory scope keyword in the description (coordination, orchestration, delegation, routing, handoffs, shared state, or group-level evaluation) and introduces no duplicate URLs anywhere in README.md.
+- [x] README governance sections (Scope, Contributing, Community) and all non-target curated sections remain unchanged except unavoidable whitespace or merge hygiene.
+- [x] Quality gate: `make check`, `make test`, and `git diff --check` all pass from the repository root.
 
 ## User Stories
 
@@ -44,14 +44,14 @@ Add curated, taxonomy-aligned entries only to the two target README sections. Pr
 
 **Acceptance Criteria:**
 
-- [ ] README Research Papers contains at least 15 entries below the section intro (at least 8 new entries beyond the existing seven: A Survey on Large Language Model based Autonomous Agents, AutoGen, CAMEL, Communicative Agents for Software Development, Generative Agents, Large Language Model based Multi-Agents: A Survey of Progress and Challenges, MetaGPT).
-- [ ] Each new entry is peer-reviewed or widely cited research whose primary contribution is multi-agent coordination, orchestration, communication, planning, delegation, agent societies, group-level evaluation, safety, or governance per docs/taxonomy.md Research Papers include rules—not a blog post, vendor whitepaper, framework repository, or benchmark landing page.
-- [ ] New entries diversify themes beyond the current survey-and-framework-paper cluster (for example coordination protocols, debate or deliberation, tool-use orchestration, human–agent teaming, safety or governance, or empirical multi-agent evaluation)—without duplicating papers whose primary home is another README section.
-- [ ] Each entry uses exact format `- [Resource Name](URL) - Description.` with a factual one-sentence description ending in a period; description explicitly ties to coordination, orchestration, delegation, routing, handoffs, shared state, or group-level evaluation.
-- [ ] Entries are alphabetized by link text across the full section; no duplicate URLs are introduced anywhere in README.md.
-- [ ] `make check` passes after Research Papers expansion.
-- [ ] Typecheck passes.
-- [ ] Tests pass.
+- [x] README Research Papers contains at least 15 entries below the section intro (at least 8 new entries beyond the existing seven: A Survey on Large Language Model based Autonomous Agents, AutoGen, CAMEL, Communicative Agents for Software Development, Generative Agents, Large Language Model based Multi-Agents: A Survey of Progress and Challenges, MetaGPT).
+- [x] Each new entry is peer-reviewed or widely cited research whose primary contribution is multi-agent coordination, orchestration, communication, planning, delegation, agent societies, group-level evaluation, safety, or governance per docs/taxonomy.md Research Papers include rules—not a blog post, vendor whitepaper, framework repository, or benchmark landing page.
+- [x] New entries diversify themes beyond the current survey-and-framework-paper cluster (for example coordination protocols, debate or deliberation, tool-use orchestration, human–agent teaming, safety or governance, or empirical multi-agent evaluation)—without duplicating papers whose primary home is another README section.
+- [x] Each entry uses exact format `- [Resource Name](URL) - Description.` with a factual one-sentence description ending in a period; description explicitly ties to coordination, orchestration, delegation, routing, handoffs, shared state, or group-level evaluation.
+- [x] Entries are alphabetized by link text across the full section; no duplicate URLs are introduced anywhere in README.md.
+- [x] `make check` passes after Research Papers expansion.
+- [x] Typecheck passes.
+- [x] Tests pass.
 
 ### US-002: Expand Blog Posts section to minimum density
 
@@ -59,14 +59,14 @@ Add curated, taxonomy-aligned entries only to the two target README sections. Pr
 
 **Acceptance Criteria:**
 
-- [ ] README Blog Posts contains at least 10 entries below the section intro (at least 4 new entries beyond the existing six: AWS LangGraph/Bedrock, Anthropic multi-agent research system, LangGraph multi-agent workflows, distributed-systems coordination essay, Agentflow orchestration lessons, multi-agent failure analysis).
-- [ ] Each new entry is technical writing that teaches how groups of agents were designed, operated, or measured per docs/taxonomy.md Blog Posts include rules—not a launch announcement, shallow trend piece, generic AI overview, prompt collection, or primarily promotional vendor page.
-- [ ] New URLs do not duplicate URLs already present elsewhere in README.md (including Coordination Patterns entries such as `anthropic.com/engineering/building-effective-agents` and framework or example repository roots listed under other sections).
-- [ ] Each entry uses exact format `- [Resource Name](URL) - Description.` with a factual one-sentence description ending in a period and an explicit agent-factory scope keyword.
-- [ ] Entries are alphabetized by link text across the full section.
-- [ ] `make check` passes after Blog Posts expansion.
-- [ ] Typecheck passes.
-- [ ] Tests pass.
+- [x] README Blog Posts contains at least 10 entries below the section intro (at least 4 new entries beyond the existing six: AWS LangGraph/Bedrock, Anthropic multi-agent research system, LangGraph multi-agent workflows, distributed-systems coordination essay, Agentflow orchestration lessons, multi-agent failure analysis).
+- [x] Each new entry is technical writing that teaches how groups of agents were designed, operated, or measured per docs/taxonomy.md Blog Posts include rules—not a launch announcement, shallow trend piece, generic AI overview, prompt collection, or primarily promotional vendor page.
+- [x] New URLs do not duplicate URLs already present elsewhere in README.md (including Coordination Patterns entries such as `anthropic.com/engineering/building-effective-agents` and framework or example repository roots listed under other sections).
+- [x] Each entry uses exact format `- [Resource Name](URL) - Description.` with a factual one-sentence description ending in a period and an explicit agent-factory scope keyword.
+- [x] Entries are alphabetized by link text across the full section.
+- [x] `make check` passes after Blog Posts expansion.
+- [x] Typecheck passes.
+- [x] Tests pass.
 
 ### US-003: Verify batch quality gates and section integrity
 
@@ -74,14 +74,14 @@ Add curated, taxonomy-aligned entries only to the two target README sections. Pr
 
 **Acceptance Criteria:**
 
-- [ ] From repository root, `make check` exits 0.
-- [ ] From repository root, `make test` exits 0.
-- [ ] `git diff --check` reports no whitespace errors on changed files.
-- [ ] README Research Papers contains at least 15 entries and Blog Posts contains at least 10 entries; combined they include at least 12 new entries relative to pre-batch counts.
-- [ ] README Scope, Contributing, and Community sections remain present and unweakened; Theories, Coordination Patterns, Frameworks, Protocols and Interfaces, Benchmarks, Case Studies, Examples and Templates, and Related Lists contain no unintended edits.
-- [ ] Changed content files are limited to README.md and planning artifacts for this batch.
-- [ ] Typecheck passes.
-- [ ] Tests pass.
+- [x] From repository root, `make check` exits 0.
+- [x] From repository root, `make test` exits 0.
+- [x] `git diff --check` reports no whitespace errors on changed files.
+- [x] README Research Papers contains at least 15 entries and Blog Posts contains at least 10 entries; combined they include at least 12 new entries relative to pre-batch counts.
+- [x] README Scope, Contributing, and Community sections remain present and unweakened; Theories, Coordination Patterns, Frameworks, Protocols and Interfaces, Benchmarks, Case Studies, Examples and Templates, and Related Lists contain no unintended edits.
+- [x] Changed content files are limited to README.md and planning artifacts for this batch.
+- [x] Typecheck passes.
+- [x] Tests pass.
 
 ## Functional Requirements
 
