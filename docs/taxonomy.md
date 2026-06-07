@@ -319,8 +319,10 @@ Curated awesome lists or indexes that complement this repository. This taxonomy 
 | Examples and Templates | `resource:example` | What can readers run or fork? |
 | Related Lists | `resource:related-list` | What complementary awesome list or index covers agent orchestration? |
 
-## Future automation (Phase 4) and content seeding (Phase 7)
+## Automation, workflow gates, and Phase 7 content seeding
 
-Category names, include/exclude rules, and examples in this document informed Phase 4 automated README checks (section validation, Contents alignment, entry format, alphabetization) and related CI — see [docs/review-policy.md](review-policy.md#automated-enforcement) and [CONTRIBUTING.md](../CONTRIBUTING.md). Phase 4 automation is **implemented** in this repository.
+Category names, include/exclude rules, and examples in this document informed Phase 4 automated README checks (section validation, Contents alignment, entry format, alphabetization) implemented in [`internal/checks`](../internal/checks) with local commands `make check` and `make test`. Phase 5 GitHub workflow gates (CI, Link Check, Awesome Lint, and Scheduled Maintenance) run the same or equivalent checks — see [docs/review-policy.md](review-policy.md#automated-enforcement) and [CONTRIBUTING.md](../CONTRIBUTING.md#github-actions).
+
+Phase 4 structural checks and Phase 5 workflow gates are **implemented** in this repository.
 
 Phase 7 content seeding has **not** started in this batch. Future work may use this taxonomy when populating README entries; maintainers still apply manual review for scope, quality, and category fit per [docs/review-policy.md](review-policy.md).
