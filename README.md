@@ -97,6 +97,12 @@ Standards or conventions for agent interaction, handoffs, and shared interfaces.
 
 Benchmarks that evaluate group or workflow behavior.
 
+- [AgentBench](https://github.com/THUDM/AgentBench) - Multi-environment benchmark for evaluating LLM-as-agent reasoning, tool use, and multi-turn orchestration across diverse interactive task flows.
+- [AgentBoard](https://hkust-nlp.github.io/agentboard/) - Analytical evaluation board for multi-turn LLM agents spanning embodied, web, game, and tool domains with group-level evaluation metrics.
+- [MultiAgentBench](https://github.com/ulab-uiuc/MARBLE) - Benchmark for evaluating collaboration, competition, and coordination among LLM-based multi-agent systems across diverse interactive scenarios.
+- [SWE-bench](https://www.swebench.com/) - Benchmark of real GitHub issues for evaluating agent workflows with task delegation across multi-step software engineering flows.
+- [WebArena](https://webarena.dev/) - Self-hostable web environment benchmarking autonomous agents on long-horizon multi-step tasks across realistic site orchestration flows.
+
 ## Research Papers
 
 Academic or technical papers about agent groups and flows.
