@@ -1,149 +1,183 @@
-# PRD: Phase 6–7 Docs Convergence Cleanup
+# PRD: Phase 6–7 Documentation Convergence Repair
 
 ## Introduction
 
-Reconcile repository-facing contributor docs and planner-facing factory docs with the now-merged Phase 1–6 state so Phase 7 content seeding starts from one coherent source of truth. This is a cleanup/reconciliation batch after Phase 6 template convergence review—not a new feature batch and not Phase 7 content work.
+Finish the repo-facing and planner-facing documentation reconciliation that the prior `phase-6-7-docs-convergence-cleanup` batch was meant to land. Phase 6 community intake templates and Phase 4–5 automation are present on `main`, but key documentation still drifts: `README.md` presents **Community** as a curated list category in the table of contents, `docs/review-policy.md` still claims automation does not exist, and `factory/docs/overview.md` still describes the old AI model reference website. This repair batch converges those documents so Phase 7 content seeding starts from one accurate source of truth.
 
-Phases 1–6 delivered README governance, taxonomy, review policy, Go README checks (`make check`), GitHub Actions (CI, link-check, awesome-lint, scheduled maintenance), and structured PR/issue templates. Several docs still describe pre-automation or pre-convergence reality: README Contents omits **Related Lists** while listing **Community** as navigation; `docs/review-policy.md` claims automation does not run; `docs/taxonomy.md` says Phase 4 is not implemented; and `factory/docs/overview.md` still describes an old AI model reference website with broken file references.
+## Context
+
+### Customer ask
+
+Repair documentation convergence before Phase 7 content seeding. Update `README.md`, `docs/review-policy.md`, and `factory/docs/overview.md`; keep them aligned with `CONTRIBUTING.md` and `docs/taxonomy.md` on curated categories and contributor/planner workflow. Leave `make check`, `go test ./...`, and `git diff --check` clean. Do not start Phase 7 content seeding in this batch.
+
+### Concrete problem
+
+A prior cleanup idea completed in the factory queue, but filesystem review shows the intended documentation changes never landed on `main`:
+
+- **README navigation drift** — The `## Contents` list ends with `[Community](#community)` instead of reflecting the ten curated resource categories defined in `CONTRIBUTING.md` and `docs/taxonomy.md`. `Related Lists` is a curated category (with its `## Related Lists` section) but is correctly omitted from Contents per awesome-list conventions enforced by `internal/checks`. `Community` is a governance footer (conduct and security pointers), not a curated list section, and must not appear in Contents as if it were.
+- **Review-policy automation drift** — `docs/review-policy.md` opens with “Automation does **not** run today” and references Phase 4 as future work, even though `make check`, `make test`, `make links`, and four GitHub workflows (`ci.yml`, `link-check.yml`, `awesome-lint.yml`, `scheduled-maintenance.yml`) are live on `main`.
+- **Factory overview drift** — `factory/docs/overview.md` describes an “AI model reference website,” points to nonexistent `docs/documentation-site-pages-needed.md`, and omits the actual Awesome List customer ask and planner-owned state files for this repository.
+
+### High-level solution
+
+Apply a narrow, documentation-only convergence pass: fix README Contents/footer semantics, rewrite review-policy automation language to match the live toolchain while preserving manual ownership of scope and quality judgments, repair factory planner guidance for this repo, and run a final cross-document consistency check across the five named policy files before the Phase 7 content gate.
 
 ## Goals
 
-- Align README Contents with the ten curated list categories, including **Related Lists**, without treating the **Community** footer as a curated content category.
-- Update `docs/review-policy.md` to reflect the split between automated enforcement (local `make` targets, Go checks, GitHub workflows) and manual maintainer review (scope, quality, convergence).
-- Keep `README.md`, `CONTRIBUTING.md`, `docs/review-policy.md`, and `docs/taxonomy.md` consistent on the ten categories and contributor submission path.
-- Rewrite `factory/docs/overview.md` for **Awesome AI Agent Factories** and remove references to nonexistent paths.
-- Leave `make check`, `go test ./...`, and `git diff --check` passing.
+- Present one coherent story for contributors: ten curated README categories, local `make` checks, GitHub workflow gates, and maintainer manual review responsibilities.
+- Present one coherent story for factory planners: this repository builds an Awesome List; phase control lives in `docs/internal/customer-ask.md`; progress is logged in planner-owned state files.
+- Remove stale references to pre-migration project scope (AI model reference site, missing documentation-site roadmap file).
+- Keep scope narrow: documentation convergence and planner guidance only—no Phase 7 list entries, no unrelated governance rewrites.
+
+## Project-level acceptance criteria
+
+- [ ] `README.md` `## Contents` lists `Scope` plus the nine curated resource sections that belong in the table of contents (Theories through Examples and Templates), omits `Related Lists` and `Contributing` per awesome-list Contents conventions, and does **not** list `Community`.
+- [ ] `README.md` retains `## Related Lists` as the tenth curated category section and `## Community` as a non-curated governance footer after `## Contributing`.
+- [ ] `docs/review-policy.md` accurately describes live automation (`make check`, `make test`, `make links`, GitHub CI/link-check/awesome-lint/scheduled-maintenance workflows) and states that manual review still owns scope fit, quality, convergence, and borderline judgments automation cannot make.
+- [ ] `factory/docs/overview.md` describes the **Awesome AI Agent Factories** repository, references planner-owned `docs/internal/customer-ask.md`, `docs/internal/checklist.md`, and `docs/internal/progress.txt`, and removes stale references to the old AI model reference website and `docs/documentation-site-pages-needed.md`.
+- [ ] `README.md`, `CONTRIBUTING.md`, `docs/review-policy.md`, `docs/taxonomy.md`, and `factory/docs/overview.md` agree on the ten curated categories and the contributor/planner workflow.
+- [ ] Quality gate: `make check`, `go test ./...`, and `git diff --check` all exit 0 from the repository root.
 
 ## User Stories
 
-### US-001: Align README Contents with curated taxonomy
+### US-001: Converge README Contents with curated categories
 
-**Description:** As a reader browsing the list, I want the Contents navigation to reflect the ten curated resource sections—including Related Lists—so I can jump to any category without mistaking the Community footer for a list category.
-
-**Acceptance Criteria:**
-
-- [x] README `## Contents` links to all ten curated category headings: Theories, Coordination Patterns, Frameworks, Protocols and Interfaces, Benchmarks, Research Papers, Blog Posts, Case Studies, Examples and Templates, and Related Lists.
-- [x] README `## Contents` includes **Related Lists** and does **not** include **Community** as a curated navigation item (the `## Community` section may remain at the document footer for conduct and security links).
-- [x] README `## Contributing` prose states that contributors choose among the **ten curated categories** and does not describe Community as a submission category.
-- [x] `make check` passes after Contents changes (update `internal/checks/sections.go` and tests only if required so Related Lists is no longer excluded from required Contents links).
-- [x] Typecheck passes
-- [x] Tests pass
-
-### US-002: Modernize review policy for automation plus manual review
-
-**Description:** As a maintainer or contributor reading review policy, I want an accurate description of what automation enforces today versus what still requires human judgment, so pre-submit self-checks and maintainer review align with repository reality.
+**Description:** As a contributor reading the list, I want the README table of contents to reflect the ten curated resource categories so I know where to place submissions without treating governance links as list content.
 
 **Acceptance Criteria:**
 
-- [x] `docs/review-policy.md` opening states that automated checks exist via local `make` targets (`make check`, `make test`, `make links`), Go README validation in `internal/checks`, and GitHub workflows (`.github/workflows/ci.yml`, `link-check.yml`, `awesome-lint.yml`, `scheduled-maintenance.yml`), and that maintainers still perform manual review for scope fit, quality, category disputes, and convergence decisions.
-- [x] Checklist item 8 (link stability) references automated link checking via `make links` and the Link Check workflow instead of claiming link checking is not enabled.
-- [x] Triage label guidance for `needs-link-review` references automated link-check results where applicable rather than manual-only verification.
-- [x] The "Future automation (Phase 4)" section is replaced or reframed to describe Phase 4 as implemented and to reserve future automation for items not yet covered (for example deeper scope-keyword warnings), without claiming automation is absent.
-- [x] Recommended `resource:*` labels include **Related Lists** (for example `resource:related-list`) alongside the other nine category labels.
-- [x] Typecheck passes
+- [ ] `## Contents` includes anchor links for `Scope` and for Theories, Coordination Patterns, Frameworks, Protocols and Interfaces, Benchmarks, Research Papers, Blog Posts, Case Studies, and Examples and Templates—in that canonical order.
+- [ ] `## Contents` does **not** include `Related Lists`, `Contributing`, or `Community` (matching awesome-list Contents conventions enforced by `make check`).
+- [ ] `## Related Lists` remains present as the tenth curated category section with its existing intro text.
+- [ ] `## Contributing` and `## Community` remain after the curated sections; `## Community` covers conduct and security expectations only, not list entries.
+- [ ] `make check` exits 0 after the README update.
+- [ ] Typecheck passes
 
-### US-003: Reconcile taxonomy and contributor docs on ten categories
+### US-002: Update review policy for live automation with manual judgment ownership
 
-**Description:** As a contributor choosing a README section, I want taxonomy, contributing, review policy, and README prose to name the same ten categories and submission path so I do not get conflicting guidance.
-
-**Acceptance Criteria:**
-
-- [x] `docs/taxonomy.md` category quick-reference table includes all ten README sections, including **Related Lists**, with a matching `resource:*` label column entry.
-- [x] `docs/taxonomy.md` "Future automation" section states Phase 4 automated README checks and related CI are implemented; Phase 7 content seeding is not yet started in this batch.
-- [x] `CONTRIBUTING.md` category list, PR template pointers, and local-checks / GitHub Actions subsections remain aligned with `README.md` section headings and `docs/review-policy.md` (no contradictory claims that GitHub Actions or Go checks are unconfigured).
-- [x] `docs/review-policy.md` checklist section 2 lists the same ten categories as `CONTRIBUTING.md` and `docs/taxonomy.md`, including Related Lists.
-- [x] No new README list entries or Phase 7 seed content are added.
-- [x] Typecheck passes
-
-### US-004: Rewrite factory overview for this repository
-
-**Description:** As a factory operator or executor reading planner docs, I want `factory/docs/overview.md` to describe the Awesome AI Agent Factories repository and factory workflow so batch submission guidance points at real files and commands.
+**Description:** As a maintainer, I want `docs/review-policy.md` to describe what automation enforces today and what still requires human judgment so reviewers and contributors share accurate expectations.
 
 **Acceptance Criteria:**
 
-- [x] `factory/docs/overview.md` describes coordinating work for **Awesome AI Agent Factories** (curated awesome list plus factory automation), not an AI model reference website or documentation site product.
-- [x] "Read First" references only paths that exist in this repository (for example `factory/factory.json`, `factory/workstations/ideafy/AGENTS.md`, `factory/docs/batch-inputs.md`, `factory/docs/batch-input-example.json`, and `you docs agents` / `you docs batch-inputs` CLI outputs); remove or replace `docs/documentation-site-pages-needed.md` and other nonexistent documentation-site paths.
-- [x] Phase control, work types, workstation flow, batch submission (`you submit batch`), state inspection, and repair guidance remain accurate for the checked-in `factory/factory.json` flow.
-- [x] Local state file references use `docs/internal/` paths only when those files are part of the factory operator contract; otherwise point to `factory/docs/` equivalents documented in this repo.
-- [x] Typecheck passes
+- [ ] The introduction no longer states that automation does not run or that Phase 4 tooling is absent from the repository.
+- [ ] A contributor-readable section documents live local automation: `make check` (Go README structure and entry rules), `make test` / `go test ./...`, and optional `make links` / `make lint`, with pointers to `CONTRIBUTING.md` for the GitHub Actions mapping table.
+- [ ] A contributor-readable section documents live GitHub workflow gates: `ci.yml`, `link-check.yml`, `awesome-lint.yml`, and `scheduled-maintenance.yml`, described as read-only enforcement aligned with local commands.
+- [ ] Checklist items that claim automated link checking is unavailable are updated to reflect `make links`, `link-check.yml`, and scheduled link checks.
+- [ ] The document explicitly states manual review still owns scope fit, section-fit disputes, agent-factory relevance, quality bar, removal/relocation decisions, and convergence judgments automation cannot make.
+- [ ] The former “Future automation (Phase 4)” section is reframed: Phase 4 structural checks and Phase 5 workflow gates are present; only not-yet-implemented enhancements (for example scope-keyword warnings) remain future work.
+- [ ] Typecheck passes
 
-### US-005: Verify doc reconciliation quality gates
+### US-003: Repair factory planner overview for this repository
 
-**Description:** As a maintainer preparing the Phase 6–7 convergence review, I want automated quality gates to pass and whitespace checks to stay clean so the reconciliation branch is safe to merge before Phase 7 content seeding.
+**Description:** As a meta-planner operating the agent factory, I want `factory/docs/overview.md` to describe this Awesome List repository and its planner state files so batch submission guidance matches reality.
 
 **Acceptance Criteria:**
 
-- [x] From repository root, `make check` exits 0.
-- [x] From repository root, `go test ./...` exits 0.
-- [x] `git diff --check` reports no whitespace errors on changed files.
-- [x] Changed files are limited to documentation reconciliation scope: `README.md`, `CONTRIBUTING.md` (only if needed for consistency), `docs/review-policy.md`, `docs/taxonomy.md`, `factory/docs/overview.md`, and minimal `internal/checks/` updates required by README Contents alignment.
-- [x] No Phase 7 README resource entries are added.
-- [x] Typecheck passes
-- [x] Tests pass
+- [ ] The overview identifies the project as **Awesome AI Agent Factories**—a curated awesome list for agent-factory coordination, orchestration, and flows—not an AI model reference website.
+- [ ] The “Read First” list includes `factory/factory.json`, `factory/workstations/ideafy/AGENTS.md`, `docs/internal/customer-ask.md`, `docs/internal/checklist.md`, and `docs/internal/progress.txt`.
+- [ ] The “Read First” list does **not** reference `docs/documentation-site-pages-needed.md` or other paths that do not exist in this repository.
+- [ ] Phase control text points to `docs/internal/customer-ask.md` as the source for current phase authorization and the Awesome List build goal.
+- [ ] Existing factory workflow sections (work types, workstation flow, batch submission, state inspection, repair) remain accurate and refer to `you docs agents` / `you docs batch-inputs` and `factory/docs/batch-input-example.json`.
+- [ ] Typecheck passes
+
+### US-004: Align taxonomy and cross-document category workflow language
+
+**Description:** As a maintainer preparing Phase 7 seeding, I want taxonomy and sibling policy docs to agree with README and CONTRIBUTING on categories and workflow so planners and contributors read the same rules.
+
+**Acceptance Criteria:**
+
+- [ ] `docs/taxonomy.md` lists the same ten curated README categories as `CONTRIBUTING.md` and does not describe Phase 4 automation as unimplemented when referring to current repository state.
+- [ ] `docs/taxonomy.md` “Future automation” language distinguishes implemented structural checks (Phase 4) and workflow gates (Phase 5) from not-yet-started Phase 7 content seeding.
+- [ ] `CONTRIBUTING.md` category list, README section headings, and `docs/review-policy.md` checklist section list name the same ten categories with matching headings.
+- [ ] `factory/docs/overview.md` does not contradict contributor category or local-check guidance in `CONTRIBUTING.md`.
+- [ ] No new README resource entries, issue-template edits, or unrelated governance file rewrites are introduced in this story.
+- [ ] Typecheck passes
+
+### US-005: Verify documentation convergence quality gate
+
+**Description:** As a planner running convergence review before Phase 7, I want end-to-end verification that the repaired documentation passes repository quality gates and contains no whitespace regressions.
+
+**Acceptance Criteria:**
+
+- [ ] From repository root, `make check` exits 0 (README structure, Contents alignment, entry rules).
+- [ ] From repository root, `go test ./...` exits 0.
+- [ ] From repository root, `git diff --check` exits 0 (no conflict markers or whitespace errors in changed files).
+- [ ] A reviewer can read `README.md` Contents, `CONTRIBUTING.md` categories, `docs/taxonomy.md`, `docs/review-policy.md`, and `factory/docs/overview.md` without finding contradictory claims about whether automation runs or what the ten curated categories are.
+- [ ] No Phase 7 list entries are added.
+- [ ] Typecheck passes
+- [ ] Tests pass
 
 ## Functional Requirements
 
-- FR-1: README Contents navigation lists Scope (if retained) and all ten curated category sections, including Related Lists; Community is not presented as a curated category in Contents.
-- FR-2: `docs/review-policy.md` documents the automation/manual-review split with accurate references to `make` targets, Go checks, and GitHub workflows present on `main`.
-- FR-3: `README.md`, `CONTRIBUTING.md`, `docs/review-policy.md`, and `docs/taxonomy.md` agree on the ten category names, Related Lists inclusion, and contributor submission path (one resource per PR, taxonomy for section fit, review policy for self-check).
-- FR-4: `factory/docs/overview.md` describes this repository's factory and lists only valid file paths and CLI entry points.
-- FR-5: Repository quality gates (`make check`, `go test ./...`, `git diff --check`) pass after reconciliation.
+- FR-1: README Contents lists Scope plus nine in-TOC curated sections; Related Lists, Contributing, and Community are excluded from Contents.
+- FR-2: README retains all ten curated `##` section headings including Related Lists.
+- FR-3: Review policy documents both automated enforcement surfaces and manual review ownership.
+- FR-4: Factory overview describes Awesome List scope, planner state files, and current factory workflow without stale external-project references.
+- FR-5: Taxonomy, CONTRIBUTING, review policy, and README use identical category names and headings.
+- FR-6: Repository quality commands (`make check`, `go test ./...`, `git diff --check`) pass after changes.
 
 ## Non-Goals
 
-- Adding Phase 7 README content entries or seeding list resources.
-- New GitHub templates, workflows, or checker features beyond minimal alignment required for `make check` after README Contents changes.
-- Broad unrelated doc rewrites (`MAINTAINERS.md`, `docs/historical.md`, `docs/rejected.md`) unless a direct contradiction with the four core contributor docs is discovered during reconciliation.
-- Planner-owned artifact changes (`prd.json`, `prd.md`, root `progress.txt`, `docs/internal/*`) unless explicitly required by a separate factory batch.
+- Seeding Phase 7 README content (theories, frameworks, papers, and other entries).
+- Rewriting `MAINTAINERS.md`, `SECURITY.md`, or GitHub issue/PR templates unless a direct contradiction with repaired docs is discovered during the cross-doc pass.
+- Adding new automated checks or changing `internal/checks` behavior beyond what README edits require to keep `make check` passing.
+- Bulk link-check or awesome-lint remediation across external URLs.
+- Creating `docs/documentation-site-pages-needed.md` or other documentation-site scaffolding.
 
-## High-Level Technical Design
+## High-level Technical Design
 
-Documentation-only reconciliation with at most a narrow Go checker adjustment:
+This batch is documentation-only. No application runtime, API, or UI changes are involved.
 
-1. **README Contents** — Update the Contents bullet list to include Related Lists and remove Community from curated navigation. Keep `## Community` at the footer for CODE_OF_CONDUCT and SECURITY links required by awesome-list conventions.
-2. **Checker alignment** — If `internal/checks/sections.go` excludes Related Lists from required Contents links (`contentsExcludedSections`), remove that exclusion and update `internal/checks/sections_test.go` fixtures so `make check` validates the new Contents shape.
-3. **Review policy** — Replace stale Phase 4 "not yet implemented" framing with a two-layer model: automation catches format, structure, duplicates, alphabetization, and link health; maintainers judge scope, relevance, category fit, tone, and merge readiness.
-4. **Taxonomy cross-links** — Extend quick-reference and label tables to cover Related Lists; update Phase status prose to reflect Phase 4 complete and Phase 7 not started.
-5. **Factory overview** — Retarget narrative and Read First paths to awesome-agent-factories factory docs; drop documentation-site scaffolding references.
+**Document ownership map**
 
-```mermaid
-flowchart LR
-  subgraph automated [Automated enforcement]
-    MakeCheck[make check]
-    GoTest[go test ./...]
-    CI[ci.yml]
-    LinkCheck[link-check.yml]
-    AwesomeLint[awesome-lint.yml]
-  end
-  subgraph manual [Manual maintainer review]
-    Scope[Scope and relevance]
-    Category[Category fit]
-    Quality[Tone and quality]
-    Convergence[Convergence decisions]
-  end
-  Contributor --> MakeCheck
-  Contributor --> manual
-  MakeCheck --> CI
-  PR --> LinkCheck
-  PR --> AwesomeLint
-  manual --> Merge[Merge decision]
-  automated --> Merge
-```
+| Concern | Primary file | Consumers |
+| --- | --- | --- |
+| Curated category names and TOC | `README.md` | Contributors, awesome-lint, `internal/checks` |
+| Submission rules and local/CI commands | `CONTRIBUTING.md` | Contributors, review policy |
+| Category definitions | `docs/taxonomy.md` | Maintainers, review policy |
+| Review checklist and automation split | `docs/review-policy.md` | Maintainers, contributors (self-check) |
+| Factory planner guidance | `factory/docs/overview.md` | Ideafy meta-planner, batch executors |
+
+**Contents conventions (behavioral contract)**
+
+`internal/checks` enforces awesome-list Contents rules: required resource section headings must exist; Contents must link to each in-TOC curated section; `Related Lists` and `Contributing` headings must exist but are omitted from Contents. `Community` is not a curated category and must not appear in Contents.
+
+**Automation vs manual review split**
+
+| Automated today | Manual maintainer judgment |
+| --- | --- |
+| README section presence and Contents alignment | Scope and agent-factory relevance |
+| Entry format, punctuation, banned phrases | Section-fit disputes and borderline resources |
+| Duplicate URL/name detection | Quality bar and historical importance |
+| Alphabetization within sections | Removal, relocation, and convergence decisions |
+| Go format/tests in CI | Whether a submission should merge |
+| Link checks (local `make links`, scheduled workflow) | Canonical URL and durability judgments |
+| awesome-lint on PR/push | Whether marketing tone is acceptable |
+
+**Implementation order**
+
+1. README Contents/footer (US-001) — establishes canonical navigation.
+2. Review policy automation language (US-002) — independent but references CONTRIBUTING CI table.
+3. Factory overview repair (US-003) — independent planner doc.
+4. Taxonomy and cross-doc alignment (US-004) — depends on prior doc content settling.
+5. Quality gate verification (US-005) — final convergence proof.
 
 ## Supporting Technical and UX Considerations
 
-- **awesome-lint Contents denylist** historically omitted Related Lists and Contributing from Contents while requiring Community. This batch prioritizes customer-visible taxonomy accuracy and `make check` alignment; if `npx awesome-lint` conflicts with adding Related Lists to Contents, prefer updating the Go checker and README together and document any awesome-lint follow-up separately rather than leaving Related Lists out of Contents.
-- **Community section** remains at the README footer for conduct/security discoverability even when removed from Contents curated navigation.
-- **CONTRIBUTING.md** already documents local checks and GitHub Actions accurately; changes should be limited to contradictions discovered during cross-doc review.
-- Preserve encyclopedic tone and avoid marketing language in all edited prose.
+- Prefer minimal diffs: update prose in place rather than restructuring unrelated sections.
+- When reframing “future automation” sections, preserve maintainer intent (checklist questions and labels) while correcting factual claims about what runs today.
+- `factory/docs/overview.md` is bundled factory documentation; keep workstation flow diagrams and `you` CLI commands accurate.
+- Contributors discover categories through README Contents and CONTRIBUTING; maintainers use taxonomy and review policy—wording should be consistent but not duplicated verbatim across every file.
+- Do not introduce trailing whitespace; `git diff --check` is part of the quality gate.
 
 ## Success Metrics
 
-- A contributor can name all ten curated categories from any of README, CONTRIBUTING, taxonomy, or review policy without finding conflicting lists.
-- Review policy no longer tells maintainers that automation is absent when CI and `make check` are configured.
-- Factory operators reading `factory/docs/overview.md` can follow Read First links without hitting missing files.
-- `make check` and `go test ./...` pass on the reconciliation branch.
+- Zero contradictory “automation does not run” statements across the five named policy files after repair.
+- README Contents matches CONTRIBUTING’s ten-category model without listing Community as curated content.
+- Factory overview references only files that exist on `main`.
+- `make check` and `go test ./...` pass on first attempt after merge.
+- Phase 7 content seeding can begin without a follow-up documentation repair batch.
 
 ## Open Questions
 
-None blocking implementation. awesome-lint Contents interaction with Related Lists inclusion will be resolved during US-001 by keeping `make check` green and noting any residual awesome-lint delta in story notes if it cannot be resolved within doc/checker scope.
+None. Scope, target files, and quality gate are defined by the customer ask and current repository state.

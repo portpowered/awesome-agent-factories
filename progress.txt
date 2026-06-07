@@ -6,7 +6,7 @@
 - Phase 4 lint config: `.golangci.yml` uses golangci-lint v2 schema (`version: "2"`); `gofmt`/`gofumpt` live under `formatters.enable`, other linters under `linters.enable`.
 - This worktree fast-forwarded `phase-4-go-readme-checker-core` to obtain `go.mod` and `internal/checks/` before adding Makefile/lint automation.
 - Optional-tool Makefile targets: guard with `command -v <tool>`; print tool name, purpose, `go install` hint, and upstream docs URL to stderr before exiting 1.
-- README `## Contents` lists all ten curated categories including Related Lists; only `Contributing` is in `contentsExcludedSections` (Community stays as a footer section, not Contents navigation).
+- README `## Contents` lists Scope plus nine in-TOC curated sections (Theories through Examples and Templates); `Related Lists` and `Contributing` are in `contentsExcludedSections` (section headings required, omitted from Contents per awesome-list convention); `Community` stays as a footer section, not Contents navigation.
 
 ## 2026-06-06T00:00:00Z - awesome-readme-foundation-001
 - Established README identity: Awesome H1 with badge, inline SVG logo mark (three connected nodes), blockquote tagline, and factual agent-factory definition; removed placeholder `# awesome-agent-factories` heading.
@@ -235,4 +235,14 @@
   - Story 005 completes the PRD; create the PR when no open PR exists and all five stories pass.
   - Use `git diff origin/main...HEAD --name-only` to confirm changed-file scope before marking verification stories complete.
   - `go build ./...` is the local typecheck equivalent when no package.json exists.
+---
+
+## 2026-06-07T16:30:00Z - phase-6-7-docs-convergence-repair-001
+- Converged README `## Contents` with awesome-list conventions: Scope plus nine in-TOC curated sections (Theories through Examples and Templates); removed Related Lists from Contents navigation while retaining `## Related Lists` as the tenth curated section heading; removed awesome-toc lint disable/enable wrappers no longer needed.
+- Restored `Related Lists` in `contentsExcludedSections` so `make check` enforces omission from Contents alongside Contributing; Community remains a governance footer after curated sections.
+- Files changed: README.md, internal/checks/sections.go
+- **Learnings for future iterations:**
+  - The repair PRD corrects the prior cleanup batch: Related Lists is a curated category section but is omitted from Contents per awesome-list/`internal/checks` convention—not listed in Contents navigation.
+  - awesome-toc lint disable was only needed when Related Lists appeared in Contents; removing Related Lists from TOC eliminates the awesome-lint vs checker conflict.
+  - `prd.md` is authoritative when `prd.json` acceptance wording is ambiguous about Contents vs section headings.
 ---
