@@ -157,3 +157,31 @@
   - Story 003 requires tests pass; `make check`, `make test`, and `go test ./...` all exit 0 after adding the workflow file (YAML-only change).
   - Story 004 updates CONTRIBUTING.md GitHub Actions subsection; story 005 verifies ci.yml unchanged on main.
 ---
+
+## 2026-06-07T17:00:00Z - phase-5-workflow-integration-repair-004
+- Replaced "GitHub Actions are not configured" statement in CONTRIBUTING.md with a **GitHub Actions** subsection under **Local checks**: table maps Link Check, Awesome Lint, and Scheduled Maintenance workflows to triggers and local equivalents (`make links`, `npx awesome-lint`, `make check` and `make links`); documents read-only behavior, `.lychee.toml`, and `internal/checks` as the source of README rules.
+- Files changed: CONTRIBUTING.md
+- **Learnings for future iterations:**
+  - Copy the GitHub Actions subsection verbatim from `origin/phase-5-link-awesome-maintenance-workflows:CONTRIBUTING.md`; it was authored alongside the three maintenance workflows.
+  - Story 004 is docs-only; `make check`, `make test`, `go test ./...`, and `git diff --check` all pass without code changes.
+  - Story 005 verifies ci.yml unchanged; story 006 runs end-to-end convergence verification.
+---
+
+## 2026-06-07T18:00:00Z - phase-5-workflow-integration-repair-005
+- Verified `.github/workflows/ci.yml` on the integration branch is byte-identical to `origin/main`: workflow name CI; `pull_request`/`push` triggers on `main`; steps use `actions/checkout@v4`, `actions/setup-go@v5` (`go-version: stable`), `go mod download`, gofmt list-only on `internal/`, `go test ./...`, and read-only README checks via `make check` with `go run ./internal/checks` fallback; no integration commit modified ci.yml.
+- Files changed: none (verification-only story)
+- **Learnings for future iterations:**
+  - Use `git diff origin/main -- .github/workflows/ci.yml` to confirm preservation during Phase 5 integration; empty diff means stories 001–004 did not regress core CI.
+  - Story 005 requires no code commit when ci.yml already matches main; mark PRD and append progress only.
+  - Story 006 runs full convergence verification (all four workflows, triggers, and local quality gates).
+---
+
+## 2026-06-07T19:00:00Z - phase-5-workflow-integration-repair-006
+- Verified Phase 5 workflow convergence: all four workflow files exist (ci.yml, link-check.yml, awesome-lint.yml, scheduled-maintenance.yml); trigger configs match customer ask (link check: PR + weekly `0 8 * * 1`; awesome lint: PR + push to main; scheduled maintenance: monthly `0 9 1 * *`; core CI: PR + push to main); ci.yml byte-identical to origin/main; no issue/PR templates added; integration commits limited to workflows and CONTRIBUTING.md GitHub Actions subsection.
+- Ran quality gates from repository root: `make check`, `make test`, `go test ./...`, `go build ./...`, and `git diff --check` all exit 0.
+- Files changed: none (verification-only story)
+- **Learnings for future iterations:**
+  - `origin/main` may already contain workflow content via a parallel branch (PR #9 merged phase-5-link-awesome-maintenance-workflows); use `git diff origin/main -- .github/workflows/` and blob hash comparison to confirm content convergence even when commit history diverges.
+  - GitHub PR diff against main (`git diff origin/main HEAD`) differs from merge-base diff (`git diff origin/main...HEAD`); prefer direct main comparison when predicting what a PR will show.
+  - Story 006 completes the PRD; create the PR when no open PR exists and all stories pass.
+---
