@@ -140,6 +140,13 @@ Real-world uses of multiple agents or agent flows.
 
 Runnable or forkable examples of multi-agent coordination.
 
+- [AutoGen Python samples](https://github.com/microsoft/autogen/tree/main/python/samples) - Runnable AutoGen sample projects demonstrating conversational multi-agent orchestration, group chat coordination, and delegated tool-use workflows.
+- [ChatDev](https://github.com/OpenBMB/ChatDev) - Runnable multi-agent software-development demo where specialized agents coordinate through chat-based handoffs across design, coding, and review phases.
+- [CrewAI Examples](https://github.com/crewAIInc/crewAI-examples) - Forkable crew templates demonstrating hierarchical task delegation, role-based agent coordination, and orchestrated multi-step workflows.
+- [GPT Researcher](https://github.com/assafelovic/gpt-researcher) - Multi-agent research assistant template with planner-editor coordination, parallel sub-agent delegation, and shared research orchestration flows.
+- [LangGraph examples](https://github.com/langchain-ai/langgraph/tree/main/examples) - Runnable graph examples for supervisor, swarm, and hierarchical multi-agent orchestration patterns with stateful handoffs.
+- [OpenAI Agents Python examples](https://github.com/openai/openai-agents-python/tree/main/examples) - Runnable samples for manager orchestration, specialist handoffs, and guardrailed multi-agent coordination flows.
+
 ## Related Lists
 
 Other awesome lists and curated resources related to agent orchestration and multi-agent systems.
