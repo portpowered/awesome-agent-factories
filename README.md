@@ -107,6 +107,14 @@ Benchmarks that evaluate group or workflow behavior.
 
 Academic or technical papers about agent groups and flows.
 
+- [A Survey on Large Language Model based Autonomous Agents](https://arxiv.org/abs/2308.11432) - Survey of LLM-based autonomous agents covering planning, memory, and action modules for multi-step orchestration and coordination in agent factories.
+- [AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation](https://arxiv.org/abs/2308.08155) - Research on conversational multi-agent orchestration patterns for task delegation, group chat, and cooperative problem solving across specialized agents.
+- [CAMEL: Communicative Agents for Mind Exploration of Large Language Model Society](https://arxiv.org/abs/2303.17760) - Framework for role-playing communicative agents that coordinate through structured dialogue to explore emergent multi-agent behavior and delegation strategies.
+- [Communicative Agents for Software Development](https://arxiv.org/abs/2307.07924) - ChatDev paper describing multi-agent software teams with role-based delegation, handoffs, and coordinated orchestration flows across development phases.
+- [Generative Agents: Interactive Simulacra of Human Behavior](https://arxiv.org/abs/2304.03442) - Architecture for believable agent societies with shared state, memory, and planning that coordinate daily activities in interactive simulated environments.
+- [Large Language Model based Multi-Agents: A Survey of Progress and Challenges](https://arxiv.org/abs/2402.01680) - IJCAI survey of LLM multi-agent systems covering agent communication, profiling, coordination paradigms, and group-level evaluation benchmarks.
+- [MetaGPT: Meta Programming for A Multi-Agent Collaborative Framework](https://arxiv.org/abs/2308.00352) - Multi-agent collaborative framework assigning software-company roles with structured message passing for coordination of planning and execution flows.
+
 ## Blog Posts
 
 Technical writing that explains real patterns, architectures, or failures in multi-agent systems.
