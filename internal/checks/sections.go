@@ -7,6 +7,13 @@ import (
 	"unicode"
 )
 
+// contentsExcludedSections matches awesome-lint sectionHeadingDenylist: these
+// headings must exist but are omitted from the Contents table.
+var contentsExcludedSections = map[string]bool{
+	"Related Lists": true,
+	"Contributing":  true,
+}
+
 // requiredResourceSections lists the ten Phase 1 README category headings.
 var requiredResourceSections = []string{
 	"Theories",
@@ -148,6 +155,9 @@ func validateRequiredSections(doc *ReadmeDocument) []CheckResult {
 	}
 
 	for _, required := range requiredResourceSections {
+		if contentsExcludedSections[required] {
+			continue
+		}
 		expectedAnchor := headingAnchor(required)
 		link, listed := linksByAnchor[expectedAnchor]
 		if !listed {
