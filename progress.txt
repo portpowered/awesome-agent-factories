@@ -453,3 +453,12 @@
   - Insert new Coordination Patterns entries in strict link-text alphabetical order; "Choose..." sorts after "Building Effective Agents" and before "Improving..."; "Saga..." sorts before "Scheduler Agent Supervisor".
   - Story 003 seeds Frameworks (five→≥8); avoid framework homepages already listed under Frameworks and example trees already under Examples and Templates.
 ---
+
+## 2026-06-07T11:30:00Z - phase-7-core-sections-expansion-003
+- Expanded README Frameworks from five to eight alphabetized entries by adding AgentScope, CAMEL, and Semantic Kernel with canonical GitHub project homes and scope keywords (orchestration, delegation, handoffs, coordination).
+- Files changed: README.md
+- **Learnings for future iterations:**
+  - Insert new Frameworks entries in strict link-text alphabetical order; "AgentScope" sorts before "AutoGen", "CAMEL" before "CrewAI", and "Semantic Kernel" before "Symphony".
+  - Use main framework repository URLs for Frameworks; keep `/tree/main/examples` or `-examples` repos under Examples and Templates only.
+  - Story 004 runs full batch verification across all three expanded core sections; no PR exists yet until all stories pass.
+---
