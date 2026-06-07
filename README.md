@@ -58,6 +58,12 @@ Excluded unless directly relevant:
 
 Foundational ideas for organizing agent groups.
 
+- [Actor Model](https://en.wikipedia.org/wiki/Actor_model) - Message-passing model where autonomous agents coordinate through asynchronous delegation.
+- [An Introduction to MultiAgent Systems](https://www.cs.ox.ac.uk/people/michael.wooldridge/pubs/imas/IMAS2e.html) - Textbook on multi-agent coordination, communication, and cooperation.
+- [Blackboard Architecture](https://en.wikipedia.org/wiki/Blackboard_%28artificial_intelligence%29) - Shared-workspace coordination model where specialists contribute to emergent group solutions.
+- [Contract Net Protocol](https://en.wikipedia.org/wiki/Contract_Net_Protocol) - Market-based delegation protocol for task allocation among autonomous agents.
+- [Swarm Intelligence](https://en.wikipedia.org/wiki/Swarm_intelligence) - Collective coordination principles for decentralized group-level behavior.
+
 ## Coordination Patterns
 
 Reusable system shapes for coordinating agent groups and flows.
