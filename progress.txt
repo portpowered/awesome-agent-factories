@@ -246,3 +246,12 @@
   - awesome-toc lint disable was only needed when Related Lists appeared in Contents; removing Related Lists from TOC eliminates the awesome-lint vs checker conflict.
   - `prd.md` is authoritative when `prd.json` acceptance wording is ambiguous about Contents vs section headings.
 ---
+
+## 2026-06-07T08:58:06Z - phase-6-7-docs-convergence-repair-002
+- Tightened `docs/review-policy.md` for live automation with explicit manual-judgment ownership (scope fit, section-fit disputes, agent-factory relevance, quality bar, removal/relocation, convergence); documented optional `make lint`, `go test ./...`, and CONTRIBUTING **GitHub Actions** pointer; added scheduled-maintenance link scans to checklist item 8 and `needs-link-review` triage guidance.
+- Files changed: docs/review-policy.md
+- **Learnings for future iterations:**
+  - The prior cleanup batch already landed most review-policy automation prose on main; repair story 002 is a gap-fill pass against PRD acceptance wording, not a full rewrite.
+  - When checklist item 8 references link automation, cite Link Check and Scheduled Maintenance together so PR and monthly scans are both visible to reviewers.
+  - Story 003 owns factory/docs/overview.md; story 004 owns taxonomy and cross-doc category alignment.
+---
