@@ -1,6 +1,6 @@
 # Review policy
 
-This document governs **human review** of resource pull requests for **Awesome AI Agent Factories**. Automated checks enforce README structure, formatting rules, and link health; maintainers still apply the checklist below for **scope fit**, **quality**, **category disputes**, and **convergence decisions** that automation cannot judge.
+This document governs **human review** of resource pull requests for **Awesome AI Agent Factories**. Automated checks enforce README structure, formatting rules, and link health; maintainers still apply the checklist below for judgments automation cannot make: **scope fit**, **section-fit disputes**, **agent-factory relevance**, **quality bar**, **removal and relocation**, and **convergence decisions** (for example, whether documentation or category language should change across sibling files).
 
 ## Automated enforcement
 
@@ -8,7 +8,7 @@ Phase 4 automation is **implemented**. Contributors should run local checks befo
 
 | Layer | What runs | Local equivalent |
 |-------|-----------|------------------|
-| **Makefile** | `make check` (README validation), `make test` (Go checker tests), `make links` (markdown link scan) | Primary pre-submit commands — see [CONTRIBUTING.md](../CONTRIBUTING.md) |
+| **Makefile** | `make check` (README validation), `make test` / `go test ./...` (Go checker tests), optional `make links` (markdown link scan) and `make lint` (Go static analysis) | Primary pre-submit commands — see [CONTRIBUTING.md](../CONTRIBUTING.md) **Local checks** and **GitHub Actions** |
 | **Go checker** | [`internal/checks`](../internal/checks) — section headings, Contents navigation, entry format, alphabetization, and related README rules | `make check` or `go run ./internal/checks` |
 | **CI** ([`ci.yml`](../.github/workflows/ci.yml)) | Go format check, `go test ./...`, and README validation on pull requests and pushes to `main` | `make test`, `make check` |
 | **Link Check** ([`link-check.yml`](../.github/workflows/link-check.yml)) | Read-only lychee scan of `README.md` and `docs/*.md` on pull requests and weekly | `make links` |
@@ -79,7 +79,7 @@ Use this checklist during review. Contributors should self-check the same items 
 
 - [ ] The URL resolves to the intended resource at review time.
 - [ ] The link appears to be an **official** or **durable** destination (not a redirect chain to unrelated content, a temporary campaign page, or a fork that does not represent the resource).
-- [ ] Link health is covered by automated checks (`make links` locally, [Link Check](../.github/workflows/link-check.yml) on pull requests). Maintainers still verify canonical URLs and note concerns when automation passes but the destination is misleading or unstable.
+- [ ] Link health is covered by automated checks (`make links` locally, [Link Check](../.github/workflows/link-check.yml) on pull requests, and [Scheduled Maintenance](../.github/workflows/scheduled-maintenance.yml) link scans). Maintainers still verify canonical URLs and note concerns when automation passes but the destination is misleading or unstable.
 
 ### 9. Is the entry alphabetized?
 
@@ -154,7 +154,7 @@ Triage labels signal that a pull request needs maintainer or contributor action 
 | Label | Use when |
 |-------|----------|
 | `needs-scope-review` | Scope or README section fit is unclear. Consult [docs/taxonomy.md](taxonomy.md) and ask the contributor for an agent-factory justification. |
-| `needs-link-review` | The URL is broken, redirects suspiciously, or may not be canonical. Check [Link Check](../.github/workflows/link-check.yml) workflow results and run `make links` locally when triaging; verify canonical destination and durability when automation passes but the link still looks wrong. |
+| `needs-link-review` | The URL is broken, redirects suspiciously, or may not be canonical. Check [Link Check](../.github/workflows/link-check.yml) and [Scheduled Maintenance](../.github/workflows/scheduled-maintenance.yml) workflow results and run `make links` locally when triaging; verify canonical destination and durability when automation passes but the link still looks wrong. |
 | `needs-maintainer-review` | A second maintainer opinion is required (borderline scope, category dispute, or maintainer-authored change per [MAINTAINERS.md](../MAINTAINERS.md)). |
 
 ### Outcome labels
@@ -183,4 +183,4 @@ Do not treat `resource:*` labels as substitutes for outcome labels. A pull reque
 
 Phase 4 automated README checks, link scanning, awesome-list lint, and related GitHub workflows are **implemented** — see [Automated enforcement](#automated-enforcement) above.
 
-This checklist is written so each item can map to an automated check or warning without changing maintainer intent. Items **not yet fully automated** include scope-keyword matching, duplicate detection beyond URL search, banned-phrase enforcement, and maintainer judgment on borderline category fit. Future work should extend automation for those gaps; maintainers still perform manual review for scope, quality, category disputes, and convergence decisions in the meantime.
+This checklist is written so each item can map to an automated check or warning without changing maintainer intent. Items **not yet fully automated** include scope-keyword matching, duplicate detection beyond URL search, banned-phrase enforcement, and maintainer judgment on borderline category fit. Future work should extend automation for those gaps; maintainers still perform manual review for scope fit, section-fit disputes, agent-factory relevance, quality bar, removal and relocation, and convergence decisions in the meantime.
