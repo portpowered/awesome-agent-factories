@@ -60,8 +60,11 @@ Foundational ideas for organizing agent groups.
 
 - [Actor Model](https://en.wikipedia.org/wiki/Actor_model) - Message-passing model where autonomous agents coordinate through asynchronous delegation.
 - [An Introduction to MultiAgent Systems](https://www.cs.ox.ac.uk/people/michael.wooldridge/pubs/imas/IMAS2e.html) - Textbook on multi-agent coordination, communication, and cooperation.
+- [BDI Software Agent](https://en.wikipedia.org/wiki/BDI_software_agent) - Deliberative agent architecture modeling beliefs, desires, and intentions for rational planning and coordinated delegation in multi-agent groups.
 - [Blackboard Architecture](https://en.wikipedia.org/wiki/Blackboard_architecture) - Shared-workspace coordination model where specialists contribute to emergent group solutions.
 - [Contract Net Protocol](https://en.wikipedia.org/wiki/Contract_Net_Protocol) - Market-based delegation protocol for task allocation among autonomous agents.
+- [Distributed Artificial Intelligence](https://en.wikipedia.org/wiki/Distributed_artificial_intelligence) - Foundational field studying cooperation, coordination, and problem decomposition across networks of autonomous agents.
+- [Hierarchical Task Network](https://en.wikipedia.org/wiki/Hierarchical_task_network) - Planning formalism for decomposing complex tasks through hierarchical delegation and coordinated subgoal orchestration among specialized agents.
 - [Swarm Intelligence](https://en.wikipedia.org/wiki/Swarm_intelligence) - Collective coordination principles for decentralized group-level behavior.
 
 ## Coordination Patterns
