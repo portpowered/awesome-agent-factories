@@ -292,6 +292,7 @@ Runnable or forkable examples that demonstrate multi-agent coordination, not abs
 ## Related Lists
 
 **README section:** [Related Lists](../README.md#related-lists)
+**Label:** `resource:related-list`
 
 Curated awesome lists or indexes that complement this repository. This taxonomy does not define detailed include/exclude rules for Related Lists; apply [README.md](../README.md) scope and [CONTRIBUTING.md](../CONTRIBUTING.md) the same way as other sections.
 
@@ -316,7 +317,10 @@ Curated awesome lists or indexes that complement this repository. This taxonomy 
 | Blog Posts | `resource:blog` | What technical article teaches real lessons? |
 | Case Studies | `resource:case-study` | What real deployment used multiple agents or flows? |
 | Examples and Templates | `resource:example` | What can readers run or fork? |
+| Related Lists | `resource:related-list` | What complementary awesome list or index covers agent orchestration? |
 
 ## Future automation (Phase 4) and content seeding (Phase 7)
 
-Category names, include/exclude rules, and examples in this document are intended inputs for Phase 4 automated checks (section validation, scope warnings) and Phase 7 content seeding. Neither phase is implemented in this repository yet.
+Category names, include/exclude rules, and examples in this document informed Phase 4 automated README checks (section validation, Contents alignment, entry format, alphabetization) and related CI — see [docs/review-policy.md](review-policy.md#automated-enforcement) and [CONTRIBUTING.md](../CONTRIBUTING.md). Phase 4 automation is **implemented** in this repository.
+
+Phase 7 content seeding has **not** started in this batch. Future work may use this taxonomy when populating README entries; maintainers still apply manual review for scope, quality, and category fit per [docs/review-policy.md](review-policy.md).
