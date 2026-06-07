@@ -1,185 +1,169 @@
-# PRD: Phase 7 Blog Posts, Case Studies, and Examples and Templates Seed
+# PRD: Phase 8/9 Maintainer Operations Integration Repair
 
 ## Introduction
 
-Complete the remaining Phase 7 foundational content seed for **Awesome AI Agent Factories** by populating the three still-empty README resource sections—**Blog Posts**, **Case Studies**, and **Examples and Templates**—with high-confidence, scope-aligned exemplar entries. Seven curated sections (Theories, Coordination Patterns, Frameworks, Protocols and Interfaces, Benchmarks, Research Papers, and Related Lists) are already seeded on `main`. This batch gives readers and contributors durable examples of technical writing, real deployment narratives, and runnable multi-agent coordination artifacts without revisiting sections that already have seed content.
+Integrate the already-reviewed governance documentation from `origin/phase-8-9-maintainer-ops-convergence` onto `main` for four files only: `MAINTAINERS.md`, `CONTRIBUTING.md`, `docs/review-policy.md`, and `docs/taxonomy.md`. This is an **integration repair**, not new governance authoring — the convergence branch diff is clean and limited to documentation drift between implemented Phase 4/5 automation and maintainer-facing policy prose.
+
+**Intent:** After Phase 4 README checks and Phase 5 GitHub workflows landed on `main`, maintainer docs still describe a pre-automation world (for example, “no required CI gate” and “no scheduled link checker”). Contributors and maintainers need one truthful, cross-linked governance story about what automation runs, what local commands reproduce it, and what human judgment remains.
 
 ## Context
 
 ### Customer ask
 
-Advance the unfinished Phase 7 README sections now that Theories, Coordination Patterns, Frameworks, Protocols and Interfaces, Benchmarks, Research Papers, and Related Lists are already seeded on `main`. Add coherent first seeds for Blog Posts (roughly 4–6 entries), Case Studies (roughly 3–5 entries), and Examples and Templates (roughly 4–6 entries). Keep entries factual, neutral, non-promotional, alphabetized within each section, and formatted as `- [Resource Name](URL) - Description.` with descriptions ending in periods. Use stable, direct resource URLs scoped to groups of agents or agent-flow management. Update `docs/taxonomy.md` so its Phase 7 status note reflects that Blog Posts, Case Studies, and Examples and Templates are now seeded on `main`. Leave `make check`, `make test`, and `git diff --check` passing.
+Integrate the completed branch diff from `origin/phase-8-9-maintainer-ops-convergence` onto `main` for only `MAINTAINERS.md`, `CONTRIBUTING.md`, `docs/review-policy.md`, and `docs/taxonomy.md`. Ensure `MAINTAINERS.md` truthfully reflects implemented automation and maintainer-owned weekly, monthly, and quarterly stewardship without inventing staffing, SLAs, or automation the repository does not have. Keep all four documents consistent about CI, link checks, awesome-lint, scheduled maintenance, local equivalents, and maintainer judgment boundaries. Do not add or remove README resource entries. Do not edit planner-owned `docs/internal/*` files. Leave `make check`, `make test`, and `git diff --check` passing.
 
 ### Problem
 
-Readers browsing `main` see empty Blog Posts, Case Studies, and Examples and Templates sections despite mature seed content in the other seven curated categories. Contributors lack on-main exemplars for category fit, tone, and entry format in these three sections. `docs/taxonomy.md` still defers Blog Posts, Case Studies, and Examples and Templates to a later batch, which no longer matches repository intent once this work lands.
+Governance documentation on `main` is stale relative to implemented repository automation:
+
+- `MAINTAINERS.md` still states there is no scheduled link checker, no CI gate, and no awesome-lint enforcement, contradicting `.github/workflows/ci.yml`, `link-check.yml`, `awesome-lint.yml`, and `scheduled-maintenance.yml`.
+- `CONTRIBUTING.md` omits the CI workflow from its GitHub Actions table and understates what automated checks cover before maintainer review.
+- `docs/review-policy.md` and `docs/taxonomy.md` cross-reference tables do not point maintainers to the converged automation summary and maintenance cadence in `MAINTAINERS.md`.
+
+This drift confuses contributors reproducing CI locally, maintainers triaging workflow failures, and reviewers applying merge policy.
 
 ### Solution
 
-Add a focused, two-file content seed: populate each of the three empty README sections with curated entries that satisfy [docs/taxonomy.md](../../docs/taxonomy.md) include rules and [CONTRIBUTING.md](../../CONTRIBUTING.md) formatting rules, then update the Phase 7 status paragraph in `docs/taxonomy.md` to record that all ten curated README resource sections are seeded on `main`. Preserve Scope, Contributing, and Community prose. Do not modify already-seeded sections or add unrelated documentation churn.
+Cherry-pick or apply the reviewed four-file diff from `origin/phase-8-9-maintainer-ops-convergence` onto the integration branch. Verify every automation claim against existing workflow YAML and `Makefile` targets. Confirm cross-document consistency for workflow names, triggers, local equivalents, and maintainer-judgment boundaries. Run repository quality gates. Do not broaden scope beyond these four files.
 
 ## Goals
 
-- Seed **Blog Posts** with 4–6 high-confidence technical articles about real multi-agent architectures, orchestration patterns, evaluation, or failure analysis.
-- Seed **Case Studies** with 3–5 stable entries describing real-world deployments or sustained operational use of multiple agents or explicit agent flows.
-- Seed **Examples and Templates** with 4–6 runnable or forkable examples focused on multi-agent coordination, handoffs, orchestration, or shared work patterns.
-- Keep every added entry factual, neutral, alphabetized by link text, and compliant with the canonical entry format.
-- Update `docs/taxonomy.md` Phase 7 status prose to reflect completion of seeding for Blog Posts, Case Studies, and Examples and Templates on `main`.
-- Pass repository quality gates (`make check`, `make test`, `git diff --check`) without regressing automated README validators.
+- Land the reviewed convergence documentation onto `main` without re-authoring governance prose.
+- Make `MAINTAINERS.md` the canonical, truthful description of implemented automation and optional human stewardship cadence (weekly link triage, monthly scheduled maintenance review, quarterly governance spot-check).
+- Align `CONTRIBUTING.md`, `docs/review-policy.md`, and `docs/taxonomy.md` with the same CI, link-check, awesome-lint, and scheduled-maintenance facts.
+- Preserve explicit boundaries: automation does not replace maintainer scope, canonical-link, quality, or merge decisions; no SLAs, staffing levels, or auto-merge are claimed.
 
 ## Project-level acceptance criteria
 
-- [ ] README **Blog Posts** contains 4–6 curated entries below the existing section intro, each using `- [Resource Name](URL) - Description.` with descriptions ending in a period.
-- [ ] README **Case Studies** contains 3–5 curated entries below the existing section intro, using the same entry format and tone rules.
-- [ ] README **Examples and Templates** contains 4–6 curated entries below the existing section intro, using the same entry format and tone rules.
-- [ ] Every new entry is alphabetized by link text within its section, uses a stable direct URL, stays factual and non-promotional, and clearly addresses multi-agent coordination, orchestration, handoffs, or group-level agent flows rather than generic single-agent tooling.
-- [ ] Already-seeded README sections (Theories, Coordination Patterns, Frameworks, Protocols and Interfaces, Benchmarks, Research Papers, Related Lists) and governance sections (Scope, Contributing, Community) are unchanged except where unavoidable for whitespace or merge hygiene.
-- [ ] `docs/taxonomy.md` Phase 7 status note states that Blog Posts, Case Studies, and Examples and Templates are seeded on `main` and that Phase 7 foundational content seeding is complete across all ten curated README resource sections.
+- [ ] Only `MAINTAINERS.md`, `CONTRIBUTING.md`, `docs/review-policy.md`, and `docs/taxonomy.md` differ from `main` for governance content (plus this batch’s planning artifacts under `tasks/todo/`).
+- [ ] `MAINTAINERS.md` documents CI, Link Check, Awesome Lint, and Scheduled Maintenance with triggers and local equivalents that match `.github/workflows/*.yml` and `Makefile` targets.
+- [ ] `MAINTAINERS.md` describes weekly, monthly, and quarterly maintainer stewardship as availability-based human tasks tied to existing workflow schedules, without inventing dedicated staff, 24/7 coverage, or response-time SLAs.
+- [ ] `CONTRIBUTING.md`, `docs/review-policy.md`, and `docs/taxonomy.md` agree with `MAINTAINERS.md` on automation scope, local reproduction commands, and maintainer judgment boundaries.
+- [ ] No README resource entries are added or removed; no `docs/internal/*` files are edited.
 - [ ] Quality gate: `make check`, `make test`, and `git diff --check` all pass from the repository root.
 
 ## User Stories
 
-### phase-7-blog-posts-case-studies-examples-seed-001: Seed Blog Posts section
+### US-001: Integrate MAINTAINERS.md automation and cadence documentation
 
-**Description:** As a reader learning from production multi-agent experience, I want technical blog posts linked from the README so I can study real architectures, orchestration lessons, evaluation approaches, and failure analyses.
-
-**Acceptance Criteria:**
-
-- [ ] README Blog Posts contains 4–6 new entries placed below the existing section intro line and above the next `##` heading.
-- [ ] Each entry uses exact format `- [Resource Name](URL) - Description.` with the resource name as link text and a description ending in a period.
-- [ ] Entries are alphabetized by link text (case-insensitive) and cover technical multi-agent topics such as architecture breakdowns, orchestration patterns, group-workflow evaluation, or failure/postmortem analysis—not product launch posts or shallow trend pieces.
-- [ ] No duplicate URLs are introduced anywhere in README.md.
-- [ ] `make check` passes after Blog Posts seeding.
-- [ ] Typecheck passes.
-- [ ] Tests pass.
-
-### phase-7-blog-posts-case-studies-examples-seed-002: Seed Case Studies section
-
-**Description:** As a practitioner evaluating agent-factory adoption, I want real deployment case studies indexed on main so I can compare how organizations operate multiple agents or explicit agent flows in production.
+**Description:** As a maintainer, I want `MAINTAINERS.md` to describe implemented automation and recurring stewardship so I can triage workflow failures and set contributor expectations without referencing obsolete pre-Phase-5 prose.
 
 **Acceptance Criteria:**
 
-- [ ] README Case Studies contains 3–5 new entries placed below the existing section intro line and above the next `##` heading.
-- [ ] Each entry uses exact format `- [Resource Name](URL) - Description.` with factual, encyclopedic descriptions ending in a period.
-- [ ] Entries are alphabetized by link text and describe real-world or sustained operational use where multiple agents or explicit flows were central—not hypothetical architectures or single-chatbot support stories.
-- [ ] No duplicate URLs are introduced anywhere in README.md.
-- [ ] `make check` passes after Case Studies seeding.
-- [ ] Typecheck passes.
-- [ ] Tests pass.
+- [ ] Apply the reviewed `MAINTAINERS.md` changes from `origin/phase-8-9-maintainer-ops-convergence` (intro, **Automated checks**, **Maintainer maintenance cadence**, merge policy, and **What maintainers do not do today** sections).
+- [ ] The **Automated checks** table lists CI, Link Check, Awesome Lint, and Scheduled Maintenance with triggers and local equivalents matching `.github/workflows/ci.yml`, `link-check.yml`, `awesome-lint.yml`, and `scheduled-maintenance.yml`.
+- [ ] Weekly, monthly, and quarterly cadence sections describe human tasks “when maintainers have availability” and explicitly deny dedicated staff, 24/7 coverage, and response-time SLAs.
+- [ ] Merge policy states resource PRs should have passing automated checks before merge while preserving manual scope and quality review.
+- [ ] No claims of auto-merge, dedicated moderation staff, or automation the repository does not implement.
+- [ ] Typecheck passes
 
-### phase-7-blog-posts-case-studies-examples-seed-003: Seed Examples and Templates section
+### US-002: Integrate CONTRIBUTING.md GitHub Actions and review guidance
 
-**Description:** As a builder starting a multi-agent project, I want runnable or forkable examples linked from the README so I can adapt coordination, handoff, and orchestration patterns without guessing category fit.
-
-**Acceptance Criteria:**
-
-- [ ] README Examples and Templates contains 4–6 new entries placed below the existing section intro line and above the next `##` heading.
-- [ ] Each entry uses exact format `- [Resource Name](URL) - Description.` with descriptions ending in a period and emphasizing runnable or forkable multi-agent coordination artifacts.
-- [ ] Entries are alphabetized by link text and point to repositories, notebooks, or templates readers can run or adapt—not production frameworks (which belong in Frameworks) or pattern-only documentation (which belongs in Coordination Patterns).
-- [ ] No duplicate URLs are introduced anywhere in README.md.
-- [ ] `make check` passes after Examples and Templates seeding.
-- [ ] Typecheck passes.
-- [ ] Tests pass.
-
-### phase-7-blog-posts-case-studies-examples-seed-004: Update taxonomy Phase 7 status for completed seeding
-
-**Description:** As a maintainer or contributor checking phase status, I want `docs/taxonomy.md` to reflect that Blog Posts, Case Studies, and Examples and Templates are seeded on `main` so documentation matches repository state.
+**Description:** As a contributor, I want `CONTRIBUTING.md` to list all CI workflows and explain the split between automated checks and maintainer review so I can reproduce failures locally before opening a pull request.
 
 **Acceptance Criteria:**
 
-- [ ] `docs/taxonomy.md` Phase 7 content-seeding paragraph states that Blog Posts, Case Studies, and Examples and Templates are seeded on `main`.
-- [ ] The same paragraph records that Phase 7 foundational content seeding is present on `main` for all ten curated README resource sections (Theories through Related Lists).
-- [ ] Category definitions, include/exclude rules, representative examples, and README section headings elsewhere in taxonomy are unchanged.
-- [ ] No new README entries are added outside the three sections seeded in earlier stories.
-- [ ] Typecheck passes.
+- [ ] Apply the reviewed `CONTRIBUTING.md` changes from `origin/phase-8-9-maintainer-ops-convergence` (GitHub Actions table, CI workflow row, schedule wording, and pre-merge review paragraph).
+- [ ] GitHub Actions table includes CI with local equivalents `make test` and `make check`, Link Check (PRs + weekly Mondays), Awesome Lint, and Scheduled Maintenance (monthly 1st).
+- [ ] Prose states CI runs Go format checks, `go test ./...`, and README validation via `make check` / `internal/checks`.
+- [ ] Closing paragraph distinguishes automated README/Go/link/awesome-list checks from manual maintainer scope, canonical-link, and quality review; links to `MAINTAINERS.md`.
+- [ ] Typecheck passes
 
-### phase-7-blog-posts-case-studies-examples-seed-005: Verify batch quality gates and section integrity
+### US-003: Align review-policy and taxonomy cross-references
 
-**Description:** As a maintainer merging this batch, I want end-to-end verification that seeded content satisfies automated README checks and repository gates without regressing governance sections.
+**Description:** As a reviewer, I want `docs/review-policy.md` and `docs/taxonomy.md` to point to the converged maintainer automation and cadence documentation so governance docs stay mutually consistent.
 
 **Acceptance Criteria:**
 
-- [ ] From repository root, `make check` exits 0 (entry format, alphabetization, required sections, and Contents alignment all pass).
-- [ ] From repository root, `make test` exits 0.
+- [ ] Apply the reviewed `docs/review-policy.md` change: the governance-documents table row for `MAINTAINERS.md` references automated checks summary and maintainer maintenance cadence.
+- [ ] Apply the reviewed `docs/taxonomy.md` changes: governance-documents table rows reference local checks, automated enforcement, and `MAINTAINERS.md` merge policy and cadence; the Phase 4/5 automation paragraph links to `MAINTAINERS.md#automated-checks`.
+- [ ] Cross-reference wording does not contradict `MAINTAINERS.md` or `CONTRIBUTING.md` on workflow names, triggers, or local equivalents.
+- [ ] Typecheck passes
+
+### US-004: Verify governance consistency and repository quality gates
+
+**Description:** As a maintainer merging this integration repair, I want end-to-end verification that the four governance files are consistent, scope-limited, and pass repository checks.
+
+**Acceptance Criteria:**
+
+- [ ] Diff against `main` is limited to the four governance files and this batch’s `tasks/todo/` planning artifacts — no README edits, no `docs/internal/*` edits, no workflow or Go source changes unless required to fix a factual doc error discovered during verification.
+- [ ] Manual read confirms all four files agree on: CI (`make test`, `make check`), Link Check (`make links`, weekly Mondays), Awesome Lint (`npx awesome-lint`), Scheduled Maintenance (monthly 1st, `make check` + `make links`), and maintainer judgment boundaries automation cannot replace.
+- [ ] `make check` exits 0 from repository root.
+- [ ] `make test` exits 0 from repository root.
 - [ ] `git diff --check` reports no whitespace errors on changed files.
-- [ ] README Scope, Contributing, and Community sections remain present and unweakened.
-- [ ] Already-seeded sections (Theories, Coordination Patterns, Frameworks, Protocols and Interfaces, Benchmarks, Research Papers, Related Lists) contain no unintended edits.
-- [ ] Changed files are limited to `README.md`, `docs/taxonomy.md`, and planning artifacts for this batch.
-- [ ] Typecheck passes.
-- [ ] Tests pass.
+- [ ] Typecheck passes
+- [ ] Tests pass
 
 ## Functional Requirements
 
-- **FR-1:** Add 4–6 Blog Posts entries covering technical multi-agent writing (architecture, orchestration, evaluation, or failure analysis) per [docs/taxonomy.md](../../docs/taxonomy.md#blog-posts) include rules.
-- **FR-2:** Add 3–5 Case Studies entries documenting real deployments or sustained operational multi-agent or agent-flow use per [docs/taxonomy.md](../../docs/taxonomy.md#case-studies) include rules.
-- **FR-3:** Add 4–6 Examples and Templates entries linking runnable or forkable multi-agent coordination artifacts per [docs/taxonomy.md](../../docs/taxonomy.md#examples-and-templates) include rules.
-- **FR-4:** Every entry must use `- [Resource Name](URL) - Description.` format with descriptions ending in a period.
-- **FR-5:** Entries within each seeded section must be alphabetized by link text (case-insensitive), matching automated `alphabetical-order` validation in [`internal/checks`](../../internal/checks).
-- **FR-6:** Prefer stable repository or documentation URLs over transient announcement pages; skip borderline promotional or single-agent resources.
-- **FR-7:** Update only the Phase 7 status paragraph in `docs/taxonomy.md`; do not rewrite category taxonomy content.
-- **FR-8:** Do not add entries to or modify content in already-seeded README sections.
+- FR-1: Integrate the reviewed four-file diff from `origin/phase-8-9-maintainer-ops-convergence` without expanding scope.
+- FR-2: Document CI workflow with PR/push-to-`main` triggers and local equivalents `make test` and `make check`.
+- FR-3: Document Link Check with PR and weekly Monday schedule and local equivalent `make links`.
+- FR-4: Document Awesome Lint with PR/push-to-`main` triggers and local equivalent `npx awesome-lint`.
+- FR-5: Document Scheduled Maintenance with monthly 1st schedule and local equivalents `make check` and `make links`.
+- FR-6: Document weekly (link triage), monthly (scheduled maintenance + stale-PR spot-check), and quarterly (optional governance spot-check) maintainer cadences as availability-based human stewardship.
+- FR-7: State explicitly that maintainers retain scope, canonical-link, quality, merge, and removal judgments automation cannot make.
+- FR-8: Update cross-reference tables in `docs/review-policy.md` and `docs/taxonomy.md` to point at converged maintainer documentation.
 
 ## Non-Goals
 
-- Revisiting or expanding entries in Theories, Coordination Patterns, Frameworks, Protocols and Interfaces, Benchmarks, Research Papers, or Related Lists.
-- Adding new README categories or changing Contents navigation structure.
-- Modifying automated check logic in `internal/checks` unless a genuine validator bug blocks compliant seed content.
-- Running or maintaining linked third-party example repositories.
-- Link-checking every external URL locally (CI Link Check handles that separately).
-- Seeding prompt collections, single-agent chatbot demos, or generic LLM SDK tutorials.
+- No new governance authoring beyond integrating the reviewed convergence diff.
+- No README resource entry additions, removals, or rewording.
+- No edits to planner-owned `docs/internal/*` files.
+- No changes to GitHub workflow YAML, Go checks, or Makefile targets unless a factual mismatch is discovered and must be corrected to keep docs truthful.
+- No claims of auto-merge bots, dedicated moderation staff, fixed-hour coverage, or response-time SLAs.
+- No Phase 7 category deepening or Phase 10 launch-readiness work in this batch.
 
 ## High-level technical design
 
-This batch is a documentation-only content seed with no runtime services, APIs, or UI. Implementation touches two canonical files:
+This batch is documentation-only integration:
+
+1. **Source of truth for automation facts:** `.github/workflows/ci.yml`, `link-check.yml`, `awesome-lint.yml`, `scheduled-maintenance.yml`, root `Makefile`, and `.lychee.toml`.
+2. **Source of truth for governance prose:** reviewed diff on `origin/phase-8-9-maintainer-ops-convergence` for the four target files.
+3. **Integration method:** apply or cherry-pick the four-file diff onto branch `phase-8-9-maintainer-ops-integration-repair`; resolve conflicts only within those files while preserving factual alignment with workflows.
+4. **Verification:** cross-doc consistency read plus `make check`, `make test`, and `git diff --check`.
 
 ```mermaid
 flowchart LR
-  subgraph inputs [Selection inputs]
-    TAX[docs/taxonomy.md include rules]
-    CONTRIB[CONTRIBUTING.md format rules]
-    SCOPE[README Scope exclusions]
+  subgraph source [Convergence branch]
+    C[Four-file reviewed diff]
   end
-  subgraph changes [Repository changes]
-    README[README.md three sections]
-    TAXON[docs/taxonomy.md Phase 7 note]
+  subgraph verify [Verification]
+    W[Workflow YAML + Makefile]
+    Q[make check / make test / git diff --check]
   end
-  subgraph gates [Verification]
-    CHECK[make check]
-    TEST[make test]
-    DIFF[git diff --check]
+  subgraph target [Main integration]
+    M[MAINTAINERS.md]
+    CO[CONTRIBUTING.md]
+    RP[docs/review-policy.md]
+    TX[docs/taxonomy.md]
   end
-  inputs --> README
-  README --> TAXON
-  README --> CHECK
-  TAXON --> CHECK
-  CHECK --> TEST
-  TEST --> DIFF
+  C --> M
+  C --> CO
+  C --> RP
+  C --> TX
+  W --> M
+  W --> CO
+  M --> Q
+  CO --> Q
+  RP --> Q
+  TX --> Q
 ```
 
-**Resource selection workflow (per section):**
+## Supporting technical and UX considerations
 
-1. Identify candidates with durable homes (official docs, engineering blogs with technical depth, case-study writeups with deployment narrative, or forkable example repos).
-2. Confirm each candidate fits README scope (groups of agents or flows) and the target taxonomy category include rules; reject single-agent or promotional material.
-3. Draft descriptions that state the multi-agent coordination angle in neutral encyclopedic tone.
-4. Alphabetize by link text, insert below the section intro, and run `make check` to catch format or ordering violations.
-
-**Automated enforcement:** Phase 4 checks in `internal/checks` validate required section headings, Contents alignment, entry format, duplicate URLs, and per-section alphabetical order. Phase 5 CI runs equivalent gates. Implementers verify locally with `make check` and `make test`.
-
-## Supporting technical and editorial considerations
-
-- **Category boundaries:** A framework tutorial repo belongs in Examples and Templates only when the primary value is a runnable demo; full frameworks stay in Frameworks. Architecture articles about live systems belong in Blog Posts; deployment narratives with customer/operational context belong in Case Studies.
-- **Overlap with existing entries:** Do not duplicate URLs already present elsewhere in README.md. If a resource is already listed under Frameworks or Coordination Patterns, choose a different candidate unless the same URL genuinely belongs in two categories (avoid duplicates).
-- **Description style:** Match existing seeded sections—one sentence, coordination-focused, ending with a period. Example tone from Frameworks: emphasis on orchestration, delegation, handoffs, or group coordination.
-- **Section intros:** Preserve the existing one-line intros under each `##` heading; add entries below them.
-- **Taxonomy wording:** Replace the deferred-batch language in the Phase 7 paragraph with a completion statement covering all ten curated resource sections, linking each section name to its README anchor where the existing note already uses that pattern.
+- **Truthfulness over aspiration:** Every workflow named in governance docs must exist in `.github/workflows/` with matching triggers. Do not document `make lint` (golangci-lint) as a required CI gate unless the CI workflow runs it — optional local tooling stays optional.
+- **Consistent vocabulary:** Use the same workflow display names (CI, Link Check, Awesome Lint, Scheduled Maintenance) and local command pairs across all four files.
+- **Maintainer UX:** Cadence sections should read as checklists tied to workflow signals (failing Link Check runs, monthly Scheduled Maintenance results, quarterly doc drift review), not as operational runbooks implying staffing.
+- **Contributor UX:** `CONTRIBUTING.md` should remain the primary “how to reproduce CI locally” entry point; `MAINTAINERS.md` is the canonical maintainer-facing automation summary linked from other docs.
 
 ## Success metrics
 
-- All three previously empty README sections contain qualifying seed entries within the requested count ranges.
-- `make check` reports zero failures for entry format, alphabetization, and section structure on the updated README.
-- Contributors can open any seeded entry and immediately see the expected list format, tone, and multi-agent scope without maintainer clarification.
-- `docs/taxonomy.md` Phase 7 status accurately describes on-main seeding completeness with no deferred-section language for Blog Posts, Case Studies, or Examples and Templates.
+- Zero factual contradictions between the four governance files and implemented workflows after merge.
+- Contributors can find CI, link, and awesome-lint local reproduction commands from `CONTRIBUTING.md` without reading workflow YAML.
+- Maintainers can follow weekly/monthly/quarterly cadence guidance without encountering obsolete “no CI yet” language.
+- Integration repair completes with passing `make check`, `make test`, and `git diff --check` on first merge attempt.
 
 ## Open Questions
 
-None. Selection criteria, entry counts, format rules, taxonomy update intent, and quality gates are fully specified by the customer ask and existing repository documentation.
+None — convergence review already confirmed a clean four-file documentation diff with no `git diff --check` issues. Treat factual verification against workflow YAML as implementation due diligence, not open design work.
