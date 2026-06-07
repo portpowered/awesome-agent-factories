@@ -84,7 +84,7 @@ Do not add a URL that already appears anywhere in [README.md](README.md).
 Before opening a pull request:
 
 - Search [README.md](README.md) for the URL you plan to add.
-- If the resource is already listed under another name or section, do not submit a duplicate; comment on the existing entry's issue or open a discussion instead.
+- If the resource is already listed under another name or section, do not submit a duplicate; open an issue from the GitHub issue chooser (for example **Suggest a resource** or **Request resource removal**) or start a discussion instead.
 
 Maintainers will reject pull requests that introduce duplicate links.
 
@@ -251,6 +251,10 @@ These workflows mirror the local commands above (read-only; no repository mutati
 Run the local commands to reproduce CI failures before pushing. Link checks honor root [`.lychee.toml`](.lychee.toml); README validation rules live in [`internal/checks`](internal/checks)—workflow YAML does not duplicate them.
 
 ## Before you open a pull request
+
+GitHub pre-fills the repository [**pull request template**](.github/PULL_REQUEST_TEMPLATE.md) when you open a new pull request. Complete its resource metadata and checklist acknowledgements before requesting review.
+
+For issues, GitHub disables blank reports; use the issue chooser (**Suggest a resource**, **Request resource removal**, or **Report a broken link**) or the contact links to this document and [docs/review-policy.md](docs/review-policy.md).
 
 1. Confirm your change adds **one resource** only (unless proposing a new category with at least three entries).
 2. Choose one of the **ten README categories** (or meet the new-category rule above); use [docs/taxonomy.md](docs/taxonomy.md) when section fit is unclear.
