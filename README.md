@@ -77,6 +77,12 @@ Reusable system shapes for coordinating agent groups and flows.
 
 Software that manages agent groups, flows, handoffs, or orchestration.
 
+- [AutoGen](https://github.com/microsoft/autogen) - Framework for multi-agent conversations, group chat orchestration, and delegated agent workflows.
+- [CrewAI](https://github.com/crewAIInc/crewAI) - Role-based crew framework for task delegation and hierarchical agent coordination.
+- [LangGraph](https://github.com/langchain-ai/langgraph) - Graph-based orchestration library for stateful multi-agent workflows and handoffs.
+- [MetaGPT](https://github.com/FoundationAgents/MetaGPT) - Multi-agent framework that assigns software-company roles for coordination of planning and execution flows.
+- [Symphony](https://github.com/openai/symphony) - Orchestration spec and service for dispatching isolated coding-agent runs from issue-tracker workflows.
+
 ## Protocols and Interfaces
 
 Standards or conventions for agent interaction, handoffs, and shared interfaces.
