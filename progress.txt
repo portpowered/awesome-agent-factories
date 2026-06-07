@@ -338,3 +338,12 @@
   - All four seeded README sections are already on main via PR #16; remaining work is taxonomy wording and final verification.
   - No PR exists yet for this branch; create only after all six stories pass.
 ---
+
+## 2026-06-07T09:36:53Z - phase-7-interfaces-benchmarks-papers-seed-001
+- Seeded README `## Protocols and Interfaces` with five alphabetized canonical entries: Agent2Agent Protocol, AGNTCY Agent Connect Protocol, FIPA Agent Communication Language, Model Context Protocol, and Open Agent Schema Framework; descriptions end with periods and include scope keywords (delegation, routing, coordination, orchestration).
+- Files changed: README.md
+- **Learnings for future iterations:**
+  - `prd.md` acceptance criteria include copy-ready URLs and descriptions for all three target sections; use them as the authoritative seed content source.
+  - Scope keywords enforced by `make check` are coordination, orchestration, delegation, routing, handoff, shared state, and group-level evaluation; each protocol description must match at least one.
+  - Stories 002–003 follow the same README entry pattern; story 004 updates taxonomy Phase 7 status after all three sections are seeded.
+---
