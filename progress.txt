@@ -384,3 +384,11 @@
   - Use `git diff origin/main...HEAD --name-only` before marking verification stories complete to confirm scope.
   - `go build ./...` is the local typecheck equivalent when no package.json exists.
 ---
+
+## 2026-06-07T20:15:00Z - phase-7-interfaces-benchmarks-papers-seed-005 (mergeability)
+- Fixed PR #18 link-check failure: replaced dead `https://google.github.io/A2A/` (404) with canonical `https://a2a-protocol.org/` for Agent2Agent Protocol; verified `make links` exits 0 locally.
+- Files changed: README.md
+- **Learnings for future iterations:**
+  - A2A documentation moved from `google.github.io/A2A` to `a2a-protocol.org`; run `make links` before creating the PR when seeding Protocols entries.
+  - Mergeability fixes after story 005 completion should be documented separately in progress.txt and PR conversation comments.
+---
