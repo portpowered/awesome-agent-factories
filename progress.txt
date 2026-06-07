@@ -6,6 +6,8 @@
 - Phase 4 lint config: `.golangci.yml` uses golangci-lint v2 schema (`version: "2"`); `gofmt`/`gofumpt` live under `formatters.enable`, other linters under `linters.enable`.
 - This worktree fast-forwarded `phase-4-go-readme-checker-core` to obtain `go.mod` and `internal/checks/` before adding Makefile/lint automation.
 - Optional-tool Makefile targets: guard with `command -v <tool>`; print tool name, purpose, `go install` hint, and upstream docs URL to stderr before exiting 1.
+- Phase 6 issue intake: `.github/ISSUE_TEMPLATE/config.yml` disables blank issues (`blank_issues_enabled: false`); `contact_links` use full GitHub blob URLs to CONTRIBUTING.md and docs/review-policy.md; avoid naming issue templates in config copy until those YAML files exist in the repo.
+- Phase 6 add-resource form: use GitHub issue form YAML with `markdown` body block for one-resource-per-PR and CONTRIBUTING.md link; required `input` fields for name and URL, `dropdown` for all ten README sections, `textarea` for agent-factory relevance; label `needs-scope-review`; copy `docs/internal/customer-ask.md` Phase 6 field list as baseline.
 
 ## 2026-06-06T00:00:00Z - awesome-readme-foundation-001
 - Established README identity: Awesome H1 with badge, inline SVG logo mark (three connected nodes), blockquote tagline, and factual agent-factory definition; removed placeholder `# awesome-agent-factories` heading.
@@ -184,4 +186,31 @@
   - `origin/main` may already contain workflow content via a parallel branch (PR #9 merged phase-5-link-awesome-maintenance-workflows); use `git diff origin/main -- .github/workflows/` and blob hash comparison to confirm content convergence even when commit history diverges.
   - GitHub PR diff against main (`git diff origin/main HEAD`) differs from merge-base diff (`git diff origin/main...HEAD`); prefer direct main comparison when predicting what a PR will show.
   - Story 006 completes the PRD; create the PR when no open PR exists and all stories pass.
+---
+
+## 2026-06-07T08:12:17Z - phase-6-community-submission-templates-001
+- Added `.github/ISSUE_TEMPLATE/config.yml` with `blank_issues_enabled: false` and two `contact_links` pointing to CONTRIBUTING.md (submission format, scope, one-resource-per-PR, local checks) and docs/review-policy.md (maintainer checklist and outcomes); config copy does not name issue templates that are not yet in the repository.
+- Files changed: `.github/ISSUE_TEMPLATE/config.yml`
+- **Learnings for future iterations:**
+  - Story 001 is config-only; add-resource, remove-resource, and broken-link YAML templates land in stories 002–004.
+  - Use full GitHub blob URLs in `contact_links` (for example `https://github.com/portpowered/awesome-agent-factories/blob/main/CONTRIBUTING.md`) so links work from the issue chooser UI.
+  - Local typecheck for this batch is `go build ./...`; YAML-only changes do not affect Go packages but still run `make check`, `make test`, and `git diff --check`.
+---
+
+## 2026-06-07T20:30:00Z - phase-6-community-submission-templates-002
+- Added `.github/ISSUE_TEMPLATE/add-resource.yml`: neutral template description, markdown preface stating one-resource-per-PR and linking to CONTRIBUTING.md, required fields for official resource name, canonical URL, README section dropdown (all ten sections), and agent-factory relevance textarea; `needs-scope-review` label.
+- Files changed: `.github/ISSUE_TEMPLATE/add-resource.yml`
+- **Learnings for future iterations:**
+  - `docs/internal/customer-ask.md` lines 526–573 provide the minimal field skeleton; extend with markdown guidance block and field descriptions per PRD acceptance criteria.
+  - Issue forms are optional pre-flight; template copy should state that the actual list change still requires a one-resource pull request.
+  - Stories 003–004 can mirror the same YAML structure (markdown intro + required fields + doc links) for remove-resource and broken-link templates.
+---
+
+## 2026-06-07T21:00:00Z - phase-6-community-submission-templates-003
+- Added `.github/ISSUE_TEMPLATE/remove-resource.yml`: factual template description, markdown preface linking to review-policy.md removal-and-relocation section (relocate vs remove without duplicating full policy), required fields for affected resource name, README section or link text, canonical URL, and reason dropdown (dead link, out of scope, archived project, misleading description), plus optional detail textarea; `needs-maintainer-review` label.
+- Files changed: `.github/ISSUE_TEMPLATE/remove-resource.yml`
+- **Learnings for future iterations:**
+  - Mirror add-resource.yml structure: markdown intro with doc links, then required inputs/dropdown, optional textarea for verification detail.
+  - Reason dropdown options should map to review-policy.md removal triggers; point broken-link-only reports to the broken-link template in the markdown preface.
+  - Story 004 broken-link template can reuse the same label and markdown/doc-link patterns.
 ---
