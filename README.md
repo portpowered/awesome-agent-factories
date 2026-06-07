@@ -119,13 +119,33 @@ Academic or technical papers about agent groups and flows.
 
 Technical writing that explains real patterns, architectures, or failures in multi-agent systems.
 
+- [Build multi-agent systems with LangGraph and Amazon Bedrock](https://aws.amazon.com/blogs/machine-learning/build-multi-agent-systems-with-langgraph-and-amazon-bedrock/) - AWS blog post on designing supervisor-worker and peer orchestration workflows with LangGraph state graphs and coordinated agent handoffs on Amazon Bedrock.
+- [How we built our multi-agent research system](https://www.anthropic.com/engineering/multi-agent-research-system) - Anthropic engineering post on Claude Research's orchestrator-worker architecture with parallel subagents, tool design, and production coordination lessons.
+- [LangGraph: Multi-Agent Workflows](https://www.langchain.com/blog/langgraph-multi-agent-workflows) - LangChain post explaining multi-agent orchestration patterns implemented with LangGraph graphs, including network, supervisor, and hierarchical coordination designs.
+- [Multi-Agent AI Coordination: The Distributed Systems Challenge Nobody's Talking About](https://jonathangardner.io/multi-agent-ai-is-a-distributed-systems-problem-plan-accordingly/) - Essay framing multi-agent coordination as a distributed systems problem covering orchestration, timeouts, circuit breakers, and saga-style recovery.
+- [Why agent orchestration is harder than kubernetes - Lessons while building Agentflow](https://dev.to/siddhantkcode/why-agent-orchestration-is-harder-than-kubernetes-lessons-while-building-agentflow-4jm3) - DEV Community post contrasting container orchestration with agent workflows on semantic checkpointing, failure detection, and dynamic task decomposition.
+- [Why Multi-Agent LLM Systems Fail (and How to Build Ones That Don't)](https://tianpan.co/blog/2025-10-14-why-multi-agent-llm-systems-fail) - Failure analysis of multi-agent LLM execution traces covering specification, inter-agent coordination misalignment, and termination issues with mitigation guidance.
+
 ## Case Studies
 
 Real-world uses of multiple agents or agent flows.
 
+- [Allianz Project Nemo Agentic AI Claims](https://www.the-digital-insurer.com/gen-ai-library/allianz-project-nemo-claims-genai-case-study/) - Allianz case narrative on Project Nemo, a seven-agent claims workflow with planner orchestration, specialist verification agents, human payout handoffs, and roughly 80% faster low-complexity claim settlement in Australia.
+- [Faire: Swarm-Coding with Multiple Background Agents for Large-Scale Code Maintenance](https://www.zenml.io/llmops-database/swarm-coding-with-multiple-background-agents-for-large-scale-code-maintenance) - Faire case writeup on coordinating hierarchical GitHub Copilot background agents with MCP delegation to parallelize feature-flag cleanup and maintenance pull requests across production repositories.
+- [How Planview built a scalable AI Assistant for portfolio and project management using Amazon Bedrock](https://aws.amazon.com/blogs/machine-learning/how-planview-built-a-scalable-ai-assistant-for-portfolio-and-project-management-using-amazon-bedrock/) - Planview deployment story on Planview Copilot, a Bedrock-backed multi-agent assistant with a central orchestrator routing portfolio questions to specialized application agents for enterprise project workflows.
+- [How Schroders built its multi-agent financial analysis research assistant](https://cloud.google.com/blog/topics/customers/how-schroders-built-its-multi-agent-financial-analysis-research-assistant) - Schroders customer case on a Vertex AI Agent Builder research assistant using specialized analyst agents, LangGraph parent-child orchestration, and evaluation gates to shorten equity research coordination cycles.
+- [How Thomson Reuters built an Agentic Platform Engineering Hub with Amazon Bedrock AgentCore](https://aws.amazon.com/blogs/machine-learning/how-thomson-reuters-built-an-agentic-platform-engineering-hub-with-amazon-bedrock-agentcore/) - Thomson Reuters platform engineering case on an AgentCore hub where a central orchestrator delegates AWS provisioning and patching tasks to service-specific agents with human-in-the-loop approval handoffs.
+
 ## Examples and Templates
 
 Runnable or forkable examples of multi-agent coordination.
+
+- [AutoGen Python samples](https://github.com/microsoft/autogen/tree/main/python/samples) - Runnable AutoGen sample projects demonstrating conversational multi-agent orchestration, group chat coordination, and delegated tool-use workflows.
+- [ChatDev](https://github.com/OpenBMB/ChatDev) - Runnable multi-agent software-development demo where specialized agents coordinate through chat-based handoffs across design, coding, and review phases.
+- [CrewAI Examples](https://github.com/crewAIInc/crewAI-examples) - Forkable crew templates demonstrating hierarchical task delegation, role-based agent coordination, and orchestrated multi-step workflows.
+- [GPT Researcher](https://github.com/assafelovic/gpt-researcher) - Multi-agent research assistant template with planner-editor coordination, parallel sub-agent delegation, and shared research orchestration flows.
+- [LangGraph examples](https://github.com/langchain-ai/langgraph/tree/main/examples) - Runnable graph examples for supervisor, swarm, and hierarchical multi-agent orchestration patterns with stateful handoffs.
+- [OpenAI Agents Python examples](https://github.com/openai/openai-agents-python/tree/main/examples) - Runnable samples for manager orchestration, specialist handoffs, and guardrailed multi-agent coordination flows.
 
 ## Related Lists
 

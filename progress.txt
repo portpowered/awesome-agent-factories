@@ -8,6 +8,7 @@
 - Optional-tool Makefile targets: guard with `command -v <tool>`; print tool name, purpose, `go install` hint, and upstream docs URL to stderr before exiting 1.
 - README `## Contents` lists Scope plus nine in-TOC curated sections (Theories through Examples and Templates); `Related Lists` and `Contributing` are in `contentsExcludedSections` (section headings required, omitted from Contents per awesome-list convention); `Community` stays as a footer section, not Contents navigation.
 - Wrap README `## Contents` link list with `<!--lint disable awesome-toc-->` / `<!--lint enable awesome-toc-->` so `npx awesome-lint` accepts `## Community` (and other excluded sections) omitted from Contents navigation.
+- README checker warns when Blog Posts (and other resource) descriptions lack agent-factory scope keywords (coordination, orchestration, delegation, routing, handoffs, shared state, or group-level evaluation); weave at least one keyword into each description to avoid warnings.
 
 ## 2026-06-06T00:00:00Z - awesome-readme-foundation-001
 - Established README identity: Awesome H1 with badge, inline SVG logo mark (three connected nodes), blockquote tagline, and factual agent-factory definition; removed placeholder `# awesome-agent-factories` heading.
@@ -337,4 +338,53 @@
   - Story 005 (taxonomy Phase 7 status) is the first story likely requiring an actual edit on this branch.
   - All four seeded README sections are already on main via PR #16; remaining work is taxonomy wording and final verification.
   - No PR exists yet for this branch; create only after all six stories pass.
+---
+
+## 2026-06-07T10:10:00Z - phase-7-blog-posts-case-studies-examples-seed-001
+- Seeded README Blog Posts with six alphabetized entries covering orchestration architecture (Anthropic, AWS, LangChain), distributed-systems coordination lessons, agent-orchestration engineering tradeoffs, and multi-agent failure analysis.
+- Files changed: README.md
+- **Learnings for future iterations:**
+  - Avoid URLs already used in Coordination Patterns (e.g., anthropic.com/engineering/building-effective-agents); Blog Posts need distinct technical articles.
+  - Microsoft Research blog URLs for AutoGen v0.4 returned 404 at fetch time; prefer verified stable URLs before adding entries.
+  - `make check` passes with warnings when descriptions omit scope keywords; include coordination/orchestration/delegation terms naturally.
+  - Stories 002–003 seed Case Studies and Examples and Templates; story 004 updates taxonomy Phase 7 status.
+---
+
+## 2026-06-07T14:00:00Z - phase-7-blog-posts-case-studies-examples-seed-002
+- Seeded README Case Studies with five alphabetized deployment narratives covering insurance claims orchestration (Allianz), software maintenance swarm-coding (Faire), enterprise portfolio Copilot (Planview), financial research assistants (Schroders), and platform engineering agent hubs (Thomson Reuters).
+- Files changed: README.md
+- **Learnings for future iterations:**
+  - `.lychee.toml` accepts HTTP 403, so Allianz media-center URLs can pass `make links` even when curl returns Forbidden without a browser user agent.
+  - Case Studies differ from Blog Posts: prefer customer or vendor case narratives with named production deployments rather than architecture essays or failure analyses.
+  - AWS and Google Cloud customer blogs are reliable sources for enterprise multi-agent orchestration case writeups with stable URLs.
+  - Story 003 seeds Examples and Templates; story 004 updates taxonomy Phase 7 status.
+---
+
+## 2026-06-07T10:07:40Z - phase-7-blog-posts-case-studies-examples-seed-003
+- Seeded README Examples and Templates with six alphabetized runnable or forkable artifacts: AutoGen Python samples, ChatDev, CrewAI Examples, GPT Researcher, LangGraph examples, and OpenAI Agents Python examples.
+- Files changed: README.md
+- **Learnings for future iterations:**
+  - Examples and Templates should link to sample repos, example trees, or starter templates—not the main framework repos already listed under Frameworks (use `/tree/main/examples` or `-examples` repos instead).
+  - `microsoft/autogen` is in Frameworks; `microsoft/autogen/tree/main/python/samples` is a distinct URL suitable for the examples section.
+  - Story 004 updates taxonomy Phase 7 status; story 005 runs full batch verification.
+---
+
+## 2026-06-07T10:08:43Z - phase-7-blog-posts-case-studies-examples-seed-004
+- Updated `docs/taxonomy.md` Phase 7 status paragraph to record Blog Posts, Case Studies, and Examples and Templates are seeded on main and that foundational content seeding is present across all ten curated README resource sections (Theories through Related Lists).
+- Files changed: docs/taxonomy.md
+- **Learnings for future iterations:**
+  - Story 004 is docs-only; consolidate the Phase 7 paragraph into one sentence listing all ten section anchors rather than deferring sections to "later batch" once they are seeded.
+  - Category definitions, include/exclude rules, and section headings elsewhere in taxonomy.md remain unchanged per acceptance criteria.
+  - Story 005 runs full batch verification (`make check`, `make test`, `git diff --check`, section integrity); no PR exists yet until all stories pass.
+---
+
+## 2026-06-07T10:30:00Z - phase-7-blog-posts-case-studies-examples-seed-005
+- Verified batch quality gates on the full branch: `make check`, `make test`, `go build ./...`, and `git diff --check` all exit 0 from repository root.
+- Confirmed README diff vs `origin/main` adds entries only to Blog Posts (6), Case Studies (5), and Examples and Templates (6); Scope, Contributing, and Community sections remain present and unchanged; already-seeded sections (Theories through Related Lists) have no unintended edits.
+- Confirmed changed review files are limited to README.md and docs/taxonomy.md (planning artifacts prd.json, prd.md, progress.txt stay local-only).
+- Files changed: none (verification-only story)
+- **Learnings for future iterations:**
+  - Story 005 completes the PRD; create the PR when no open PR exists and all five stories pass.
+  - Use `git diff origin/main...HEAD --name-only` to confirm changed-file scope before marking verification stories complete.
+  - `go build ./...` is the local typecheck equivalent when no package.json exists.
 ---
