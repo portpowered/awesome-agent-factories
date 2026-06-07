@@ -60,8 +60,11 @@ Foundational ideas for organizing agent groups.
 
 - [Actor Model](https://en.wikipedia.org/wiki/Actor_model) - Message-passing model where autonomous agents coordinate through asynchronous delegation.
 - [An Introduction to MultiAgent Systems](https://www.cs.ox.ac.uk/people/michael.wooldridge/pubs/imas/IMAS2e.html) - Textbook on multi-agent coordination, communication, and cooperation.
+- [BDI Software Agent](https://en.wikipedia.org/wiki/BDI_software_agent) - Deliberative agent architecture modeling beliefs, desires, and intentions for rational planning and coordinated delegation in multi-agent groups.
 - [Blackboard Architecture](https://en.wikipedia.org/wiki/Blackboard_architecture) - Shared-workspace coordination model where specialists contribute to emergent group solutions.
 - [Contract Net Protocol](https://en.wikipedia.org/wiki/Contract_Net_Protocol) - Market-based delegation protocol for task allocation among autonomous agents.
+- [Distributed Artificial Intelligence](https://en.wikipedia.org/wiki/Distributed_artificial_intelligence) - Foundational field studying cooperation, coordination, and problem decomposition across networks of autonomous agents.
+- [Hierarchical Task Network](https://en.wikipedia.org/wiki/Hierarchical_task_network) - Planning formalism for decomposing complex tasks through hierarchical delegation and coordinated subgoal orchestration among specialized agents.
 - [Swarm Intelligence](https://en.wikipedia.org/wiki/Swarm_intelligence) - Collective coordination principles for decentralized group-level behavior.
 
 ## Coordination Patterns
@@ -71,16 +74,23 @@ Reusable system shapes for coordinating agent groups and flows.
 - [Agent orchestration](https://openai.github.io/openai-agents-python/multi_agent/) - OpenAI Agents SDK guide comparing manager-style orchestration with specialist handoffs.
 - [AI Agent Orchestration Patterns](https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/ai-agent-design-patterns) - Architecture guide for sequential, concurrent, group-chat, and handoff orchestration topologies.
 - [Building Effective Agents](https://www.anthropic.com/engineering/building-effective-agents) - Engineering patterns including orchestrator-workers, routing, and evaluator-optimizer flows.
+- [Choose a design pattern for your agentic AI system](https://docs.cloud.google.com/architecture/choose-design-pattern-agentic-ai-system) - Google Cloud Architecture Center guide comparing multi-agent sequential, parallel, coordinator, swarm, and review-and-critique orchestration topologies for delegating specialized sub-tasks.
+- [Improving Factuality and Reasoning in Language Models through Multiagent Debate](https://proceedings.mlr.press/v235/du24e.html) - ICML proceedings defining a debate topology where multiple model instances use multi-agent coordination through iterative argument exchange and critique to improve reasoning quality.
 - [Multi-agent](https://langchain-ai.github.io/langgraph/concepts/multi_agent/) - LangGraph concepts for supervisor, swarm, and hierarchical handoff topologies.
+- [Saga orchestration patterns](https://docs.aws.amazon.com/prescriptive-guidance/latest/agentic-ai-patterns/saga-orchestration-patterns.html) - AWS Prescriptive Guidance on centralized orchestration where coordinator agents decompose tasks, use delegation to specialist worker agents, and coordinate fault-tolerant multi-step agentic workflows.
+- [Scheduler Agent Supervisor](https://learn.microsoft.com/en-us/azure/architecture/patterns/scheduler-agent-supervisor) - Azure Architecture Center pattern separating scheduler workflow orchestration, agent execution, and supervisor recovery for reliable multi-step delegation pipelines.
 
 ## Frameworks
 
 Software that manages agent groups, flows, handoffs, or orchestration.
 
+- [AgentScope](https://github.com/agentscope-ai/agentscope) - Agent-oriented programming framework for message-based multi-agent orchestration, pipeline coordination, and delegated tool-use workflows.
 - [AutoGen](https://github.com/microsoft/autogen) - Framework for multi-agent conversations, group chat orchestration, and delegated agent workflows.
+- [CAMEL](https://github.com/camel-ai/camel) - Communicative agents framework for role-playing multi-agent societies with task delegation and coordinated conversation orchestration.
 - [CrewAI](https://github.com/crewAIInc/crewAI) - Role-based crew framework for task delegation and hierarchical agent coordination.
 - [LangGraph](https://github.com/langchain-ai/langgraph) - Graph-based orchestration library for stateful multi-agent workflows and handoffs.
 - [MetaGPT](https://github.com/FoundationAgents/MetaGPT) - Multi-agent framework that assigns software-company roles for coordination of planning and execution flows.
+- [Semantic Kernel](https://github.com/microsoft/semantic-kernel) - Microsoft SDK for composing multi-agent workflows with planner orchestration, handoffs, and coordinated routing across specialized agent plugins.
 - [Symphony](https://github.com/openai/symphony) - Orchestration spec and service for dispatching isolated coding-agent runs from issue-tracker workflows.
 
 ## Protocols and Interfaces
