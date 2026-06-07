@@ -118,12 +118,20 @@ Benchmarks that evaluate group or workflow behavior.
 Academic or technical papers about agent groups and flows.
 
 - [A Survey on Large Language Model based Autonomous Agents](https://arxiv.org/abs/2308.11432) - Survey of LLM-based autonomous agents covering planning, memory, and action modules for multi-step orchestration and coordination in agent factories.
+- [AgentPoison: Red-teaming LLM Agents via Poisoning Memory or Tool Knowledge](https://arxiv.org/abs/2407.12784) - Security research on poisoning shared memory and tool knowledge to test multi-agent safety and governance vulnerabilities in agent coordination workflows.
+- [AgentVerse: Facilitating Multi-Agent Collaboration and Exploring Emergent Behaviors](https://arxiv.org/abs/2308.10848) - Framework for assembling multi-agent groups with customizable coordination topologies to study emergent collaboration and delegated task specialization.
 - [AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation](https://arxiv.org/abs/2308.08155) - Research on conversational multi-agent orchestration patterns for task delegation, group chat, and cooperative problem solving across specialized agents.
 - [CAMEL: Communicative Agents for Mind Exploration of Large Language Model Society](https://arxiv.org/abs/2303.17760) - Framework for role-playing communicative agents that coordinate through structured dialogue to explore emergent multi-agent behavior and delegation strategies.
+- [ChatEval: Towards Better LLM-based Evaluation through Multi-Agent Debate](https://arxiv.org/abs/2308.07201) - Evaluation framework using multi-agent debate among LLM judges to improve response quality assessment through coordinated critique and group-level evaluation.
 - [Communicative Agents for Software Development](https://arxiv.org/abs/2307.07924) - ChatDev paper describing multi-agent software teams with role-based delegation, handoffs, and coordinated orchestration flows across development phases.
+- [Exploring Collaboration Mechanisms for LLM Agents: A Social Psychology View](https://arxiv.org/abs/2310.02124) - Study applying social psychology principles to LLM agent group dynamics for improving cooperation, coordination, and role-based delegation in multi-agent teams.
 - [Generative Agents: Interactive Simulacra of Human Behavior](https://arxiv.org/abs/2304.03442) - Architecture for believable agent societies with shared state, memory, and planning that coordinate daily activities in interactive simulated environments.
+- [HuggingGPT: Solving AI Tasks with ChatGPT and its Friends in Hugging Face](https://arxiv.org/abs/2303.17580) - LLM-powered orchestration system that delegates subtasks to specialized expert models through planning, routing, and coordinated handoffs across heterogeneous agents.
 - [Large Language Model based Multi-Agents: A Survey of Progress and Challenges](https://arxiv.org/abs/2402.01680) - IJCAI survey of LLM multi-agent systems covering agent communication, profiling, coordination paradigms, and group-level evaluation benchmarks.
 - [MetaGPT: Meta Programming for A Multi-Agent Collaborative Framework](https://arxiv.org/abs/2308.00352) - Multi-agent collaborative framework assigning software-company roles with structured message passing for coordination of planning and execution flows.
+- [Mindstorms in Natural Language-Based Societies of Mind](https://arxiv.org/abs/2305.17066) - Research on natural-language societies of mind where multiple LLM agents use modular specialization and emergent group-level coordination flows for collective reasoning.
+- [More Agents Is All You Need](https://arxiv.org/abs/2312.07974) - Empirical study showing sampling-and-voting across multiple LLM agent instances improves task performance through parallel coordination and majority orchestration.
+- [ProAgent: Building Proactive Cooperative Agents with Large Language Models](https://arxiv.org/abs/2308.11339) - Framework for proactive cooperative agents that anticipate teammate needs and coordinate embodied multi-agent collaboration through shared planning and delegation.
 
 ## Blog Posts
 
