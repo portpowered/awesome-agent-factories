@@ -37,14 +37,14 @@ Introduce a PR template and three issue templates plus `config.yml` that:
 
 ## Project-Level Acceptance Criteria
 
-- [ ] `.github/PULL_REQUEST_TEMPLATE.md` exists and aligns with [CONTRIBUTING.md](CONTRIBUTING.md), [README.md](README.md), and [docs/review-policy.md](docs/review-policy.md)
+- [x] `.github/PULL_REQUEST_TEMPLATE.md` exists and aligns with [CONTRIBUTING.md](CONTRIBUTING.md), [README.md](README.md), and [docs/review-policy.md](docs/review-policy.md)
 - [x] `.github/ISSUE_TEMPLATE/add-resource.yml` collects resource name, URL, README section, and agent-factory fit rationale
-- [ ] `.github/ISSUE_TEMPLATE/remove-resource.yml` supports dead links, out-of-scope resources, archived projects, and misleading descriptions
-- [ ] `.github/ISSUE_TEMPLATE/broken-link.yml` collects enough detail for maintainers to verify broken or suspicious links
-- [ ] `.github/ISSUE_TEMPLATE/config.yml` disables blank issues and routes contributors to contribution and review docs
-- [ ] Template wording is factual, concise, non-promotional, and consistent with one-resource-per-PR discipline
-- [ ] Related docs are updated only when needed to keep template guidance consistent with current reviewer policy
-- [ ] Quality gate: `make check`, `make test`, and `git diff --check` pass from repository root
+- [x] `.github/ISSUE_TEMPLATE/remove-resource.yml` supports dead links, out-of-scope resources, archived projects, and misleading descriptions
+- [x] `.github/ISSUE_TEMPLATE/broken-link.yml` collects enough detail for maintainers to verify broken or suspicious links
+- [x] `.github/ISSUE_TEMPLATE/config.yml` disables blank issues and routes contributors to contribution and review docs
+- [x] Template wording is factual, concise, non-promotional, and consistent with one-resource-per-PR discipline
+- [x] Related docs are updated only when needed to keep template guidance consistent with current reviewer policy
+- [x] Quality gate: `make check`, `make test`, and `git diff --check` pass from repository root
 
 ## User Stories
 
@@ -77,11 +77,11 @@ Introduce a PR template and three issue templates plus `config.yml` that:
 
 **Acceptance Criteria:**
 
-- [ ] `.github/ISSUE_TEMPLATE/remove-resource.yml` defines a template for removal or relocation requests with factual description text
-- [ ] Required fields include: affected resource name, README section or link text as listed, canonical URL, and reason for removal
-- [ ] Reason is a dropdown or required field covering at least: dead link, out of scope, archived project, misleading description (contributor may add detail in a textarea)
-- [ ] Optional field for suggested outcome (remove outright, relocate to `docs/historical.md`) references [docs/review-policy.md](docs/review-policy.md) removal guidance without duplicating the full policy
-- [ ] Typecheck passes
+- [x] `.github/ISSUE_TEMPLATE/remove-resource.yml` defines a template for removal or relocation requests with factual description text
+- [x] Required fields include: affected resource name, README section or link text as listed, canonical URL, and reason for removal
+- [x] Reason is a dropdown or required field covering at least: dead link, out of scope, archived project, misleading description (contributor may add detail in a textarea)
+- [x] Optional field for suggested outcome (remove outright, relocate to `docs/historical.md`) references [docs/review-policy.md](docs/review-policy.md) removal guidance without duplicating the full policy
+- [x] Typecheck passes
 
 ### US-004: Add issue template for broken or suspicious link reports
 
@@ -89,11 +89,11 @@ Introduce a PR template and three issue templates plus `config.yml` that:
 
 **Acceptance Criteria:**
 
-- [ ] `.github/ISSUE_TEMPLATE/broken-link.yml` defines a template for broken or suspicious link reports
-- [ ] Required fields include: affected resource name (as shown in README link text), URL as listed in README, observed behavior (for example HTTP error, redirect to unrelated page, domain mismatch), and when the problem was observed
-- [ ] Template asks whether the contributor verified the URL is still dead or suspicious after a recheck, aligned with [docs/review-policy.md](docs/review-policy.md) link-stability guidance
-- [ ] Template copy stays factual and avoids accusing projects without evidence; points security concerns to [SECURITY.md](SECURITY.md)
-- [ ] Typecheck passes
+- [x] `.github/ISSUE_TEMPLATE/broken-link.yml` defines a template for broken or suspicious link reports
+- [x] Required fields include: affected resource name (as shown in README link text), URL as listed in README, observed behavior (for example HTTP error, redirect to unrelated page, domain mismatch), and when the problem was observed
+- [x] Template asks whether the contributor verified the URL is still dead or suspicious after a recheck, aligned with [docs/review-policy.md](docs/review-policy.md) link-stability guidance
+- [x] Template copy stays factual and avoids accusing projects without evidence; points security concerns to [SECURITY.md](SECURITY.md)
+- [x] Typecheck passes
 
 ### US-005: Add pull request template for resource submissions
 
@@ -101,13 +101,13 @@ Introduce a PR template and three issue templates plus `config.yml` that:
 
 **Acceptance Criteria:**
 
-- [ ] `.github/PULL_REQUEST_TEMPLATE.md` exists and uses markdown sections (not YAML front matter required for default PR templates)
-- [ ] Template collects: resource name, resource URL, target README section, and why the resource belongs (agent-factory relevance)
-- [ ] Template includes explicit acknowledgement checkboxes or bullet prompts for: one resource only, scope fit, entry format (`- [Resource Name](URL) - Description.`), factual non-promotional description, description ends with a period, alphabetical placement, duplicate URL check, and live canonical link verified
-- [ ] Template links to [CONTRIBUTING.md](CONTRIBUTING.md), [docs/taxonomy.md](docs/taxonomy.md), and [docs/review-policy.md](docs/review-policy.md) for self-check before review
-- [ ] Template reminds contributors to run `make check` (and `make links` when URLs change) before requesting review
-- [ ] Wording matches [CONTRIBUTING.md](CONTRIBUTING.md) tone: concise, encyclopedic, non-promotional
-- [ ] Typecheck passes
+- [x] `.github/PULL_REQUEST_TEMPLATE.md` exists and uses markdown sections (not YAML front matter required for default PR templates)
+- [x] Template collects: resource name, resource URL, target README section, and why the resource belongs (agent-factory relevance)
+- [x] Template includes explicit acknowledgement checkboxes or bullet prompts for: one resource only, scope fit, entry format (`- [Resource Name](URL) - Description.`), factual non-promotional description, description ends with a period, alphabetical placement, duplicate URL check, and live canonical link verified
+- [x] Template links to [CONTRIBUTING.md](CONTRIBUTING.md), [docs/taxonomy.md](docs/taxonomy.md), and [docs/review-policy.md](docs/review-policy.md) for self-check before review
+- [x] Template reminds contributors to run `make check` (and `make links` when URLs change) before requesting review
+- [x] Wording matches [CONTRIBUTING.md](CONTRIBUTING.md) tone: concise, encyclopedic, non-promotional
+- [x] Typecheck passes
 
 ### US-006: Align contribution docs with new templates (only if needed)
 
@@ -127,13 +127,13 @@ Introduce a PR template and three issue templates plus `config.yml` that:
 
 **Acceptance Criteria:**
 
-- [ ] All required files exist: `.github/PULL_REQUEST_TEMPLATE.md`, `.github/ISSUE_TEMPLATE/config.yml`, `add-resource.yml`, `remove-resource.yml`, `broken-link.yml`
-- [ ] Issue template YAML files parse as valid GitHub issue forms (required `name`, `description`, `body` with recognized field types)
-- [ ] Template field labels and help text remain factual and non-promotional; one-resource-per-PR rule is stated in both PR template and add-resource issue template
-- [ ] From repository root: `make check`, `make test`, and `git diff --check` exit 0
-- [ ] No README list entries, workflow changes, or bulk unrelated edits are introduced in this batch
-- [ ] Typecheck passes
-- [ ] Tests pass
+- [x] All required files exist: `.github/PULL_REQUEST_TEMPLATE.md`, `.github/ISSUE_TEMPLATE/config.yml`, `add-resource.yml`, `remove-resource.yml`, `broken-link.yml`
+- [x] Issue template YAML files parse as valid GitHub issue forms (required `name`, `description`, `body` with recognized field types)
+- [x] Template field labels and help text remain factual and non-promotional; one-resource-per-PR rule is stated in both PR template and add-resource issue template
+- [x] From repository root: `make check`, `make test`, and `git diff --check` exit 0
+- [x] No README list entries, workflow changes, or bulk unrelated edits are introduced in this batch
+- [x] Typecheck passes
+- [x] Tests pass
 
 ## Functional Requirements
 

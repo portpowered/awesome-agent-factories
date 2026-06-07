@@ -242,3 +242,13 @@
   - Doc changes were required for consistency (templates existed but intake docs did not reference them); no gratuitous edits beyond those intake sentences.
   - Story 007 runs verification-only convergence across all five template artifacts and quality gates.
 ---
+
+## 2026-06-07T23:00:00Z - phase-6-community-submission-templates-007
+- Verified Phase 6 template delivery: all five artifacts present (PULL_REQUEST_TEMPLATE.md, config.yml, add-resource.yml, remove-resource.yml, broken-link.yml); issue form YAML parses with required name/description/body and recognized field types (markdown, input, dropdown, textarea); one-resource-per-PR stated in PR template and add-resource form; no README list entries or workflow changes in branch diff.
+- Ran quality gates from repository root: `make check`, `make test`, `go build ./...`, and `git diff --check` all exit 0.
+- Files changed: none (verification-only story)
+- **Learnings for future iterations:**
+  - Story 007 mirrors Phase 5 story 006: verification-only when prior stories delivered all artifacts; mark PRD and append progress without a feat commit.
+  - Use `python3 -c "import yaml; yaml.safe_load(...)"` to sanity-check issue form YAML structure before convergence sign-off.
+  - Create the PR when all stories pass and no open PR exists; set PR body from `prd.json` per workflow.
+---
