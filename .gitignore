@@ -16,3 +16,5 @@ factory/docs
 tmp/
 dist/
 coverage.out
+
+.playwright-mcp/

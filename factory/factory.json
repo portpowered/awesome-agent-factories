@@ -203,7 +203,9 @@
     {
       "modelProvider": "CODEX",
       "name": "planner",
+      "executorProvider": "SCRIPT_WRAP",
       "skipPermissions": true,
+      "stopToken": "\u003cCOMPLETE\u003e",
       "type": "MODEL_WORKER"
     }
   ],
