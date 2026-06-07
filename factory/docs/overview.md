@@ -1,9 +1,11 @@
 # Factory Overview
 
-This factory coordinates autonomous work for the AI model reference website.
-The ideafy workstation is the meta-planner. It chooses phase-scoped batches,
-submits ideas, and records progress. Executors implement PRD stories in
-worktrees. Review gates the resulting PRs.
+This factory coordinates autonomous work for **Awesome AI Agent Factories**: a
+curated Awesome List of theories, frameworks, benchmarks, research, and writing
+about managing groups of AI agents and their flows. The ideafy workstation is
+the meta-planner. It chooses phase-scoped batches, submits ideas, and records
+progress. Executors implement PRD stories in worktrees. Review gates the
+resulting PRs.
 
 ## Read First
 
@@ -11,28 +13,38 @@ Before submitting work, read:
 
 * `factory/factory.json`
 * `factory/workstations/ideafy/AGENTS.md`
+* `factory/docs/batch-inputs.md`
+* `factory/docs/batch-input-example.json`
 * `docs/internal/customer-ask.md`
-* `docs/internal/checklist.md`
-* `docs/internal/progress.txt`
-* `docs/documentation-site-pages-needed.md`
 * `you docs agents`
 * `you docs batch-inputs`
 
+Contributor-facing docs that shape list work:
+
+* `README.md`
+* `CONTRIBUTING.md`
+* `docs/taxonomy.md`
+* `docs/review-policy.md`
+
 ## Phase Control
 
-Current phase authorization lives in:
+Current phase authorization and the build checklist live in:
 
 ```txt
 docs/internal/customer-ask.md
 ```
 
-The meta-planner may dry-run batches during planning. It must not submit a real
-batch unless `customer-ask.md` sets `realSubmissionAuthorized: true` or the
-customer explicitly authorizes submission in the current conversation.
+Phases 1–10 cover README foundation, governance, review process, Makefile and
+Go README checks, GitHub Actions, templates, initial content seeding, category
+definitions, maintenance, and public launch. The meta-planner may dry-run batches
+during planning. Always dry-run a batch before real submission:
 
-Phase work is review-gated through Phase 10. After Phase 10, long-tail backfill
-may run mostly autonomously in small batches, still with batch summaries and
-review.
+```sh
+you submit batch --dry-run <path>
+```
+
+Do not submit a real batch until the active phase in `customer-ask.md` and the
+current customer conversation agree the next slice of work is ready.
 
 ## Work Types
 
@@ -61,9 +73,13 @@ task:in-review -> review -> task:to-complete
 idea:to-complete + task:to-complete with the same name -> consume
 ```
 
+Executor and review workstations run in worktrees under
+`.claude/worktrees/<work-item-name>/`, created by `factory/scripts/setup-workspace.py`.
+
 ## Batch Submission
 
 Use the canonical `FACTORY_REQUEST_BATCH` shape from `you docs batch-inputs`.
+Human-readable notes live in `factory/docs/batch-inputs.md`.
 
 For a running factory, prefer:
 
@@ -118,7 +134,24 @@ review, or validation.
 ## Local State Files
 
 ```txt
-docs/internal/customer-ask.md  current phase and submission authorization
-docs/internal/checklist.md     high-level phase and customer ask tracking
-docs/internal/progress.txt     append-only meta-planner progress log
+docs/internal/customer-ask.md  current phase checklist and build goals
+docs/internal/checklist.md     high-level phase and customer-ask tracking (meta-planner)
+docs/internal/progress.txt     append-only meta-planner progress log (meta-planner)
 ```
+
+The meta-planner creates and maintains `checklist.md` and `progress.txt` when
+they are not already present. Task executors append to the worktree `progress.txt`
+at the repository root during implementation batches.
+
+## Quality Gates
+
+Before opening or merging reconciliation PRs, run from the repository root:
+
+```sh
+make check
+make test
+git diff --check
+```
+
+These mirror the Go README checks in `internal/checks`, `go test ./...`, and
+whitespace hygiene enforced in CI.
