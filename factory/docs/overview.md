@@ -1,8 +1,9 @@
 # Factory Overview
 
 This factory coordinates autonomous work for **Awesome AI Agent Factories**: a
-curated Awesome List of theories, frameworks, benchmarks, research, and writing
-about managing groups of AI agents and their flows. The ideafy workstation is
+curated Awesome List for agent-factory coordination, orchestration, and flows—
+theories, frameworks, benchmarks, research, and writing about managing groups of
+AI agents. The ideafy workstation is
 the meta-planner. It chooses phase-scoped batches, submits ideas, and records
 progress. Executors implement PRD stories in worktrees. Review gates the
 resulting PRs.
@@ -13,26 +14,31 @@ Before submitting work, read:
 
 * `factory/factory.json`
 * `factory/workstations/ideafy/AGENTS.md`
+* `docs/internal/customer-ask.md`
+* `docs/internal/checklist.md`
+* `docs/internal/progress.txt`
 * `factory/docs/batch-inputs.md`
 * `factory/docs/batch-input-example.json`
-* `docs/internal/customer-ask.md`
 * `you docs agents`
 * `you docs batch-inputs`
 
 Contributor-facing docs that shape list work:
 
 * `README.md`
-* `CONTRIBUTING.md`
-* `docs/taxonomy.md`
-* `docs/review-policy.md`
+* `CONTRIBUTING.md` — ten curated README categories (Theories through Related Lists), entry format, and **Local checks** (`make check`, `make test`, `make all`, optional `make lint` / `make links`, GitHub Actions table)
+* `docs/taxonomy.md` — category definitions aligned with README section headings and CONTRIBUTING
+* `docs/review-policy.md` — maintainer checklist and `resource:*` labels for the same ten categories
 
 ## Phase Control
 
-Current phase authorization and the build checklist live in:
+Current phase authorization and the Awesome List build goal live in:
 
 ```txt
 docs/internal/customer-ask.md
 ```
+
+`docs/internal/checklist.md` tracks phase progress against that ask.
+`docs/internal/progress.txt` is the meta-planner append-only run log.
 
 Phases 1–10 cover README foundation, governance, review process, Makefile and
 Go README checks, GitHub Actions, templates, initial content seeding, category
@@ -133,8 +139,10 @@ review, or validation.
 
 ## Local State Files
 
+Planner-owned state under `docs/internal/`:
+
 ```txt
-docs/internal/customer-ask.md  current phase checklist and build goals
+docs/internal/customer-ask.md  current phase authorization and Awesome List build goal
 docs/internal/checklist.md     high-level phase and customer-ask tracking (meta-planner)
 docs/internal/progress.txt     append-only meta-planner progress log (meta-planner)
 ```
@@ -148,10 +156,12 @@ at the repository root during implementation batches.
 Before opening or merging reconciliation PRs, run from the repository root:
 
 ```sh
-make check
+make check   # or make all — same README validation
 make test
 git diff --check
 ```
 
-These mirror the Go README checks in `internal/checks`, `go test ./...`, and
-whitespace hygiene enforced in CI.
+Optional pre-submit targets (`make lint`, `make links`) and GitHub workflow
+gates are documented in `CONTRIBUTING.md` **Local checks** and **GitHub Actions**.
+These commands mirror the Go README checks in `internal/checks`, `go test ./...`,
+and whitespace hygiene enforced in CI.

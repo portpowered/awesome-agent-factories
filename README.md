@@ -27,7 +27,6 @@ AI agent factories are systems for coordinating groups of agents: assigning role
 - [Blog Posts](#blog-posts)
 - [Case Studies](#case-studies)
 - [Examples and Templates](#examples-and-templates)
-- [Related Lists](#related-lists)
 <!--lint enable awesome-toc-->
 
 ## Scope

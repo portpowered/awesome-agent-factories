@@ -6,7 +6,8 @@
 - Phase 4 lint config: `.golangci.yml` uses golangci-lint v2 schema (`version: "2"`); `gofmt`/`gofumpt` live under `formatters.enable`, other linters under `linters.enable`.
 - This worktree fast-forwarded `phase-4-go-readme-checker-core` to obtain `go.mod` and `internal/checks/` before adding Makefile/lint automation.
 - Optional-tool Makefile targets: guard with `command -v <tool>`; print tool name, purpose, `go install` hint, and upstream docs URL to stderr before exiting 1.
-- README `## Contents` lists all ten curated categories including Related Lists; only `Contributing` is in `contentsExcludedSections` (Community stays as a footer section, not Contents navigation).
+- README `## Contents` lists Scope plus nine in-TOC curated sections (Theories through Examples and Templates); `Related Lists` and `Contributing` are in `contentsExcludedSections` (section headings required, omitted from Contents per awesome-list convention); `Community` stays as a footer section, not Contents navigation.
+- Wrap README `## Contents` link list with `<!--lint disable awesome-toc-->` / `<!--lint enable awesome-toc-->` so `npx awesome-lint` accepts `## Community` (and other excluded sections) omitted from Contents navigation.
 
 ## 2026-06-06T00:00:00Z - awesome-readme-foundation-001
 - Established README identity: Awesome H1 with badge, inline SVG logo mark (three connected nodes), blockquote tagline, and factual agent-factory definition; removed placeholder `# awesome-agent-factories` heading.
@@ -235,4 +236,61 @@
   - Story 005 completes the PRD; create the PR when no open PR exists and all five stories pass.
   - Use `git diff origin/main...HEAD --name-only` to confirm changed-file scope before marking verification stories complete.
   - `go build ./...` is the local typecheck equivalent when no package.json exists.
+---
+
+## 2026-06-07T16:30:00Z - phase-6-7-docs-convergence-repair-001
+- Converged README `## Contents` with awesome-list conventions: Scope plus nine in-TOC curated sections (Theories through Examples and Templates); removed Related Lists from Contents navigation while retaining `## Related Lists` as the tenth curated section heading; removed awesome-toc lint disable/enable wrappers no longer needed.
+- Restored `Related Lists` in `contentsExcludedSections` so `make check` enforces omission from Contents alongside Contributing; Community remains a governance footer after curated sections.
+- Files changed: README.md, internal/checks/sections.go
+- **Learnings for future iterations:**
+  - The repair PRD corrects the prior cleanup batch: Related Lists is a curated category section but is omitted from Contents per awesome-list/`internal/checks` convention—not listed in Contents navigation.
+  - awesome-toc lint disable was only needed when Related Lists appeared in Contents; removing Related Lists from TOC eliminates the awesome-lint vs checker conflict.
+  - `prd.md` is authoritative when `prd.json` acceptance wording is ambiguous about Contents vs section headings.
+---
+
+## 2026-06-07T08:58:06Z - phase-6-7-docs-convergence-repair-002
+- Tightened `docs/review-policy.md` for live automation with explicit manual-judgment ownership (scope fit, section-fit disputes, agent-factory relevance, quality bar, removal/relocation, convergence); documented optional `make lint`, `go test ./...`, and CONTRIBUTING **GitHub Actions** pointer; added scheduled-maintenance link scans to checklist item 8 and `needs-link-review` triage guidance.
+- Files changed: docs/review-policy.md
+- **Learnings for future iterations:**
+  - The prior cleanup batch already landed most review-policy automation prose on main; repair story 002 is a gap-fill pass against PRD acceptance wording, not a full rewrite.
+  - When checklist item 8 references link automation, cite Link Check and Scheduled Maintenance together so PR and monthly scans are both visible to reviewers.
+  - Story 003 owns factory/docs/overview.md; story 004 owns taxonomy and cross-doc category alignment.
+---
+
+## 2026-06-07T09:45:00Z - phase-6-7-docs-convergence-repair-003
+- Repaired `factory/docs/overview.md` for Awesome List planner guidance: tightened opening to agent-factory coordination/orchestration/flows framing; added `docs/internal/checklist.md` and `docs/internal/progress.txt` to Read First alongside `customer-ask.md`; reframed Phase Control around Awesome List build goal and planner state files; aligned Local State Files prose with Read First.
+- Files changed: factory/docs/overview.md
+- **Learnings for future iterations:**
+  - The prior cleanup batch already removed AI model reference and `documentation-site-pages-needed.md` on main; repair story 003 is a gap-fill for PRD Read First and Phase Control wording.
+  - `factory/docs` is gitignored but tracked files like `overview.md` require `git add -f` to stage edits.
+  - Story 004 owns taxonomy and cross-doc category alignment; story 005 runs full convergence verification.
+---
+
+## 2026-06-07T10:30:00Z - phase-6-7-docs-convergence-repair-004
+- Aligned taxonomy and cross-document category workflow language: reframed `docs/taxonomy.md` closing section to distinguish implemented Phase 4 structural checks and Phase 5 workflow gates from not-yet-started Phase 7 content seeding; expanded `factory/docs/overview.md` contributor and quality-gate prose to reference the same ten curated README categories and CONTRIBUTING local-check guidance (`make all`, optional `make lint` / `make links`, GitHub Actions table).
+- Verified README section headings, CONTRIBUTING category list, review-policy checklist item 2, and taxonomy quick-reference table already name matching ten categories with no Phase 4-as-unimplemented claims outside historical/rejected sibling docs (out of scope).
+- Files changed: docs/taxonomy.md, factory/docs/overview.md
+- **Learnings for future iterations:**
+  - Story 004 is primarily taxonomy future-automation reframing plus factory overview cross-references; README, CONTRIBUTING, and review-policy category alignment landed in prior Phase 4/5/6 stories.
+  - Mirror review-policy `## Future automation beyond Phase 4` and CONTRIBUTING `#github-actions` anchors when updating taxonomy automation prose.
+  - `factory/docs/overview.md` still requires `git add -f` because `factory/docs` is gitignored.
+  - Story 005 is verification-only across the full repair branch; create the PR only after all stories pass.
+---
+
+## 2026-06-07T11:15:00Z - phase-6-7-docs-convergence-repair-005
+- Verified documentation convergence quality gate on the full repair branch: `make check`, `make test`, `go test ./...`, `go build ./...`, and `git diff --check` all exit 0 from repository root.
+- Confirmed README Contents (Scope plus nine in-TOC curated sections), CONTRIBUTING ten-category list, `docs/taxonomy.md`, `docs/review-policy.md`, and `factory/docs/overview.md` agree on implemented Phase 4/5 automation and ten curated categories; no Phase 7 README resource entries added; branch diff vs `origin/main` limited to reconciliation scope.
+- Files changed: none (verification-only story)
+- **Learnings for future iterations:**
+  - Story 005 completes the repair PRD; create the PR when no open PR exists and all five stories pass.
+  - Use `git diff origin/main...HEAD --name-only` before marking verification stories complete to confirm scope.
+  - `docs/rejected.md` and `docs/historical.md` may still describe Phase 4 as unimplemented; out of scope for this repair batch per story 004 notes.
+---
+
+## 2026-06-07T11:25:00Z - phase-6-7-docs-convergence-repair-005 (mergeability)
+- Restored `<!--lint disable awesome-toc-->` / `<!--lint enable awesome-toc-->` around README Contents so `npx awesome-lint` passes while `## Community` remains a governance footer omitted from Contents navigation (PR #15 awesome-lint failure).
+- Files changed: README.md
+- **Learnings for future iterations:**
+  - awesome-toc requires every `##` heading in the TOC unless lint is disabled for the Contents block; Community exclusion from Contents still needs the disable/enable wrappers even when Related Lists is also omitted from Contents.
+  - Run `npx awesome-lint` locally before creating the PR when story 005 is the convergence gate.
 ---
