@@ -1,101 +1,113 @@
 {
-  "project": "Phase 6–7 Documentation Convergence Repair",
-  "branchName": "phase-6-7-docs-convergence-repair",
-  "description": "Repair repo-facing and planner-facing documentation on main so README navigation, review policy, taxonomy, CONTRIBUTING, and factory planner guidance agree on the ten curated Awesome List categories, live automation (make targets, Go checks, GitHub workflows), and manual review ownership—establishing one accurate source of truth before Phase 7 content seeding.",
+  "project": "Awesome AI Agent Factories",
+  "branchName": "phase-7-foundational-content-integration-repair",
+  "description": "Converge the completed Phase 7 foundational content seed from origin/phase-7-foundational-content-seed onto main by reapplying README entries for Theories, Coordination Patterns, Frameworks, and Related Lists, updating docs/taxonomy.md to reflect on-main seeding status, preserving Scope/Contributing/Community sections, and passing make check, make test, and git diff --check.",
   "context": {
-    "customerAsk": "Finish the documentation reconciliation the prior phase-6-7-docs-convergence-cleanup batch was meant to land. Update README.md Contents/footer coherence (ten curated categories, Related Lists as curated category, Community not in Contents), docs/review-policy.md (automation exists via make targets, Go checks, and GitHub workflows; manual review owns scope, quality, and convergence), and factory/docs/overview.md (describe awesome-agent-factories, planner state files, actual customer ask; remove stale AI model reference website and documentation-site-pages-needed.md references). Keep README.md, CONTRIBUTING.md, docs/review-policy.md, docs/taxonomy.md, and factory/docs/overview.md consistent. Leave make check, go test ./..., and git diff --check clean. Do not start Phase 7 content seeding.",
-    "problem": "Phase 6 templates and Phase 4–5 automation are on main, but a completed cleanup idea never landed its documentation changes: README Contents lists Community instead of reflecting curated categories, review-policy still claims automation is absent, and factory/docs/overview.md still describes the old AI model reference website and a nonexistent documentation-site roadmap file.",
-    "solution": "Apply a narrow documentation-only repair: fix README Contents/footer semantics, rewrite review-policy to document live automation while preserving manual judgment ownership, repair factory planner overview for this Awesome List repository, align taxonomy and sibling docs on categories and workflow, and verify with make check, go test ./..., and git diff --check before the Phase 7 content gate."
+    "customerAsk": "Converge the completed Phase 7 foundational content seed onto main. Reapply the intended README additions for Theories, Coordination Patterns, Frameworks, and Related Lists from the completed origin/phase-7-foundational-content-seed work without weakening existing scope, contribution, or community sections. Keep entries canonical, factual, non-promotional, description-final-period compliant, and alphabetized within each section. Update docs/taxonomy.md so its Phase 7 status note reflects that foundational seeding is now present on main for those four sections. Keep the change narrow: do not start new categories, do not add extra docs churn, and keep make check, make test, and git diff --check passing.",
+    "problem": "Phase 7 foundational content was completed on branch phase-7-foundational-content-seed but is not on main. The default branch still has empty Theories, Coordination Patterns, Frameworks, and Related Lists sections, and docs/taxonomy.md still states Phase 7 content seeding has not started. Contributors lack on-main exemplars for entry format, tone, category placement, and alphabetization.",
+    "solution": "Integrate the seed-branch README entries and taxonomy status update onto main as a focused two-file repair. Reapply eighteen curated entries validated on origin/phase-7-foundational-content-seed, update docs/taxonomy.md to state foundational seeding is present on main for the four seeded sections, preserve Scope/Contributing/Community prose, leave deferred sections empty, and verify make check, make test, and git diff --check pass."
   },
   "acceptanceCriteria": [
-    "README.md Contents lists Scope plus nine in-TOC curated sections (Theories through Examples and Templates), omits Related Lists, Contributing, and Community, and retains Related Lists as the tenth curated section heading",
-    "docs/review-policy.md documents live make targets, Go checks, and GitHub workflows while stating manual review owns scope fit, quality, convergence, and borderline judgments",
-    "factory/docs/overview.md describes Awesome AI Agent Factories, references docs/internal/customer-ask.md, checklist.md, and progress.txt, and removes stale AI model reference and documentation-site-pages-needed.md references",
-    "README.md, CONTRIBUTING.md, docs/review-policy.md, docs/taxonomy.md, and factory/docs/overview.md agree on ten curated categories and contributor/planner workflow",
-    "No Phase 7 README content seeding or unrelated governance rewrites are introduced",
-    "Quality gate: make check, go test ./..., and git diff --check all exit 0 from repository root"
+    "README Theories, Coordination Patterns, Frameworks, and Related Lists each contain the intended seed-branch entries (18 total) using - [Resource Name](URL) - Description. format",
+    "Every description ends with a period, uses factual non-promotional tone, and entries are alphabetized by link text within each section with no duplicate URLs in README.md",
+    "README Scope, Contributing, and Community sections remain present and are not weakened, shortened, or contradicted",
+    "Deferred README sections (Protocols and Interfaces, Benchmarks, Research Papers, Blog Posts, Case Studies, Examples and Templates) receive no new entries; no new categories or unrelated doc churn",
+    "docs/taxonomy.md Phase 7 status prose states foundational seeding is present on main for Theories, Coordination Patterns, Frameworks, and Related Lists",
+    "Changed files are limited to README.md, docs/taxonomy.md Phase 7 status update, and planning artifacts",
+    "Quality gate: make check, make test, and git diff --check all pass from the repository root"
   ],
   "userStories": [
     {
-      "id": "phase-6-7-docs-convergence-repair-001",
-      "title": "Converge README Contents with curated categories",
-      "description": "As a contributor reading the list, I want the README table of contents to reflect the ten curated resource categories so I know where to place submissions without treating governance links as list content.",
+      "id": "phase-7-foundational-content-integration-repair-001",
+      "title": "Integrate Theories entries onto main",
+      "description": "As a reader learning conceptual models for agent groups, I want foundational theory entries visible on main so I can study coordination and delegation ideas before choosing frameworks.",
       "acceptanceCriteria": [
-        "## Contents includes anchor links for Scope and for Theories, Coordination Patterns, Frameworks, Protocols and Interfaces, Benchmarks, Research Papers, Blog Posts, Case Studies, and Examples and Templates in canonical order",
-        "## Contents does not include Related Lists, Contributing, or Community",
-        "## Related Lists remains present as the tenth curated category section",
-        "## Contributing and ## Community remain after curated sections; ## Community covers conduct and security only, not list entries",
-        "make check exits 0 after the README update",
-        "Typecheck passes"
-      ],
-      "priority": 1,
-      "passes": true,
-      "notes": ""
-    },
-    {
-      "id": "phase-6-7-docs-convergence-repair-002",
-      "title": "Update review policy for live automation with manual judgment ownership",
-      "description": "As a maintainer, I want docs/review-policy.md to describe what automation enforces today and what still requires human judgment so reviewers and contributors share accurate expectations.",
-      "acceptanceCriteria": [
-        "Introduction no longer states automation does not run or that Phase 4 tooling is absent",
-        "Document live local automation: make check, make test/go test ./..., optional make links and make lint, with pointer to CONTRIBUTING.md GitHub Actions table",
-        "Document live GitHub workflow gates: ci.yml, link-check.yml, awesome-lint.yml, scheduled-maintenance.yml as read-only enforcement aligned with local commands",
-        "Checklist items claiming automated link checking is unavailable are updated to reflect make links, link-check.yml, and scheduled link checks",
-        "Document explicitly states manual review still owns scope fit, section-fit disputes, agent-factory relevance, quality bar, removal/relocation, and convergence judgments",
-        "Former Future automation (Phase 4) section reframed: Phase 4 checks and Phase 5 workflows are present; only not-yet-implemented enhancements remain future work",
-        "Typecheck passes"
-      ],
-      "priority": 2,
-      "passes": true,
-      "notes": ""
-    },
-    {
-      "id": "phase-6-7-docs-convergence-repair-003",
-      "title": "Repair factory planner overview for this repository",
-      "description": "As a meta-planner operating the agent factory, I want factory/docs/overview.md to describe this Awesome List repository and its planner state files so batch submission guidance matches reality.",
-      "acceptanceCriteria": [
-        "Overview identifies the project as Awesome AI Agent Factories—a curated awesome list for agent-factory topics—not an AI model reference website",
-        "Read First list includes factory/factory.json, factory/workstations/ideafy/AGENTS.md, docs/internal/customer-ask.md, docs/internal/checklist.md, and docs/internal/progress.txt",
-        "Read First list does not reference docs/documentation-site-pages-needed.md or other nonexistent paths",
-        "Phase control text points to docs/internal/customer-ask.md for current phase authorization and the Awesome List build goal",
-        "Factory workflow sections (work types, workstation flow, batch submission, state inspection, repair) remain accurate with you docs agents / you docs batch-inputs and factory/docs/batch-input-example.json references",
-        "Typecheck passes"
-      ],
-      "priority": 3,
-      "passes": true,
-      "notes": ""
-    },
-    {
-      "id": "phase-6-7-docs-convergence-repair-004",
-      "title": "Align taxonomy and cross-document category workflow language",
-      "description": "As a maintainer preparing Phase 7 seeding, I want taxonomy and sibling policy docs to agree with README and CONTRIBUTING on categories and workflow so planners and contributors read the same rules.",
-      "acceptanceCriteria": [
-        "docs/taxonomy.md lists the same ten curated README categories as CONTRIBUTING.md and does not describe Phase 4 automation as unimplemented when referring to current repository state",
-        "docs/taxonomy.md future-automation language distinguishes implemented Phase 4 checks and Phase 5 workflow gates from not-yet-started Phase 7 content seeding",
-        "CONTRIBUTING.md category list, README section headings, and docs/review-policy.md checklist name the same ten categories with matching headings",
-        "factory/docs/overview.md does not contradict contributor category or local-check guidance in CONTRIBUTING.md",
-        "No new README resource entries, issue-template edits, or unrelated governance rewrites are introduced",
-        "Typecheck passes"
-      ],
-      "priority": 4,
-      "passes": true,
-      "notes": ""
-    },
-    {
-      "id": "phase-6-7-docs-convergence-repair-005",
-      "title": "Verify documentation convergence quality gate",
-      "description": "As a planner running convergence review before Phase 7, I want end-to-end verification that the repaired documentation passes repository quality gates and contains no whitespace regressions.",
-      "acceptanceCriteria": [
-        "From repository root, make check exits 0",
-        "From repository root, go test ./... exits 0",
-        "From repository root, git diff --check exits 0",
-        "README.md Contents, CONTRIBUTING.md categories, docs/taxonomy.md, docs/review-policy.md, and factory/docs/overview.md contain no contradictory claims about whether automation runs or what the ten curated categories are",
-        "No Phase 7 list entries are added",
+        "README Theories contains five entries matching the seed branch: Actor Model, An Introduction to MultiAgent Systems, Blackboard Architecture, Contract Net Protocol, and Swarm Intelligence",
+        "Entries appear below the section intro in alphabetical order by link text with exact resource names and descriptions ending in a period",
+        "make check passes after Theories integration",
         "Typecheck passes",
         "Tests pass"
       ],
-      "priority": 5,
+      "priority": 1,
       "passes": true,
+      "notes": "Verification-only: PR #16 merged seed onto main; Theories section byte-identical to origin/phase-7-foundational-content-seed."
+    },
+    {
+      "id": "phase-7-foundational-content-integration-repair-002",
+      "title": "Integrate Coordination Patterns entries onto main",
+      "description": "As a system designer, I want coordination-pattern documentation linked from main so I can compare supervisor, handoff, and routing topologies when designing agent flows.",
+      "acceptanceCriteria": [
+        "README Coordination Patterns contains four entries matching the seed branch: Agent orchestration, AI Agent Orchestration Patterns, Building Effective Agents, and Multi-agent",
+        "Entries appear below the section intro in alphabetical order by link text with factual topology-focused descriptions ending in a period",
+        "make check passes after Coordination Patterns integration",
+        "Typecheck passes",
+        "Tests pass"
+      ],
+      "priority": 2,
+      "passes": true,
+      "notes": "Verification-only: PR #16 merged seed onto main; Coordination Patterns section byte-identical to origin/phase-7-foundational-content-seed."
+    },
+    {
+      "id": "phase-7-foundational-content-integration-repair-003",
+      "title": "Integrate Frameworks entries onto main",
+      "description": "As a builder implementing agent factories, I want canonical multi-agent frameworks listed on main so I can evaluate orchestration runtimes for teams, handoffs, and flow control.",
+      "acceptanceCriteria": [
+        "README Frameworks contains five entries matching the seed branch: AutoGen, CrewAI, LangGraph, MetaGPT, and Symphony",
+        "Descriptions emphasize multi-agent orchestration, delegation, or handoff capabilities; entries are alphabetized by link text",
+        "make check passes after Frameworks integration",
+        "Typecheck passes",
+        "Tests pass"
+      ],
+      "priority": 3,
+      "passes": true,
+      "notes": "Verification-only: PR #16 merged seed onto main; Frameworks section byte-identical to origin/phase-7-foundational-content-seed."
+    },
+    {
+      "id": "phase-7-foundational-content-integration-repair-004",
+      "title": "Integrate Related Lists entries onto main",
+      "description": "As a reader exploring the agent-factory ecosystem, I want complementary awesome lists indexed on main so I can discover broader curated resources without duplicating them in this list.",
+      "acceptanceCriteria": [
+        "README Related Lists contains four entries matching the seed branch: Awesome AI agents, Awesome Generative Multi-Agent Systems, Awesome Multi-Agent Learning, and Awesome Multi-Agent Papers",
+        "Link text uses each list's official title; entries are alphabetized by link text with descriptions ending in a period",
+        "make check passes after Related Lists integration",
+        "Typecheck passes",
+        "Tests pass"
+      ],
+      "priority": 4,
+      "passes": true,
+      "notes": "Verification-only: PR #16 merged seed onto main; Related Lists section byte-identical to origin/phase-7-foundational-content-seed."
+    },
+    {
+      "id": "phase-7-foundational-content-integration-repair-005",
+      "title": "Update taxonomy Phase 7 status for main convergence",
+      "description": "As a maintainer or factory operator tracking phase status, I want docs/taxonomy.md to reflect that Phase 7 foundational seeding is present on main so documentation matches repository state.",
+      "acceptanceCriteria": [
+        "docs/taxonomy.md Phase 7 content-seeding prose states foundational seeding is present on main for Theories, Coordination Patterns, Frameworks, and Related Lists",
+        "Taxonomy notes that Blog Posts, Case Studies, Benchmarks, Research Papers, Protocols and Interfaces, and Examples and Templates remain empty for later batches",
+        "Category definitions, include/exclude rules, and README section headings in taxonomy are unchanged",
+        "No new README entries are added in deferred sections as part of this story",
+        "Typecheck passes"
+      ],
+      "priority": 5,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "phase-7-foundational-content-integration-repair-006",
+      "title": "Verify integration repair quality gates and section integrity",
+      "description": "As a maintainer merging the integration repair, I want end-to-end verification that seeded content landed correctly and repository gates pass without regressing governance sections.",
+      "acceptanceCriteria": [
+        "From repository root, make check exits 0",
+        "From repository root, make test exits 0",
+        "git diff --check reports no whitespace errors on changed files",
+        "README Scope, Contributing, and Community sections remain present and unweakened with no contradictory edits",
+        "Deferred README sections contain no new resource entries",
+        "Changed files are limited to README.md, docs/taxonomy.md, and planning artifacts with no unrelated cleanup",
+        "Typecheck passes",
+        "Tests pass"
+      ],
+      "priority": 6,
+      "passes": false,
       "notes": ""
     }
   ]

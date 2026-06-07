@@ -1,183 +1,183 @@
-# PRD: Phase 6–7 Documentation Convergence Repair
+# PRD: Phase 7 Foundational Content Integration Repair
 
 ## Introduction
 
-Finish the repo-facing and planner-facing documentation reconciliation that the prior `phase-6-7-docs-convergence-cleanup` batch was meant to land. Phase 6 community intake templates and Phase 4–5 automation are present on `main`, but key documentation still drifts: `README.md` presents **Community** as a curated list category in the table of contents, `docs/review-policy.md` still claims automation does not exist, and `factory/docs/overview.md` still describes the old AI model reference website. This repair batch converges those documents so Phase 7 content seeding starts from one accurate source of truth.
+Converge the completed Phase 7 foundational content seed from `origin/phase-7-foundational-content-seed` onto `main`. Reapply the intended README resource entries for **Theories**, **Coordination Patterns**, **Frameworks**, and **Related Lists** so readers and contributors see exemplar curated content on the default branch. Update `docs/taxonomy.md` so its Phase 7 status note reflects that foundational seeding is now present on `main` for those four sections. Preserve README **Scope**, **Contributing**, and **Community** sections without weakening or rewriting them.
+
+This is a narrow integration repair: land two file deltas (`README.md`, `docs/taxonomy.md`) that match the completed seed work, pass repository quality gates, and avoid unrelated documentation churn or new categories.
 
 ## Context
 
 ### Customer ask
 
-Repair documentation convergence before Phase 7 content seeding. Update `README.md`, `docs/review-policy.md`, and `factory/docs/overview.md`; keep them aligned with `CONTRIBUTING.md` and `docs/taxonomy.md` on curated categories and contributor/planner workflow. Leave `make check`, `go test ./...`, and `git diff --check` clean. Do not start Phase 7 content seeding in this batch.
+Converge the completed Phase 7 foundational content seed onto main. Reapply the intended README additions for Theories, Coordination Patterns, Frameworks, and Related Lists from the completed `origin/phase-7-foundational-content-seed` work without weakening existing scope, contribution, or community sections. Keep entries canonical, factual, non-promotional, description-final-period compliant, and alphabetized within each section. Update `docs/taxonomy.md` so its Phase 7 status note reflects that foundational seeding is now present on main for those four sections. Keep the change narrow: do not start new categories, do not add extra docs churn, and keep `make check`, `make test`, and `git diff --check` passing.
 
-### Concrete problem
+### Problem
 
-A prior cleanup idea completed in the factory queue, but filesystem review shows the intended documentation changes never landed on `main`:
+Phase 7 foundational content was completed on branch `phase-7-foundational-content-seed` but is not yet on `main`. The default branch still shows empty resource sections for the four seeded categories, and `docs/taxonomy.md` still states Phase 7 content seeding has not started. Contributors lack on-main exemplars for entry format, tone, category fit, and alphabetization.
 
-- **README navigation drift** — The `## Contents` list ends with `[Community](#community)` instead of reflecting the ten curated resource categories defined in `CONTRIBUTING.md` and `docs/taxonomy.md`. `Related Lists` is a curated category (with its `## Related Lists` section) but is correctly omitted from Contents per awesome-list conventions enforced by `internal/checks`. `Community` is a governance footer (conduct and security pointers), not a curated list section, and must not appear in Contents as if it were.
-- **Review-policy automation drift** — `docs/review-policy.md` opens with “Automation does **not** run today” and references Phase 4 as future work, even though `make check`, `make test`, `make links`, and four GitHub workflows (`ci.yml`, `link-check.yml`, `awesome-lint.yml`, `scheduled-maintenance.yml`) are live on `main`.
-- **Factory overview drift** — `factory/docs/overview.md` describes an “AI model reference website,” points to nonexistent `docs/documentation-site-pages-needed.md`, and omits the actual Awesome List customer ask and planner-owned state files for this repository.
+### Solution
 
-### High-level solution
-
-Apply a narrow, documentation-only convergence pass: fix README Contents/footer semantics, rewrite review-policy automation language to match the live toolchain while preserving manual ownership of scope and quality judgments, repair factory planner guidance for this repo, and run a final cross-document consistency check across the five named policy files before the Phase 7 content gate.
+Integrate the seed branch README entries and taxonomy status update onto `main` as a focused repair batch. Copy the eighteen curated entries exactly as validated on the seed branch (or equivalent content meeting the same bar), verify automated README checks pass, and confirm Scope, Contributing, and Community prose remain intact.
 
 ## Goals
 
-- Present one coherent story for contributors: ten curated README categories, local `make` checks, GitHub workflow gates, and maintainer manual review responsibilities.
-- Present one coherent story for factory planners: this repository builds an Awesome List; phase control lives in `docs/internal/customer-ask.md`; progress is logged in planner-owned state files.
-- Remove stale references to pre-migration project scope (AI model reference site, missing documentation-site roadmap file).
-- Keep scope narrow: documentation convergence and planner guidance only—no Phase 7 list entries, no unrelated governance rewrites.
+- Land all seed-branch entries for Theories, Coordination Patterns, Frameworks, and Related Lists on `main`
+- Preserve README Scope, Contributing, and Community sections without semantic weakening
+- Keep entries canonical, factual, non-promotional, period-terminated, and alphabetized by link text within each section
+- Update `docs/taxonomy.md` Phase 7 status to state foundational seeding is present on `main` for the four seeded sections
+- Leave deferred README sections empty (Protocols and Interfaces, Benchmarks, Research Papers, Blog Posts, Case Studies, Examples and Templates)
+- Pass `make check`, `make test`, and `git diff --check` from the repository root
 
 ## Project-level acceptance criteria
 
-- [ ] `README.md` `## Contents` lists `Scope` plus the nine curated resource sections that belong in the table of contents (Theories through Examples and Templates), omits `Related Lists` and `Contributing` per awesome-list Contents conventions, and does **not** list `Community`.
-- [ ] `README.md` retains `## Related Lists` as the tenth curated category section and `## Community` as a non-curated governance footer after `## Contributing`.
-- [ ] `docs/review-policy.md` accurately describes live automation (`make check`, `make test`, `make links`, GitHub CI/link-check/awesome-lint/scheduled-maintenance workflows) and states that manual review still owns scope fit, quality, convergence, and borderline judgments automation cannot make.
-- [ ] `factory/docs/overview.md` describes the **Awesome AI Agent Factories** repository, references planner-owned `docs/internal/customer-ask.md`, `docs/internal/checklist.md`, and `docs/internal/progress.txt`, and removes stale references to the old AI model reference website and `docs/documentation-site-pages-needed.md`.
-- [ ] `README.md`, `CONTRIBUTING.md`, `docs/review-policy.md`, `docs/taxonomy.md`, and `factory/docs/overview.md` agree on the ten curated categories and the contributor/planner workflow.
-- [ ] Quality gate: `make check`, `go test ./...`, and `git diff --check` all exit 0 from the repository root.
+- [ ] README **Theories**, **Coordination Patterns**, **Frameworks**, and **Related Lists** each contain the intended seed-branch entries (18 total) using `- [Resource Name](URL) - Description.` format
+- [ ] Every description ends with a period, uses factual non-promotional tone, and states agent-factory relevance
+- [ ] Entries within each seeded section are alphabetized by link text with no duplicate URLs in README.md
+- [ ] README **Scope**, **Contributing**, and **Community** sections remain present and are not weakened, shortened, or contradicted
+- [ ] Deferred README sections receive no new entries; no new categories or unrelated doc files are introduced
+- [ ] `docs/taxonomy.md` Phase 7 status prose states foundational seeding is present on `main` for the four seeded sections and that other sections remain empty for later batches
+- [ ] Quality gate: `make check`, `make test`, and `git diff --check` all pass from the repository root
 
 ## User Stories
 
-### US-001: Converge README Contents with curated categories
+### US-001: Integrate Theories entries onto main
 
-**Description:** As a contributor reading the list, I want the README table of contents to reflect the ten curated resource categories so I know where to place submissions without treating governance links as list content.
+**Description:** As a reader learning conceptual models for agent groups, I want foundational theory entries visible on `main` so I can study coordination and delegation ideas before choosing frameworks.
 
 **Acceptance Criteria:**
 
-- [ ] `## Contents` includes anchor links for `Scope` and for Theories, Coordination Patterns, Frameworks, Protocols and Interfaces, Benchmarks, Research Papers, Blog Posts, Case Studies, and Examples and Templates—in that canonical order.
-- [ ] `## Contents` does **not** include `Related Lists`, `Contributing`, or `Community` (matching awesome-list Contents conventions enforced by `make check`).
-- [ ] `## Related Lists` remains present as the tenth curated category section with its existing intro text.
-- [ ] `## Contributing` and `## Community` remain after the curated sections; `## Community` covers conduct and security expectations only, not list entries.
-- [ ] `make check` exits 0 after the README update.
+- [x] README **Theories** contains five entries matching the seed branch: Actor Model, An Introduction to MultiAgent Systems, Blackboard Architecture, Contract Net Protocol, and Swarm Intelligence
+- [x] Entries appear below the section intro in alphabetical order by link text
+- [x] Each entry uses exact resource name as link text and a description ending with a period
+- [x] `make check` passes after Theories integration
+- [x] Typecheck passes
+- [x] Tests pass
+
+### US-002: Integrate Coordination Patterns entries onto main
+
+**Description:** As a system designer, I want coordination-pattern documentation linked from `main` so I can compare supervisor, handoff, and routing topologies when designing agent flows.
+
+**Acceptance Criteria:**
+
+- [x] README **Coordination Patterns** contains four entries matching the seed branch: Agent orchestration, AI Agent Orchestration Patterns, Building Effective Agents, and Multi-agent
+- [x] Entries appear below the section intro in alphabetical order by link text
+- [x] Descriptions emphasize reusable coordination topology rather than promotional product language
+- [x] `make check` passes after Coordination Patterns integration
+- [x] Typecheck passes
+- [x] Tests pass
+
+### US-003: Integrate Frameworks entries onto main
+
+**Description:** As a builder implementing agent factories, I want canonical multi-agent frameworks listed on `main` so I can evaluate orchestration runtimes for teams, handoffs, and flow control.
+
+**Acceptance Criteria:**
+
+- [x] README **Frameworks** contains five entries matching the seed branch: AutoGen, CrewAI, LangGraph, MetaGPT, and Symphony
+- [x] Descriptions emphasize multi-agent orchestration, delegation, or handoff capabilities
+- [x] Entries appear below the section intro in alphabetical order by link text
+- [x] `make check` passes after Frameworks integration
+- [x] Typecheck passes
+- [x] Tests pass
+
+### US-004: Integrate Related Lists entries onto main
+
+**Description:** As a reader exploring the agent-factory ecosystem, I want complementary awesome lists indexed on `main` so I can discover broader curated resources without duplicating them in this list.
+
+**Acceptance Criteria:**
+
+- [x] README **Related Lists** contains four entries matching the seed branch: Awesome AI agents, Awesome Generative Multi-Agent Systems, Awesome Multi-Agent Learning, and Awesome Multi-Agent Papers
+- [x] Link text uses each list's official title; entries are alphabetized by link text
+- [x] `make check` passes after Related Lists integration
+- [x] Typecheck passes
+- [x] Tests pass
+
+### US-005: Update taxonomy Phase 7 status for main convergence
+
+**Description:** As a maintainer or factory operator tracking phase status, I want `docs/taxonomy.md` to reflect that Phase 7 foundational seeding is present on `main` so documentation matches repository state.
+
+**Acceptance Criteria:**
+
+- [ ] `docs/taxonomy.md` Phase 7 content-seeding prose states foundational seeding is **present on main** for Theories, Coordination Patterns, Frameworks, and Related Lists
+- [ ] Taxonomy notes that Blog Posts, Case Studies, Benchmarks, Research Papers, Protocols and Interfaces, and Examples and Templates remain empty for later batches
+- [ ] Category definitions, include/exclude rules, and README section headings in taxonomy are unchanged
+- [ ] No new README entries are added in deferred sections as part of this story
 - [ ] Typecheck passes
 
-### US-002: Update review policy for live automation with manual judgment ownership
+### US-006: Verify integration repair quality gates and section integrity
 
-**Description:** As a maintainer, I want `docs/review-policy.md` to describe what automation enforces today and what still requires human judgment so reviewers and contributors share accurate expectations.
-
-**Acceptance Criteria:**
-
-- [ ] The introduction no longer states that automation does not run or that Phase 4 tooling is absent from the repository.
-- [ ] A contributor-readable section documents live local automation: `make check` (Go README structure and entry rules), `make test` / `go test ./...`, and optional `make links` / `make lint`, with pointers to `CONTRIBUTING.md` for the GitHub Actions mapping table.
-- [ ] A contributor-readable section documents live GitHub workflow gates: `ci.yml`, `link-check.yml`, `awesome-lint.yml`, and `scheduled-maintenance.yml`, described as read-only enforcement aligned with local commands.
-- [ ] Checklist items that claim automated link checking is unavailable are updated to reflect `make links`, `link-check.yml`, and scheduled link checks.
-- [ ] The document explicitly states manual review still owns scope fit, section-fit disputes, agent-factory relevance, quality bar, removal/relocation decisions, and convergence judgments automation cannot make.
-- [ ] The former “Future automation (Phase 4)” section is reframed: Phase 4 structural checks and Phase 5 workflow gates are present; only not-yet-implemented enhancements (for example scope-keyword warnings) remain future work.
-- [ ] Typecheck passes
-
-### US-003: Repair factory planner overview for this repository
-
-**Description:** As a meta-planner operating the agent factory, I want `factory/docs/overview.md` to describe this Awesome List repository and its planner state files so batch submission guidance matches reality.
+**Description:** As a maintainer merging the integration repair, I want end-to-end verification that seeded content landed correctly and repository gates pass without regressing governance sections.
 
 **Acceptance Criteria:**
 
-- [ ] The overview identifies the project as **Awesome AI Agent Factories**—a curated awesome list for agent-factory coordination, orchestration, and flows—not an AI model reference website.
-- [ ] The “Read First” list includes `factory/factory.json`, `factory/workstations/ideafy/AGENTS.md`, `docs/internal/customer-ask.md`, `docs/internal/checklist.md`, and `docs/internal/progress.txt`.
-- [ ] The “Read First” list does **not** reference `docs/documentation-site-pages-needed.md` or other paths that do not exist in this repository.
-- [ ] Phase control text points to `docs/internal/customer-ask.md` as the source for current phase authorization and the Awesome List build goal.
-- [ ] Existing factory workflow sections (work types, workstation flow, batch submission, state inspection, repair) remain accurate and refer to `you docs agents` / `you docs batch-inputs` and `factory/docs/batch-input-example.json`.
-- [ ] Typecheck passes
-
-### US-004: Align taxonomy and cross-document category workflow language
-
-**Description:** As a maintainer preparing Phase 7 seeding, I want taxonomy and sibling policy docs to agree with README and CONTRIBUTING on categories and workflow so planners and contributors read the same rules.
-
-**Acceptance Criteria:**
-
-- [ ] `docs/taxonomy.md` lists the same ten curated README categories as `CONTRIBUTING.md` and does not describe Phase 4 automation as unimplemented when referring to current repository state.
-- [ ] `docs/taxonomy.md` “Future automation” language distinguishes implemented structural checks (Phase 4) and workflow gates (Phase 5) from not-yet-started Phase 7 content seeding.
-- [ ] `CONTRIBUTING.md` category list, README section headings, and `docs/review-policy.md` checklist section list name the same ten categories with matching headings.
-- [ ] `factory/docs/overview.md` does not contradict contributor category or local-check guidance in `CONTRIBUTING.md`.
-- [ ] No new README resource entries, issue-template edits, or unrelated governance file rewrites are introduced in this story.
-- [ ] Typecheck passes
-
-### US-005: Verify documentation convergence quality gate
-
-**Description:** As a planner running convergence review before Phase 7, I want end-to-end verification that the repaired documentation passes repository quality gates and contains no whitespace regressions.
-
-**Acceptance Criteria:**
-
-- [ ] From repository root, `make check` exits 0 (README structure, Contents alignment, entry rules).
-- [ ] From repository root, `go test ./...` exits 0.
-- [ ] From repository root, `git diff --check` exits 0 (no conflict markers or whitespace errors in changed files).
-- [ ] A reviewer can read `README.md` Contents, `CONTRIBUTING.md` categories, `docs/taxonomy.md`, `docs/review-policy.md`, and `factory/docs/overview.md` without finding contradictory claims about whether automation runs or what the ten curated categories are.
-- [ ] No Phase 7 list entries are added.
+- [ ] From repository root, `make check` exits 0
+- [ ] From repository root, `make test` exits 0
+- [ ] `git diff --check` reports no whitespace errors on changed files
+- [ ] README **Scope**, **Contributing**, and **Community** sections match pre-integration intent (present, unweakened, no contradictory edits)
+- [ ] Deferred README sections contain no new resource entries
+- [ ] Changed files are limited to `README.md`, `docs/taxonomy.md`, and planning artifacts—no unrelated cleanup
 - [ ] Typecheck passes
 - [ ] Tests pass
 
 ## Functional Requirements
 
-- FR-1: README Contents lists Scope plus nine in-TOC curated sections; Related Lists, Contributing, and Community are excluded from Contents.
-- FR-2: README retains all ten curated `##` section headings including Related Lists.
-- FR-3: Review policy documents both automated enforcement surfaces and manual review ownership.
-- FR-4: Factory overview describes Awesome List scope, planner state files, and current factory workflow without stale external-project references.
-- FR-5: Taxonomy, CONTRIBUTING, review policy, and README use identical category names and headings.
-- FR-6: Repository quality commands (`make check`, `go test ./...`, `git diff --check`) pass after changes.
+- FR-1: Integrate eighteen README entries from `origin/phase-7-foundational-content-seed` across four sections (Theories: 5, Coordination Patterns: 4, Frameworks: 5, Related Lists: 4)
+- FR-2: Enforce CONTRIBUTING.md entry format: exact resource name link text, canonical URL, hyphen-separated description ending with a period
+- FR-3: Enforce alphabetical order by link text within each seeded section per automated checks in `internal/checks`
+- FR-4: Preserve README Scope, Contributing, and Community sections without semantic weakening
+- FR-5: Update `docs/taxonomy.md` Phase 7 status to document on-main presence for the four seeded sections
+- FR-6: Leave six deferred README sections without new entries
 
 ## Non-Goals
 
-- Seeding Phase 7 README content (theories, frameworks, papers, and other entries).
-- Rewriting `MAINTAINERS.md`, `SECURITY.md`, or GitHub issue/PR templates unless a direct contradiction with repaired docs is discovered during the cross-doc pass.
-- Adding new automated checks or changing `internal/checks` behavior beyond what README edits require to keep `make check` passing.
-- Bulk link-check or awesome-lint remediation across external URLs.
-- Creating `docs/documentation-site-pages-needed.md` or other documentation-site scaffolding.
+- Seeding Blog Posts, Case Studies, Benchmarks, Research Papers, Protocols and Interfaces, or Examples and Templates
+- Adding new README categories or restructuring the Contents block
+- Rewriting CONTRIBUTING.md, review-policy.md, historical.md, or factory planner docs beyond the taxonomy status note
+- Changing Go checker logic, Makefile targets, or GitHub workflows
+- Link-checking external URLs (optional `make links` is out of scope unless CI requires it)
+- Broad refactors, unrelated formatting sweeps, or marketing tone edits to seed entries
 
-## High-level Technical Design
+## High-level technical design
 
-This batch is documentation-only. No application runtime, API, or UI changes are involved.
+Integration is a two-file convergence from a completed feature branch:
 
-**Document ownership map**
+```mermaid
+flowchart LR
+  seed["origin/phase-7-foundational-content-seed"]
+  main["main branch"]
+  readme["README.md\n4 seeded sections"]
+  tax["docs/taxonomy.md\nPhase 7 status"]
+  checks["make check / make test"]
 
-| Concern | Primary file | Consumers |
-| --- | --- | --- |
-| Curated category names and TOC | `README.md` | Contributors, awesome-lint, `internal/checks` |
-| Submission rules and local/CI commands | `CONTRIBUTING.md` | Contributors, review policy |
-| Category definitions | `docs/taxonomy.md` | Maintainers, review policy |
-| Review checklist and automation split | `docs/review-policy.md` | Maintainers, contributors (self-check) |
-| Factory planner guidance | `factory/docs/overview.md` | Ideafy meta-planner, batch executors |
+  seed --> readme
+  seed --> tax
+  readme --> checks
+  tax --> checks
+  checks --> main
+```
 
-**Contents conventions (behavioral contract)**
+**Source of truth:** `git diff main origin/phase-7-foundational-content-seed` for `README.md` and `docs/taxonomy.md` defines the intended delta (+22 / −1 lines).
 
-`internal/checks` enforces awesome-list Contents rules: required resource section headings must exist; Contents must link to each in-TOC curated section; `Related Lists` and `Contributing` headings must exist but are omitted from Contents. `Community` is not a curated category and must not appear in Contents.
+**Validation layer:** `go run ./internal/checks` (via `make check`) enforces section headings, Contents alignment, entry format, description terminal periods, and alphabetization. `go test ./...` (via `make test`) guards checker regressions.
 
-**Automation vs manual review split**
+**Governance guard:** Scope, Contributing, and Community blocks are outside the seed diff and must remain unchanged in substance.
 
-| Automated today | Manual maintainer judgment |
-| --- | --- |
-| README section presence and Contents alignment | Scope and agent-factory relevance |
-| Entry format, punctuation, banned phrases | Section-fit disputes and borderline resources |
-| Duplicate URL/name detection | Quality bar and historical importance |
-| Alphabetization within sections | Removal, relocation, and convergence decisions |
-| Go format/tests in CI | Whether a submission should merge |
-| Link checks (local `make links`, scheduled workflow) | Canonical URL and durability judgments |
-| awesome-lint on PR/push | Whether marketing tone is acceptable |
+## Supporting technical and UX considerations
 
-**Implementation order**
+- Prefer cherry-picking or applying the seed-branch patch over reauthoring entries to avoid drift from reviewed content
+- If a seed entry fails an automated check on current `main`, fix only that entry to meet the same canonical intent—do not rewrite unrelated sections
+- Related Lists is a curated category section but is intentionally omitted from the Contents TOC; do not add it during integration
+- Taxonomy status wording should say seeding is **present on main**, not merely "started in this batch," to reflect post-merge state
+- No browser verification is required; observable outcomes are README rendering and automated check exit codes
 
-1. README Contents/footer (US-001) — establishes canonical navigation.
-2. Review policy automation language (US-002) — independent but references CONTRIBUTING CI table.
-3. Factory overview repair (US-003) — independent planner doc.
-4. Taxonomy and cross-doc alignment (US-004) — depends on prior doc content settling.
-5. Quality gate verification (US-005) — final convergence proof.
+## Success metrics
 
-## Supporting Technical and UX Considerations
-
-- Prefer minimal diffs: update prose in place rather than restructuring unrelated sections.
-- When reframing “future automation” sections, preserve maintainer intent (checklist questions and labels) while correcting factual claims about what runs today.
-- `factory/docs/overview.md` is bundled factory documentation; keep workstation flow diagrams and `you` CLI commands accurate.
-- Contributors discover categories through README Contents and CONTRIBUTING; maintainers use taxonomy and review policy—wording should be consistent but not duplicated verbatim across every file.
-- Do not introduce trailing whitespace; `git diff --check` is part of the quality gate.
-
-## Success Metrics
-
-- Zero contradictory “automation does not run” statements across the five named policy files after repair.
-- README Contents matches CONTRIBUTING’s ten-category model without listing Community as curated content.
-- Factory overview references only files that exist on `main`.
-- `make check` and `go test ./...` pass on first attempt after merge.
-- Phase 7 content seeding can begin without a follow-up documentation repair batch.
+- All eighteen seed entries visible on `main` in the four target sections
+- Zero automated README check failures after integration
+- Zero whitespace errors from `git diff --check`
+- Taxonomy Phase 7 status accurately describes on-main seeding state
+- No contributor-facing regression in Scope, Contributing, or Community guidance
 
 ## Open Questions
 
-None. Scope, target files, and quality gate are defined by the customer ask and current repository state.
+None. The seed branch diff is the authoritative integration target; scope and file boundaries are explicit.

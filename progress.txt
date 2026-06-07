@@ -294,3 +294,47 @@
   - awesome-toc requires every `##` heading in the TOC unless lint is disabled for the Contents block; Community exclusion from Contents still needs the disable/enable wrappers even when Related Lists is also omitted from Contents.
   - Run `npx awesome-lint` locally before creating the PR when story 005 is the convergence gate.
 ---
+
+## 2026-06-07T12:00:00Z - phase-7-foundational-content-integration-repair-001
+- Verified README Theories section on this branch matches `origin/phase-7-foundational-content-seed` and `origin/main` (five entries: Actor Model, An Introduction to MultiAgent Systems, Blackboard Architecture, Contract Net Protocol, Swarm Intelligence; alphabetized by link text; descriptions end with a period).
+- Confirmed integration already landed via merged PR #16 (`phase-7-foundational-content-seed`); no README edit required for this story.
+- Ran quality gates: `make check`, `make test`, `go build ./...`, and `git diff --check` all exit 0.
+- Files changed: none (verification-only story)
+- **Learnings for future iterations:**
+  - Check `git diff origin/main -- README.md docs/taxonomy.md` before reapplying seed content; parallel merge (PR #16) may already converge the target files.
+  - Story 005 still needs taxonomy wording update from "started in this batch" to "present on main" per repair PRD acceptance criteria.
+  - Branch head equals `origin/main` until story 005 or later stories add repair-specific deltas.
+---
+
+## 2026-06-07T12:30:00Z - phase-7-foundational-content-integration-repair-002
+- Verified README Coordination Patterns section on this branch matches `origin/phase-7-foundational-content-seed` and `origin/main` (four entries: Agent orchestration, AI Agent Orchestration Patterns, Building Effective Agents, Multi-agent; alphabetized by link text; descriptions end with a period).
+- Confirmed integration already landed via merged PR #16 (`phase-7-foundational-content-seed`); no README edit required for this story.
+- Ran quality gates: `make check`, `make test`, `go build ./...`, and `git diff --check` all exit 0.
+- Files changed: none (verification-only story)
+- **Learnings for future iterations:**
+  - Stories 003–004 (Frameworks, Related Lists) likely follow the same verification-only pattern if PR #16 already converged all seed entries onto main.
+  - Story 005 still needs taxonomy wording update from "not started" to "present on main" per repair PRD acceptance criteria.
+  - No PR exists yet for this branch; create only after all six stories pass.
+---
+
+## 2026-06-07T13:00:00Z - phase-7-foundational-content-integration-repair-003
+- Verified README Frameworks section on this branch matches `origin/phase-7-foundational-content-seed` and `origin/main` (five entries: AutoGen, CrewAI, LangGraph, MetaGPT, and Symphony; alphabetized by link text; descriptions emphasize orchestration/delegation/handoffs and end with a period).
+- Confirmed integration already landed via merged PR #16 (`phase-7-foundational-content-seed`); no README edit required for this story.
+- Ran quality gates: `make check`, `make test`, `go build ./...`, and `git diff --check` all exit 0.
+- Files changed: none (verification-only story)
+- **Learnings for future iterations:**
+  - Story 004 (Related Lists) likely follows the same verification-only pattern if PR #16 already converged all seed entries onto main.
+  - Story 005 still needs taxonomy wording update from "not started" to "present on main" per repair PRD acceptance criteria.
+  - No PR exists yet for this branch; create only after all six stories pass.
+---
+
+## 2026-06-07T13:30:00Z - phase-7-foundational-content-integration-repair-004
+- Verified README Related Lists section on this branch matches `origin/phase-7-foundational-content-seed` and `origin/main` (four entries: Awesome AI agents, Awesome Generative Multi-Agent Systems, Awesome Multi-Agent Learning, and Awesome Multi-Agent Papers; alphabetized by link text; descriptions end with a period).
+- Confirmed integration already landed via merged PR #16 (`phase-7-foundational-content-seed`); no README edit required for this story.
+- Ran quality gates: `make check`, `make test`, `go build ./...`, and `git diff --check` all exit 0.
+- Files changed: none (verification-only story)
+- **Learnings for future iterations:**
+  - Story 005 (taxonomy Phase 7 status) is the first story likely requiring an actual edit on this branch.
+  - All four seeded README sections are already on main via PR #16; remaining work is taxonomy wording and final verification.
+  - No PR exists yet for this branch; create only after all six stories pass.
+---
