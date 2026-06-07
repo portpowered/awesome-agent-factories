@@ -7,6 +7,7 @@
 - This worktree fast-forwarded `phase-4-go-readme-checker-core` to obtain `go.mod` and `internal/checks/` before adding Makefile/lint automation.
 - Optional-tool Makefile targets: guard with `command -v <tool>`; print tool name, purpose, `go install` hint, and upstream docs URL to stderr before exiting 1.
 - README `## Contents` lists Scope plus nine in-TOC curated sections (Theories through Examples and Templates); `Related Lists` and `Contributing` are in `contentsExcludedSections` (section headings required, omitted from Contents per awesome-list convention); `Community` stays as a footer section, not Contents navigation.
+- Wrap README `## Contents` link list with `<!--lint disable awesome-toc-->` / `<!--lint enable awesome-toc-->` so `npx awesome-lint` accepts `## Community` (and other excluded sections) omitted from Contents navigation.
 
 ## 2026-06-06T00:00:00Z - awesome-readme-foundation-001
 - Established README identity: Awesome H1 with badge, inline SVG logo mark (three connected nodes), blockquote tagline, and factual agent-factory definition; removed placeholder `# awesome-agent-factories` heading.
