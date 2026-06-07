@@ -115,11 +115,11 @@ Introduce a PR template and three issue templates plus `config.yml` that:
 
 **Acceptance Criteria:**
 
-- [ ] If [CONTRIBUTING.md](CONTRIBUTING.md) or [README.md](README.md) already mention opening issues or pull requests, update only those sentences to reference the new GitHub templates and chooser flow
-- [ ] If no doc changes are required for consistency, record that outcome in the pull request description (no gratuitous edits)
-- [ ] No README resource entries are added or modified in this story
-- [ ] No unrelated governance, workflow, or planner-owned file changes
-- [ ] Typecheck passes
+- [x] If [CONTRIBUTING.md](CONTRIBUTING.md) or [README.md](README.md) already mention opening issues or pull requests, update only those sentences to reference the new GitHub templates and chooser flow
+- [x] If no doc changes are required for consistency, record that outcome in the pull request description (no gratuitous edits)
+- [x] No README resource entries are added or modified in this story
+- [x] No unrelated governance, workflow, or planner-owned file changes
+- [x] Typecheck passes
 
 ### US-007: Verify Phase 6 template delivery and quality gates
 

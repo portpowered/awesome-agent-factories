@@ -233,3 +233,12 @@
   - PR template is markdown-only; no labels or YAML; mirror issue-template field names (name, URL, section, relevance) for contributor consistency.
   - Story 006 aligns CONTRIBUTING.md/README.md references; story 007 runs full convergence verification.
 ---
+
+## 2026-06-07T22:30:00Z - phase-6-community-submission-templates-006
+- Updated CONTRIBUTING.md duplicate-link guidance and **Before you open a pull request** section to reference the GitHub pull request template, issue chooser forms (**Suggest a resource**, **Request resource removal**, **Report a broken link**), and config contact links; updated README.md Contributing intake sentence to mention the PR template and structured issue chooser (blank issues disabled). No README list entries changed.
+- Files changed: CONTRIBUTING.md, README.md
+- **Learnings for future iterations:**
+  - Story 006 is surgical doc alignment only: update sentences that already mention opening issues or PRs; match issue template `name` fields from each YAML file exactly.
+  - Doc changes were required for consistency (templates existed but intake docs did not reference them); no gratuitous edits beyond those intake sentences.
+  - Story 007 runs verification-only convergence across all five template artifacts and quality gates.
+---
