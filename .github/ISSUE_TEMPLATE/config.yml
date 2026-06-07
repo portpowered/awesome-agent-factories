@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Contributing guide
+    url: https://github.com/portpowered/awesome-agent-factories/blob/main/CONTRIBUTING.md
+    about: Submission format, scope rules, one-resource-per-PR discipline, and local checks before you open a pull request.
+  - name: Review policy
+    url: https://github.com/portpowered/awesome-agent-factories/blob/main/docs/review-policy.md
+    about: Maintainer review checklist and outcomes for resource submissions, removals, and link reports.
