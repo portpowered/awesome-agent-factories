@@ -87,6 +87,12 @@ Software that manages agent groups, flows, handoffs, or orchestration.
 
 Standards or conventions for agent interaction, handoffs, and shared interfaces.
 
+- [Agent2Agent Protocol](https://google.github.io/A2A/) - Open agent-to-agent interoperability specification for discovery, task delegation, and message exchange across heterogeneous agent runtimes.
+- [AGNTCY Agent Connect Protocol](https://docs.agntcy.org/) - Specification for secure agent-to-agent connectivity, identity, and message routing across distributed multi-agent networks.
+- [FIPA Agent Communication Language](http://www.fipa.org/repository/aclspecs.html) - Standard message-representation and interaction-protocol vocabulary for structured coordination among software agents.
+- [Model Context Protocol](https://modelcontextprotocol.io/) - Open protocol for sharing tools, resources, and context between agents and runtimes in multi-step orchestration flows.
+- [Open Agent Schema Framework](https://github.com/agntcy/oasf) - Schema specification for describing agent capabilities and interfaces to support routing and delegation in multi-agent systems.
+
 ## Benchmarks
 
 Benchmarks that evaluate group or workflow behavior.
