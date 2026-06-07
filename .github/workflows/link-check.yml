@@ -17,4 +17,4 @@ jobs:
       - name: "Check links (local: make links)"
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --verbose --no-progress README.md docs/*.md
+          args: --config .lychee.toml --verbose --no-progress README.md docs/*.md

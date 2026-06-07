@@ -1,4 +1,5 @@
 ## Codebase Patterns
+- Run `lychee -vv README.md` to list redirecting curated-section URLs; replace with resolved destinations (e.g., `blog.langchain.com` → `www.langchain.com/blog`, `modelcontextprotocol.io/` → `modelcontextprotocol.io/docs/getting-started/intro`). The Awesome badge `https://awesome.re` redirect is standard markup and outside curated resource sections.
 - Research Papers expansion should diversify beyond survey-and-framework papers: add safety/governance (AgentPoison), group-level evaluation (ChatEval), social coordination (Exploring Collaboration Mechanisms), expert-model orchestration (HuggingGPT), societies of mind (Mindstorms), and scaling coordination (More Agents Is All You Need) while keeping strict link-text alphabetization.
 - Phase 8/9 maintainer-ops convergence content may already be on `origin/main` via merged `phase-8-9-maintainer-ops-convergence` commits; run `git diff origin/main origin/phase-8-9-maintainer-ops-convergence -- MAINTAINERS.md CONTRIBUTING.md docs/review-policy.md docs/taxonomy.md` before reapplying governance diffs.
 - Phase 5 core CI: `.github/workflows/ci.yml` uses `actions/checkout@v4`, `actions/setup-go@v5` with `go-version: stable`, and `go mod download`; full gate steps (gofmt, tests, README checks) are added incrementally per PRD stories 002–004.
@@ -491,4 +492,14 @@
   - Story 003 completes the PRD; create the PR when no open PR exists and all three stories pass.
   - Use `git diff origin/main...HEAD --name-only` to confirm changed-file scope before marking verification stories complete.
   - `go build ./...` is the local typecheck equivalent when no package.json exists.
+---
+
+## 2026-06-07T11:35:00Z - phase-7-source-quality-audit-001
+- Canonicalized two redirecting curated-section URLs in README.md: Model Context Protocol now links to `modelcontextprotocol.io/docs/getting-started/intro` (resolved homepage destination) and How We Deployed our Multi-Agent Flow to LangGraph Cloud now links to `www.langchain.com/blog/how-we-deployed-our-multi-agent-flow-to-langgraph-cloud-2` (canonical post URL after `blog.langchain.com` domain migration).
+- Scanned all 74 resource-section URLs with curl first-hop checks; only those two required remediation. Remaining `awesome.re` badge redirect is standard Awesome-list markup outside curated sections.
+- Files changed: README.md
+- **Learnings for future iterations:**
+  - `lychee -vv README.md` reports redirect chains with source line numbers; pair with a curl first-hop scan across resource sections to confirm no missed hops.
+  - LangChain engineering posts migrated from `blog.langchain.com` to `www.langchain.com/blog/`; prefer the `www.langchain.com` form for new Blog Posts entries.
+  - `modelcontextprotocol.io/` 308-redirects to `/docs/getting-started/intro`; use the resolved docs landing URL rather than the bare domain root.
 ---

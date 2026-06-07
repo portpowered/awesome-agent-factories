@@ -1,32 +1,32 @@
 {
   "project": "Awesome AI Agent Factories",
-  "branchName": "phase-7-research-and-blogs-expansion",
-  "description": "Expand the underfilled README Research Papers (7→≥15) and Blog Posts (6→≥10) sections with academically relevant papers and substantive technical articles that preserve scope discipline, alphabetization, canonical URLs, neutral descriptions, and agent-factory relevance keywords; pass make check, make test, and git diff --check.",
+  "branchName": "phase-7-source-quality-audit",
+  "description": "Phase 7 convergence cleanup: audit README.md and contributor-facing docs for content quality and source hygiene—canonicalize redirecting URLs, remove or replace weak and marketing-heavy entries, apply narrow doc follow-ons, and verify the Phase 7 manual gate on stable URLs and non-promotional sourcing while preserving section taxonomy and README structure.",
   "context": {
-    "customerAsk": "Phase 7 content expansion: after the core section update lands, expand the README Research Papers and Blog Posts sections to meet the customer ask minimums while preserving quality. Increase Research Papers from 7 entries to at least 15 and Blog Posts from 6 entries to at least 10. Use academically relevant papers and technical articles only; avoid launch posts, shallow trend pieces, generic AI content, and vendor marketing. Keep sections alphabetized, descriptions neutral, and every added item clearly justified by the agent-factory angle.",
-    "problem": "Research Papers and Blog Posts remain below Phase 7 minimum targets. Readers lack enough on-main academic references and practitioner writeups to study multi-agent coordination, learn from production lessons, and compare acceptable technical depth against borderline submissions. Thin writing sections weaken maintainer scope enforcement.",
-    "solution": "Add curated entries only to the two target README sections until each meets the minimum count bar, following docs/taxonomy.md include rules and CONTRIBUTING.md formatting and relevance rules. Preserve governance prose and all non-target curated sections. Verify make check, make test, and git diff --check pass before merge."
+    "customerAsk": "Phase 7 convergence cleanup: after the README section expansions are complete, audit README.md and the contributor-facing docs for content quality and source hygiene. Resolve redirecting URLs where a more canonical destination is available, remove or replace any weak or marketing-heavy entries that do not meet the documented scope, and make any narrow follow-on edits needed so the Phase 7 manual gate about stable URLs and non-promotional sourcing is defensible. Preserve the existing section taxonomy and README structure.",
+    "problem": "Bulk Phase 7 seeding prioritized coverage across ten curated README sections. Some entries may still use redirecting or fragile URLs, promotional description tone, or borderline scope fit that automated checks cannot judge. Without a focused audit, maintainers cannot confidently sign off the Phase 7 manual gate on stable URLs and non-promotional sourcing in docs/review-policy.md and CONTRIBUTING.md.",
+    "solution": "Run a section-preserving quality audit: upgrade URLs to canonical stable destinations, remove or replace weak out-of-scope entries per docs/taxonomy.md and docs/review-policy.md, rewrite remaining descriptions to encyclopedic factual tone, apply narrow contributor-doc updates only where audited outcomes must be reflected, and verify with make check, make test, and make links."
   },
   "acceptanceCriteria": [
-    "README Research Papers contains at least 15 resource entries (currently 7) using - [Resource Name](URL) - Description. format with descriptions ending in a period and entries alphabetized by link text",
-    "README Blog Posts contains at least 10 resource entries (currently 6) using the same format, tone, and alphabetization rules",
-    "Every new entry is academically relevant (papers) or a substantive technical article (blogs); excludes launch posts, shallow trend pieces, generic AI content, and vendor marketing per docs/taxonomy.md and docs/rejected.md",
-    "Every new entry includes an agent-factory scope keyword in the description and introduces no duplicate URLs anywhere in README.md",
-    "README governance sections (Scope, Contributing, Community) and all non-target curated sections remain unchanged except unavoidable whitespace or merge hygiene",
+    "Every README resource entry in all ten curated sections uses a canonical stable URL—no unnecessary redirect hops, shortened links, or version-fragile deep links when an equally canonical official destination exists",
+    "No README entry retains prohibited marketing language; descriptions are concise, factual, encyclopedic, and end with a period per CONTRIBUTING.md",
+    "No README entry remains that fails docs/taxonomy.md include rules or README.md scope; weak entries are removed, replaced, or relocated per docs/review-policy.md",
+    "README section taxonomy, Contents navigation anchors, and governance sections (Scope, Contributing, Community) are preserved with entries alphabetized by link text within each section",
+    "Contributor-facing docs (CONTRIBUTING.md, docs/taxonomy.md, docs/review-policy.md) receive only narrow follow-on edits needed to reflect the audited quality bar without category renames or structural rewrites",
+    "make links reports no failures for README.md and docs/*.md after remediation",
     "Quality gate: make check, make test, and git diff --check all pass from the repository root"
   ],
   "userStories": [
     {
-      "id": "phase-7-research-and-blogs-expansion-001",
-      "title": "Expand Research Papers section to minimum density",
-      "description": "As a researcher or architect studying multi-agent systems, I want more academically relevant papers indexed on main so I can explore coordination, communication, planning, societies, evaluation, and governance research beyond the current seven seed entries.",
+      "id": "phase-7-source-quality-audit-001",
+      "title": "Canonicalize README resource URLs",
+      "description": "As a maintainer signing off Phase 7, I want every README entry to link to canonical stable destinations so readers and link checks do not depend on redirect chains or fragile deep links.",
       "acceptanceCriteria": [
-        "README Research Papers contains at least 15 entries below the section intro (at least 8 new entries beyond the existing seven seed entries)",
-        "Each new entry is peer-reviewed or widely cited research on multi-agent coordination, orchestration, communication, planning, delegation, agent societies, group-level evaluation, safety, or governance per docs/taxonomy.md Research Papers include rules—not a blog post, vendor whitepaper, framework repository, or benchmark landing page",
-        "New entries diversify themes beyond the current survey-and-framework-paper cluster without duplicating resources whose primary home is another README section",
-        "Each entry uses exact format - [Resource Name](URL) - Description. with a factual one-sentence description ending in a period and an explicit agent-factory scope keyword",
-        "Entries are alphabetized by link text across the full section and no duplicate URLs are introduced anywhere in README.md",
-        "make check passes after Research Papers expansion",
+        "Each resource URL in all ten curated README sections resolves to the official homepage, paper page, repository root, or other durable canonical destination—not a redirect hop, shortener, tracking URL, or version-fragile path when a more canonical target exists",
+        "URL changes preserve exact entry format - [Resource Name](URL) - Description. and alphabetization by link text within each section",
+        "No duplicate URLs are introduced anywhere in README.md",
+        "make links exits 0 for README.md after URL remediation",
+        "make check exits 0 after URL remediation",
         "Typecheck passes",
         "Tests pass"
       ],
@@ -35,39 +35,70 @@
       "notes": ""
     },
     {
-      "id": "phase-7-research-and-blogs-expansion-002",
-      "title": "Expand Blog Posts section to minimum density",
-      "description": "As a practitioner building agent factories, I want more technical articles indexed on main so I can learn from architecture breakdowns, failure analyses, and production orchestration lessons beyond the current six seed entries.",
+      "id": "phase-7-source-quality-audit-002",
+      "title": "Remove or replace weak and out-of-scope README entries",
+      "description": "As a reader trusting this curated list, I want weak, borderline, or out-of-scope entries removed or replaced so every remaining row meets the documented agent-factory scope bar.",
       "acceptanceCriteria": [
-        "README Blog Posts contains at least 10 entries below the section intro (at least 4 new entries beyond the existing six seed entries)",
-        "Each new entry is technical writing that teaches how groups of agents were designed, operated, or measured per docs/taxonomy.md Blog Posts include rules—not a launch announcement, shallow trend piece, generic AI overview, prompt collection, or primarily promotional vendor page",
-        "New URLs do not duplicate URLs already present elsewhere in README.md including Coordination Patterns and other curated sections",
-        "Each entry uses exact format - [Resource Name](URL) - Description. with a factual one-sentence description ending in a period and an explicit agent-factory scope keyword",
-        "Entries are alphabetized by link text across the full section",
-        "make check passes after Blog Posts expansion",
+        "Every entry removed or replaced is documented with the failing criterion (scope, sourcing quality, duplicate, or unmaintained per docs/review-policy.md)",
+        "Removed entries that are historically important but inactive are relocated to docs/historical.md with factual relocation prose",
+        "Replaced entries use stronger canonical sources that fit docs/taxonomy.md include rules for their section and include at least one agent-factory scope keyword",
+        "Affected sections remain alphabetized by link text; no section headings or Contents anchors are renamed or reordered",
+        "make check exits 0 after entry remediation",
         "Typecheck passes",
         "Tests pass"
       ],
       "priority": 2,
-      "passes": true,
+      "passes": false,
       "notes": ""
     },
     {
-      "id": "phase-7-research-and-blogs-expansion-003",
-      "title": "Verify batch quality gates and section integrity",
-      "description": "As a maintainer merging this batch, I want end-to-end verification that expanded research and writing sections satisfy automated checks and leave unrelated repository content untouched.",
+      "id": "phase-7-source-quality-audit-003",
+      "title": "Harden README descriptions to encyclopedic non-promotional tone",
+      "description": "As a contributor learning submission standards, I want every on-main README description to model factual encyclopedic tone so the Phase 7 non-promotional sourcing gate is defensible.",
       "acceptanceCriteria": [
-        "From repository root, make check exits 0",
-        "From repository root, make test exits 0",
-        "git diff --check reports no whitespace errors on changed files",
-        "README Research Papers contains at least 15 entries and Blog Posts contains at least 10 entries with at least 12 combined new entries relative to pre-batch counts",
-        "README Scope, Contributing, and Community sections remain present and unweakened; non-target curated sections contain no unintended edits",
-        "Changed content files are limited to README.md and planning artifacts for this batch",
+        "No README resource description contains prohibited marketing language from CONTRIBUTING.md",
+        "Every description states what the resource is and why it matters for agent-factory work in one or two factual sentences ending with a period",
+        "Descriptions for entries touched in prior stories are reviewed; remaining seeded entries are scanned and rewritten only where tone fails the encyclopedic bar",
+        "make check exits 0 after description hardening",
         "Typecheck passes",
         "Tests pass"
       ],
       "priority": 3,
-      "passes": true,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "phase-7-source-quality-audit-004",
+      "title": "Converge contributor-facing docs with audited quality outcomes",
+      "description": "As a maintainer running the Phase 7 manual gate, I want contributor docs to reflect that seeded content passed URL stability and non-promotional sourcing review without restructuring taxonomy.",
+      "acceptanceCriteria": [
+        "docs/taxonomy.md Phase 7 status prose records that post-seeding source-quality audit is complete without renaming categories or altering the ten-section taxonomy table",
+        "docs/review-policy.md and CONTRIBUTING.md contain no contradictory guidance relative to the audited README entries; only narrow clarifications applied if audit findings exposed a doc gap",
+        "No unrelated governance rewrites, new categories, or README structural changes are introduced in contributor docs",
+        "make links exits 0 for docs/*.md after any doc edits",
+        "Typecheck passes",
+        "Tests pass"
+      ],
+      "priority": 4,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "phase-7-source-quality-audit-005",
+      "title": "Verify Phase 7 source-quality audit quality gates",
+      "description": "As a maintainer merging this batch, I want end-to-end verification that the audited README and docs pass automated checks and preserve list structure.",
+      "acceptanceCriteria": [
+        "From repository root, make check exits 0",
+        "From repository root, make test exits 0",
+        "From repository root, make links exits 0 for README.md and docs/*.md",
+        "git diff --check reports no whitespace errors on changed files",
+        "README retains ten curated resource sections with unchanged Contents navigation anchors and governance sections (Scope, Contributing, Community)",
+        "Changed content files are limited to README.md, contributor-facing docs, docs/historical.md only when relocations occurred, and planning artifacts for this batch",
+        "Typecheck passes",
+        "Tests pass"
+      ],
+      "priority": 5,
+      "passes": false,
       "notes": ""
     }
   ]

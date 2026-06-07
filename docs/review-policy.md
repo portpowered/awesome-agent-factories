@@ -67,7 +67,7 @@ Use this checklist during review. Contributors should self-check the same items 
 ### 6. Is the description factual and non-promotional?
 
 - [ ] The description is **concise** and **encyclopedic** — it states what the resource is and why it matters for agent-factory work.
-- [ ] The description avoids marketing language prohibited in [CONTRIBUTING.md](../CONTRIBUTING.md) (for example, "revolutionary", "game-changing", "best", or "ultimate" unless part of an official title).
+- [ ] The description avoids marketing language prohibited in [CONTRIBUTING.md](../CONTRIBUTING.md) (for example, "revolutionary", "game-changing", "best", "ultimate", or benefit-selling superlatives such as "production-safe" unless part of an official title).
 - [ ] The description **ends with a period**.
 
 ### 7. Is it a duplicate?

@@ -25,7 +25,7 @@ Add entries to the correct section in [README.md](README.md) using this format:
 Requirements:
 
 - **Link text** must be the **exact resource name** (official project, paper, or article title). Do not use generic link text such as "here", "link", or a domain name unless that is the official name.
-- **URL** must point to the canonical resource (project homepage, paper page, or primary article URL).
+- **URL** must point to the canonical resource (project homepage, paper page, or primary article URL). Prefer official destinations that do not rely on unnecessary redirect hops when a stable canonical URL is known.
 - **Description** follows the hyphen separator and must end with a **period**.
 
 ### Valid example
@@ -69,7 +69,8 @@ Do not use promotional or superlative phrasing in descriptions. Maintain a neutr
 Disallowed examples (unless they appear in an official title you are quoting):
 
 - "revolutionary", "game-changing", "best", "ultimate", "cutting-edge"
-- "must-have", "industry-leading", "unparalleled", "world-class"
+- "must-have", "industry-leading", "unparalleled", "world-class", "production-safe"
+- Benefit-selling superlatives that imply reader outcomes rather than describing what the resource is
 - Calls to action such as "check it out" or "you won't want to miss this"
 
 Prefer factual statements such as:

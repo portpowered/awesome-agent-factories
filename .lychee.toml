@@ -1,6 +1,6 @@
 max_retries = 2
 timeout = 20
-accept = [200, 204, 206, 301, 302, 403, 429]
+accept = ["200", "204", "206", "301", "302", "403", "429"]
 
 exclude = [
   "localhost",

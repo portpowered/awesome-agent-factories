@@ -255,6 +255,7 @@ Real-world uses of multiple agents or agent flows in production, enterprise, or 
 - Documented deployments where **multiple agents or explicit flows** were central to the solution.
 - Case writeups with concrete context: problem, architecture, roles, and outcomes.
 - Customer or internal stories that remain encyclopedic, not promotional.
+- Official vendor media-center, engineering-blog, or customer-case URLs over third-party news aggregators or repost sites when both exist.
 
 ### Exclude
 
@@ -326,4 +327,6 @@ Category names, include/exclude rules, and examples in this document informed Ph
 
 Phase 4 structural checks and Phase 5 workflow gates are **implemented** in this repository.
 
-Phase 7 foundational content seeding is **present on main** across all ten curated README resource sections in [README.md](../README.md): [Theories](../README.md#theories), [Coordination Patterns](../README.md#coordination-patterns), [Frameworks](../README.md#frameworks), [Protocols and Interfaces](../README.md#protocols-and-interfaces), [Benchmarks](../README.md#benchmarks), [Research Papers](../README.md#research-papers), [Blog Posts](../README.md#blog-posts), [Case Studies](../README.md#case-studies), [Examples and Templates](../README.md#examples-and-templates), and [Related Lists](../README.md#related-lists). Maintainers still apply manual review for scope, quality, and category fit per [docs/review-policy.md](review-policy.md).
+Phase 7 foundational content seeding is **present on main** across all ten curated README resource sections in [README.md](../README.md): [Theories](../README.md#theories), [Coordination Patterns](../README.md#coordination-patterns), [Frameworks](../README.md#frameworks), [Protocols and Interfaces](../README.md#protocols-and-interfaces), [Benchmarks](../README.md#benchmarks), [Research Papers](../README.md#research-papers), [Blog Posts](../README.md#blog-posts), [Case Studies](../README.md#case-studies), [Examples and Templates](../README.md#examples-and-templates), and [Related Lists](../README.md#related-lists).
+
+Phase 7 post-seeding **source-quality audit** is **complete** on main: README resource URLs were canonicalized to stable destinations, weak or out-of-scope entries were removed or replaced per [docs/review-policy.md](review-policy.md), and descriptions were hardened to encyclopedic non-promotional tone per [CONTRIBUTING.md](../CONTRIBUTING.md). Maintainers still apply manual review for scope, quality, and category fit on new submissions per [docs/review-policy.md](review-policy.md).
