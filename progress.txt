@@ -1,4 +1,5 @@
 ## Codebase Patterns
+- Research Papers expansion should diversify beyond survey-and-framework papers: add safety/governance (AgentPoison), group-level evaluation (ChatEval), social coordination (Exploring Collaboration Mechanisms), expert-model orchestration (HuggingGPT), societies of mind (Mindstorms), and scaling coordination (More Agents Is All You Need) while keeping strict link-text alphabetization.
 - Phase 8/9 maintainer-ops convergence content may already be on `origin/main` via merged `phase-8-9-maintainer-ops-convergence` commits; run `git diff origin/main origin/phase-8-9-maintainer-ops-convergence -- MAINTAINERS.md CONTRIBUTING.md docs/review-policy.md docs/taxonomy.md` before reapplying governance diffs.
 - Phase 5 core CI: `.github/workflows/ci.yml` uses `actions/checkout@v4`, `actions/setup-go@v5` with `go-version: stable`, and `go mod download`; full gate steps (gofmt, tests, README checks) are added incrementally per PRD stories 002–004.
 - No package.json in this worktree; Go quality gates are `go build ./...`, `make check`, `make test`, and `git diff --check`.
@@ -461,4 +462,22 @@
   - Insert new Frameworks entries in strict link-text alphabetical order; "AgentScope" sorts before "AutoGen", "CAMEL" before "CrewAI", and "Semantic Kernel" before "Symphony".
   - Use main framework repository URLs for Frameworks; keep `/tree/main/examples` or `-examples` repos under Examples and Templates only.
   - Story 004 runs full batch verification across all three expanded core sections; no PR exists yet until all stories pass.
+---
+
+## 2026-06-07T16:00:00Z - phase-7-research-and-blogs-expansion-001
+- Expanded README Research Papers from seven to fifteen alphabetized entries by adding AgentPoison, AgentVerse, ChatEval, Exploring Collaboration Mechanisms for LLM Agents, HuggingGPT, Mindstorms in Natural Language-Based Societies of Mind, More Agents Is All You Need, and ProAgent with verified arXiv URLs and scope keywords covering safety, evaluation, collaboration, orchestration, and agent societies.
+- Files changed: README.md
+- **Learnings for future iterations:**
+  - README checker requires exact scope keyword stems (`coordination` not `coordinate` or `coordinated`); reword descriptions after adding entries if `make check` emits scope-keyword warnings.
+  - Insert new Research Papers entries in strict link-text alphabetical order across the full section, not only at the end; "AgentPoison" and "AgentVerse" sort before "AutoGen".
+  - Story 002 expands Blog Posts (six→≥10); reuse distinct URLs from Coordination Patterns and other README sections to avoid duplicate-URL checker failures.
+---
+
+## 2026-06-07T11:14:16Z - phase-7-research-and-blogs-expansion-002
+- Expanded README Blog Posts from six to ten alphabetized entries by adding AutoGen 0.4 launch, CrewAI Flow-plus-Crew production architecture, AWS Strands arbiter coordination, and LangGraph Cloud deployment posts with scope keywords covering orchestration, delegation, coordination, routing, and group-level evaluation.
+- Files changed: README.md
+- **Learnings for future iterations:**
+  - Blog Posts alphabetization is case-insensitive (`strings.ToLower`); "How to build" sorts before "How We Deployed" and "How we built", and "Multi Agent" sorts before "Multi-Agent" because space precedes hyphen.
+  - Prefer framework engineering blogs (devblogs.microsoft.com/autogen, blog.crewai.com, blog.langchain.com) and cloud architecture posts (aws.amazon.com/blogs/devops) over shallow vendor marketing roundups when diversifying Blog Posts.
+  - Story 003 runs full batch verification across Research Papers and Blog Posts expansions; no PR until all three stories pass.
 ---
