@@ -1,174 +1,180 @@
-# PRD: Phase 5 Core CI Workflow
+# PRD: Phase 5 Workflow Integration Repair
 
 ## Introduction
 
-Add the core GitHub Actions continuous-integration workflow for **Awesome AI Agent Factories** so pull requests and pushes to `main` automatically run the same essential quality gates contributors already use locally. Phase 4 established `make check`, `make test`, and `go test ./...` as the local automation surface; Phase 5 closes the loop by enforcing those core checks in CI before maintainers review changes.
-
-This work item creates **only** `.github/workflows/ci.yml`. It does not add link checking, awesome-lint, scheduled maintenance, issue templates, PR templates, or README content changes.
+Converge the completed `phase-5-link-awesome-maintenance-workflows` GitHub Actions work onto `main` before Phase 6 starts. Local `main` already includes the merged core `.github/workflows/ci.yml` from `origin/main` (via `phase-5-core-ci-workflow`), but the remaining Phase 5 maintenance workflows and contributor documentation updates exist only on `origin/phase-5-link-awesome-maintenance-workflows`. This repair selectively integrates those artifacts onto `main`—link checking, awesome-list linting, scheduled maintenance, and the `CONTRIBUTING.md` GitHub Actions section—while preserving the existing core CI workflow and leaving Phase 6 templates and README content out of scope.
 
 ## Context
 
 ### Customer ask
 
-Phase 5 GitHub Actions: add the core pull-request and main-branch CI workflow for the Awesome AI Agent Factories repository. Create `.github/workflows/ci.yml` only. It must run on pull requests to `main` and pushes to `main`; check out the repository; set up a stable Go version; download Go dependencies; check Go formatting for `internal`; run `go test ./...`; and run the custom README checks through the same command used by local automation, preferably `make check` or `go run ./internal/checks` if that is more reliable in CI. Keep the workflow read-only and non-mutating. Do not add link-check, awesome-lint, scheduled maintenance, issue templates, PR templates, or README content entries in this item.
+Phase 5 integration repair: converge the completed GitHub Actions work onto `main` before Phase 6 starts. Local `main` has the merged core `.github/workflows/ci.yml` from `origin/main`, but the completed `phase-5-link-awesome-maintenance-workflows` output is still only on its branch. Integrate the remaining Phase 5 outputs into `main`: `.github/workflows/link-check.yml`, `.github/workflows/awesome-lint.yml`, `.github/workflows/scheduled-maintenance.yml`, and the `CONTRIBUTING.md` GitHub Actions documentation if still applicable. Preserve the already-integrated core CI workflow. Acceptance: all four requested workflow files exist on `main`; link check runs on pull requests to `main` and weekly; awesome lint runs on pull requests to `main` and pushes to `main`; scheduled maintenance runs monthly, performs read-only custom README checks and link checks, and does not mutate repository content; workflow commands remain aligned with local Makefile/config behavior; local `make check`, `make test`, `go test ./...`, and `git diff --check` pass.
 
 ### Problem
 
-Contributors can self-verify with `make check` and `make test`, but maintainers have no automated gate on GitHub when a pull request is opened or when `main` is updated. Without CI, README rule regressions, Go test failures, and formatting drift can reach `main` undetected. Phase 4 local automation exists, but GitHub does not yet mirror it.
+Phase 5 is split across two merged/in-flight branches. Core CI (`ci.yml`) is on `main`, but link checking, awesome-list linting, and scheduled maintenance workflows remain only on `phase-5-link-awesome-maintenance-workflows`. Contributors reading `CONTRIBUTING.md` on `main` are told GitHub Actions are not configured, while the completed branch already documents workflow-to-local-command mappings. A naive merge risks clobbering the merged `ci.yml` or reintroducing planner tracking-file conflicts; a partial merge leaves Phase 5 incomplete and blocks Phase 6.
 
 ### Solution
 
-Introduce a single read-only CI workflow at `.github/workflows/ci.yml` that triggers on pull requests and pushes targeting `main`, sets up stable Go on `ubuntu-latest`, downloads module dependencies, verifies `internal/` is gofmt-clean, runs `go test ./...`, and runs README validation through `make check` (falling back to `go run ./internal/checks` only if `make check` is unreliable in the runner environment). Use maintained GitHub Actions versions aligned with `docs/internal/customer-ask.md` (`actions/checkout@v4`, `actions/setup-go@v5`).
+Create an integration repair branch (`phase-5-workflow-integration-repair`) from current `main`, selectively bring in the three maintenance workflow files and the `CONTRIBUTING.md` GitHub Actions section from `origin/phase-5-link-awesome-maintenance-workflows`, verify `ci.yml` is unchanged, and confirm all workflows are read-only with triggers and commands aligned to the root `Makefile` and `.lychee.toml`. Verify convergence with `make check`, `make test`, `go test ./...`, and `git diff --check` before merging to `main`.
 
 ## Goals
 
-- Enforce core Phase 4 quality gates automatically on every pull request to `main` and every push to `main`.
-- Mirror local contributor commands (`make check`, `make test`, `go test ./...`, gofmt on `internal/`) without duplicating checker logic in the workflow.
-- Keep CI strictly read-only: no formatting writes, commits, content mutation, or elevated write permissions.
-- Leave optional Phase 4 targets (`make lint`, `make links`) and other Phase 5 workflows for separate work items.
-- Preserve passing local gates: `make check`, `make test`, `go test ./...`, and `git diff --check`.
+- Land all four Phase 5 workflow files on `main`: `ci.yml` (preserved), `link-check.yml`, `awesome-lint.yml`, and `scheduled-maintenance.yml`.
+- Ensure workflow triggers match the customer ask: link check on PRs to `main` and weekly; awesome lint on PRs and pushes to `main`; scheduled maintenance monthly with read-only README and link checks.
+- Keep workflows non-mutating and aligned with local commands (`make check`, `make links`, `npx awesome-lint`) without duplicating checker or lychee rules in YAML.
+- Update `CONTRIBUTING.md` so contributors can map CI failures to local reproduction commands.
+- Preserve the merged core CI workflow and pass all local quality gates before Phase 6.
 
 ## Project-Level Acceptance Criteria
 
-- [ ] `.github/workflows/ci.yml` exists as the only workflow file added by this work item.
-- [ ] The workflow runs on `pull_request` to `main` and `push` to `main`.
-- [ ] The workflow checks out the repository, sets up stable Go, runs `go mod download`, verifies `internal/` formatting, runs `go test ./...`, and runs README checks via `make check` or `go run ./internal/checks`.
-- [ ] The workflow is read-only and non-mutating (no `gofmt -w`, commits, auto-fix bots, or content writes).
-- [ ] The workflow uses current maintained GitHub Actions versions (`actions/checkout@v4`, `actions/setup-go@v5` or newer compatible majors).
-- [ ] CI steps align with Phase 4 local gates documented in `CONTRIBUTING.md` and the root `Makefile`.
-- [ ] Quality gate: `go build ./...` succeeds; `make check`, `make test`, `go test ./...`, and `git diff --check` pass locally after the workflow is added.
+- [ ] All four workflow files exist on the integrated branch: `.github/workflows/ci.yml`, `.github/workflows/link-check.yml`, `.github/workflows/awesome-lint.yml`, and `.github/workflows/scheduled-maintenance.yml`.
+- [ ] `link-check.yml` triggers on `pull_request` to `main` and a weekly `schedule` cron; it scans `README.md` and `docs/*.md` with lychee honoring root `.lychee.toml` and performs no content mutation.
+- [ ] `awesome-lint.yml` triggers on `pull_request` and `push` to `main`; it runs `npx awesome-lint` (or equivalent) and performs no content mutation.
+- [ ] `scheduled-maintenance.yml` triggers on a monthly `schedule` cron; it runs custom README checks (`make check` or `go run ./internal/checks`) and link checks; it performs no commits, auto-fixes, or other repository mutations.
+- [ ] `.github/workflows/ci.yml` is preserved from current `main` (Go format check, `go test ./...`, README checks via `make check` / `go run ./internal/checks` on PR and push to `main`).
+- [ ] `CONTRIBUTING.md` documents the three maintenance workflows and maps each to its local equivalent command.
+- [ ] Workflow step names or comments identify local equivalents (`make links`, `make check`, `npx awesome-lint`); checker and lychee settings are not duplicated in workflow YAML.
+- [ ] Quality gate: from repository root on the integrated branch, `make check`, `make test`, `go test ./...`, and `git diff --check` all exit 0.
 
 ## User Stories
 
-### phase-5-core-ci-workflow-001: CI workflow triggers and Go environment setup
+### phase-5-workflow-integration-repair-001: Integrate link-check workflow onto main
 
-**Description:** As a maintainer, I want a CI workflow that activates on pull requests and pushes to `main` and prepares a stable Go environment so automated checks run on every relevant change.
+**Description:** As a maintainer, I want link checking enforced on pull requests to `main` and on a weekly schedule so broken links in `README.md` and documentation are caught before or soon after merge.
 
 **Acceptance Criteria:**
 
-- [ ] `.github/workflows/ci.yml` exists with workflow name `CI`.
+- [ ] `.github/workflows/link-check.yml` exists on the integration branch with workflow name `Link Check`.
+- [ ] Workflow `on` includes `pull_request` with `branches: [main]` and `schedule` with weekly cron (`0 8 * * 1` or equivalent Monday schedule).
+- [ ] A job on `ubuntu-latest` checks out the repository with `actions/checkout@v4` and runs lychee on `README.md` and `docs/*.md` via `lycheeverse/lychee-action@v2` (or equivalent) so root `.lychee.toml` settings apply.
+- [ ] Step names or comments identify the local equivalent (`make links`).
+- [ ] The workflow performs no file writes, commits, or content mutation.
+- [ ] Typecheck passes
+
+### phase-5-workflow-integration-repair-002: Integrate awesome-lint workflow onto main
+
+**Description:** As a maintainer, I want awesome-list lint rules enforced on pull requests and pushes to `main` so list structure violations are blocked before they land on the default branch.
+
+**Acceptance Criteria:**
+
+- [ ] `.github/workflows/awesome-lint.yml` exists on the integration branch with workflow name `Awesome Lint`.
 - [ ] Workflow `on` includes `pull_request` with `branches: [main]` and `push` with `branches: [main]`.
-- [ ] A single job runs on `ubuntu-latest`, checks out the repository with `actions/checkout@v4`, and sets up Go with `actions/setup-go@v5` using `go-version: stable`.
-- [ ] A `go mod download` step runs after Go setup.
+- [ ] A job on `ubuntu-latest` checks out the repository with `actions/checkout@v4` and runs `npx awesome-lint`.
+- [ ] Step names or comments identify the local equivalent (`npx awesome-lint`).
+- [ ] The workflow performs no file writes, commits, or content mutation.
 - [ ] Typecheck passes
 
-### phase-5-core-ci-workflow-002: Go formatting verification in CI
+### phase-5-workflow-integration-repair-003: Integrate scheduled maintenance workflow onto main
 
-**Description:** As a maintainer, I want CI to fail when checker code in `internal/` is not gofmt-formatted so formatting drift is caught before merge.
+**Description:** As a maintainer, I want a monthly scheduled job that re-validates README rules and link health on `main` so drift is detected even when no pull requests are open.
 
 **Acceptance Criteria:**
 
-- [ ] CI includes a format-check step equivalent to `test -z "$(gofmt -l internal)"` that exits non-zero when unformatted Go files exist under `internal/`.
-- [ ] The format-check step does not write or modify files (no `gofmt -w`).
-- [ ] The format check targets only `internal/`, matching local `make fmt` scope.
+- [ ] `.github/workflows/scheduled-maintenance.yml` exists on the integration branch with workflow name `Scheduled Maintenance`.
+- [ ] Workflow `on` includes `schedule` with monthly cron (`0 9 1 * *` or equivalent first-of-month schedule).
+- [ ] A job on `ubuntu-latest` checks out the repository, sets up Go with `actions/setup-go@v5` (`go-version: stable`), and runs custom README checks via `make check` (preferred) or `go run ./internal/checks`.
+- [ ] The same job runs link checks on `README.md` and `docs/*.md` using the same lychee approach as `link-check.yml`, honoring `.lychee.toml`.
+- [ ] Step names or comments identify local equivalents (`make check`, `make links`).
+- [ ] The workflow performs no file writes, commits, issue bots, or auto-fix steps.
 - [ ] Typecheck passes
 - [ ] Tests pass
 
-### phase-5-core-ci-workflow-003: Go test execution in CI
+### phase-5-workflow-integration-repair-004: Update CONTRIBUTING.md with GitHub Actions documentation
 
-**Description:** As a contributor, I want CI to run the full Go test suite so checker regressions are caught the same way as `make test` locally.
+**Description:** As a contributor, I want `CONTRIBUTING.md` to document which GitHub workflows run and how they map to local commands so I can reproduce CI failures before pushing.
 
 **Acceptance Criteria:**
 
-- [ ] CI includes a step that runs `go test ./...` from the repository root.
-- [ ] The test step fails the workflow when any package test fails.
-- [ ] The command matches the `make test` target behavior in the root `Makefile`.
+- [ ] `CONTRIBUTING.md` replaces the statement that GitHub Actions are not configured with a `### GitHub Actions` subsection under Local checks.
+- [ ] The subsection includes a table mapping Link Check, Awesome Lint, and Scheduled Maintenance workflows to their triggers and local equivalents (`make links`, `npx awesome-lint`, `make check` and `make links`).
+- [ ] Documentation states workflows are read-only and that link checks honor `.lychee.toml` while README rules live in `internal/checks` (not duplicated in workflow YAML).
+- [ ] Links in the table point to `.github/workflows/link-check.yml`, `.github/workflows/awesome-lint.yml`, and `.github/workflows/scheduled-maintenance.yml`.
+- [ ] No README list entries or unrelated governance prose changes are introduced.
 - [ ] Typecheck passes
-- [ ] Tests pass
 
-### phase-5-core-ci-workflow-004: README checks in CI
+### phase-5-workflow-integration-repair-005: Preserve core CI workflow during integration
 
-**Description:** As a maintainer, I want CI to run the custom README validator so list structure and entry-rule violations are blocked before merge.
+**Description:** As a maintainer, I want the already-merged core CI workflow preserved unchanged so Phase 5 integration does not regress Go formatting, test, or README check gates on pull requests and pushes to `main`.
 
 **Acceptance Criteria:**
 
-- [ ] CI includes a README validation step that runs `make check` when `make` is available on the runner.
-- [ ] If `make check` is unreliable in CI, the step uses `go run ./internal/checks` as a documented fallback with the same pass/fail semantics as local `make check`.
-- [ ] The README check step fails the workflow when `internal/checks` reports failures against the repository `README.md`.
-- [ ] The workflow does not invoke `make links`, `make lint`, lychee, awesome-lint, or other optional Phase 4/5 tools.
+- [ ] `.github/workflows/ci.yml` on the integration branch matches current `main` (workflow name `CI`; triggers on `pull_request` and `push` to `main`; Go format check on `internal/`; `go test ./...`; README checks via `make check` with `go run ./internal/checks` fallback).
+- [ ] No integration change modifies `ci.yml` step commands, action versions, or trigger configuration unless fixing a merge conflict in favor of the `main` version.
+- [ ] Core CI workflow remains read-only and non-mutating.
 - [ ] Typecheck passes
 - [ ] Tests pass
 
-### phase-5-core-ci-workflow-005: Read-only CI guarantees and local gate regression check
+### phase-5-workflow-integration-repair-006: Verify Phase 5 workflow convergence on integrated main
 
-**Description:** As a repository maintainer, I want the new CI workflow to remain non-mutating and leave existing local automation unchanged so contributors and CI share one consistent quality contract.
+**Description:** As a planner preparing the Phase 5 loopback review, I want end-to-end verification that all four workflows exist, triggers and read-only behavior match the customer ask, and local quality gates pass so Phase 6 can start from a converged `main`.
 
 **Acceptance Criteria:**
 
-- [ ] `.github/workflows/ci.yml` contains no steps that modify tracked files, create commits, open pull requests, or push changes.
-- [ ] The workflow does not grant unnecessary `permissions:` write scopes; default read-only checkout behavior is sufficient.
-- [ ] Only `.github/workflows/ci.yml` is added or changed for this work item (no link-check, awesome-lint, scheduled-maintenance, issue templates, PR templates, or README content edits).
-- [ ] From a clean repository root, `make check`, `make test`, `go test ./...`, and `git diff --check` all exit 0 after the workflow lands.
+- [ ] All four workflow files exist on the integration branch: `ci.yml`, `link-check.yml`, `awesome-lint.yml`, and `scheduled-maintenance.yml`.
+- [ ] Observable trigger configuration matches the customer ask (link check: PR + weekly; awesome lint: PR + push to `main`; scheduled maintenance: monthly; core CI: PR + push to `main`).
+- [ ] From repository root: `make check`, `make test`, `go test ./...`, and `git diff --check` all exit 0.
+- [ ] No issue templates, PR templates, or bulk README resource entries are added as part of this integration.
+- [ ] Only `.github/workflows/link-check.yml`, `.github/workflows/awesome-lint.yml`, `.github/workflows/scheduled-maintenance.yml`, and narrowly scoped `CONTRIBUTING.md` updates are introduced—no unrelated cleanup.
 - [ ] Typecheck passes
 - [ ] Tests pass
-
-## Functional Requirements
-
-- **FR-1:** Add `.github/workflows/ci.yml` as the sole deliverable file for this work item.
-- **FR-2:** Trigger the workflow on `pull_request` to `main` and `push` to `main`.
-- **FR-3:** Use `actions/checkout@v4` to check out the triggering ref.
-- **FR-4:** Use `actions/setup-go@v5` with `go-version: stable` compatible with `go 1.24` in `go.mod`.
-- **FR-5:** Run `go mod download` before test and check steps.
-- **FR-6:** Verify Go formatting with `test -z "$(gofmt -l internal)"` (or equivalent non-mutating check).
-- **FR-7:** Run `go test ./...` from the repository root.
-- **FR-8:** Run README validation via `make check`, preferring parity with local automation; use `go run ./internal/checks` only when `make check` is not reliable in CI.
-- **FR-9:** Keep all workflow steps read-only and non-mutating.
-- **FR-10:** Do not add workflows or templates outside the core CI scope defined in this PRD.
-
-## Non-Goals
-
-- No `.github/workflows/link-check.yml`, `.github/workflows/awesome-lint.yml`, or `.github/workflows/scheduled-maintenance.yml` (separate Phase 5 work item).
-- No issue templates, PR templates, or GitHub App/bot integrations.
-- No README content entries or taxonomy changes.
-- No `make lint`, `make links`, golangci-lint, lychee, or awesome-lint in the core CI workflow.
-- No workflow concurrency/caching optimizations unless required for correctness.
-- No changes to checker validation rules in `internal/checks`.
-- No mutation of repository content from CI (format fixes, normalize scripts, auto-commits).
 
 ## High-Level Technical Design
 
-The workflow is a single job (`go-checks` or equivalent) on `ubuntu-latest` with a linear step sequence:
+Integration follows a selective file-level merge from `origin/phase-5-link-awesome-maintenance-workflows` onto current `main`:
 
-```mermaid
-flowchart TD
-  A[Trigger: PR or push to main] --> B[Checkout repository]
-  B --> C[Setup Go stable]
-  C --> D[go mod download]
-  D --> E[gofmt check on internal/]
-  E --> F[go test ./...]
-  F --> G[make check or go run ./internal/checks]
-  G --> H[Job success or failure]
+```
+main (has ci.yml)
+  │
+  ├── cherry-pick / copy: link-check.yml, awesome-lint.yml, scheduled-maintenance.yml
+  ├── patch: CONTRIBUTING.md Local checks → GitHub Actions subsection
+  └── preserve: ci.yml unchanged
 ```
 
-**Dependency alignment with Phase 4:**
+**Workflow ownership:**
 
-| Local command | CI equivalent |
-|---------------|---------------|
-| `make fmt` / gofmt on `internal/` | `test -z "$(gofmt -l internal)"` (check only) |
-| `make test` | `go test ./...` |
-| `make check` | `make check` (preferred) or `go run ./internal/checks` |
-| `make lint` | Not in scope |
-| `make links` | Not in scope |
+| Workflow | Triggers | Local equivalent | Config source |
+| --- | --- | --- | --- |
+| `ci.yml` | PR + push to `main` | `make check`, `go test ./...`, gofmt | `Makefile`, `internal/checks` |
+| `link-check.yml` | PR to `main` + weekly | `make links` | `.lychee.toml` |
+| `awesome-lint.yml` | PR + push to `main` | `npx awesome-lint` | awesome-lint defaults |
+| `scheduled-maintenance.yml` | Monthly | `make check`, `make links` | `Makefile`, `.lychee.toml`, `internal/checks` |
 
-**Read-only contract:** Steps may read the working tree and module cache but must not run formatters with write flags, bots, or `git commit`/`git push`. The workflow should not set broad `permissions: write-all`.
+**Merge conflict policy:** If `ci.yml` conflicts, keep `main`'s version. If `CONTRIBUTING.md` conflicts, merge the GitHub Actions subsection from the candidate branch while preserving any newer `main` prose outside Local checks.
 
-**Action versioning:** Pin to maintained major versions from the customer ask (`checkout@v4`, `setup-go@v5`). Minor/patch updates within those majors are acceptable when they remain the current maintained release line.
+**Read-only guarantees:** None of the workflows use write permissions, `gofmt -w`, commit bots, or auto-fix actions. Scheduled maintenance reports failures without mutating tracked content.
 
-## Supporting Technical Considerations
+## Functional Requirements
 
-- `ubuntu-latest` GitHub-hosted runners include `make`; `make check` should work and keeps CI aligned with `CONTRIBUTING.md`.
-- `go run ./internal/checks` is the canonical checker entry point inside the Go module and is acceptable as a fallback if `make` behavior differs unexpectedly.
-- `go mod download` ensures module metadata is available before `go test` and `go run`.
-- Format checking is intentionally limited to `internal/` because that is the Go code owned by this repository's checker; README formatting is validated by semantic rules, not gofmt.
-- This work item should not require `go.sum` changes unless the module graph truly changes; adding CI alone should not alter dependencies.
+- FR-1: Integrate `.github/workflows/link-check.yml` with PR-to-`main` and weekly schedule triggers.
+- FR-2: Integrate `.github/workflows/awesome-lint.yml` with PR-to-`main` and push-to-`main` triggers.
+- FR-3: Integrate `.github/workflows/scheduled-maintenance.yml` with monthly schedule, README checks, and link checks.
+- FR-4: Update `CONTRIBUTING.md` to document workflow-to-local-command mapping.
+- FR-5: Preserve `.github/workflows/ci.yml` from current `main` without regression.
+- FR-6: Verify local gates (`make check`, `make test`, `go test ./...`, `git diff --check`) pass on the integrated branch.
+
+## Non-Goals
+
+- No changes to `ci.yml` beyond conflict resolution in favor of `main`.
+- No issue templates, PR templates, or Phase 6 deliverables.
+- No README content entries or bulk documentation rewrites.
+- No duplication of checker logic or lychee accept/exclude rules inside workflow YAML.
+- No workflow steps that mutate repository content (commits, auto-fix, format-with-write).
+
+## Supporting Technical and UX Considerations
+
+- Use maintained action versions already validated on the candidate branch (`actions/checkout@v4`, `actions/setup-go@v5`, `lycheeverse/lychee-action@v2`).
+- Quote workflow step names containing colons to keep YAML valid (lesson from `phase-5-core-ci-workflow`).
+- `CONTRIBUTING.md` is the contributor-facing map from CI failure to local reproduction; keep the table concise and link to workflow files.
+- Integration should not replace `prd.json`, `prd.md`, or `progress.txt` on `main` with older branch snapshots unless an explicit planner update is required.
 
 ## Success Metrics
 
-- Every pull request to `main` receives an automatic CI run covering format, tests, and README checks.
-- CI failure messages map clearly to the failing step (format, tests, or README checks).
-- Contributors who pass `make check` and `make test` locally see green CI on equivalent changes.
-- No increase in local maintainer burden: local commands remain the source of truth and continue to pass unchanged.
+- All four Phase 5 workflow files exist on `main` after merge.
+- Contributors can reproduce any maintenance workflow failure locally using documented `make` or `npx` commands.
+- Local quality gates pass with zero regressions to checker behavior or core CI.
+- Phase 5 checklist in `docs/internal/checklist.md` can be marked converged for workflow integration.
 
 ## Open Questions
 
-None. Scope, triggers, steps, action versions, and exclusions are fully specified by the customer ask and `docs/internal/customer-ask.md`.
+- None. The candidate branch `origin/phase-5-link-awesome-maintenance-workflows` is validated and the integration surface is a straightforward selective merge with `ci.yml` preservation.
