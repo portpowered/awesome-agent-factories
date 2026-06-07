@@ -68,6 +68,11 @@ Foundational ideas for organizing agent groups.
 
 Reusable system shapes for coordinating agent groups and flows.
 
+- [Agent orchestration](https://openai.github.io/openai-agents-python/multi_agent/) - OpenAI Agents SDK guide comparing manager-style orchestration with specialist handoffs.
+- [AI Agent Orchestration Patterns](https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/ai-agent-design-patterns) - Architecture guide for sequential, concurrent, group-chat, and handoff orchestration topologies.
+- [Building Effective Agents](https://www.anthropic.com/engineering/building-effective-agents) - Engineering patterns including orchestrator-workers, routing, and evaluator-optimizer flows.
+- [Multi-agent](https://langchain-ai.github.io/langgraph/concepts/multi_agent/) - LangGraph concepts for supervisor, swarm, and hierarchical handoff topologies.
+
 ## Frameworks
 
 Software that manages agent groups, flows, handoffs, or orchestration.
