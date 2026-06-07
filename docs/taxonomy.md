@@ -9,8 +9,9 @@ Use these definitions during manual review when deciding which section a resourc
 | Document | Use when categorizing |
 |----------|----------------------|
 | [README.md](../README.md) | Canonical scope statement and section headings |
-| [CONTRIBUTING.md](../CONTRIBUTING.md) | Entry format, scope exclusions, and category minimums |
-| [docs/review-policy.md](review-policy.md) | PR review checklist and recommended labels |
+| [CONTRIBUTING.md](../CONTRIBUTING.md) | Entry format, scope exclusions, local checks, and category minimums |
+| [docs/review-policy.md](review-policy.md) | PR review checklist, automated enforcement, and recommended labels |
+| [MAINTAINERS.md](../MAINTAINERS.md) | Merge policy, maintainer maintenance cadence, and stale-pull-request handling |
 | [docs/historical.md](historical.md) | Historically important but inactive resources |
 | [docs/rejected.md](rejected.md) | Commonly submitted out-of-scope types |
 
@@ -321,7 +322,7 @@ Curated awesome lists or indexes that complement this repository. This taxonomy 
 
 ## Automation, workflow gates, and Phase 7 content seeding
 
-Category names, include/exclude rules, and examples in this document informed Phase 4 automated README checks (section validation, Contents alignment, entry format, alphabetization) implemented in [`internal/checks`](../internal/checks) with local commands `make check` and `make test`. Phase 5 GitHub workflow gates (CI, Link Check, Awesome Lint, and Scheduled Maintenance) run the same or equivalent checks — see [docs/review-policy.md](review-policy.md#automated-enforcement) and [CONTRIBUTING.md](../CONTRIBUTING.md#github-actions).
+Category names, include/exclude rules, and examples in this document informed Phase 4 automated README checks (section validation, Contents alignment, entry format, alphabetization) implemented in [`internal/checks`](../internal/checks) with local commands `make check` and `make test`. Phase 5 GitHub workflow gates (CI, Link Check, Awesome Lint, and Scheduled Maintenance) run the same or equivalent checks — see [docs/review-policy.md](review-policy.md#automated-enforcement), [CONTRIBUTING.md](../CONTRIBUTING.md#github-actions), and [MAINTAINERS.md](../MAINTAINERS.md#automated-checks) for workflow triggers, local equivalents, and maintainer maintenance cadence.
 
 Phase 4 structural checks and Phase 5 workflow gates are **implemented** in this repository.
 

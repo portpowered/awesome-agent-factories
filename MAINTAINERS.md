@@ -2,7 +2,7 @@
 
 This document describes who maintains **Awesome AI Agent Factories**, how pull requests are reviewed and merged, and when list entries may be removed or stalled work is closed.
 
-Review is **manual**. There is no automated merge bot, scheduled link checker, or dedicated moderation staff unless such workflows are added to the repository and documented here.
+Review and merge are **manual** — there is no automated merge bot or dedicated moderation staff. GitHub workflows enforce README structure, Go tests, link health, and awesome-list conventions; maintainers still own scope judgments, canonical-link review, quality bar, and merge decisions. See **Automated checks** below and [docs/review-policy.md](docs/review-policy.md).
 
 ## Current maintainers
 
@@ -12,6 +12,51 @@ Review is **manual**. There is no automated merge bot, scheduled link checker, o
 | Collaborator | [@AndreasAbdi](https://github.com/AndreasAbdi) | Pull request review, scope and formatting checks |
 
 To reach maintainers, open a GitHub issue, comment on the relevant pull request, or send a GitHub message to one of the handles above. For sensitive security reports, use the channels in [SECURITY.md](SECURITY.md).
+
+## Automated checks
+
+Phase 4 and Phase 5 automation is **implemented**. Contributors should run local checks before opening a pull request; GitHub workflows run the same or equivalent checks on pull requests and on a schedule. Maintainers use workflow results when triaging pull requests and before merge.
+
+| Workflow | Triggers | Local equivalent |
+| --- | --- | --- |
+| [CI](.github/workflows/ci.yml) | Pull requests and pushes to `main` | `make test`, `make check` |
+| [Link Check](.github/workflows/link-check.yml) | Pull requests to `main`, weekly (Mondays) | `make links` |
+| [Awesome Lint](.github/workflows/awesome-lint.yml) | Pull requests and pushes to `main` | `npx awesome-lint` |
+| [Scheduled Maintenance](.github/workflows/scheduled-maintenance.yml) | Monthly (1st of month) | `make check`, `make links` |
+
+The CI workflow runs Go format checks, `go test ./...`, and README validation (`make check` / `internal/checks`). Link checks scan `README.md` and `docs/*.md` with lychee and honor root [`.lychee.toml`](.lychee.toml). Awesome Lint enforces awesome-list conventions on the README. Scheduled Maintenance combines README checks and link scans on a monthly cadence.
+
+Optional local targets `make lint` (golangci-lint) and `make links` (lychee) are documented in [CONTRIBUTING.md](CONTRIBUTING.md). README validation rules live in [`internal/checks`](internal/checks); workflow YAML does not duplicate them.
+
+Automation does **not** replace maintainer judgment on scope fit, section-fit disputes, agent-factory relevance, canonical URLs, marketing tone, or merge approval.
+
+## Maintainer maintenance cadence
+
+Recurring stewardship work follows the schedules below. There is no dedicated maintenance staff, 24/7 coverage, or guaranteed response-time SLA — maintainers perform these tasks **as availability allows**.
+
+### Weekly
+
+The [Link Check](.github/workflows/link-check.yml) workflow runs on pull requests to `main` and on a weekly schedule (Mondays). When maintainers have availability:
+
+- Review failing Link Check workflow runs and triage broken or redirected URLs reported in workflow logs.
+- Triage open pull requests with failing link checks or the `needs-link-review` label — verify canonical destinations, request fixes, or apply [docs/review-policy.md](docs/review-policy.md) triage guidance. Run `make links` locally when a closer look is needed.
+
+### Monthly
+
+The [Scheduled Maintenance](.github/workflows/scheduled-maintenance.yml) workflow runs on the **1st of each month**, combining README checks (`make check`) and link scans (`make links`). When maintainers have availability:
+
+- Review combined README-check and link-scan results from the latest scheduled run.
+- Spot-check open pull requests approaching the **60-day** inactivity window described in **Stale pull request policy** below — comment or close per that policy when appropriate.
+
+### Quarterly
+
+On a lightweight human cadence (for example, once per calendar quarter), maintainers may perform optional governance spot-checks when availability allows:
+
+- Scan the open pull request backlog for stalled or outdated submissions.
+- Spot-check category fit against [docs/taxonomy.md](docs/taxonomy.md) for recent or borderline entries.
+- Compare [MAINTAINERS.md](MAINTAINERS.md), [CONTRIBUTING.md](CONTRIBUTING.md), [docs/review-policy.md](docs/review-policy.md), and [docs/taxonomy.md](docs/taxonomy.md) for drift from implemented workflows and review practice.
+
+Quarterly review does **not** introduce new automation, staffing levels, or response-time commitments — it is a human-only sanity check on top of existing weekly and monthly workflow signals.
 
 ## Review responsibilities
 
@@ -42,8 +87,9 @@ Maintainers may request edits, reject out-of-scope submissions, or ask for more 
 - **Feedback first** — Authors should address maintainer review comments or explain why a requested change is unnecessary before merge.
 - **No silent scope exceptions** — Borderline resources need an explicit agent-factory justification in the pull request; maintainers should not merge entries that only fit single-agent or generic SDK use cases without a clear orchestration angle.
 - **Maintainer-authored changes** — When a maintainer submits a substantive list change, another maintainer should review when possible. Small typo fixes may be merged without a second review.
+- **Passing automated checks** — Resource pull requests should have passing CI, Link Check, and Awesome Lint workflow results before merge. Maintainers may request fixes or re-runs when checks fail; they still perform manual scope, canonical-link, and quality review beyond what automation covers.
 
-Merges are performed manually on GitHub. There is no required CI gate, awesome-lint job, or Go check in this repository yet.
+Merges are performed manually on GitHub after maintainer approval. There is no automated merge bot.
 
 ## Stale pull request policy
 
@@ -91,13 +137,17 @@ Conduct reports are covered in [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md). Maintai
 
 ## What maintainers do not do today
 
-Unless this document is updated after new automation lands:
+Implemented automation handles README structure checks, Go tests, scheduled and pull-request link scans, and awesome-list lint. Maintainers still own judgments automation cannot make:
 
-- We do not run continuous link monitoring across all README entries.
-- We do not enforce formatting or scope with repository CI, Go checks, or awesome-lint.
-- We do not guarantee 24/7 review or incident response.
+- **Scope and category fit** — Whether a resource belongs on an agent-factory list and in which README section.
+- **Canonical-link and quality review** — Whether a URL is the official destination and whether descriptions are factual, non-promotional, and agent-factory relevant.
+- **Merge and removal decisions** — Approval, stale-pull-request closure, relocation to [docs/historical.md](docs/historical.md), and rejection per [docs/review-policy.md](docs/review-policy.md).
 
-Community reports and pull request review are the primary quality controls until Phase 4 automation is added. Review docs under `docs/` describe manual expectations today and are intended inputs for later automated checks.
+Maintainers do **not**:
+
+- Guarantee 24/7 review, fixed-hour staffing, or response-time SLAs — review happens as maintainers have availability.
+- Run a separate security operations team — security and conduct reports route to available maintainers per [SECURITY.md](SECURITY.md) and [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
+- Auto-merge pull requests — every merge requires explicit maintainer approval after automated checks and manual review.
 
 ## Related policies
 

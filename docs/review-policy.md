@@ -24,7 +24,7 @@ Maintainers use the checklist below so weak or out-of-scope entries are rejected
 | Document | Use when reviewing |
 |----------|-------------------|
 | [CONTRIBUTING.md](../CONTRIBUTING.md) | Entry format, scope rules, marketing prohibitions, alphabetization, and one-resource-per-PR discipline |
-| [MAINTAINERS.md](../MAINTAINERS.md) | Merge expectations, stale-PR handling, and maintainer responsibilities |
+| [MAINTAINERS.md](../MAINTAINERS.md) | Automated checks summary, merge expectations, maintainer maintenance cadence, stale-PR handling, and maintainer responsibilities |
 | [docs/taxonomy.md](taxonomy.md) | Section-fit disputes — which README category a resource belongs in |
 | [README.md](../README.md) | Canonical scope statement and section headings |
 | [docs/historical.md](historical.md) | Relocating historically important but inactive resources |
