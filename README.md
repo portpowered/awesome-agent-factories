@@ -111,6 +111,11 @@ Runnable or forkable examples of multi-agent coordination.
 
 Other awesome lists and curated resources related to agent orchestration and multi-agent systems.
 
+- [Awesome AI agents](https://github.com/e2b-dev/awesome-ai-agents) - Curated index of autonomous and multi-agent agent projects covering orchestration frameworks and coordination tooling.
+- [Awesome Generative Multi-Agent Systems](https://github.com/richardblythman/awesome-multi-agent-systems) - Curated libraries and resources for generative multi-agent orchestration and coordination patterns.
+- [Awesome Multi-Agent Learning](https://github.com/WeiChengTseng/awesome-multi-agent) - Curated multi-agent reinforcement-learning papers and tutorials on coordination and delegation strategies.
+- [Awesome Multi-Agent Papers](https://github.com/kyegomez/awesome-multi-agent-papers) - Compilation of multi-agent systems research papers on coordination, orchestration, and group-level evaluation.
+
 ## Contributing
 
 Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for the full submission path.
