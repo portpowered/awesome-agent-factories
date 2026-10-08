@@ -93,6 +93,7 @@ Software that manages agent groups, flows, handoffs, or orchestration.
 - [MetaGPT](https://github.com/FoundationAgents/MetaGPT) - Multi-agent framework that assigns software-company roles for coordination of planning and execution flows.
 - [Semantic Kernel](https://github.com/microsoft/semantic-kernel) - Microsoft SDK for composing multi-agent workflows with planner orchestration, handoffs, and coordinated routing across specialized agent plugins.
 - [Symphony](https://github.com/openai/symphony) - Orchestration spec and service for dispatching isolated coding-agent runs from issue-tracker workflows.
+- [Tale](https://github.com/tale-project/tale) - Open-source project workspace coordinating agent teams through task delegation, persistent sandboxes, shared project state, and review of results.
 
 ## Protocols and Interfaces
 
