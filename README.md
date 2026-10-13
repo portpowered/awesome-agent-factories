@@ -85,6 +85,7 @@ Reusable system shapes for coordinating agent groups and flows.
 
 Software that manages agent groups, flows, handoffs, or orchestration.
 
+- [Agent Barn](https://github.com/aai-labs/agent-barn) - Open-source (Apache-2.0) control plane for managing teams of AI agents: multi-channel communication (Slack, Teams, Telegram, Discord, email), agent work across Jira/GitHub/Confluence, and full audit logging of conversations, tool calls, logs and costs on your own Kubernetes cluster via Helm.
 - [AgentScope](https://github.com/agentscope-ai/agentscope) - Agent-oriented programming framework for message-based multi-agent orchestration, pipeline coordination, and delegated tool-use workflows.
 - [AutoGen](https://github.com/microsoft/autogen) - Framework for multi-agent conversations, group chat orchestration, and delegated agent workflows.
 - [CAMEL](https://github.com/camel-ai/camel) - Communicative agents framework for role-playing multi-agent societies with task delegation and coordinated conversation orchestration.
